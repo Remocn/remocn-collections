@@ -3,10 +3,20 @@ import { SignupFlowDemo } from "./signup-flow";
 import { ChangelogDemo, CHANGELOG_DURATION } from "./changelog";
 import { BatchworkDemo, BATCHWORK_DURATION } from "./batchwork";
 import { TypographyDemo, TYPOGRAPHY_DURATION } from "./typography";
+import { AgentSkillsDemo, AGENT_SKILLS_DURATION } from "./agent-skills";
 
 export * from "./types";
 
 export const demos: Demo[] = [
+  {
+    id: "agent-skills",
+    title: "Agent Skills — Claude Code makes the video",
+    description:
+      "A meta product spot: Claude Code receives /remocn make a great demo video, thinks through the remocn skill, and 'produces' a polished remocn showcase — a zoomed terminal typing the install command, the component's code scanned top-to-bottom in a glass block, six component examples blurring in (checkbox, input, drawer, alert-dialog, select, sheet), GitHub stars, an X followers overview, white text dividers, and a closing wordmark.",
+    component: AgentSkillsDemo,
+    durationInFrames: AGENT_SKILLS_DURATION,
+    defaultProps: {},
+  },
   {
     id: "typography",
     title: "Typography — New Text Animations",

@@ -1,6 +1,11 @@
 "use client";
 
-import { Sequence, interpolate, useCurrentFrame } from "remotion";
+import {
+  Sequence,
+  interpolate,
+  useCurrentFrame,
+  useVideoConfig,
+} from "remotion";
 
 export interface GlassCodeBlockProps {
   code?: string;
@@ -11,8 +16,28 @@ export interface GlassCodeBlockProps {
   glassColor?: string;
   staggerFrames?: number;
   showTrafficLights?: boolean;
+  /** The soft cyan/purple gradient glow behind the glass. On by default. */
+  aura?: boolean;
+  /**
+   * Reveal the first line as a left-to-right typewriter (with a block cursor)
+   * instead of the default fade-up; the remaining lines then stagger in only
+   * after the first line finishes typing. Off by default.
+   */
+  typeFirstLine?: boolean;
+  /** Typing speed (characters/second) when `typeFirstLine` is on. */
+  firstLineCps?: number;
   speed?: number;
   className?: string;
+}
+
+/** Frames the first-line typewriter takes — exported so a caller can sync a
+ *  camera move to the moment typing completes. */
+export function firstLineTypeFrames(
+  firstLine: string,
+  firstLineCps: number,
+  fps: number,
+): number {
+  return Math.ceil((firstLine.length / firstLineCps) * fps);
 }
 
 const FONT_MONO =
@@ -101,10 +126,18 @@ export function GlassCodeBlock({
   glassColor = "rgba(10, 10, 10, 0.6)",
   staggerFrames = 4,
   showTrafficLights = true,
+  aura = true,
+  typeFirstLine = false,
+  firstLineCps = 30,
   speed = 1,
   className,
 }: GlassCodeBlockProps) {
+  const { fps } = useVideoConfig();
   const lines = code.split("\n");
+  // When the first line types, every later line waits until typing is done.
+  const typeDur = typeFirstLine
+    ? firstLineTypeFrames(lines[0] ?? "", firstLineCps, fps)
+    : 0;
 
   return (
     <div
@@ -119,7 +152,7 @@ export function GlassCodeBlock({
     >
       {/* Animated background hint behind the glass so the blur has something
           to chew on. Pure CSS — no extra deps. */}
-      <BackdropAura />
+      {aura && <BackdropAura />}
 
       {/* 1px gradient ring acting as a microborder */}
       <div
@@ -192,15 +225,34 @@ export function GlassCodeBlock({
               lineHeight: 1.55,
             }}
           >
-            {lines.map((line, i) => (
-              <Sequence
-                key={i}
-                from={Math.round((i * staggerFrames) / speed)}
-                layout="none"
-              >
-                <CodeLine line={line} index={i} fontSize={fontSize} />
-              </Sequence>
-            ))}
+            {lines.map((line, i) => {
+              if (typeFirstLine && i === 0) {
+                return (
+                  <Sequence key={i} from={0} layout="none">
+                    <TypedCodeLine
+                      line={line}
+                      index={i}
+                      fontSize={fontSize}
+                      cps={firstLineCps}
+                      fps={fps}
+                      speed={speed}
+                    />
+                  </Sequence>
+                );
+              }
+              const baseFrom = typeFirstLine
+                ? typeDur + (i - 1) * staggerFrames
+                : i * staggerFrames;
+              return (
+                <Sequence
+                  key={i}
+                  from={Math.round(baseFrom / speed)}
+                  layout="none"
+                >
+                  <CodeLine line={line} index={i} fontSize={fontSize} />
+                </Sequence>
+              );
+            })}
           </div>
         </div>
       </div>
@@ -266,6 +318,70 @@ function CodeLine({
             {t.text}
           </span>
         ))}
+      </span>
+    </div>
+  );
+}
+
+function TypedCodeLine({
+  line,
+  index,
+  fontSize,
+  cps,
+  fps,
+  speed,
+}: {
+  line: string;
+  index: number;
+  fontSize: number;
+  cps: number;
+  fps: number;
+  speed: number;
+}) {
+  const frame = useCurrentFrame() * speed;
+  const len = line.length;
+  const revealed = Math.floor(
+    interpolate(frame, [0, (len / cps) * fps], [0, len], {
+      extrapolateLeft: "clamp",
+      extrapolateRight: "clamp",
+    }),
+  );
+  const visible = line.substring(0, revealed);
+  const done = revealed >= len;
+  // 2 Hz blink at any framerate.
+  const cursorOn = Math.floor((frame / fps) * 2) % 2 === 0;
+  const tokens = tokenizeLine(visible);
+
+  return (
+    <div
+      style={{
+        whiteSpace: "pre",
+        display: "flex",
+        gap: 0,
+        alignItems: "center",
+      }}
+    >
+      <span style={{ width: 28, color: "#3f3f46", userSelect: "none" }}>
+        {String(index + 1).padStart(2, " ")}
+      </span>
+      <span>
+        {tokens.map((t, i) => (
+          <span key={i} style={{ color: TOKEN_COLORS[t.kind] }}>
+            {t.text}
+          </span>
+        ))}
+        {!done && cursorOn && (
+          <span
+            style={{
+              display: "inline-block",
+              width: fontSize * 0.55,
+              height: fontSize,
+              background: "#e4e4e7",
+              marginLeft: 1,
+              transform: "translateY(2px)",
+            }}
+          />
+        )}
       </span>
     </div>
   );

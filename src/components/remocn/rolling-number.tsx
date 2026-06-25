@@ -18,7 +18,6 @@ export interface RollingNumberProps {
   fontSize?: number;
   color?: string;
   speed?: number;
-  prefix?: string
 }
 
 const COUNT_PORTION = 0.8;
@@ -121,7 +120,6 @@ export function RollingNumber({
   fontSize = 120,
   color = "#171717",
   speed = 1,
-  prefix
 }: RollingNumberProps) {
   const frame = useCurrentFrame();
   const { durationInFrames } = useVideoConfig();
@@ -187,7 +185,6 @@ export function RollingNumber({
       >
         {cells}
       </div>
-      {prefix}
     </AbsoluteFill>
   );
 }
