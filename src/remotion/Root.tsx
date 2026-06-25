@@ -1,38 +1,22 @@
+import React from "react";
 import { Composition } from "remotion";
-import {
-  COMP_NAME,
-  defaultMyCompProps,
-  DURATION_IN_FRAMES,
-  VIDEO_FPS,
-  VIDEO_HEIGHT,
-  VIDEO_WIDTH,
-} from "../../types/constants";
-import { Main } from "./MyComp/Main";
-import { NextLogo } from "./MyComp/NextLogo";
+import { demos, DEFAULT_VIDEO } from "@/demos";
 
 export const RemotionRoot: React.FC = () => {
   return (
     <>
-      <Composition
-        id={COMP_NAME}
-        component={Main}
-        durationInFrames={DURATION_IN_FRAMES}
-        fps={VIDEO_FPS}
-        width={VIDEO_WIDTH}
-        height={VIDEO_HEIGHT}
-        defaultProps={defaultMyCompProps}
-      />
-      <Composition
-        id="NextLogo"
-        component={NextLogo}
-        durationInFrames={300}
-        fps={30}
-        width={140}
-        height={140}
-        defaultProps={{
-          outProgress: 0,
-        }}
-      />
+      {demos.map((demo) => (
+        <Composition
+          key={demo.id}
+          id={demo.id}
+          component={demo.component as React.FC}
+          durationInFrames={demo.durationInFrames}
+          fps={demo.fps ?? DEFAULT_VIDEO.fps}
+          width={demo.width ?? DEFAULT_VIDEO.width}
+          height={demo.height ?? DEFAULT_VIDEO.height}
+          defaultProps={(demo.defaultProps ?? {}) as Record<string, unknown>}
+        />
+      ))}
     </>
   );
 };
