@@ -1,116 +1,79 @@
 import { useCallback, useMemo, useState } from "react";
-import { z } from "zod";
-import { CompositionProps } from "../../types/constants";
-import { getProgress, renderVideo } from "../lambda/api";
 
 export type State =
-  | {
-      status: "init";
-    }
-  | {
-      status: "invoking";
-    }
-  | {
-      renderId: string;
-      bucketName: string;
-      progress: number;
-      status: "rendering";
-    }
-  | {
-      renderId: string | null;
-      status: "error";
-      error: Error;
-    }
-  | {
-      url: string;
-      size: number;
-      status: "done";
-    };
+  | { status: "init" }
+  | { status: "invoking" }
+  | { status: "rendering"; progress: number }
+  | { status: "done"; url: string }
+  | { status: "error"; error: Error };
 
-const wait = async (milliSeconds: number) => {
-  await new Promise<void>((resolve) => {
-    setTimeout(() => {
-      resolve();
-    }, milliSeconds);
-  });
-};
+const wait = (ms: number): Promise<void> =>
+  new Promise((resolve) => setTimeout(resolve, ms));
 
-export const useRendering = (
-  id: string,
-  inputProps: z.infer<typeof CompositionProps>,
-) => {
-  const [state, setState] = useState<State>({
-    status: "init",
-  });
+export const useRendering = (id: string) => {
+  const [state, setState] = useState<State>({ status: "init" });
 
   const renderMedia = useCallback(async () => {
-    setState({
-      status: "invoking",
-    });
+    setState({ status: "invoking" });
+
     try {
-      const { renderId, bucketName } = await renderVideo({ id, inputProps });
-      setState({
-        status: "rendering",
-        progress: 0,
-        renderId: renderId,
-        bucketName: bucketName,
+      const startRes = await fetch("/api/render", {
+        method: "POST",
+        headers: { "content-type": "application/json" },
+        body: JSON.stringify({ id }),
       });
 
-      let pending = true;
+      if (!startRes.ok) {
+        const err = (await startRes.json()) as { error: string };
+        throw new Error(err.error ?? "Failed to start render");
+      }
 
+      const { renderId } = (await startRes.json()) as { renderId: string };
+
+      setState({ status: "rendering", progress: 0 });
+
+      let pending = true;
       while (pending) {
-        const result = await getProgress({
-          id: renderId,
-          bucketName: bucketName,
-        });
-        switch (result.type) {
-          case "error": {
+        await wait(1000);
+
+        const pollRes = await fetch(
+          `/api/render/progress?renderId=${encodeURIComponent(renderId)}`,
+        );
+        const data = (await pollRes.json()) as {
+          status: "rendering" | "done" | "error";
+          progress: number;
+          url?: string;
+          error?: string;
+        };
+
+        switch (data.status) {
+          case "rendering":
+            setState({ status: "rendering", progress: data.progress });
+            break;
+          case "done":
+            setState({ status: "done", url: data.url as string });
+            pending = false;
+            break;
+          case "error":
             setState({
               status: "error",
-              renderId: renderId,
-              error: new Error(result.message),
+              error: new Error(data.error ?? "Unknown render error"),
             });
             pending = false;
             break;
-          }
-          case "done": {
-            setState({
-              size: result.size,
-              url: result.url,
-              status: "done",
-            });
-            pending = false;
-            break;
-          }
-          case "progress": {
-            setState({
-              status: "rendering",
-              bucketName: bucketName,
-              progress: result.progress,
-              renderId: renderId,
-            });
-            await wait(1000);
-          }
         }
       }
     } catch (err) {
       setState({
         status: "error",
-        error: err as Error,
-        renderId: null,
+        error: err instanceof Error ? err : new Error(String(err)),
       });
     }
-  }, [id, inputProps]);
+  }, [id]);
 
   const undo = useCallback(() => {
     setState({ status: "init" });
   }, []);
 
-  return useMemo(() => {
-    return {
-      renderMedia,
-      state,
-      undo,
-    };
-  }, [renderMedia, state, undo]);
+  return useMemo(() => ({ renderMedia, state, undo }), [renderMedia, state, undo]);
 };

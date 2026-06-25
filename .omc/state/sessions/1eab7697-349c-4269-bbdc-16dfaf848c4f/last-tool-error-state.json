@@ -1,0 +1,7 @@
+{
+  "tool_name": "Bash",
+  "tool_input_preview": "{\"command\":\"ls -la && echo \\\"---TSCONFIG---\\\" && cat tsconfig.json 2>/dev/null && echo \\\"---JSCONFIG---\\\" && cat jsconfig.json 2>/dev/null && echo \\\"---COMPONENTS---\\\" && cat components.json 2>/dev/nu...",
+  "error": "Exit code 1\ntotal 104\ndrwxrwxr-x@ 21 dev_wandry  staff   672 Jun 12 19:31 .\ndrwxr-xr-x@ 82 dev_wandry  staff  2624 Jun 12 19:31 ..\n-rw-r--r--@  1 dev_wandry  staff    64 May  1 10:08 .env.example\ndrwxr-xr-x@ 13 dev_wandry  staff   416 Jun 12 19:31 .git\n-rw-r--r--@  1 dev_wandry  staff   394 May  1 10:08 .gitignore\n-rw-r--r--@  1 dev_wandry  staff    24 May  1 10:08 .npmrc\ndrwxr-xr-x@  4 dev_wandry  staff   128 Jun 12 19:31 .omc\n-rw-r--r--@  1 dev_wandry  staff    66 May  1 10:08 .prettierrc\n-rw-...",
+  "timestamp": "2026-06-12T16:32:14.801Z",
+  "retry_count": 1
+}

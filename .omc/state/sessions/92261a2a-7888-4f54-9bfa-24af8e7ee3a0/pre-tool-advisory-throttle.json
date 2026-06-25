@@ -1,0 +1,34 @@
+{
+  "version": 1,
+  "entries": {
+    "466399dafa2d20f60587180bad0a07358eb7f2bce724df0ff682f038ad33f5ad": {
+      "last_emitted_at_ms": 1781966550723,
+      "message": "Read multiple files in parallel when possible for faster analysis."
+    },
+    "79a93d4a2f8f50b95f852280616242fee1855dc99a3c75211917f55e72e95fae": {
+      "last_emitted_at_ms": 1781966413590,
+      "message": "Use parallel execution for independent tasks. Use run_in_background for long operations (npm install, builds, tests)."
+    },
+    "445ed27a3872b681d98190bae61ccb84954e1bc4e140df5370be958dee776b3a": {
+      "last_emitted_at_ms": 1781966391813,
+      "message": "Verify changes work after editing. Test functionality before marking complete."
+    },
+    "808cb04420bcb368ab4716038ddd950b51198d0402b6cf8e965d66ca42ebccbe": {
+      "last_emitted_at_ms": 1781966112647,
+      "message": "[SLOP WARNING] Detected fallback/workaround language in this tool input. Do not make potential slop: avoid ad-hoc fallback layers, workaround shims, or environment-specific patches unless explicitly justified. For architecture concerns, consult the architect for a concrete design first. If this seems environment-specific, ask the user to confirm constraints before proceeding.\n\nVerify changes work after editing. Test functionality before marking complete."
+    },
+    "4ee0a906a2baefee9f42e7f7fb7f9ebc8d9a9a29f11b65cd708dcaa73facbf75": {
+      "last_emitted_at_ms": 1781964747052,
+      "message": "Spawning agent: oh-my-claudecode:designer (sonnet) [BACKGROUND] | Task: UI: list + detail pages"
+    },
+    "25a35828239de3375829acf6b3bf9cc4a4724d5f3eecf1a7d7ac6ee940935b31": {
+      "last_emitted_at_ms": 1781964448509,
+      "message": "Spawning agent: oh-my-claudecode:executor (sonnet) [BACKGROUND] | Task: Local render API + lambda teardown"
+    },
+    "230a7cf37997688f788fa196977fe9cce1759a60d1cbf911c72e88ba50571f1e": {
+      "last_emitted_at_ms": 1781964418130,
+      "message": "Spawning agent: oh-my-claudecode:executor (sonnet) [BACKGROUND] | Task: Registry + Remotion foundation"
+    }
+  },
+  "updated_at": "2026-06-20T14:42:30.723Z"
+}

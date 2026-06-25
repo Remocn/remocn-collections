@@ -1,87 +1,69 @@
-import { Player } from "@remotion/player";
+import { Thumbnail } from "@remotion/player";
 import type { NextPage } from "next";
 import Head from "next/head";
-import React, { useMemo, useState } from "react";
-import { z } from "zod";
+import Link from "next/link";
+import { demos, DEFAULT_VIDEO } from "@/demos";
 import {
-  CompositionProps,
-  defaultMyCompProps,
-  DURATION_IN_FRAMES,
-  VIDEO_FPS,
-  VIDEO_HEIGHT,
-  VIDEO_WIDTH,
-} from "../../types/constants";
-import { RenderControls } from "../components/RenderControls";
-import { Spacing } from "../components/Spacing";
-import { Tips } from "../components/Tips/Tips";
-import { Main } from "../remotion/MyComp/Main";
-
-const container: React.CSSProperties = {
-  maxWidth: 768,
-  margin: "auto",
-  marginBottom: 20,
-  paddingLeft: 16,
-  paddingRight: 16,
-};
-
-const outer: React.CSSProperties = {
-  borderRadius: "var(--geist-border-radius)",
-  overflow: "hidden",
-  boxShadow: "0 0 200px rgba(0, 0, 0, 0.15)",
-  marginBottom: 40,
-  marginTop: 60,
-};
-
-const player: React.CSSProperties = {
-  width: "100%",
-};
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
+import { AspectRatio } from "@/components/ui/aspect-ratio";
 
 const Home: NextPage = () => {
-  const [text, setText] = useState<string>(defaultMyCompProps.title);
-
-  const inputProps: z.infer<typeof CompositionProps> = useMemo(() => {
-    return {
-      title: text,
-    };
-  }, [text]);
-
   return (
-    <div>
+    <div className="min-h-screen bg-background text-foreground">
       <Head>
-        <title>Remotion and Next.js</title>
-        <meta name="description" content="Remotion and Next.js" />
+        <title>remocn demos</title>
+        <meta
+          name="description"
+          content="A gallery of animated UI demos built with remocn and Remotion."
+        />
         <meta
           name="viewport"
           content="width=device-width, initial-scale=1, maximum-scale=1"
         />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <div style={container}>
-        <div className="cinematics" style={outer}>
-          <Player
-            component={Main}
-            inputProps={inputProps}
-            durationInFrames={DURATION_IN_FRAMES}
-            fps={VIDEO_FPS}
-            compositionHeight={VIDEO_HEIGHT}
-            compositionWidth={VIDEO_WIDTH}
-            style={player}
-            controls
-            autoPlay
-            loop
-          />
+
+      <main className="mx-auto max-w-5xl px-4 py-16">
+        <div className="mb-10">
+          <h1 className="text-3xl font-bold tracking-tight">remocn demos</h1>
+          <p className="mt-2 text-muted-foreground">
+            Animated UI components rendered as video, built with remocn
+            primitives.
+          </p>
         </div>
-        <RenderControls
-          text={text}
-          setText={setText}
-          inputProps={inputProps}
-        ></RenderControls>
-        <Spacing></Spacing>
-        <Spacing></Spacing>
-        <Spacing></Spacing>
-        <Spacing></Spacing>
-        <Tips></Tips>
-      </div>
+
+        <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
+          {demos.map((demo) => (
+            <Link key={demo.id} href={`/demo/${demo.id}`} className="group block">
+              <Card className="h-full transition-shadow pt-0 ring-border">
+                <Thumbnail
+                    component={demo.component}
+                    durationInFrames={demo.durationInFrames}
+                    fps={demo.fps ?? DEFAULT_VIDEO.fps}
+                    compositionWidth={demo.width ?? DEFAULT_VIDEO.width}
+                    compositionHeight={demo.height ?? DEFAULT_VIDEO.height}
+                    frameToDisplay={
+                      demo.thumbnailFrame ??
+                      Math.floor(demo.durationInFrames / 2)
+                    }
+                    inputProps={demo.defaultProps ?? {}}
+                    style={{ width: "100%" }}
+                  />
+                <CardHeader>
+                  <CardTitle>{demo.title}</CardTitle>
+                  <CardDescription>{demo.description}</CardDescription>
+                </CardHeader>
+                <CardContent />
+              </Card>
+            </Link>
+          ))}
+        </div>
+      </main>
     </div>
   );
 };

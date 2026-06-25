@@ -1,0 +1,429 @@
+{
+  "version": "1.0.0",
+  "lastScanned": 1782289989988,
+  "projectRoot": "/Users/dev_wandry/projects/opensource/remocn-demo",
+  "techStack": {
+    "languages": [
+      {
+        "name": "JavaScript/TypeScript",
+        "version": null,
+        "confidence": "high",
+        "markers": [
+          "package.json"
+        ]
+      },
+      {
+        "name": "TypeScript",
+        "version": null,
+        "confidence": "high",
+        "markers": [
+          "tsconfig.json"
+        ]
+      }
+    ],
+    "frameworks": [
+      {
+        "name": "next",
+        "version": "16.2.3",
+        "category": "fullstack"
+      },
+      {
+        "name": "react",
+        "version": "19.2.3",
+        "category": "frontend"
+      },
+      {
+        "name": "react-dom",
+        "version": "19.2.3",
+        "category": "frontend"
+      }
+    ],
+    "packageManager": "npm",
+    "runtime": null
+  },
+  "build": {
+    "buildCommand": "npx tsc --noEmit -p tsconfig.json 2>&1 | grep -i typography; echo \"TS_DONE\"\nnpx remotionb render typography public/renders/typography.mp4 > /tmp/rr4.log 2>&1; echo \"exit=$?\"; grep -E \"Encoded [0-9]+/[0-9]+$\" /tmp/rr4.log | tail -1; grep -niE \"error|inputRange\" /tmp/rr4.log | head",
+    "testCommand": null,
+    "lintCommand": "npm run lint",
+    "devCommand": "npm run dev",
+    "scripts": {
+      "dev": "next dev",
+      "build": "next build",
+      "start": "next start",
+      "lint": "eslint .",
+      "remotion": "remotionb studio",
+      "render": "remotionb render"
+    }
+  },
+  "conventions": {
+    "namingStyle": null,
+    "importStyle": null,
+    "testPattern": null,
+    "fileOrganization": "type-based"
+  },
+  "structure": {
+    "isMonorepo": false,
+    "workspaces": [],
+    "mainDirectories": [
+      "public",
+      "src"
+    ],
+    "gitBranches": null
+  },
+  "customNotes": [],
+  "directoryMap": {
+    "public": {
+      "path": "public",
+      "purpose": "Public files",
+      "fileCount": 3,
+      "lastAccessed": 1782289989949,
+      "keyFiles": [
+        "bg.png",
+        "favicon.ico",
+        "vercel.svg"
+      ]
+    },
+    "src": {
+      "path": "src",
+      "purpose": "Source code",
+      "fileCount": 0,
+      "lastAccessed": 1782289989950,
+      "keyFiles": []
+    },
+    "styles": {
+      "path": "styles",
+      "purpose": null,
+      "fileCount": 1,
+      "lastAccessed": 1782289989962,
+      "keyFiles": [
+        "global.css"
+      ]
+    },
+    "types": {
+      "path": "types",
+      "purpose": "Type definitions",
+      "fileCount": 0,
+      "lastAccessed": 1782289989963,
+      "keyFiles": []
+    },
+    "src/components": {
+      "path": "src/components",
+      "purpose": "UI components",
+      "fileCount": 0,
+      "lastAccessed": 1782289989964,
+      "keyFiles": []
+    },
+    "src/helpers": {
+      "path": "src/helpers",
+      "purpose": "Helper functions",
+      "fileCount": 3,
+      "lastAccessed": 1782289989964,
+      "keyFiles": [
+        "api-response.ts",
+        "render-jobs.ts",
+        "use-rendering.ts"
+      ]
+    },
+    "src/lib": {
+      "path": "src/lib",
+      "purpose": "Library code",
+      "fileCount": 1,
+      "lastAccessed": 1782289989965,
+      "keyFiles": [
+        "utils.ts"
+      ]
+    },
+    "src/pages": {
+      "path": "src/pages",
+      "purpose": "Page components",
+      "fileCount": 2,
+      "lastAccessed": 1782289989965,
+      "keyFiles": [
+        "_app.tsx",
+        "index.tsx"
+      ]
+    },
+    "src/types": {
+      "path": "src/types",
+      "purpose": "Type definitions",
+      "fileCount": 1,
+      "lastAccessed": 1782289989966,
+      "keyFiles": [
+        "culori.d.ts"
+      ]
+    }
+  },
+  "hotPaths": [
+    {
+      "path": "src/demos/typography/index.tsx",
+      "accessCount": 82,
+      "lastAccessed": 1782300769585,
+      "type": "file"
+    },
+    {
+      "path": "src/demos/batchwork/index.tsx",
+      "accessCount": 38,
+      "lastAccessed": 1782119473686,
+      "type": "file"
+    },
+    {
+      "path": "src/demos/changelog/index.tsx",
+      "accessCount": 19,
+      "lastAccessed": 1782290323951,
+      "type": "file"
+    },
+    {
+      "path": "src/demos/index.ts",
+      "accessCount": 9,
+      "lastAccessed": 1782290665297,
+      "type": "file"
+    },
+    {
+      "path": "src/remotion/Root.tsx",
+      "accessCount": 6,
+      "lastAccessed": 1782290318527,
+      "type": "file"
+    },
+    {
+      "path": "src/helpers/use-rendering.ts",
+      "accessCount": 5,
+      "lastAccessed": 1781964761955,
+      "type": "file"
+    },
+    {
+      "path": "package.json",
+      "accessCount": 5,
+      "lastAccessed": 1782052361842,
+      "type": "file"
+    },
+    {
+      "path": "src/pages/index.tsx",
+      "accessCount": 5,
+      "lastAccessed": 1782053296026,
+      "type": "file"
+    },
+    {
+      "path": "src/demos/signup-flow/index.tsx",
+      "accessCount": 5,
+      "lastAccessed": 1782066466623,
+      "type": "file"
+    },
+    {
+      "path": "src/demos/types.ts",
+      "accessCount": 5,
+      "lastAccessed": 1782290323854,
+      "type": "file"
+    },
+    {
+      "path": "styles/global.css",
+      "accessCount": 4,
+      "lastAccessed": 1781966391989,
+      "type": "file"
+    },
+    {
+      "path": "tsconfig.json",
+      "accessCount": 4,
+      "lastAccessed": 1782052705280,
+      "type": "file"
+    },
+    {
+      "path": "src/components/remocn/typewriter.tsx",
+      "accessCount": 4,
+      "lastAccessed": 1782291301897,
+      "type": "file"
+    },
+    {
+      "path": "src/pages/api/render/index.ts",
+      "accessCount": 3,
+      "lastAccessed": 1781965151206,
+      "type": "file"
+    },
+    {
+      "path": "src/helpers/render-jobs.ts",
+      "accessCount": 3,
+      "lastAccessed": 1781965194955,
+      "type": "file"
+    },
+    {
+      "path": "src/remotion/index.ts",
+      "accessCount": 3,
+      "lastAccessed": 1782052595889,
+      "type": "file"
+    },
+    {
+      "path": "next.config.js",
+      "accessCount": 3,
+      "lastAccessed": 1782053295720,
+      "type": "file"
+    },
+    {
+      "path": "src/components/remocn/backdrop.tsx",
+      "accessCount": 3,
+      "lastAccessed": 1782290363922,
+      "type": "file"
+    },
+    {
+      "path": "src/remotion/MyComp/Main.tsx",
+      "accessCount": 2,
+      "lastAccessed": 1781964424801,
+      "type": "file"
+    },
+    {
+      "path": "types/constants.ts",
+      "accessCount": 2,
+      "lastAccessed": 1781964436152,
+      "type": "file"
+    },
+    {
+      "path": "src/lambda/api.ts",
+      "accessCount": 2,
+      "lastAccessed": 1781964472810,
+      "type": "file"
+    },
+    {
+      "path": "src/pages/_app.tsx",
+      "accessCount": 2,
+      "lastAccessed": 1781966404963,
+      "type": "file"
+    },
+    {
+      "path": "remotion.config.ts",
+      "accessCount": 2,
+      "lastAccessed": 1782052732059,
+      "type": "file"
+    },
+    {
+      "path": "src/pages/demo/[id].tsx",
+      "accessCount": 2,
+      "lastAccessed": 1782053281283,
+      "type": "file"
+    },
+    {
+      "path": "src/components/remocn/rolling-number.tsx",
+      "accessCount": 2,
+      "lastAccessed": 1782054421788,
+      "type": "file"
+    },
+    {
+      "path": "src/components/remocn/blur-in.tsx",
+      "accessCount": 2,
+      "lastAccessed": 1782066435046,
+      "type": "file"
+    },
+    {
+      "path": "src/components/remocn/blur-reveal.tsx",
+      "accessCount": 2,
+      "lastAccessed": 1782066447218,
+      "type": "file"
+    },
+    {
+      "path": "src/lib/remocn-ui/index.ts",
+      "accessCount": 2,
+      "lastAccessed": 1782066447439,
+      "type": "file"
+    },
+    {
+      "path": "src/lib/remocn-ui/timeline.ts",
+      "accessCount": 2,
+      "lastAccessed": 1782066497454,
+      "type": "file"
+    },
+    {
+      "path": "src/components/remocn/marker-highlight.tsx",
+      "accessCount": 2,
+      "lastAccessed": 1782067123911,
+      "type": "file"
+    },
+    {
+      "path": "src/components/remocn/focus-blur-resolve.tsx",
+      "accessCount": 2,
+      "lastAccessed": 1782299612218,
+      "type": "file"
+    },
+    {
+      "path": "postcss.config.mjs",
+      "accessCount": 1,
+      "lastAccessed": 1781282165781,
+      "type": "file"
+    },
+    {
+      "path": "src/components/RenderControls.tsx",
+      "accessCount": 1,
+      "lastAccessed": 1781962391470,
+      "type": "file"
+    },
+    {
+      "path": "src/pages/api/lambda/render.ts",
+      "accessCount": 1,
+      "lastAccessed": 1781964285759,
+      "type": "file"
+    },
+    {
+      "path": "src/helpers/api-response.ts",
+      "accessCount": 1,
+      "lastAccessed": 1781964473213,
+      "type": "file"
+    },
+    {
+      "path": "src/pages/api/render/progress.ts",
+      "accessCount": 1,
+      "lastAccessed": 1781964499374,
+      "type": "file"
+    },
+    {
+      "path": "src/components/ui/button.tsx",
+      "accessCount": 1,
+      "lastAccessed": 1781964770448,
+      "type": "file"
+    },
+    {
+      "path": "src/components/ui/card.tsx",
+      "accessCount": 1,
+      "lastAccessed": 1781964798148,
+      "type": "file"
+    },
+    {
+      "path": "src/components/ui/progress.tsx",
+      "accessCount": 1,
+      "lastAccessed": 1781964798205,
+      "type": "file"
+    },
+    {
+      "path": "src/types/culori.d.ts",
+      "accessCount": 1,
+      "lastAccessed": 1781964903468,
+      "type": "file"
+    },
+    {
+      "path": "src/components/remocn/caret.tsx",
+      "accessCount": 1,
+      "lastAccessed": 1782052363626,
+      "type": "file"
+    },
+    {
+      "path": "public/bg.png",
+      "accessCount": 1,
+      "lastAccessed": 1782052416249,
+      "type": "file"
+    },
+    {
+      "path": "src/components/remocn/glass-code-block.tsx",
+      "accessCount": 1,
+      "lastAccessed": 1782066438018,
+      "type": "file"
+    },
+    {
+      "path": "src/components/remocn/use-blur-in-transition.ts",
+      "accessCount": 1,
+      "lastAccessed": 1782066497171,
+      "type": "file"
+    },
+    {
+      "path": "src/components/remocn/scale-down-fade.tsx",
+      "accessCount": 1,
+      "lastAccessed": 1782299597370,
+      "type": "file"
+    }
+  ],
+  "userDirectives": []
+}
