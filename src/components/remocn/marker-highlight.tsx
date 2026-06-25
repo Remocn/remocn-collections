@@ -18,14 +18,6 @@ export interface MarkerHighlightProps {
   fontSize?: number;
   fontWeight?: number;
   speed?: number;
-  /** Frames to wait (in the local timeline) before the marker swipes in. */
-  delay?: number;
-  /**
-   * Render the highlight inline — just the styled phrase, with no full-screen
-   * white backdrop — so it can sit inside a larger heading. Typography is
-   * inherited from the surrounding text.
-   */
-  inline?: boolean;
   className?: string;
 }
 
@@ -39,15 +31,13 @@ export function MarkerHighlight({
   fontSize = 72,
   fontWeight = 600,
   speed = 1,
-  delay = 15,
-  inline = false,
   className,
 }: MarkerHighlightProps) {
   const frame = useCurrentFrame() * speed;
   const { fps } = useVideoConfig();
 
   const markerScale = spring({
-    frame: frame - delay,
+    frame: frame - 15,
     fps,
     config: { damping: 14 },
   });
@@ -60,41 +50,6 @@ export function MarkerHighlight({
     [0, 1],
     [baseColor, highlightedTextColor],
   );
-
-  const highlighted = (
-    <span style={{ position: "relative", display: "inline-block" }}>
-      <span
-        aria-hidden
-        style={{
-          position: "absolute",
-          inset: "0 -0.1em",
-          background: markerColor,
-          transformOrigin: "left center",
-          transform: `scaleX(${markerScale})`,
-          borderRadius: 2,
-          zIndex: 0,
-        }}
-      />
-      <span style={{ position: "relative", zIndex: 1, color: textColor }}>
-        {highlight}
-      </span>
-    </span>
-  );
-
-  // Inline variant: inherit the surrounding heading's typography and avoid the
-  // full-screen white backdrop so it can be embedded in flowing text.
-  if (inline) {
-    return (
-      <span
-        className={className}
-        style={{ display: "inline", whiteSpace: "nowrap", color: baseColor }}
-      >
-        {before}
-        {highlighted}
-        {after}
-      </span>
-    );
-  }
 
   return (
     <div
@@ -119,7 +74,22 @@ export function MarkerHighlight({
         }}
       >
         {before}
-        {highlighted}
+        <span style={{ position: "relative", display: "inline-block" }}>
+          <span
+            aria-hidden
+            style={{
+              position: "absolute",
+              inset: "0 -0.1em",
+              background: markerColor,
+              transformOrigin: "left center",
+              transform: `scaleX(${markerScale})`,
+              zIndex: 0,
+            }}
+          />
+          <span style={{ position: "relative", zIndex: 1, color: textColor }}>
+            {highlight}
+          </span>
+        </span>
         {after}
       </span>
     </div>

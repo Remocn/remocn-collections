@@ -26,10 +26,7 @@ export function FocusBlurResolve({
 
   const enterDur = 23;
   const exitDur = 16;
-  const exitStart = Math.min(
-    Math.max(enterDur, durationInFrames - exitDur),
-    durationInFrames - 1,
-  );
+  const exitStart = Math.max(enterDur, durationInFrames - exitDur);
 
   const enterEasing = Easing.bezier(0.22, 1, 0.36, 1);
   const exitEasing = Easing.bezier(0.64, 0, 0.78, 0);

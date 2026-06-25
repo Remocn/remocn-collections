@@ -24,10 +24,7 @@ export function ScaleDownFade({
 
   const enterDurFrames = 16;
   const exitDurFrames = 11;
-  const exitStart = Math.min(
-    Math.max(enterDurFrames, durationInFrames - exitDurFrames),
-    durationInFrames - 1,
-  );
+  const exitStart = Math.max(enterDurFrames, durationInFrames - exitDurFrames);
 
   const enterEasing = Easing.bezier(0.22, 1, 0.36, 1);
   const exitEasing = Easing.bezier(0.64, 0, 0.78, 0);
