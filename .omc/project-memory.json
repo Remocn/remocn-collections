@@ -1,6 +1,6 @@
 {
   "version": "1.0.0",
-  "lastScanned": 1782385128665,
+  "lastScanned": 1782583770657,
   "projectRoot": "/Users/dev_wandry/projects/opensource/remocn-demo",
   "techStack": {
     "languages": [
@@ -42,7 +42,7 @@
     "runtime": null
   },
   "build": {
-    "buildCommand": "npx tsc --noEmit -p tsconfig.json 2>&1 | grep -E \"agent-skills\" || echo \"CLEAN\"",
+    "buildCommand": "grep -rnE \"Step\" src/lib/remocn-ui/index.ts src/lib/remocn-ui/timeline.ts | grep -iE \"export|type Step\" | head && echo \"===typecheck (chat files only via tsc)===\" && npx tsc --noEmit -p tsconfig.json 2>&1 | grep -iE \"chat-flow|message|typing|caret|remocn-ui\" | head -30 || echo \"no chat-related ts errors\"",
     "testCommand": null,
     "lintCommand": "npm run lint",
     "devCommand": "npm run dev",
@@ -76,7 +76,7 @@
       "path": "public",
       "purpose": "Public files",
       "fileCount": 3,
-      "lastAccessed": 1782385128582,
+      "lastAccessed": 1782583770562,
       "keyFiles": [
         "bg.png",
         "favicon.ico",
@@ -87,14 +87,14 @@
       "path": "src",
       "purpose": "Source code",
       "fileCount": 0,
-      "lastAccessed": 1782385128585,
+      "lastAccessed": 1782583770619,
       "keyFiles": []
     },
     "styles": {
       "path": "styles",
       "purpose": null,
       "fileCount": 1,
-      "lastAccessed": 1782385128607,
+      "lastAccessed": 1782583770619,
       "keyFiles": [
         "global.css"
       ]
@@ -103,21 +103,21 @@
       "path": "types",
       "purpose": "Type definitions",
       "fileCount": 0,
-      "lastAccessed": 1782385128607,
+      "lastAccessed": 1782583770620,
       "keyFiles": []
     },
     "src/components": {
       "path": "src/components",
       "purpose": "UI components",
       "fileCount": 0,
-      "lastAccessed": 1782385128610,
+      "lastAccessed": 1782583770622,
       "keyFiles": []
     },
     "src/helpers": {
       "path": "src/helpers",
       "purpose": "Helper functions",
       "fileCount": 3,
-      "lastAccessed": 1782385128612,
+      "lastAccessed": 1782583770623,
       "keyFiles": [
         "api-response.ts",
         "render-jobs.ts",
@@ -128,7 +128,7 @@
       "path": "src/lib",
       "purpose": "Library code",
       "fileCount": 1,
-      "lastAccessed": 1782385128614,
+      "lastAccessed": 1782583770623,
       "keyFiles": [
         "utils.ts"
       ]
@@ -137,7 +137,7 @@
       "path": "src/pages",
       "purpose": "Page components",
       "fileCount": 2,
-      "lastAccessed": 1782385128616,
+      "lastAccessed": 1782583770624,
       "keyFiles": [
         "_app.tsx",
         "index.tsx"
@@ -147,7 +147,7 @@
       "path": "src/types",
       "purpose": "Type definitions",
       "fileCount": 1,
-      "lastAccessed": 1782385128617,
+      "lastAccessed": 1782583770624,
       "keyFiles": [
         "culori.d.ts"
       ]
@@ -180,8 +180,8 @@
     },
     {
       "path": "src/demos/typography/index.tsx",
-      "accessCount": 3,
-      "lastAccessed": 1782391025897,
+      "accessCount": 4,
+      "lastAccessed": 1782583890987,
       "type": "file"
     },
     {
