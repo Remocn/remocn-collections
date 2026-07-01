@@ -5,6 +5,7 @@
   "dependencies": {
     "@remotion/bundler": "^4.0.481",
     "@remotion/cli": "^4.0.481",
+    "@remotion/gif": "^4.0.481",
     "@remotion/google-fonts": "4.0.481",
     "@remotion/paths": "^4.0.481",
     "@remotion/player": "^4.0.481",
