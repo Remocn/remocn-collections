@@ -1,0 +1,11 @@
+{
+  "version": 1,
+  "skills": {
+    "remocn": {
+      "source": "kapishdima/remocn",
+      "sourceType": "github",
+      "skillPath": "skills/remocn/SKILL.md",
+      "computedHash": "12cc131cefcebfa055526a52e270ba8259abc7714c1c84675094aeb2c9598709"
+    }
+  }
+}
