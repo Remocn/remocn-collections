@@ -42,7 +42,7 @@
     "runtime": null
   },
   "build": {
-    "buildCommand": "cd /Users/dev_wandry/projects/opensource/remocn-demo; npx tsc --noEmit -p tsconfig.json 2>&1 | grep -i \"sponsor-ln\" || echo \"NO ERRORS in sponsor-ln\"; mkdir -p scratch-out\nnpx remotionb still src/remotion/index.ts sponsor-ln scratch-out/a.png --frame=120 2>&1 | tail -1\nnpx remotionb still src/remotion/index.ts sponsor-ln scratch-out/b.png --frame=142 2>&1 | tail -1\nnpx remotionb still src/remotion/index.ts sponsor-ln scratch-out/c.png --frame=190 2>&1 | tail -1\nnode -e '\nconst sharp=require(\"sharp\");\n(async()=>{const{data,info}=await sharp(\"scratch-out/c.png\").raw().toBuffer({resolveWithObject:true});\nconst W=info.width,ch=info.channels,rowY=350;const cb=new Array(W).fill(0);\nfor(let y=rowY-45;y<=rowY+45;y++)for(let x=0;x<W;x++){const i=(y*W+x)*ch;const b=(data[i]+data[i+1]+data[i+2])/3;if(b>cb[x])cb[x]=b;}\nconst TH=150;let rr=0;for(let x=200;x<620;x++)if(cb[x]>TH)rr=x;\nlet cl=W,cr=0;for(let x=625;x<758;x++)if(cb[x]>90){if(x<cl)cl=x;cr=x;}\nlet al=W;for(let x=700;x<1000;x++)if(cb[x]>TH){al=x;break;}\nconst cc=Math.round((cl+cr)/2);\nconsole.log(JSON.stringify({remocnRight:rr,crossCenter:cc,avatarLeft:al,gapLeft:cc-rr,gapRight:al-cc}));})();\n'",
+    "buildCommand": "npx tsc --noEmit -p tsconfig.json 2>&1 | grep -E \"paper-shaders\"; echo \"tsc done\"; node -e \"console.log('total:', 78+112+76+432+92+104+156-(18+16+16+16))\"",
     "testCommand": null,
     "lintCommand": "npm run lint",
     "devCommand": "npm run dev",
@@ -174,26 +174,26 @@
     },
     {
       "path": "src/demos/index.ts",
-      "accessCount": 20,
-      "lastAccessed": 1782920549371,
+      "accessCount": 28,
+      "lastAccessed": 1782941451064,
       "type": "file"
     },
     {
       "path": "src/demos/tegami/index.tsx",
-      "accessCount": 18,
-      "lastAccessed": 1782838619054,
+      "accessCount": 19,
+      "lastAccessed": 1782936905050,
+      "type": "file"
+    },
+    {
+      "path": "src/demos/sponsor-ln/index.tsx",
+      "accessCount": 16,
+      "lastAccessed": 1782940851058,
       "type": "file"
     },
     {
       "path": "src/demos/render-sdk/index.tsx",
       "accessCount": 15,
       "lastAccessed": 1782919614126,
-      "type": "file"
-    },
-    {
-      "path": "src/demos/sponsor-ln/index.tsx",
-      "accessCount": 15,
-      "lastAccessed": 1782921329008,
       "type": "file"
     },
     {
@@ -228,20 +228,20 @@
     },
     {
       "path": "src/demos/types.ts",
+      "accessCount": 5,
+      "lastAccessed": 1782935589170,
+      "type": "file"
+    },
+    {
+      "path": "src/remotion/Root.tsx",
       "accessCount": 4,
-      "lastAccessed": 1782919613505,
+      "lastAccessed": 1782935557384,
       "type": "file"
     },
     {
       "path": "src/demos/fonttrio/index.tsx",
       "accessCount": 3,
       "lastAccessed": 1782830474322,
-      "type": "file"
-    },
-    {
-      "path": "src/remotion/Root.tsx",
-      "accessCount": 3,
-      "lastAccessed": 1782839340083,
       "type": "file"
     },
     {
@@ -278,6 +278,24 @@
       "path": "src/components/remocn/logo-enter.tsx",
       "accessCount": 2,
       "lastAccessed": 1782919614274,
+      "type": "file"
+    },
+    {
+      "path": "src/demos/shadcn-ui/STORYBOARD.md",
+      "accessCount": 2,
+      "lastAccessed": 1782935599755,
+      "type": "file"
+    },
+    {
+      "path": "src/demos/shadcn-ui/SCRIPT.md",
+      "accessCount": 2,
+      "lastAccessed": 1782935600396,
+      "type": "file"
+    },
+    {
+      "path": "src/demos/shadcn-ui/index.tsx",
+      "accessCount": 2,
+      "lastAccessed": 1782935608250,
       "type": "file"
     },
     {
@@ -359,27 +377,9 @@
       "type": "file"
     },
     {
-      "path": "src/demos/shadcn-ui/STORYBOARD.md",
-      "accessCount": 1,
-      "lastAccessed": 1782840454892,
-      "type": "file"
-    },
-    {
-      "path": "src/demos/shadcn-ui/SCRIPT.md",
-      "accessCount": 1,
-      "lastAccessed": 1782840464476,
-      "type": "file"
-    },
-    {
       "path": "src/components/remocn/github-stars.tsx",
       "accessCount": 1,
       "lastAccessed": 1782841709952,
-      "type": "file"
-    },
-    {
-      "path": "src/demos/shadcn-ui/index.tsx",
-      "accessCount": 1,
-      "lastAccessed": 1782841886648,
       "type": "file"
     },
     {

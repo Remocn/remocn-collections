@@ -11,10 +11,30 @@ import { TegamiDemo, TEGAMI_DURATION } from "./tegami";
 import { SkillChangelogDemo, SKILL_CHANGELOG_DURATION } from "./skill-changelog";
 import { ShadcnDemo, SHADCN_DURATION } from "./shadcn-ui";
 import { SponsorLnDemo, SPONSOR_LN_DURATION } from "./sponsor-ln";
+import { ShieldcnDemo, SHIELDCN_DURATION } from "./shieldcn";
+import { PaperShadersDemo, PAPER_SHADERS_DURATION } from "./paper-shaders";
 
 export * from "./types";
 
 export const demos: Demo[] = [
+  {
+    id: "paper-shaders",
+    title: "remocn ✕ Paper — Introducing shaders",
+    description:
+      "A launch spot for remocn's new shader components, built on Paper's freshly open-sourced WebGL shaders. Manrope over a shader-grain-gradient backdrop: a blur-out-up hook (Paper just open-sourced their shaders), the Remocn + Paper lockup assembling around the Paper mark, a short-slide-right 'Introducing remocn shaders', then twelve shaders rendered fullscreen and hard-cut one into the next — mesh gradient, warp, liquid metal, god rays, neuro noise, voronoi, dot orbit, metaballs, water, spiral, dithering, pulsing border — pure and unlabeled. Line-by-line feature claims (18 shaders on the GPU, frozen to the current frame, deterministic on every render), a kinetic 'Any shader, one command' with the shadcn install line, and an outro where shader-swirl's twist animates 0 → 1 to wind the scene open before the Remocn wordmark resolves, crediting Paper.",
+    component: PaperShadersDemo,
+    durationInFrames: PAPER_SHADERS_DURATION,
+    defaultProps: {},
+  },
+  {
+    id: "shieldcn",
+    title: "shieldcn — Everything for your README",
+    description:
+      "A product demo for shieldcn, the shields.io alternative that renders README badges, charts, and headers as real shadcn/ui components. BAB arc in the shadcn zinc register plus the badge-value green: a short-slide-right hook (someone just opened your repo), the dated pixel-badge wall as the pain, a three-beat shared-axis-z intro (Meet → the lockup with a self-drawing shield mark → the creed), section titles as their own interstitial beats, the five variants / sizes / icons grid, a live star-history chart with headers & sponsor walls, the `npx skills add jal-co/shieldcn` agent skill in a terminal, proof pills (MIT, Vercel OSS Program) with a rolling 500+ star count, and a drawn shield-mark lockup CTA at shieldcn.dev.",
+    component: ShieldcnDemo,
+    durationInFrames: SHIELDCN_DURATION,
+    defaultProps: {},
+  },
   {
     id: "sponsor-ln",
     title: "remocn ✕ LN — New sponsor",
