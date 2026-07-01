@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@paper-design/shaders-react": "^0.0.76",
     "@remotion/bundler": "^4.0.481",
     "@remotion/cli": "^4.0.481",
     "@remotion/gif": "^4.0.481",
