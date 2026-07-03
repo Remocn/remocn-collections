@@ -5,19 +5,24 @@
 
 import path from "path";
 import { Config } from "@remotion/cli/config";
+import { enableTailwind } from "@remotion/tailwind-v4";
 
 Config.setVideoImageFormat("jpeg");
 
 // Remotion's bundler uses its own webpack, which does not read the tsconfig
 // `@/*` path alias. Register it so the composition tree (Root.tsx -> @/demos
 // -> @/lib, @/components/remocn) resolves in Studio and CLI renders.
-Config.overrideWebpackConfig((config) => ({
-  ...config,
-  resolve: {
-    ...config.resolve,
-    alias: {
-      ...(config.resolve?.alias ?? {}),
-      "@": path.join(process.cwd(), "src"),
+// Tailwind is enabled on top so real shadcn/ui components (src/components/ui)
+// render inside compositions.
+Config.overrideWebpackConfig((config) =>
+  enableTailwind({
+    ...config,
+    resolve: {
+      ...config.resolve,
+      alias: {
+        ...(config.resolve?.alias ?? {}),
+        "@": path.join(process.cwd(), "src"),
+      },
     },
-  },
-}));
+  }),
+);

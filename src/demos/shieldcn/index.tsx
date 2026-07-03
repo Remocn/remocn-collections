@@ -30,7 +30,8 @@ import {
 } from "@/components/remocn/github-stars";
 import { BlurIn } from "@/components/remocn/blur-in";
 import { useBlurInTransition } from "@/components/remocn/use-blur-in-transition";
-import { CheckIcon, CopyIcon, StarIcon } from "lucide-react";
+import { ShaderGrainGradient } from "@/components/remocn/shader-grain-gradient";
+import { StarIcon } from "lucide-react";
 
 // shieldcn speaks shadcn's language: Geist Sans for copy, Geist Mono for every
 // URL and command.
@@ -280,57 +281,6 @@ const SectionTitle: React.FC<{ text: string }> = ({ text }) => {
         />
       </svg>
     </AbsoluteFill>
-  );
-};
-
-// ---------------------------------------------------------------------------
-// DrawnShield — the shield mark draws itself on (stroke-dashoffset), like the
-// drawn marks in the other demos. `instant` renders it fully drawn.
-// ---------------------------------------------------------------------------
-const SHIELD_PATH =
-  "M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z";
-const CHECK_PATH = "m9 12 2 2 4-4";
-
-const DrawnShield: React.FC<{
-  size?: number;
-  delay?: number;
-  instant?: boolean;
-}> = ({ size = 72, delay = 6, instant = false }) => {
-  const frame = useCurrentFrame();
-  const draw = (at: number, dur: number) =>
-    instant
-      ? 0
-      : interpolate(frame, [at, at + dur], [1, 0], {
-          extrapolateLeft: "clamp",
-          extrapolateRight: "clamp",
-          easing: Easing.inOut(Easing.cubic),
-        });
-  const shieldOff = draw(delay, 26);
-  const checkOff = draw(delay + 18, 14);
-  return (
-    <svg
-      width={size}
-      height={size}
-      viewBox="0 0 24 24"
-      fill="none"
-      stroke={GREEN}
-      strokeWidth={2.1}
-      strokeLinecap="round"
-      strokeLinejoin="round"
-    >
-      <path
-        d={SHIELD_PATH}
-        pathLength={1}
-        strokeDasharray={1}
-        strokeDashoffset={shieldOff}
-      />
-      <path
-        d={CHECK_PATH}
-        pathLength={1}
-        strokeDasharray={1}
-        strokeDashoffset={checkOff}
-      />
-    </svg>
   );
 };
 
@@ -626,24 +576,21 @@ const TeaseScene: React.FC = () => (
 
 // ===========================================================================
 // Scene 3 — Product intro. Three beats on the shared Z axis: Meet → the
-// shieldcn lockup (the shield draws itself on) → the creed.
+// shieldcn wordmark → the creed.
 // ===========================================================================
-const Lockup: React.FC<{ instant?: boolean }> = ({ instant = false }) => (
-  <div style={{ display: "flex", alignItems: "center", gap: 20 }}>
-    <DrawnShield size={72} delay={8} instant={instant} />
-    <h1
-      style={{
-        margin: 0,
-        fontFamily: MONO,
-        fontWeight: 600,
-        fontSize: 92,
-        letterSpacing: "-0.04em",
-        color: INK,
-      }}
-    >
-      shieldcn
-    </h1>
-  </div>
+const Lockup: React.FC = () => (
+  <h1
+    style={{
+      margin: 0,
+      fontFamily: SANS,
+      fontWeight: 700,
+      fontSize: 92,
+      letterSpacing: "-0.03em",
+      color: INK,
+    }}
+  >
+    shieldcn
+  </h1>
 );
 
 const MeetLabel = (
@@ -1222,24 +1169,23 @@ const CtaScene: React.FC = () => (
           gap: 22,
         }}
       >
-        <div style={{ display: "flex", alignItems: "center", gap: 18 }}>
-          <DrawnShield size={58} delay={8} />
-          <Reveal delay={10} distance={16} blur={14} duration={22}>
-            <div
-              style={{
-                fontFamily: MONO,
-                fontWeight: 600,
-                fontSize: 80,
-                letterSpacing: "-0.04em",
-                color: INK,
-              }}
-            >
-              shieldcn
-            </div>
-          </Reveal>
-        </div>
+        <Reveal delay={10} distance={16} blur={14} duration={22}>
+          <div
+            style={{
+              fontFamily: SANS,
+              fontWeight: 700,
+              fontSize: 80,
+              letterSpacing: "-0.03em",
+              color: INK,
+            }}
+          >
+            shieldcn
+          </div>
+        </Reveal>
         <Reveal delay={26} distance={12} blur={8}>
-          <UrlPill delay={26} copyAt={58} />
+          <span style={{ fontFamily: MONO, fontSize: 22, color: MUTED }}>
+            shieldcn.dev
+          </span>
         </Reveal>
         <Reveal delay={44} distance={10} blur={6}>
           <span style={{ fontFamily: SANS, fontSize: 20, color: MUTED }}>
@@ -1250,53 +1196,6 @@ const CtaScene: React.FC = () => (
     </Sequence>
   </AbsoluteFill>
 );
-
-const UrlPill: React.FC<{ delay: number; copyAt: number }> = ({
-  delay,
-  copyAt,
-}) => {
-  const frame = useCurrentFrame();
-  const enter = interpolate(frame, [delay, delay + 16], [0, 1], {
-    extrapolateLeft: "clamp",
-    extrapolateRight: "clamp",
-    easing: Easing.bezier(0.22, 1, 0.36, 1),
-  });
-  const copied = frame >= copyAt;
-  const pop = interpolate(frame - copyAt, [0, 8], [0.5, 1], {
-    extrapolateLeft: "clamp",
-    extrapolateRight: "clamp",
-    easing: Easing.bezier(0.34, 1.56, 0.64, 1),
-  });
-  return (
-    <div
-      style={{
-        display: "inline-flex",
-        alignItems: "center",
-        gap: 13,
-        height: 54,
-        padding: "0 24px",
-        borderRadius: 999,
-        border: `1px solid ${copied ? "rgba(255,255,255,0.22)" : BORDER}`,
-        background: CARD,
-        fontFamily: MONO,
-        fontSize: 20,
-        opacity: enter,
-        transform: `translateY(${(1 - enter) * 12}px)`,
-      }}
-    >
-      <span style={{ color: INK }}>shieldcn.dev</span>
-      <span
-        style={{
-          display: "inline-flex",
-          color: copied ? GREEN_SOFT : FAINT,
-          transform: copied ? `scale(${pop})` : "scale(1)",
-        }}
-      >
-        {copied ? <CheckIcon size={18} /> : <CopyIcon size={18} />}
-      </span>
-    </div>
-  );
-};
 
 // ===========================================================================
 // Transition presentations.
@@ -1428,13 +1327,12 @@ export const ShieldcnDemo: React.FC = () => {
           } as React.CSSProperties
         }
       >
-        {/* Quiet dotted backdrop — the shadcn dot grid, not the line grid. */}
-        <AbsoluteFill
-          style={{
-            backgroundImage: `radial-gradient(rgba(255,255,255,0.09) 1px, transparent 1px)`,
-            backgroundSize: "26px 26px",
-            opacity: 0.6,
-          }}
+        {/* Living shader backdrop — grain gradient in the zinc register with a
+            whisper of the badge green. */}
+        <ShaderGrainGradient
+          speed={0.5}
+          colorBack={BG}
+          colors={["#101012", "#1c1c20", "#2a2a30", "#14352a"]}
         />
         {/* Vignette scrim to focus the center. */}
         <AbsoluteFill
