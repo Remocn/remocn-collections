@@ -13,10 +13,85 @@ import { ShadcnDemo, SHADCN_DURATION } from "./shadcn-ui";
 import { SponsorLnDemo, SPONSOR_LN_DURATION } from "./sponsor-ln";
 import { ShieldcnDemo, SHIELDCN_DURATION } from "./shieldcn";
 import { PaperShadersDemo, PAPER_SHADERS_DURATION } from "./paper-shaders";
+import {
+  SponsorShieldcnDemo,
+  SPONSOR_SHIELDCN_DURATION,
+} from "./sponsor-shieldcn";
+import {
+  SponsorReactbitsDemo,
+  SPONSOR_REACTBITS_DURATION,
+} from "./sponsor-reactbits";
+import { SponsorOrcdevDemo, SPONSOR_ORCDEV_DURATION } from "./sponsor-orcdev";
+import {
+  IntroducingRemocnDemo,
+  INTRODUCING_REMOCN_DURATION,
+} from "./introducing-remocn";
+import {
+  NewTransitionsDemo,
+  NEW_TRANSITIONS_DURATION,
+} from "./new-transitions";
+import {
+  IntroducingShadcnDemo,
+  INTRODUCING_SHADCN_DURATION,
+} from "./introducing-shadcn";
 
 export * from "./types";
 
 export const demos: Demo[] = [
+  {
+    id: "introducing-shadcn",
+    title: "shadcn/ui — Introducing shadcn/ui (gift cut)",
+    description:
+      "A gift video for shadcn — an introducing spot for shadcn/ui in shadcn's own monochrome: zinc-950 canvas, ink #fafafa, Geist 400 only (font-normal forced on every embedded component), no letter-spacing, no links on screen. The only color lives inside shader covers, sampled from shadcn's X avatar and heavily muted (deep plum, dusty rose). Opens on a camera glide — no pull-back — across a dense 4-column masonry wall of REAL shadcn/ui components rendered live via Tailwind in the Remotion pipeline (the ui.shadcn.com homepage cards: create account, move goal with mini bars, chat, calendar with a fixed deterministic today, command menu, payment, cookie settings, team, report an issue, share, upgrade plan). A muted-plum shader-swirl cover lands 'This is shadcn/ui', a short-slide-right tagline, the creed in two beats (Not a component library → kinetic 'How you build your own'), then a real-UI category montage (Blocks dashboard cards / a live monochrome bar chart / a dark→light→dark theme flip / the zinc ramp), a line-by-line pillars block, a typed npx shadcn add with a 3D component-name rolodex, 'And the code is yours', a 1,000,000-apps-every-month count-up in Geist tabular figures, a Startups/YC/Fortune 500s hard-cut montage resolving on 'Everyone is building with it', the opportunity line, the 'The best part? Everyone needs UI' kicker, and a smoke-ring outro with the wordmark over 'Open Source. Open Code.' (no URL).",
+    component: IntroducingShadcnDemo,
+    durationInFrames: INTRODUCING_SHADCN_DURATION,
+    defaultProps: {},
+  },
+  {
+    id: "sponsor-orcdev",
+    title: "remocn ✕ OrcDev — New sponsor",
+    description:
+      "A sponsor announcement for OrcDev in the 8bitcn register: black canvas, the paper.design dithering shader exactly as its dots/random preset (#000000 back, #008000 dots, size 5.2) pushed back by a vignette, Geist Pixel Square headlines over Geist Sans small print, and the orc-skin green #8ec71e sampled from the avatar as the only accent. Every move is quantized into sprite poses — stepped snaps, hard cuts, and green dither-dissolve covers, no blur glides. Intro: the orc nod gif crunched into chunky pixels inside an 8bitcn corner-notched frame. Hook: 'Say hello to my new sponsor' snapping word by word. Reveal: the avatar in a pixel frame, 'OrcDev' typed on with a solid green block caret, 'Web dev warrior' beneath. Beats: Build / Break / Conquer hard cuts, the last in green. Flagship: 8bitcn/ui with its real tagline and an HP bar that takes three chunky hits — Critical hit. Lockup: Remocn ✕ OrcDev with orcdev.com.",
+    component: SponsorOrcdevDemo,
+    durationInFrames: SPONSOR_ORCDEV_DURATION,
+    defaultProps: {},
+  },
+  {
+    id: "sponsor-reactbits",
+    title: "remocn ✕ react-bits — New sponsor",
+    description:
+      "A cinematic sponsor announcement for react-bits over a persistent paper.design dithering shader (warp shape, 4x4 Bayer) recolored into the react-bits brand palette — #060010 landing background, #5227FF signature violet — pushed back by a vignette. Manrope 400 throughout, every scene riding a slow camera drift. Hook: 'Say hello to my new sponsor' lands word by word in the react-bits split-text register. Reveal: the white react-bits wordmark resolves out of depth with the tagline settling beneath. Proof: a plain 130 count-up (their own signature animation, no plus suffix), then the tagline cut into rhythmic hard-cut word beats — Free / Customizable / Animations for / Text / Backgrounds / UI, all in ink. Lockup: Remocn ✕ react bits glides together from opposite sides. Scene changes are push-through and focus-pull.",
+    component: SponsorReactbitsDemo,
+    durationInFrames: SPONSOR_REACTBITS_DURATION,
+    defaultProps: {},
+  },
+  {
+    id: "new-transitions",
+    title: "Changelog — Eleven New Transitions",
+    description:
+      "An update announcement for remocn's eleven new transition presentations, told through self-demonstration: after the announcement beat, every scene change in the video IS one of the new components. Remocn brand register (Manrope 400, warm obsidian #141318, ink, one lime accent): two scale-down-fade pain lines (everyone animates their scenes / nobody animates the cut), a short-slide-right 'Introducing Remocn transitions' with the meta promise beneath, then the labeled cascade — whip-pan, push-through, focus-pull, a lime dither-dissolve, wave-wipe, grain-dissolve, ripple-zoom (transparent frame landing on the ripple field), warp-dissolve, perlin-dissolve, smoke-dissolve, and a lime-banded swirl-dissolve as the statement finale. A reused focus-pull enters the line-by-line value block (frame-driven, deterministic, lands in your repo), a whip-pan up enters the kinetic 'Any cut, one command' with npx shadcn add @remocn/whip-pan, and a push-through lands the camera on the Remocn lockup at remocn.dev, crediting Paper's shaders.",
+    component: NewTransitionsDemo,
+    durationInFrames: NEW_TRANSITIONS_DURATION,
+    defaultProps: {},
+  },
+  {
+    id: "introducing-remocn",
+    title: "remocn — Introducing remocn (shaders cut)",
+    description:
+      "The first-post introduction video for the remocn X account, told entirely in the library's own shaders and typography. BAB arc in the shipped remocn.dev brand (Manrope, warm obsidian #141318, one lime accent) over one quiet simplex-noise field that carries the whole video: two scale-down-fade pain lines, a shader-swirl cover (fade in → 500ms opaque hold with a slow twist unwind → fade out) into a short-slide-right 'Meet remocn', a scale-down-fade tagline beat (Cinematic video components for React), a kinetic-center-build 'Like shadcn/ui, for video', six registry categories hard-cut across fullscreen shaders (color-panels, warp, mesh-gradient, voronoi, metaballs, god-rays), a line-by-line value block (110+ components / one command / the code is yours), a typed npx shadcn add, and a smoke-ring outro where the inverted play-bars mark and lowercase wordmark assemble over remocn.dev. Scene changes are held shader covers — swirl and lime simplex dither.",
+    component: IntroducingRemocnDemo,
+    durationInFrames: INTRODUCING_REMOCN_DURATION,
+    defaultProps: {},
+  },
+  {
+    id: "sponsor-shieldcn",
+    title: "remocn ✕ shieldcn — New sponsor",
+    description:
+      "A sponsor announcement for shieldcn in its zinc + badge-green register, over a slow god-rays shader spotlight. Intro: a real stars-shieldcn badge springs in, centered, with a gentle float. Hook: 'Say hello to my new sponsor' resolves via soft-blur-in. Main: the Remocn ✕ shieldcn lockup assembles — the wordmark slides in, a cross fades between, the green shield-check chip springs into a ringed circle with the shieldcn name settling beside it. Finale: the badge ballet — ten real badges resolve out of blur + opacity onto a slowly winding circle, take one full turn, fall into a row, and ride off-screen, closed by the shieldcn.dev tag.",
+    component: SponsorShieldcnDemo,
+    durationInFrames: SPONSOR_SHIELDCN_DURATION,
+    defaultProps: {},
+  },
   {
     id: "paper-shaders",
     title: "remocn ✕ Paper — Introducing shaders",

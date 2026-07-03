@@ -1,6 +1,6 @@
 {
   "version": "1.0.0",
-  "lastScanned": 1782919492372,
+  "lastScanned": 1783013794258,
   "projectRoot": "/Users/dev_wandry/projects/opensource/remocn-demo",
   "techStack": {
     "languages": [
@@ -42,7 +42,7 @@
     "runtime": null
   },
   "build": {
-    "buildCommand": "npx tsc --noEmit -p tsconfig.json 2>&1 | grep -E \"paper-shaders\"; echo \"tsc done\"; node -e \"console.log('total:', 78+112+76+432+92+104+156-(18+16+16+16))\"",
+    "buildCommand": "npx tsc --noEmit 2>&1 | grep -E \"introducing-shadcn\"; echo TSC_OK; for f in 1094 1130 1150 1160 1172 1195; do npx remotion still introducing-shadcn --frame=$f --scale=0.5 --gl=angle scratch-out/ish27-$f.png --log=error 2>/dev/null || echo \"FAIL frame $f\"; done; echo STILLS_DONE",
     "testCommand": null,
     "lintCommand": "npm run lint",
     "devCommand": "npm run dev",
@@ -72,31 +72,56 @@
   },
   "customNotes": [],
   "directoryMap": {
+    "out": {
+      "path": "out",
+      "purpose": "Build output",
+      "fileCount": 4,
+      "lastAccessed": 1783013794148,
+      "keyFiles": [
+        "introducing-remocn.mp4",
+        "paper-shaders.mp4",
+        "shieldcn.mp4",
+        "sponsor-shieldcn.mp4"
+      ]
+    },
     "public": {
       "path": "public",
       "purpose": "Public files",
-      "fileCount": 6,
-      "lastAccessed": 1782919492106,
+      "fileCount": 9,
+      "lastAccessed": 1783013794148,
       "keyFiles": [
         "bg.png",
+        "emoji.gif",
         "favicon.ico",
-        "shadcn-avatar.png",
-        "tegami-banner.png",
-        "tegami-logo.png"
+        "ln.jpg",
+        "remocn-logo.svg"
+      ]
+    },
+    "scratch-out": {
+      "path": "scratch-out",
+      "purpose": null,
+      "fileCount": 212,
+      "lastAccessed": 1783013794218,
+      "keyFiles": [
+        "ir-113.png",
+        "ir-150.png",
+        "ir-221.png",
+        "ir-255.png",
+        "ir-30.png"
       ]
     },
     "src": {
       "path": "src",
       "purpose": "Source code",
       "fileCount": 0,
-      "lastAccessed": 1782919492108,
+      "lastAccessed": 1783013794219,
       "keyFiles": []
     },
     "styles": {
       "path": "styles",
       "purpose": null,
       "fileCount": 1,
-      "lastAccessed": 1782919492109,
+      "lastAccessed": 1783013794220,
       "keyFiles": [
         "global.css"
       ]
@@ -105,7 +130,7 @@
       "path": "tegami-launch",
       "purpose": null,
       "fileCount": 2,
-      "lastAccessed": 1782919492128,
+      "lastAccessed": 1783013794220,
       "keyFiles": [
         "SCRIPT.md",
         "STORYBOARD.md"
@@ -115,21 +140,21 @@
       "path": "types",
       "purpose": "Type definitions",
       "fileCount": 0,
-      "lastAccessed": 1782919492129,
+      "lastAccessed": 1783013794221,
       "keyFiles": []
     },
     "src/components": {
       "path": "src/components",
       "purpose": "UI components",
       "fileCount": 0,
-      "lastAccessed": 1782919492131,
+      "lastAccessed": 1783013794223,
       "keyFiles": []
     },
     "src/helpers": {
       "path": "src/helpers",
       "purpose": "Helper functions",
       "fileCount": 3,
-      "lastAccessed": 1782919492133,
+      "lastAccessed": 1783013794223,
       "keyFiles": [
         "api-response.ts",
         "render-jobs.ts",
@@ -140,7 +165,7 @@
       "path": "src/lib",
       "purpose": "Library code",
       "fileCount": 1,
-      "lastAccessed": 1782919492133,
+      "lastAccessed": 1783013794224,
       "keyFiles": [
         "utils.ts"
       ]
@@ -149,7 +174,7 @@
       "path": "src/pages",
       "purpose": "Page components",
       "fileCount": 2,
-      "lastAccessed": 1782919492134,
+      "lastAccessed": 1783013794227,
       "keyFiles": [
         "_app.tsx",
         "index.tsx"
@@ -159,7 +184,7 @@
       "path": "src/types",
       "purpose": "Type definitions",
       "fileCount": 1,
-      "lastAccessed": 1782919492134,
+      "lastAccessed": 1783013794239,
       "keyFiles": [
         "culori.d.ts"
       ]
@@ -174,8 +199,8 @@
     },
     {
       "path": "src/demos/index.ts",
-      "accessCount": 28,
-      "lastAccessed": 1782941451064,
+      "accessCount": 54,
+      "lastAccessed": 1783079797525,
       "type": "file"
     },
     {
@@ -186,8 +211,8 @@
     },
     {
       "path": "src/demos/sponsor-ln/index.tsx",
-      "accessCount": 16,
-      "lastAccessed": 1782940851058,
+      "accessCount": 19,
+      "lastAccessed": 1783063609842,
       "type": "file"
     },
     {
@@ -215,6 +240,18 @@
       "type": "file"
     },
     {
+      "path": "src/demos/types.ts",
+      "accessCount": 6,
+      "lastAccessed": 1782987368678,
+      "type": "file"
+    },
+    {
+      "path": "src/remotion/Root.tsx",
+      "accessCount": 6,
+      "lastAccessed": 1783064529325,
+      "type": "file"
+    },
+    {
       "path": "src/demos/typography/index.tsx",
       "accessCount": 5,
       "lastAccessed": 1782829998886,
@@ -227,15 +264,9 @@
       "type": "file"
     },
     {
-      "path": "src/demos/types.ts",
-      "accessCount": 5,
-      "lastAccessed": 1782935589170,
-      "type": "file"
-    },
-    {
-      "path": "src/remotion/Root.tsx",
+      "path": "src/components/remocn/rolling-number.tsx",
       "accessCount": 4,
-      "lastAccessed": 1782935557384,
+      "lastAccessed": 1783018543677,
       "type": "file"
     },
     {
@@ -254,12 +285,6 @@
       "path": "src/components/remocn/tracking-in.tsx",
       "accessCount": 3,
       "lastAccessed": 1782841698763,
-      "type": "file"
-    },
-    {
-      "path": "src/components/remocn/rolling-number.tsx",
-      "accessCount": 3,
-      "lastAccessed": 1782841708403,
       "type": "file"
     },
     {
