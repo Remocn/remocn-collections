@@ -42,7 +42,7 @@
     "runtime": null
   },
   "build": {
-    "buildCommand": "npx tsc --noEmit 2>&1 | grep -E \"introducing-shadcn\"; echo TSC_OK; for f in 1094 1130 1150 1160 1172 1195; do npx remotion still introducing-shadcn --frame=$f --scale=0.5 --gl=angle scratch-out/ish27-$f.png --log=error 2>/dev/null || echo \"FAIL frame $f\"; done; echo STILLS_DONE",
+    "buildCommand": "npx tsc --noEmit 2>&1 | grep -E \"introducing-shadcn|demos/index\" ; echo TSC_OK",
     "testCommand": null,
     "lintCommand": "npm run lint",
     "devCommand": "npm run dev",
@@ -199,8 +199,8 @@
     },
     {
       "path": "src/demos/index.ts",
-      "accessCount": 54,
-      "lastAccessed": 1783079797525,
+      "accessCount": 57,
+      "lastAccessed": 1783083399127,
       "type": "file"
     },
     {

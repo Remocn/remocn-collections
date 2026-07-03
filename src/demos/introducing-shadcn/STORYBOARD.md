@@ -183,12 +183,80 @@ keyMessage: the whole workflow is one command.
 narrativeRole: the mechanism made concrete — one typed command is the whole workflow.
 keyMessage: one command, any component.
 
+## Frame 10b — One preset
+
+- scene: the claim alone — the headline glides in via short-slide-right, holds, then plays its own exit
+- voiceover: "Your whole design system, one preset."
+- duration: 2.2s
+- transition_in: crossfade (out of the command scene)
+- status: locked
+- src: IntroducingShadcnDemo → PresetTitleScene
+- type: feature_showcase
+- persuasion: Friction reduction, escalated from one component to the whole system
+- beat: ease
+- blueprint: titlecard-reveal — the calm value beat
+- asset_candidates: (typography-only)
+
+narrativeRole: escalates the CLI story — not just components, the entire design config in one code.
+keyMessage: a preset packs colors, theme, fonts, radius into one short code.
+
+## Frame 10c — Building a preset
+
+- scene: the builder from ui.shadcn.com/create — the settings tile stack (Style, Base Color, Theme, Font: muted label, current value, icon on the right; a white Get Code button at the bottom) next to a live preview of the real sign-in card. One setting flips at a time and the preview reshapes in response: Vega → Lyra sharpens every corner, Zinc → Stone warms the grays, Light → Dark inverts, Geist → Geist Mono swaps the type. When all four have landed, the choices condense into a code: `--preset a1Dg5eFl` fades in above Get Code — the same code the next beat feeds to the CLI
+- voiceover: (silent — the flipping settings and reacting preview carry the beat)
+- duration: 6.7s
+- transition_in: cut (the title exits itself first — no overlap)
+- status: locked
+- src: IntroducingShadcnDemo → CreateScene
+- type: feature_showcase
+- persuasion: Show-don't-tell proof — you watch the design system being decided
+- beat: control
+- blueprint: kinetic-type-beats — one value swaps in place per beat; the swap is the story
+- asset_candidates: (real shadcn/ui components; base colors are all grays, so the video stays monochrome)
+
+narrativeRole: where presets come from — you assemble one visually, and it becomes a short code.
+keyMessage: style, base color, theme, font — picked live, packed into one code.
+
+## Frame 10d — Switching presets
+
+- scene: a real sign-in card (Card, Input, Switch, Button) sits above the mono command `npx shadcn init --preset <code>`; the preset code flips like a 3D rolodex — a1Dg5eFl → ad3qkJ7 → adtk27v — and on every flip the SAME components re-theme live: dark default → light with sharp corners → dark with round corners, radius morphing smoothly, a tiny pop selling "everything just reconfigured"
+- voiceover: "npx shadcn init --preset."
+- duration: 5.9s
+- transition_in: cut (the builder exits itself first — no overlap)
+- status: locked
+- src: IntroducingShadcnDemo → PresetScene
+- type: feature_showcase
+- persuasion: Show-don't-tell proof — one command visibly reconfigures everything, components included
+- beat: control
+- blueprint: kinetic-type-beats — the key token swaps in place; the swap is the story
+- asset_candidates: (real shadcn/ui components, monochrome in both themes)
+
+narrativeRole: the preset made concrete — the code flips, the whole system follows.
+keyMessage: one code swaps the entire design system, including installed components.
+
+## Frame 10e — Switch it any time
+
+- scene: one line lands solo in the calm world
+- voiceover: "Switch it any time."
+- duration: 2.1s
+- transition_in: cut (the preset scene exits itself first)
+- status: locked
+- src: IntroducingShadcnDemo → PresetSwitchScene
+- type: benefit_highlight
+- persuasion: Risk reversal — trying styles is cheap
+- beat: ease
+- blueprint: kinetic-type-beats — the calm landing after the demo
+- asset_candidates: (typography-only)
+
+narrativeRole: lands the consequence of the flip montage — switching is a one-command habit, not a rewrite.
+keyMessage: finding the look you like takes tries; presets make tries free.
+
 ## Frame 11 — The code is yours
 
 - scene: one line lands solo in the calm world — the ownership claim, nothing else
 - voiceover: "And the code is yours."
 - duration: 2.3s
-- transition_in: crossfade
+- transition_in: cut (both beats are self-contained)
 - status: locked
 - src: IntroducingShadcnDemo → YoursScene
 - type: benefit_highlight
