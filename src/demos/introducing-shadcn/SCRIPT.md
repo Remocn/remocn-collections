@@ -12,9 +12,13 @@ on-screen copy budget for its beat. Silent beats are omitted.
 7. Accessible by default. Composable by design. Open code, always.
 8. Any component, one command.
 9. npx shadcn add button.
-10. And the code is yours.
-11. 1,000,000 apps every month.
-12. Startups. YC. Fortune 500s. Everyone is building with it.
-13. A massive ecosystem — and room for you to build.
-14. The best part? Everyone needs UI.
-15. shadcn/ui. Open Source. Open Code.
+10. Your whole design system, one preset.
+11. (silent — the builder: style, base color, theme, font flip one by one; the live preview reshapes, the choices become --preset a1Dg5eFl)
+12. npx shadcn init --preset.
+13. Switch it any time.
+14. And the code is yours.
+15. 1,000,000 apps every month.
+16. Startups. YC. Fortune 500s. Everyone is building with it.
+17. A massive ecosystem — and room for you to build.
+18. The best part? Everyone needs UI.
+19. shadcn/ui. Open Source. Open Code.

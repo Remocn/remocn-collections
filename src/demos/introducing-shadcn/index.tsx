@@ -28,6 +28,18 @@ import { ShaderSwirl } from "@/components/remocn/shader-swirl";
 import { ShaderDithering } from "@/components/remocn/shader-dithering";
 import { ShaderSmokeRing } from "@/components/remocn/shader-smoke-ring";
 
+import { Button } from "@/components/ui/button";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
+import { Switch } from "@/components/ui/switch";
+
 import { FieldScene, S_FIELD } from "./field";
 import { CategoriesScene, categorySceneDuration } from "./categories";
 
@@ -71,6 +83,10 @@ const S_CREED_B = 96; //   kinetic "How you build your own"
 const S_PILLARS = 104; //  three pillar lines
 const S_INSTALL_TITLE = 70; // "Any component, one command"
 const S_INSTALL_CMD = 150; //  typed command + 3D name rolodex
+const S_PRESET_TITLE = 66; //  "Your whole design system, one preset"
+const S_CREATE = 200; //   shadcn create: settings flip, the preview reacts
+const S_PRESET = 176; //   init --preset: the code flips, the UI re-themes live
+const S_SWITCH = 64; //    "Switch it any time"
 const S_YOURS = 70; //     "And the code is yours"
 const S_APPS = 156; //     1,000,000 apps: dive → wheel spins up → pan → whip out
 const WHO_BEAT = 24; //    one builder-name hard cut
@@ -378,6 +394,577 @@ const InstallCmdScene: React.FC = () => {
     </AbsoluteFill>
   );
 };
+
+// ===========================================================================
+// Scene 8c — Preset title. Same typographic setup as the install title:
+// glides in, holds, plays its own exit.
+// ===========================================================================
+const PresetTitleScene: React.FC = () => {
+  const frame = useCurrentFrame();
+  const { durationInFrames } = useVideoConfig();
+
+  const exitP = interpolate(
+    frame,
+    [durationInFrames - 18, durationInFrames - 2],
+    [0, 1],
+    { ...clampOpts, easing: Easing.in(Easing.cubic) },
+  );
+
+  return (
+    <AbsoluteFill
+      style={{
+        opacity: 1 - exitP,
+        transform: `translateY(${exitP * -10}px) scale(${1 - exitP * 0.05})`,
+        filter: `blur(${exitP * 6}px)`,
+      }}
+    >
+      <ShortSlideRight
+        text="Your whole design system, one preset"
+        fontSize={46}
+        fontWeight={400}
+        color={INK}
+      />
+    </AbsoluteFill>
+  );
+};
+
+// ===========================================================================
+// Shared preview card — the same real components in both preset beats: the
+// builder shapes this card, then `init --preset` re-themes it.
+// ===========================================================================
+const PresetPreviewCard: React.FC = () => (
+  <Card className="w-[400px]">
+    <CardHeader>
+      <CardTitle>Welcome back</CardTitle>
+      <CardDescription>Sign in to your account</CardDescription>
+    </CardHeader>
+    <CardContent className="flex flex-col gap-4">
+      <div className="flex flex-col gap-2">
+        <Label htmlFor="preset-email">Email</Label>
+        <Input id="preset-email" placeholder="m@example.com" readOnly />
+      </div>
+      <div className="flex items-center justify-between">
+        <Label htmlFor="preset-remember">Remember me</Label>
+        <Switch id="preset-remember" defaultChecked />
+      </div>
+      <Button className="w-full">Sign in</Button>
+    </CardContent>
+  </Card>
+);
+
+// ===========================================================================
+// Scene 8d — shadcn create. The builder from ui.shadcn.com/create: a settings
+// panel — style, base color, theme, font — next to a live preview. One
+// setting flips at a time and the same components reshape in response:
+// Lyra sharpens the corners, stone warms the grays, dark inverts, mono
+// swaps the type. Everything stays monochrome.
+// ===========================================================================
+const CREATE_BEAT_STYLE = 34; //  Vega → Lyra (boxy and sharp)
+const CREATE_BEAT_COLOR = 72; //  zinc → stone
+const CREATE_BEAT_THEME = 110; // light → dark
+const CREATE_BEAT_FONT = 148; //  Geist → Geist Mono
+const CREATE_CODE_IN = 158; //   the choices become a preset code
+
+const TILE_BORDER = "1px solid rgba(250,250,250,0.14)";
+
+// One settings tile from the create panel: muted label on top, the current
+// value large below, an icon on the right. The value flips in place — old
+// up and out, new up and in — when its beat hits.
+const CreateTile: React.FC<{
+  label: string;
+  before: string;
+  after: string;
+  at: number;
+  enter: number;
+  afterMono?: boolean;
+  icon?: React.ReactNode;
+}> = ({ label, before, after, at, enter, afterMono = false, icon }) => {
+  const frame = useCurrentFrame();
+
+  const inP = interpolate(frame, [enter, enter + 10], [0, 1], {
+    ...clampOpts,
+    easing: Easing.out(Easing.cubic),
+  });
+  const p = interpolate(frame, [at, at + 9], [0, 1], {
+    ...clampOpts,
+    easing: Easing.inOut(Easing.cubic),
+  });
+  const sizer = after.length > before.length ? after : before;
+
+  return (
+    <div
+      style={{
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "space-between",
+        gap: 16,
+        padding: "10px 16px",
+        borderRadius: 12,
+        border: TILE_BORDER,
+        background: "rgba(250,250,250,0.035)",
+        opacity: inP,
+        transform: `translateY(${(1 - inP) * 10}px)`,
+      }}
+    >
+      <div style={{ display: "flex", flexDirection: "column", gap: 3 }}>
+        <span style={{ fontFamily: SANS, fontSize: 12.5, color: FAINT }}>
+          {label}
+        </span>
+        <span
+          style={{
+            position: "relative",
+            display: "inline-block",
+            fontSize: 19,
+            color: INK,
+            lineHeight: 1.25,
+          }}
+        >
+          <span
+            style={{
+              visibility: "hidden",
+              fontFamily: afterMono ? MONO : SANS,
+              whiteSpace: "nowrap",
+            }}
+          >
+            {sizer}
+          </span>
+          <span
+            style={{
+              position: "absolute",
+              left: 0,
+              top: 0,
+              whiteSpace: "nowrap",
+              fontFamily: SANS,
+              opacity: 1 - p,
+              transform: `translateY(${p * -9}px)`,
+            }}
+          >
+            {before}
+          </span>
+          <span
+            style={{
+              position: "absolute",
+              left: 0,
+              top: 0,
+              whiteSpace: "nowrap",
+              fontFamily: afterMono ? MONO : SANS,
+              opacity: p,
+              transform: `translateY(${(1 - p) * 9}px)`,
+            }}
+          >
+            {after}
+          </span>
+        </span>
+      </div>
+      {icon}
+    </div>
+  );
+};
+
+// Base-color dots — grays, so the video stays monochrome while "color"
+// switches.
+const ZINC_DOT = "#71717a";
+const STONE_DOT = "#78716c";
+
+// Warm stone grays layered over the neutral theme when stone is selected.
+const STONE_LIGHT = {
+  "--border": "#e7e5e4",
+  "--input": "#e7e5e4",
+  "--muted": "#f5f5f4",
+  "--secondary": "#f5f5f4",
+  "--accent": "#f5f5f4",
+  "--muted-foreground": "#78716c",
+  "--ring": "#a8a29e",
+} as React.CSSProperties;
+const STONE_DARK = {
+  "--card": "#1c1917",
+  "--muted-foreground": "#a8a29e",
+} as React.CSSProperties;
+
+const CreateScene: React.FC = () => {
+  const frame = useCurrentFrame();
+  const { durationInFrames } = useVideoConfig();
+
+  const panelIn = interpolate(frame, [0, 14], [0, 1], {
+    ...clampOpts,
+    easing: Easing.out(Easing.cubic),
+  });
+  const previewIn = interpolate(frame, [4, 18], [0, 1], {
+    ...clampOpts,
+    easing: Easing.out(Easing.cubic),
+  });
+  const exitP = interpolate(
+    frame,
+    [durationInFrames - 16, durationInFrames - 4],
+    [0, 1],
+    { ...clampOpts, easing: Easing.in(Easing.cubic) },
+  );
+
+  // One setting flips per beat; the preview reacts to each.
+  const colorIdx = frame < CREATE_BEAT_COLOR ? 1 : 3;
+  const dark = frame >= CREATE_BEAT_THEME;
+  const fontIdx = frame < CREATE_BEAT_FONT ? 0 : 2;
+
+  // Lyra is boxy and sharp — the radius morphs to 0 across the flip.
+  const radius = interpolate(
+    frame,
+    [CREATE_BEAT_STYLE, CREATE_BEAT_STYLE + 16],
+    [10, 0],
+    { ...clampOpts, easing: Easing.inOut(Easing.cubic) },
+  );
+
+  const pop = (at: number) =>
+    interpolate(frame, [at, at + 6, at + 18], [0, 1, 0], clampOpts);
+  const previewScale =
+    1 +
+    (pop(CREATE_BEAT_STYLE) +
+      pop(CREATE_BEAT_COLOR) +
+      pop(CREATE_BEAT_THEME) +
+      pop(CREATE_BEAT_FONT)) *
+      0.02;
+
+  const stoneVars =
+    colorIdx === 3 ? (dark ? STONE_DARK : STONE_LIGHT) : undefined;
+
+  return (
+    <AbsoluteFill
+      style={{
+        flexDirection: "row",
+        alignItems: "center",
+        justifyContent: "center",
+        gap: 56,
+        opacity: 1 - exitP,
+        filter: exitP > 0 ? `blur(${exitP * 6}px)` : undefined,
+      }}
+    >
+      {/* The builder's settings panel — the tile stack from the create
+          page: label, current value, icon. Values flip beat by beat, the
+          choices become a preset code at the bottom. */}
+      <div
+        style={{
+          width: 300,
+          padding: 12,
+          borderRadius: 18,
+          border: TILE_BORDER,
+          background: "rgba(250,250,250,0.025)",
+          display: "flex",
+          flexDirection: "column",
+          gap: 9,
+          fontFamily: SANS,
+          opacity: panelIn,
+          transform: `translateX(${(1 - panelIn) * -24}px)`,
+        }}
+      >
+        <CreateTile
+          label="Style"
+          before="Vega"
+          after="Lyra"
+          at={CREATE_BEAT_STYLE}
+          enter={2}
+          icon={
+            <span
+              style={{
+                width: 22,
+                height: 18,
+                border: `1.5px solid ${INK}`,
+                borderRadius: (radius / 10) * 6,
+              }}
+            />
+          }
+        />
+        <CreateTile
+          label="Base Color"
+          before="Zinc"
+          after="Stone"
+          at={CREATE_BEAT_COLOR}
+          enter={5}
+          icon={
+            <span
+              style={{
+                width: 18,
+                height: 18,
+                borderRadius: 999,
+                background: colorIdx === 3 ? STONE_DOT : ZINC_DOT,
+              }}
+            />
+          }
+        />
+        <CreateTile
+          label="Theme"
+          before="Light"
+          after="Dark"
+          at={CREATE_BEAT_THEME}
+          enter={8}
+          icon={
+            <span
+              style={{
+                width: 18,
+                height: 18,
+                borderRadius: 999,
+                background: dark ? "#27272a" : "#e4e4e7",
+                border: TILE_BORDER,
+              }}
+            />
+          }
+        />
+        <CreateTile
+          label="Font"
+          before="Geist"
+          after="Geist Mono"
+          at={CREATE_BEAT_FONT}
+          enter={11}
+          afterMono
+          icon={
+            <span
+              style={{
+                fontFamily: fontIdx === 2 ? MONO : SANS,
+                fontSize: 18,
+                color: INK,
+                lineHeight: 1,
+              }}
+            >
+              Aa
+            </span>
+          }
+        />
+        {/* The choices become a code — the same mechanism the next beat
+            runs through the CLI. */}
+        <div
+          style={{
+            padding: "9px 16px",
+            borderRadius: 12,
+            border: TILE_BORDER,
+            textAlign: "center",
+            fontFamily: MONO,
+            fontSize: 14.5,
+            color: MUTED,
+            opacity: interpolate(
+              frame,
+              [CREATE_CODE_IN, CREATE_CODE_IN + 10],
+              [0, 1],
+              clampOpts,
+            ),
+          }}
+        >
+          --preset a1Dg5eFl
+        </div>
+        <div
+          style={{
+            padding: "9px 16px",
+            borderRadius: 12,
+            background: INK,
+            color: ZINC,
+            textAlign: "center",
+            fontSize: 15,
+            opacity: interpolate(frame, [14, 24], [0, 1], clampOpts),
+          }}
+        >
+          Get Code
+        </div>
+      </div>
+      {/* The live preview — the same card the next scene re-themes. */}
+      <div
+        className={`${dark ? "dark " : ""}**:font-normal!`}
+        style={
+          {
+            "--radius": `${radius}px`,
+            ...stoneVars,
+            fontFamily: fontIdx === 2 ? MONO : undefined,
+            opacity: previewIn,
+            transform: `translateX(${(1 - previewIn) * 24}px) scale(${previewScale})`,
+          } as React.CSSProperties
+        }
+      >
+        <PresetPreviewCard />
+      </div>
+    </AbsoluteFill>
+  );
+};
+
+// ===========================================================================
+// Scene 8e — Presets. One short code carries the whole design-system config
+// — colors, theme, fonts, radius. `init --preset` swaps it live: the same
+// real components re-theme on screen (hard theme flip, morphing radius) as
+// the code rolodexes through presets, components included.
+// ===========================================================================
+const PRESETS = [
+  { code: "a1Dg5eFl", dark: true, radius: 10 },
+  { code: "ad3qkJ7", dark: false, radius: 0 },
+  { code: "adtk27v", dark: true, radius: 22 },
+];
+const PRESET_CMD = "npx shadcn init --preset ";
+const P_SIZER = PRESETS.reduce((a, b) =>
+  b.code.length > a.code.length ? b : a,
+).code;
+const P_FLIP_START = 64; // first code flip, after the pair has settled
+const P_FLIP_PER = 48; //  one preset every 48 frames — time to read the UI
+const P_FLIP_DUR = 10; //  the 3D flip itself
+
+const PresetScene: React.FC = () => {
+  const frame = useCurrentFrame();
+  const { durationInFrames } = useVideoConfig();
+
+  const uiIn = interpolate(frame, [0, 14], [0, 1], {
+    ...clampOpts,
+    easing: Easing.out(Easing.cubic),
+  });
+  const cmdIn = interpolate(frame, [8, 20], [0, 1], {
+    ...clampOpts,
+    easing: Easing.out(Easing.cubic),
+  });
+  const exitP = interpolate(
+    frame,
+    [durationInFrames - 16, durationInFrames - 4],
+    [0, 1],
+    { ...clampOpts, easing: Easing.in(Easing.cubic) },
+  );
+
+  // The theme flips hard mid-flip, like the Themes beat — the flip IS the
+  // story: same components, another system.
+  const flipMid1 = P_FLIP_START + P_FLIP_DUR / 2;
+  const flipMid2 = P_FLIP_START + P_FLIP_PER + P_FLIP_DUR / 2;
+  const preset =
+    frame < flipMid1 ? PRESETS[0] : frame < flipMid2 ? PRESETS[1] : PRESETS[2];
+
+  // The radius morphs smoothly through each flip. Every rounded-* utility
+  // inlines calc(var(--radius) …), so one variable re-shapes everything.
+  const radius = interpolate(
+    frame,
+    [
+      P_FLIP_START,
+      P_FLIP_START + 16,
+      P_FLIP_START + P_FLIP_PER,
+      P_FLIP_START + P_FLIP_PER + 16,
+    ],
+    [PRESETS[0].radius, PRESETS[1].radius, PRESETS[1].radius, PRESETS[2].radius],
+    { ...clampOpts, easing: Easing.inOut(Easing.cubic) },
+  );
+
+  // A small pop on each flip sells "everything just reconfigured".
+  const pop = (at: number) =>
+    interpolate(frame, [at, at + 6, at + 18], [0, 1, 0], clampOpts);
+  const scale =
+    1 + (pop(P_FLIP_START) + pop(P_FLIP_START + P_FLIP_PER)) * 0.02;
+
+  return (
+    <AbsoluteFill
+      style={{
+        alignItems: "center",
+        justifyContent: "center",
+        gap: 40,
+        opacity: 1 - exitP,
+        filter: exitP > 0 ? `blur(${exitP * 6}px)` : undefined,
+      }}
+    >
+      <div
+        className={`${preset.dark ? "dark " : ""}**:font-normal!`}
+        style={
+          {
+            "--radius": `${radius}px`,
+            opacity: uiIn,
+            transform: `translateY(${(1 - uiIn) * 22}px) scale(${scale})`,
+          } as React.CSSProperties
+        }
+      >
+        <PresetPreviewCard />
+      </div>
+      <div
+        style={{
+          fontFamily: MONO,
+          fontSize: 24,
+          color: MUTED,
+          opacity: cmdIn,
+          transform: `translateY(${(1 - cmdIn) * 12}px)`,
+        }}
+      >
+        <span style={{ color: FAINT }}>$ </span>
+        <span>{PRESET_CMD}</span>
+        <span
+          style={{
+            display: "inline-block",
+            width: `${P_SIZER.length}ch`,
+            textAlign: "left",
+            position: "relative",
+            verticalAlign: "bottom",
+            perspective: 420,
+            color: INK,
+          }}
+        >
+          {/* Invisible sizer keeps the container's height and baseline. */}
+          <span style={{ visibility: "hidden" }}>{P_SIZER}</span>
+          {PRESETS.map(({ code }, i) => {
+            // Same rolodex as the install command: the outgoing code clears
+            // first, the incoming one follows half a flip later.
+            const inStart = P_FLIP_START + (i - 1) * P_FLIP_PER + 5;
+            const outStart = P_FLIP_START + i * P_FLIP_PER;
+
+            let rotate = 0;
+            let y = 0;
+            let opacity = 1;
+
+            if (i > 0) {
+              const pIn = interpolate(
+                frame,
+                [inStart, inStart + P_FLIP_DUR],
+                [0, 1],
+                { ...clampOpts, easing: Easing.out(Easing.cubic) },
+              );
+              rotate = (1 - pIn) * -85;
+              y = (1 - pIn) * 18;
+              opacity = pIn;
+            }
+            if (i < PRESETS.length - 1) {
+              const pOut = interpolate(
+                frame,
+                [outStart, outStart + P_FLIP_DUR],
+                [0, 1],
+                { ...clampOpts, easing: Easing.in(Easing.cubic) },
+              );
+              rotate += pOut * 85;
+              y -= pOut * 18;
+              opacity *= 1 - pOut;
+            }
+            if (opacity <= 0.001) return null;
+
+            return (
+              <span
+                key={code}
+                style={{
+                  position: "absolute",
+                  left: 0,
+                  top: 0,
+                  whiteSpace: "nowrap",
+                  opacity,
+                  transform: `translateY(${y}px) rotateX(${rotate}deg)`,
+                  transformOrigin: "50% 50%",
+                  backfaceVisibility: "hidden",
+                }}
+              >
+                {code}
+              </span>
+            );
+          })}
+        </span>
+      </div>
+    </AbsoluteFill>
+  );
+};
+
+// ===========================================================================
+// Scene 8f — The switch claim lands alone.
+// ===========================================================================
+const PresetSwitchScene: React.FC = () => (
+  <AbsoluteFill>
+    <Sequence from={4} durationInFrames={56}>
+      <ScaleDownFade
+        text="Switch it any time"
+        fontSize={54}
+        fontWeight={400}
+        color={INK}
+      />
+    </Sequence>
+  </AbsoluteFill>
+);
 
 // ===========================================================================
 // Scene 9 — Ownership. The consequence lands alone.
@@ -881,6 +1468,10 @@ export const INTRODUCING_SHADCN_DURATION =
   S_PILLARS +
   S_INSTALL_TITLE +
   S_INSTALL_CMD +
+  S_PRESET_TITLE +
+  S_CREATE +
+  S_PRESET +
+  S_SWITCH +
   S_YOURS +
   S_APPS +
   S_WHO +
@@ -974,6 +1565,28 @@ export const IntroducingShadcnDemo: React.FC = () => {
           timing={linearTiming({ durationInFrames: T_X })}
           presentation={crossfade()}
         />
+
+        {/* 8c — Preset title (plays its own exit, hard cut) */}
+        <TransitionSeries.Sequence durationInFrames={S_PRESET_TITLE}>
+          <PresetTitleScene />
+        </TransitionSeries.Sequence>
+
+        {/* 8d — shadcn create: settings flip one by one, the live preview
+            reshapes (plays its own exit, hard cut) */}
+        <TransitionSeries.Sequence durationInFrames={S_CREATE}>
+          <CreateScene />
+        </TransitionSeries.Sequence>
+
+        {/* 8e — init --preset: the code flips, the same UI re-themes live
+            (plays its own exit, hard cut) */}
+        <TransitionSeries.Sequence durationInFrames={S_PRESET}>
+          <PresetScene />
+        </TransitionSeries.Sequence>
+
+        {/* 8f — Switch it any time (self-contained, hard cut) */}
+        <TransitionSeries.Sequence durationInFrames={S_SWITCH}>
+          <PresetSwitchScene />
+        </TransitionSeries.Sequence>
 
         {/* 9 — And the code is yours */}
         <TransitionSeries.Sequence durationInFrames={S_YOURS}>
