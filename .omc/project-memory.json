@@ -42,7 +42,7 @@
     "runtime": null
   },
   "build": {
-    "buildCommand": "npm run build",
+    "buildCommand": "npx tsc --noEmit 2>&1 | head -20",
     "testCommand": null,
     "lintCommand": "npm run lint",
     "devCommand": "npm run dev",

@@ -117,7 +117,7 @@ keyMessage: shadcn/ui is how you build your component library.
 
 ## Frame 7 — The category montage
 
-- scene: four hard-cut beats, each a label plus REAL UI proving it — Blocks (the registry's sidebar-07 block assembling itself: the frame resolves, the app sidebar slides in from the left, the breadcrumb header settles, and the content placeholders cascade in), Charts (a monochrome bar chart drawing itself live), Themes (the same notifications card hard-flipping dark → light → dark), Colors (the zinc ramp sliding in swatch by swatch). The montage IS the platform argument.
+- scene: four hard-cut beats, each a label plus REAL UI proving it — Blocks (the registry's sidebar-07 block assembling itself: the frame resolves, the app sidebar slides in from the left, the breadcrumb header settles, and the content placeholders cascade in), Charts (a monochrome bar chart drawing itself live), Themes (the same notifications card hard-flipping dark → light → dark), Colors (the full Tailwind palette — 22 ramps × 11 shades, values straight from tailwindcss v4 — sweeping in as a diagonal wave). The montage IS the platform argument.
 - voiceover: "Blocks. Charts. Themes. Colors."
 - duration: 10.1s (Blocks 96f self-assembly + 3 × 56f + dither tail, hard cuts)
 - transition_in: cut (the montage announces itself)
