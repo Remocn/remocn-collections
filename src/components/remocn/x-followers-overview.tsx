@@ -4,7 +4,6 @@ import { useState } from "react";
 import { loadFont as loadSans } from "@remotion/google-fonts/Manrope";
 import {
   AbsoluteFill,
-  Easing,
   Img,
   interpolate,
   spring,

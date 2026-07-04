@@ -1,14 +1,6 @@
 import React from "react";
-import {
-  AbsoluteFill,
-  Easing,
-  Img,
-  interpolate,
-  spring,
-  staticFile,
-  useCurrentFrame,
-  useVideoConfig,
-} from "remotion";
+import { AbsoluteFill, Easing, Img, interpolate, spring, useCurrentFrame, useVideoConfig } from "remotion";
+import { demoAsset } from "@/lib/demo-assets";
 import { TransitionSeries, linearTiming } from "@remotion/transitions";
 import { loadFont as loadSans } from "@remotion/google-fonts/Manrope";
 
@@ -169,7 +161,7 @@ const RevealScene: React.FC = () => {
         }}
       >
         <Img
-          src={staticFile("reactbits-logo.svg")}
+          src={demoAsset("reactbits-logo.svg")}
           style={{
             width: 660,
             opacity: p,
@@ -321,7 +313,7 @@ const LockupScene: React.FC = () => {
             ✕
           </span>
           <Img
-            src={staticFile("reactbits-logo.svg")}
+            src={demoAsset("reactbits-logo.svg")}
             style={{
               height: 58,
               opacity: sideP,

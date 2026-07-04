@@ -1,0 +1,3 @@
+<!-- TODO(draft): placeholder written by AI — replace with the real prompt used to generate this video -->
+
+Make a launch video for @remocn/render-sdk. Open with a few pain questions about juggling different render provider APIs, hit a hard "Stop." beat, then land "One API, different providers" and show cards for the render and lambda adapters. Zoom into a terminal install (bun install @remocn/render-sdk), pop open a glass code block with a short usage example, and build out a logo wall of the frameworks it works with — Next.js, React, Remix, React Router. Close with a simple drawn-on box mark, the render-sdk wordmark, the v1.0.0 tag, and the tagline. Keep it clean and technical, built with remocn components.

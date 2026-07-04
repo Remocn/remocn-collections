@@ -1,0 +1,3 @@
+<!-- TODO(draft): placeholder written by AI — replace with the real prompt used to generate this video -->
+
+Make a showcase video for the new text animations we added to remocn. The gimmick should be that each animation introduces itself by animating its own name — so the typewriter effect types out "typewriter", the split-text effect splits "split-text", and so on down the list. Put it over an image backdrop rather than a flat color, and keep the transitions between each one dynamic and kinetic so it doesn't feel like a static list. Keep it snappy, no long holds, just effect after effect proving itself. Use remocn's actual text animation components for all of it.

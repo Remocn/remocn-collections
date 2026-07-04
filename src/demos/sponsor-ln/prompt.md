@@ -1,0 +1,3 @@
+<!-- TODO(draft): placeholder written by AI — replace with the real prompt used to generate this video -->
+
+Quick sponsor shoutout video for LN, three scenes over the bg.png backdrop we already have. Open on their emoji springing in centered with a gentle float, then have "Say hello my new sponsor" resolve in with remocn's soft blur-in text style. For the main scene, assemble a Remocn x LN lockup — the Remocn wordmark slides in, a cross fades between the two marks, LN's avatar springs into a ringed circle with a soft accent halo around it, and their name settles in underneath. Keep it short and simple, same pattern as our other sponsor spots, built with remocn primitives.

@@ -1,17 +1,6 @@
 import React, { type ReactNode } from "react";
-import {
-  AbsoluteFill,
-  Easing,
-  Img,
-  Sequence,
-  Series,
-  interpolate,
-  interpolateColors,
-  spring,
-  staticFile,
-  useCurrentFrame,
-  useVideoConfig,
-} from "remotion";
+import { AbsoluteFill, Easing, Img, Sequence, Series, interpolate, interpolateColors, spring, useCurrentFrame, useVideoConfig } from "remotion";
+import { demoAsset } from "@/lib/demo-assets";
 import {
   TransitionSeries,
   linearTiming,
@@ -479,7 +468,7 @@ const RealBadge: React.FC<{ name: string; height?: number }> = ({
   height = 32,
 }) => (
   <Img
-    src={staticFile(`shieldcn/${name}.svg`)}
+    src={demoAsset(`shieldcn/${name}.svg`)}
     style={{ height, width: "auto", display: "block", flex: "none" }}
   />
 );
@@ -929,7 +918,7 @@ const ChartScene: React.FC = () => {
             dim={dimFor(0)}
           >
             <Img
-              src={staticFile("shieldcn/chart-stars.svg")}
+              src={demoAsset("shieldcn/chart-stars.svg")}
               style={{ width: 596, height: "auto", display: "block" }}
             />
           </ArtifactCard>
@@ -937,7 +926,7 @@ const ChartScene: React.FC = () => {
           {/* Card 2 — the real README header */}
           <ArtifactCard url="shieldcn.dev/header/graph.svg?title=shieldcn" dim={dimFor(1)}>
             <Img
-              src={staticFile("shieldcn/header-graph.svg")}
+              src={demoAsset("shieldcn/header-graph.svg")}
               style={{ width: 596, height: "auto", display: "block" }}
             />
           </ArtifactCard>
@@ -945,7 +934,7 @@ const ChartScene: React.FC = () => {
           {/* Card 3 — the real sponsor wall */}
           <ArtifactCard url="shieldcn.dev/sponsors/jal-co.svg" dim={dimFor(2)}>
             <Img
-              src={staticFile("shieldcn/sponsors.svg")}
+              src={demoAsset("shieldcn/sponsors.svg")}
               style={{ width: 596, height: "auto", display: "block" }}
             />
           </ArtifactCard>

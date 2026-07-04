@@ -1,15 +1,6 @@
 import React, { type CSSProperties, type ReactNode } from "react";
-import {
-  AbsoluteFill,
-  Easing,
-  Series,
-  interpolate,
-  interpolateColors,
-  spring,
-  staticFile,
-  useCurrentFrame,
-  useVideoConfig,
-} from "remotion";
+import { AbsoluteFill, Easing, Series, interpolate, interpolateColors, spring, useCurrentFrame, useVideoConfig } from "remotion";
+import { demoAsset } from "@/lib/demo-assets";
 import {
   TransitionSeries,
   linearTiming,
@@ -772,7 +763,7 @@ export const FonttrioDemo: React.FC = () => {
     <RemocnUIProvider>
       <AbsoluteFill style={{ fontFamily: SANS }}>
         {/* Persistent image background for the whole video. */}
-        <Backdrop fill={{ type: "image", src: staticFile("bg.png") }} />
+        <Backdrop fill={{ type: "image", src: demoAsset("bg.png") }} />
         {/* Scrim to deepen contrast for foreground content. */}
         <AbsoluteFill
           style={{

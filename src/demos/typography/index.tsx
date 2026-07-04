@@ -1,19 +1,12 @@
 import React, { type ReactNode } from "react";
-import {
-  AbsoluteFill,
-  Easing,
-  Loop,
-  Sequence,
-  interpolate,
-  staticFile,
-  useCurrentFrame,
-} from "remotion";
+import { AbsoluteFill, Easing, Loop, Sequence, interpolate, useCurrentFrame } from "remotion";
+import { demoAsset } from "@/lib/demo-assets";
 import {
   TransitionSeries,
   linearTiming,
   type TransitionPresentation,
 } from "@remotion/transitions";
-import { fade } from "@remotion/transitions/fade";
+import { fade, type FadeProps } from "@remotion/transitions/fade";
 import { loadFont } from "@remotion/google-fonts/Manrope";
 import { loadFont as loadMono } from "@remotion/google-fonts/JetBrainsMono";
 
@@ -236,8 +229,8 @@ const Centered: React.FC<{ children: ReactNode; cardHeight?: boolean }> = ({
 // carried entirely by the text effects: each one animates in on the spot, and
 // Stage dissolves it out on the spot. The "transition" lives in the animation.
 // ---------------------------------------------------------------------------
-type Trans = { dur: number; presentation: () => TransitionPresentation<any> };
-const td = (dur: number, presentation: () => TransitionPresentation<any>): Trans => ({
+type Trans = { dur: number; presentation: () => TransitionPresentation<FadeProps> };
+const td = (dur: number, presentation: () => TransitionPresentation<FadeProps>): Trans => ({
   dur,
   presentation,
 });
@@ -797,12 +790,6 @@ const OutroScene: React.FC = () => {
     extrapolateRight: "clamp",
     easing: Easing.bezier(0.22, 1, 0.36, 1),
   });
-  const tagline = interpolate(frame, [30, 50], [0, 1], {
-    extrapolateLeft: "clamp",
-    extrapolateRight: "clamp",
-    easing: Easing.out(Easing.cubic),
-  });
-
   // The whole closing group lifts away and blurs out at the very end.
   const exit = interpolate(frame, [OUTRO - 18, OUTRO], [0, 1], {
     extrapolateLeft: "clamp",
@@ -866,7 +853,7 @@ type SceneSlot = {
   node: ReactNode;
   dur: number;
   /** transition INTO the next scene */
-  trans?: { dur: number; presentation: () => TransitionPresentation<any> };
+  trans?: { dur: number; presentation: () => TransitionPresentation<FadeProps> };
 };
 
 const buildScenes = (): SceneSlot[] => {
@@ -877,7 +864,7 @@ const buildScenes = (): SceneSlot[] => {
   // Overview grid (its own dive into the first card stays as a one-off).
   slots.push({ node: <GridScene />, dur: GRID, trans: DISSOLVE });
 
-  ANIMATIONS.forEach((anim, i) => {
+  ANIMATIONS.forEach((anim) => {
     const d = Math.round(anim.dur * DUR_SCALE);
     // Stationary scene: the effect plays in place, then Stage dissolves it out in
     // place before the in-place cross-fade brings the next effect on. No motion.
@@ -1024,7 +1011,7 @@ export const TypographyDemo: React.FC = () => {
         style={{ "--font-geist-sans": fontFamily } as React.CSSProperties}
       >
         {/* Persistent image background for the whole video. */}
-        <Backdrop fill={{ type: "image", src: staticFile("bg.png") }} />
+        <Backdrop fill={{ type: "image", src: demoAsset("bg.png") }} />
         {/* Scrim to deepen contrast under the foreground type. */}
         <AbsoluteFill
           style={{

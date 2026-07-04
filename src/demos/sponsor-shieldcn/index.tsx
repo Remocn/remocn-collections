@@ -1,15 +1,6 @@
 import React from "react";
-import {
-  AbsoluteFill,
-  Easing,
-  Img,
-  Sequence,
-  interpolate,
-  spring,
-  staticFile,
-  useCurrentFrame,
-  useVideoConfig,
-} from "remotion";
+import { AbsoluteFill, Easing, Img, Sequence, interpolate, spring, useCurrentFrame, useVideoConfig } from "remotion";
+import { demoAsset } from "@/lib/demo-assets";
 import {
   TransitionSeries,
   linearTiming,
@@ -105,7 +96,7 @@ const RealBadge: React.FC<{ name: string; height?: number }> = ({
   height = 26,
 }) => (
   <Img
-    src={staticFile(`shieldcn/${name}.svg`)}
+    src={demoAsset(`shieldcn/${name}.svg`)}
     style={{ height, width: "auto", display: "block", flex: "none" }}
   />
 );

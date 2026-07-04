@@ -28,20 +28,21 @@ import { ShaderSwirl } from "@/components/remocn/shader-swirl";
 import { ShaderDithering } from "@/components/remocn/shader-dithering";
 import { ShaderSmokeRing } from "@/components/remocn/shader-smoke-ring";
 
-import { Button } from "@/components/ui/button";
+import { Button } from "@/demos/_ui/button";
 import {
   Card,
   CardContent,
   CardDescription,
   CardHeader,
   CardTitle,
-} from "@/components/ui/card";
-import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
-import { Switch } from "@/components/ui/switch";
+} from "@/demos/_ui/card";
+import { Input } from "@/demos/_ui/input";
+import { Label } from "@/demos/_ui/label";
+import { Switch } from "@/demos/_ui/switch";
 
 import { FieldScene, S_FIELD } from "./field";
 import { CategoriesScene, categorySceneDuration } from "./categories";
+import { VideoScopeStyle } from "@/demos/_ui/video-scope";
 
 // Geist regular only — the whole video never goes above weight 400.
 const { fontFamily: SANS_FAMILY } = loadSans("normal", {
@@ -1484,6 +1485,7 @@ export const INTRODUCING_SHADCN_DURATION =
 export const IntroducingShadcnDemo: React.FC = () => {
   return (
     <AbsoluteFill
+      className="video-scope"
       style={
         {
           "--font-geist-sans": SANS_FAMILY,
@@ -1491,6 +1493,7 @@ export const IntroducingShadcnDemo: React.FC = () => {
         } as React.CSSProperties
       }
     >
+      <VideoScopeStyle />
       {/* One quiet simplex-noise field carries the whole video. */}
       <ShaderSimplexNoise
         speed={0.35}

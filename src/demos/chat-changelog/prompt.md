@@ -1,0 +1,3 @@
+<!-- TODO(draft): placeholder written by AI — replace with the real prompt used to generate this video -->
+
+Make a changelog video for the new chat components in remocn — chat-flow plus iMessage and Telegram-style flows. Show each one actually playing live inside a phone frame over an image backdrop, so people can see the bubbles and typing indicator animate in each skin. Make the point that all three are built from the same message-bubble and typing-indicator primitives, so it's really one message API with three different skins on top, not three separate implementations. Use remocn's chat components for the phone demos.

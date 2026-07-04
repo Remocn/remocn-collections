@@ -50,4 +50,28 @@ export default [
       ...offNextRules,
     },
   },
+  // Node build scripts — give them Node globals
+  {
+    files: ["scripts/**/*.mjs"],
+    languageOptions: {
+      globals: {
+        console: "readonly",
+        process: "readonly",
+        fetch: "readonly",
+        URL: "readonly",
+      },
+    },
+  },
+  // Registry-managed copies (remocn components, shadcn ui, frozen video kit).
+  // These files must stay byte-identical to their published registry sources —
+  // the registry builder diffs them against remocn.dev to decide dependency vs
+  // bundle — so stylistic lint rules are relaxed instead of editing the files.
+  {
+    files: ["src/components/remocn/**", "src/components/ui/**", "src/demos/_ui/**"],
+    rules: {
+      "@typescript-eslint/no-unused-vars": "off",
+      "@typescript-eslint/no-empty-object-type": "off",
+      "@typescript-eslint/no-explicit-any": "off",
+    },
+  },
 ];

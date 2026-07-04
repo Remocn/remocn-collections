@@ -1,18 +1,12 @@
 import React, { type ReactNode } from "react";
-import {
-  AbsoluteFill,
-  Easing,
-  Sequence,
-  interpolate,
-  staticFile,
-  useCurrentFrame,
-} from "remotion";
+import { AbsoluteFill, Easing, Sequence, interpolate, useCurrentFrame } from "remotion";
+import { demoAsset } from "@/lib/demo-assets";
 import {
   TransitionSeries,
   linearTiming,
   type TransitionPresentation,
 } from "@remotion/transitions";
-import { fade } from "@remotion/transitions/fade";
+import { fade, type FadeProps } from "@remotion/transitions/fade";
 import { loadFont } from "@remotion/google-fonts/Manrope";
 import { loadFont as loadMono } from "@remotion/google-fonts/JetBrainsMono";
 
@@ -62,7 +56,7 @@ const FAINT = "rgba(250,250,250,0.42)";
 // Shared persona across all three skins. The avatar (unavatar.io/x/shadcn) is
 // vendored into public/ and loaded via staticFile so it renders deterministically
 // and offline — remote URLs aren't reliably fetched during a frame capture.
-const CONTACT = { name: "shadcn", avatar: staticFile("shadcn-avatar.png") };
+const CONTACT = { name: "shadcn", avatar: demoAsset("shadcn-avatar.png") };
 
 const CF_MESSAGES: ChatMessage[] = [
   { from: "me", text: "remocn ships chat components now?" },
@@ -137,7 +131,7 @@ const PLATFORMS: Platform[] = [
 // Transitions — in-place opacity cross-fades only. No camera movement; each
 // scene resolves on the spot and dissolves on the spot.
 // ---------------------------------------------------------------------------
-type Trans = { dur: number; presentation: () => TransitionPresentation<any> };
+type Trans = { dur: number; presentation: () => TransitionPresentation<FadeProps> };
 const DISSOLVE: Trans = { dur: 12, presentation: () => fade() };
 
 // One reveal primitive: rise a touch and un-blur in place.
@@ -837,7 +831,7 @@ export const ChatChangelogDemo: React.FC = () => {
       <AbsoluteFill
         style={{ "--font-geist-sans": fontFamily } as React.CSSProperties}
       >
-        <Backdrop fill={{ type: "image", src: staticFile("bg.png") }} />
+        <Backdrop fill={{ type: "image", src: demoAsset("bg.png") }} />
         <AbsoluteFill
           style={{
             background:

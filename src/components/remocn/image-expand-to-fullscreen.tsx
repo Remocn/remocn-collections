@@ -30,9 +30,6 @@ export interface ImageExpandToFullscreenProps {
 const FONT_FAMILY =
   "var(--font-geist-sans), -apple-system, BlinkMacSystemFont, sans-serif";
 
-const VIEWPORT_W = 1280;
-const VIEWPORT_H = 720;
-
 const DEFAULT_FROM: ImageExpandRect = {
   left: 460,
   top: 280,

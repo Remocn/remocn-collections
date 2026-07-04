@@ -1,0 +1,182 @@
+agent-skills: DIVERGED claude-code -> bundling local copy
+agent-skills: DIVERGED glass-code-block -> bundling local copy
+agent-skills: DIVERGED input -> bundling local copy
+agent-skills: DIVERGED x-followers-overview -> bundling local copy
+agent-skills: dep alert-dialog
+agent-skills: dep backdrop
+agent-skills: dep blur-in
+agent-skills: dep button
+agent-skills: dep caret
+agent-skills: dep checkbox
+agent-skills: dep confetti
+agent-skills: dep drawer
+agent-skills: dep github-stars
+agent-skills: dep kinetic-center-build
+agent-skills: dep number-wheel
+agent-skills: dep remocn-ui
+agent-skills: dep select
+agent-skills: dep select-item
+agent-skills: dep sheet
+agent-skills: dep short-slide-down
+agent-skills: dep spinner
+agent-skills: dep terminal-simulator
+agent-skills: unpublished use-input-transition.ts -> bundled
+batchwork: DIVERGED glass-code-block -> bundling local copy
+batchwork: dep backdrop
+batchwork: dep blur-in
+batchwork: dep marker-highlight
+batchwork: dep remocn-ui
+changelog: DIVERGED typewriter -> bundling local copy
+changelog: dep backdrop
+changelog: dep caret
+changelog: dep remocn-ui
+changelog: dep rolling-number
+changelog: unpublished blur-reveal.tsx -> bundled
+chat-changelog: DIVERGED typewriter -> bundling local copy
+chat-changelog: dep backdrop
+chat-changelog: dep caret
+chat-changelog: dep chat-flow
+chat-changelog: dep imessage-chat-flow
+chat-changelog: dep message-bubble
+chat-changelog: dep remocn-ui
+chat-changelog: dep telegram-chat-flow
+chat-changelog: dep typing-indicator
+fonttrio: DIVERGED glass-code-block -> bundling local copy
+fonttrio: dep backdrop
+fonttrio: dep blur-in
+fonttrio: dep remocn-ui
+fonttrio: dep rolling-number
+fonttrio: dep shared-axis-z
+fonttrio: dep terminal-cursor-zoom
+fonttrio: dep terminal-simulator
+introducing-remocn: dep kinetic-center-build
+introducing-remocn: dep line-by-line-slide
+introducing-remocn: dep scale-down-fade
+introducing-remocn: dep shader-color-panels
+introducing-remocn: dep shader-dithering
+introducing-remocn: dep shader-god-rays
+introducing-remocn: dep shader-mesh-gradient
+introducing-remocn: dep shader-metaballs
+introducing-remocn: dep shader-simplex-noise
+introducing-remocn: dep shader-smoke-ring
+introducing-remocn: dep shader-swirl
+introducing-remocn: dep shader-voronoi
+introducing-remocn: dep shader-warp
+introducing-remocn: dep short-slide-right
+introducing-shadcn: dep kinetic-center-build
+introducing-shadcn: dep line-by-line-slide
+introducing-shadcn: dep scale-down-fade
+introducing-shadcn: dep shader-dithering
+introducing-shadcn: dep shader-simplex-noise
+introducing-shadcn: dep shader-smoke-ring
+introducing-shadcn: dep shader-swirl
+introducing-shadcn: dep short-slide-right
+introducing-shadcn: dep whip-pan
+new-transitions: dep blur-out-up
+new-transitions: dep dither-dissolve
+new-transitions: dep focus-pull
+new-transitions: dep grain-dissolve
+new-transitions: dep line-by-line-slide
+new-transitions: dep perlin-dissolve
+new-transitions: dep push-through
+new-transitions: dep ripple-zoom
+new-transitions: dep scale-down-fade
+new-transitions: dep shader-dithering
+new-transitions: dep shader-grain-gradient
+new-transitions: dep shader-perlin-noise
+new-transitions: dep shader-smoke-ring
+new-transitions: dep shader-swirl
+new-transitions: dep shader-warp
+new-transitions: dep short-slide-right
+new-transitions: dep smoke-dissolve
+new-transitions: dep swirl-dissolve
+new-transitions: dep warp-dissolve
+new-transitions: dep wave-wipe
+new-transitions: dep whip-pan
+paper-shaders: dep blur-out-up
+paper-shaders: dep kinetic-center-build
+paper-shaders: dep line-by-line-slide
+paper-shaders: dep shader-dithering
+paper-shaders: dep shader-dot-orbit
+paper-shaders: dep shader-god-rays
+paper-shaders: dep shader-grain-gradient
+paper-shaders: dep shader-liquid-metal
+paper-shaders: dep shader-mesh-gradient
+paper-shaders: dep shader-metaballs
+paper-shaders: dep shader-neuro-noise
+paper-shaders: dep shader-pulsing-border
+paper-shaders: dep shader-spiral
+paper-shaders: dep shader-swirl
+paper-shaders: dep shader-voronoi
+paper-shaders: dep shader-warp
+paper-shaders: dep shader-water
+paper-shaders: dep short-slide-right
+render-sdk: DIVERGED glass-code-block -> bundling local copy
+render-sdk: dep backdrop
+render-sdk: dep blur-in
+render-sdk: dep logo-enter
+render-sdk: dep remocn-ui
+render-sdk: dep shared-axis-z
+render-sdk: dep terminal-simulator
+shadcn-ui: DIVERGED glass-code-block -> bundling local copy
+shadcn-ui: dep blur-in
+shadcn-ui: dep remocn-ui
+shadcn-ui: dep rolling-number
+shadcn-ui: dep shared-axis-z
+shadcn-ui: dep terminal-simulator
+shieldcn: dep blur-in
+shieldcn: dep github-stars
+shieldcn: dep number-wheel
+shieldcn: dep remocn-ui
+shieldcn: dep shader-grain-gradient
+shieldcn: dep short-slide-right
+shieldcn: dep terminal-simulator
+signup-flow: DIVERGED cursor -> bundling local copy
+signup-flow: DIVERGED field -> bundling local copy
+signup-flow: DIVERGED input -> bundling local copy
+signup-flow: DIVERGED signup-flow -> bundling local copy
+signup-flow: DIVERGED toast -> bundling local copy
+signup-flow: dep blur-in
+signup-flow: dep button
+signup-flow: dep remocn-ui
+signup-flow: dep spinner
+signup-flow: unpublished use-cursor-path.ts -> bundled
+signup-flow: unpublished use-input-transition.ts -> bundled
+signup-flow: unpublished use-toast-transition.ts -> bundled
+skill-changelog: dep dynamic-grid
+skill-changelog: dep remocn-ui
+skill-changelog: dep rolling-number
+sponsor-ln: dep backdrop
+sponsor-ln: dep soft-blur-in
+sponsor-orcdev: dep dither-dissolve
+sponsor-orcdev: dep shader-dithering
+sponsor-reactbits: dep focus-pull
+sponsor-reactbits: dep push-through
+sponsor-reactbits: dep shader-dithering
+sponsor-shieldcn: dep shader-god-rays
+sponsor-shieldcn: dep soft-blur-in
+tegami: dep blur-in
+tegami: dep remocn-ui
+tegami: dep strikethrough-replace
+typography: DIVERGED typewriter -> bundling local copy
+typography: dep backdrop
+typography: dep blur-out-up
+typography: dep bottom-up-letters
+typography: dep caret
+typography: dep fade-through
+typography: dep focus-blur-resolve
+typography: dep kinetic-center-build
+typography: dep line-by-line-slide
+typography: dep mask-reveal-up
+typography: dep micro-scale-fade
+typography: dep per-character-rise
+typography: dep per-word-crossfade
+typography: dep remocn-ui
+typography: dep scale-down-fade
+typography: dep shared-axis-y
+typography: dep shared-axis-z
+typography: dep short-slide-down
+typography: dep short-slide-right
+typography: dep soft-blur-in
+typography: dep spring-scale-in
+typography: dep top-down-letters
