@@ -13,38 +13,73 @@ import { join, normalize, basename } from "node:path";
 
 const ROOT = normalize(join(import.meta.dirname, ".."));
 const REMOCN = "https://remocn.dev/r";
-const meta = JSON.parse(readFileSync(join(ROOT, "src/demos/demo-meta.json"), "utf8"));
+const meta = JSON.parse(
+  readFileSync(join(ROOT, "src/demos/demo-meta.json"), "utf8"),
+);
 
 // Refresh from `npx remotion compositions` when a demo's length changes.
 const DURATIONS = {
-  "introducing-shadcn": 2178, "sponsor-orcdev": 482, "sponsor-reactbits": 386,
-  "new-transitions": 1556, "introducing-remocn": 1012, "sponsor-shieldcn": 416,
-  "paper-shaders": 984, "shieldcn": 1224, "sponsor-ln": 198, "shadcn-ui": 908,
-  "skill-changelog": 624, "tegami": 1494, "fonttrio": 744, "render-sdk": 618,
-  "agent-skills": 1400, "typography": 1538, "batchwork": 480,
-  "chat-changelog": 693, "changelog": 481, "signup-flow": 230,
+  "introducing-shadcn": 2178,
+  "sponsor-orcdev": 482,
+  "sponsor-reactbits": 386,
+  "new-transitions": 1556,
+  "introducing-remocn": 1012,
+  "sponsor-shieldcn": 416,
+  "paper-shaders": 984,
+  shieldcn: 1224,
+  "sponsor-ln": 198,
+  "shadcn-ui": 908,
+  "skill-changelog": 624,
+  tegami: 1494,
+  fonttrio: 744,
+  "render-sdk": 618,
+  "agent-skills": 1400,
+  typography: 1538,
+  batchwork: 480,
+  "chat-changelog": 693,
+  changelog: 481,
+  "signup-flow": 230,
 };
 
 // Demo titles from src/demos/catalog.ts (component-free metadata module).
 const catalogTs = readFileSync(join(ROOT, "src/demos/catalog.ts"), "utf8");
 const titles = {};
-for (const m of catalogTs.matchAll(/id:\s*"([^"]+)",\s*\n\s*title:\s*"([^"]+)"/g)) {
+for (const m of catalogTs.matchAll(
+  /id:\s*"([^"]+)",\s*\n\s*title:\s*"([^"]+)"/g,
+)) {
   titles[m[1]] = m[2];
 }
 // Real exported component name per demo (e.g. shadcn-ui exports ShadcnDemo).
 const demosTs = readFileSync(join(ROOT, "src/demos/index.ts"), "utf8");
 const componentNames = {};
-for (const m of demosTs.matchAll(/getCatalogEntry\("([^"]+)"\),\s*\n\s*component:\s*(\w+)/g)) {
+for (const m of demosTs.matchAll(
+  /getCatalogEntry\("([^"]+)"\),\s*\n\s*component:\s*(\w+)/g,
+)) {
   componentNames[m[1]] = m[2];
 }
 
 const NPM_KEEP = [
-  "remotion", "@remotion/", "@paper-design/", "lucide-react", "date-fns",
-  "culori", "class-variance-authority", "clsx", "tailwind-merge", "radix-ui",
-  "react-day-picker", "cmdk", "@radix-ui/",
+  "remotion",
+  "@remotion/",
+  "@paper-design/",
+  "lucide-react",
+  "date-fns",
+  "culori",
+  "class-variance-authority",
+  "clsx",
+  "tailwind-merge",
+  "radix-ui",
+  "react-day-picker",
+  "cmdk",
+  "@radix-ui/",
 ];
 
-const norm = (s) => s.trim().split("\n").map((l) => l.trimEnd()).join("\n");
+const norm = (s) =>
+  s
+    .trim()
+    .split("\n")
+    .map((l) => l.trimEnd())
+    .join("\n");
 
 async function fetchJson(url) {
   const res = await fetch(url);
@@ -86,9 +121,9 @@ const log = [];
 const items = [];
 
 for (const [id, m] of Object.entries(meta)) {
-  const deps = new Set();       // registryDependencies URLs
-  const covered = new Set();    // remocn basenames provided by dep items
-  const bundle = new Set();     // repo paths to ship as files
+  const deps = new Set(); // registryDependencies URLs
+  const covered = new Set(); // remocn basenames provided by dep items
+  const bundle = new Set(); // repo paths to ship as files
 
   // remocn-ui lib -> published shared item
   const usesRemocnUi = m.graph.some((f) => f.startsWith("src/lib/remocn-ui"));
@@ -115,7 +150,8 @@ for (const [id, m] of Object.entries(meta)) {
   }
 
   for (const f of m.graph) {
-    if (f.startsWith(`src/demos/`)) bundle.add(f); // own files + _ui kit
+    if (f.startsWith(`src/demos/`))
+      bundle.add(f); // own files + _ui kit
     else if (f.startsWith("src/components/remocn/")) {
       if (!covered.has(basename(f))) {
         bundle.add(f);
@@ -123,7 +159,11 @@ for (const [id, m] of Object.entries(meta)) {
           log.push(`${id}: unpublished ${basename(f)} -> bundled`);
       }
     } else if (f.startsWith("src/lib/")) {
-      if (f.startsWith("src/lib/remocn-ui") && deps.has(`${REMOCN}/remocn-ui.json`)) continue;
+      if (
+        f.startsWith("src/lib/remocn-ui") &&
+        deps.has(`${REMOCN}/remocn-ui.json`)
+      )
+        continue;
       if (f === "src/lib/utils.ts") continue; // ships with every shadcn project
       bundle.add(f);
     } else if (f.startsWith("src/components/") || f.startsWith("src/hooks/")) {
@@ -145,11 +185,17 @@ for (const [id, m] of Object.entries(meta)) {
     target: p.replace(/^src\//, ""),
   }));
   if (existsSync(join(ROOT, promptPath))) {
-    files.push({ path: promptPath, type: "registry:file", target: `demos/${id}/prompt.md` });
+    files.push({
+      path: promptPath,
+      type: "registry:file",
+      target: `demos/${id}/prompt.md`,
+    });
   }
 
   const dependencies = m.npmPackages
-    .filter((p) => NPM_KEEP.some((k) => (k.endsWith("/") ? p.startsWith(k) : p === k)))
+    .filter((p) =>
+      NPM_KEEP.some((k) => (k.endsWith("/") ? p.startsWith(k) : p === k)),
+    )
     .sort();
 
   const glFlag = m.usesShaders ? " --gl=angle" : "";
@@ -174,19 +220,37 @@ for (const [id, m] of Object.entries(meta)) {
 }
 
 function pascal(id) {
-  return id.split("-").map((s) => s[0].toUpperCase() + s.slice(1)).join("");
+  return id
+    .split("-")
+    .map((s) => s[0].toUpperCase() + s.slice(1))
+    .join("");
 }
 
 const registry = {
   $schema: "https://ui.shadcn.com/schema/registry.json",
   name: "remocn-demo",
-  homepage: "https://finder.remocn.dev",
+  homepage: "https://collections.remocn.dev",
   items,
 };
 
-writeFileSync(join(ROOT, "registry.json"), JSON.stringify(registry, null, 2) + "\n");
-writeFileSync(join(ROOT, "scripts/registry-verification.log"), log.sort().join("\n") + "\n");
+writeFileSync(
+  join(ROOT, "registry.json"),
+  JSON.stringify(registry, null, 2) + "\n",
+);
+writeFileSync(
+  join(ROOT, "scripts/registry-verification.log"),
+  log.sort().join("\n") + "\n",
+);
 console.log(`registry.json: ${items.length} items`);
-console.log(`verification log: scripts/registry-verification.log (${log.length} lines)`);
-const bundledDiverged = [...new Set(log.filter((l) => l.includes("DIVERGED")).map((l) => l.split(" ")[2]))];
-console.log("diverged components bundled:", bundledDiverged.join(", ") || "none");
+console.log(
+  `verification log: scripts/registry-verification.log (${log.length} lines)`,
+);
+const bundledDiverged = [
+  ...new Set(
+    log.filter((l) => l.includes("DIVERGED")).map((l) => l.split(" ")[2]),
+  ),
+];
+console.log(
+  "diverged components bundled:",
+  bundledDiverged.join(", ") || "none",
+);
