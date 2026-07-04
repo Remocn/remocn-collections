@@ -1,7 +1,7 @@
 {
   "$schema": "https://ui.shadcn.com/schema/registry.json",
   "name": "remocn-demo",
-  "homepage": "https://finder.remocn.dev",
+  "homepage": "https://collections.remocn.dev",
   "items": [
     {
       "name": "agent-skills",
@@ -760,11 +760,7 @@
       "type": "registry:block",
       "title": "Signup Flow",
       "description": "remocn demo composition \"Signup Flow\" — installs the full Remotion composition. Generated with AI from the prompt in demos/signup-flow/prompt.md.",
-      "dependencies": [
-        "@remotion/google-fonts",
-        "culori",
-        "remotion"
-      ],
+      "dependencies": ["@remotion/google-fonts", "culori", "remotion"],
       "registryDependencies": [
         "https://remocn.dev/r/blur-in.json",
         "https://remocn.dev/r/button.json",
