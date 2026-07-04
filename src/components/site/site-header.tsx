@@ -11,7 +11,7 @@ export function SiteHeader() {
           aria-label="Homepage"
           className="text-base font-semibold tracking-tight sm:text-sm"
         >
-          remocn <span className="text-muted-foreground">demos</span>
+          Remocn Demo
         </Link>
         <nav className="flex items-center gap-1">
           <a

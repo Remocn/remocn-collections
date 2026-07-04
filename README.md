@@ -44,14 +44,17 @@ in [`registry.json`](./registry.json).
 ## Render a video locally
 
 ```bash
-npx remotion render <demo-id> out/<demo-id>.mp4
+npx remotion render <demo-id> out/<demo-id>.mp4 --scale=2 --crf=15 --x264-preset=slower --jpeg-quality=95
 ```
+
+The quality flags render at 2× resolution (720p compositions → 1440p) with a
+high-quality encode — dark gradients band badly at the defaults.
 
 Demos that use [Paper shaders](https://paper.design) need the ANGLE OpenGL
 backend:
 
 ```bash
-npx remotion render paper-shaders out/paper-shaders.mp4 --gl=angle
+npx remotion render paper-shaders out/paper-shaders.mp4 --scale=2 --crf=15 --x264-preset=slower --jpeg-quality=95 --gl=angle
 ```
 
 Each demo page on the gallery shows the exact command.
