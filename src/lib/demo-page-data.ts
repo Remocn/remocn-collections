@@ -1,5 +1,5 @@
-// Build-time data for /demo/[id]. Imported only from getStaticProps — keep
-// client components out of this module (it reads the filesystem and runs shiki).
+// Build-time data for /demo/[id]. Imported only from the server component —
+// keep client components out of this module (it reads the filesystem and runs shiki).
 import { readFileSync, readdirSync, existsSync } from "node:fs";
 import { join } from "node:path";
 import { createHighlighter, type Highlighter } from "shiki";
