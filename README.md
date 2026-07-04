@@ -7,7 +7,7 @@ coding agent; this repo is also a
 [shadcn GitHub registry](https://ui.shadcn.com/docs/registry/github), so any
 demo can be installed straight into your own Remotion project.
 
-**Gallery:** [demo.remocn.dev](https://demo.remocn.dev) — each demo page shows
+**Gallery:** [finder.remocn.dev](https://finder.remocn.dev) — each demo page shows
 the video, the prompt it was generated from, the source code, and the install
 command.
 

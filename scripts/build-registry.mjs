@@ -180,7 +180,7 @@ function pascal(id) {
 const registry = {
   $schema: "https://ui.shadcn.com/schema/registry.json",
   name: "remocn-demo",
-  homepage: "https://demo.remocn.dev",
+  homepage: "https://finder.remocn.dev",
   items,
 };
 
