@@ -283,7 +283,6 @@ export function SignupFlow({
               <Button
                 label={createLabel}
                 style={buttonStyle}
-                mode={mode}
                 theme={theme}
               />
             </FieldControl>

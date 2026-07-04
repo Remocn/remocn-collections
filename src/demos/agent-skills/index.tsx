@@ -1,14 +1,6 @@
 import React, { type ReactNode } from "react";
-import {
-  AbsoluteFill,
-  Easing,
-  Sequence,
-  interpolate,
-  spring,
-  staticFile,
-  useCurrentFrame,
-  useVideoConfig,
-} from "remotion";
+import { AbsoluteFill, Easing, Sequence, interpolate, spring, useCurrentFrame, useVideoConfig } from "remotion";
+import { demoAsset } from "@/lib/demo-assets";
 import {
   TransitionSeries,
   linearTiming,
@@ -966,7 +958,7 @@ export const AgentSkillsDemo: React.FC = () => {
         }
       >
         {/* Persistent photographic backdrop behind every scene. */}
-        <Backdrop fill={{ type: "image", src: staticFile("bg.png") }} />
+        <Backdrop fill={{ type: "image", src: demoAsset("bg.png") }} />
 
         <TransitionSeries>
           <TransitionSeries.Sequence durationInFrames={S_PROMPT}>

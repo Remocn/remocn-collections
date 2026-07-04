@@ -1,13 +1,6 @@
 import React, { type CSSProperties, type ReactNode } from "react";
-import {
-  AbsoluteFill,
-  Easing,
-  Img,
-  interpolate,
-  staticFile,
-  useCurrentFrame,
-  useVideoConfig,
-} from "remotion";
+import { AbsoluteFill, Easing, Img, interpolate, useCurrentFrame, useVideoConfig } from "remotion";
+import { demoAsset } from "@/lib/demo-assets";
 import {
   TransitionSeries,
   linearTiming,
@@ -55,8 +48,8 @@ const FAINT = "rgba(22,22,22,0.52)";
 const HAIR = "rgba(22,22,22,0.16)";
 const DOT = "#EEEEEE";
 
-const BANNER = staticFile("tegami-banner.png");
-const LOGO = staticFile("tegami-logo.png");
+const BANNER = demoAsset("tegami-banner.png");
+const LOGO = demoAsset("tegami-logo.png");
 
 // ---------------------------------------------------------------------------
 // Scene timings (frames @ 30fps). Transitions overlap and are subtracted.

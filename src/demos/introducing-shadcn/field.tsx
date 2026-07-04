@@ -18,10 +18,10 @@ import {
   User,
 } from "lucide-react";
 
-import { Avatar, AvatarFallback } from "@/components/ui/avatar";
-import { Badge } from "@/components/ui/badge";
-import { Button } from "@/components/ui/button";
-import { Calendar } from "@/components/ui/calendar";
+import { Avatar, AvatarFallback } from "@/demos/_ui/avatar";
+import { Badge } from "@/demos/_ui/badge";
+import { Button } from "@/demos/_ui/button";
+import { Calendar } from "@/demos/_ui/calendar";
 import {
   Card,
   CardContent,
@@ -29,7 +29,7 @@ import {
   CardFooter,
   CardHeader,
   CardTitle,
-} from "@/components/ui/card";
+} from "@/demos/_ui/card";
 import {
   Command,
   CommandEmpty,
@@ -38,18 +38,18 @@ import {
   CommandItem,
   CommandList,
   CommandSeparator,
-} from "@/components/ui/command";
-import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
-import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
+} from "@/demos/_ui/command";
+import { Input } from "@/demos/_ui/input";
+import { Label } from "@/demos/_ui/label";
+import { RadioGroup, RadioGroupItem } from "@/demos/_ui/radio-group";
 import {
   Select,
   SelectTrigger,
   SelectValue,
-} from "@/components/ui/select";
-import { Separator } from "@/components/ui/separator";
-import { Slider } from "@/components/ui/slider";
-import { Switch } from "@/components/ui/switch";
+} from "@/demos/_ui/select";
+import { Separator } from "@/demos/_ui/separator";
+import { Slider } from "@/demos/_ui/slider";
+import { Switch } from "@/demos/_ui/switch";
 import {
   Table,
   TableBody,
@@ -57,11 +57,11 @@ import {
   TableHead,
   TableHeader,
   TableRow,
-} from "@/components/ui/table";
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { Textarea } from "@/components/ui/textarea";
-import { Toggle } from "@/components/ui/toggle";
-import { Progress } from "@/components/ui/progress";
+} from "@/demos/_ui/table";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/demos/_ui/tabs";
+import { Textarea } from "@/demos/_ui/textarea";
+import { Toggle } from "@/demos/_ui/toggle";
+import { Progress } from "@/demos/_ui/progress";
 
 const clampOpts = {
   extrapolateLeft: "clamp" as const,

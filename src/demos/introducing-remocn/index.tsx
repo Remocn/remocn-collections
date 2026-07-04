@@ -1,16 +1,6 @@
 import React from "react";
-import {
-  AbsoluteFill,
-  Easing,
-  Img,
-  Sequence,
-  Series,
-  interpolate,
-  spring,
-  staticFile,
-  useCurrentFrame,
-  useVideoConfig,
-} from "remotion";
+import { AbsoluteFill, Easing, Img, Sequence, Series, interpolate, spring, useCurrentFrame, useVideoConfig } from "remotion";
+import { demoAsset } from "@/lib/demo-assets";
 import {
   TransitionSeries,
   linearTiming,
@@ -89,7 +79,7 @@ const T_BLUR = 16; //      blur crossfade
 // ===========================================================================
 const RemocnMark: React.FC<{ size: number }> = ({ size }) => (
   <Img
-    src={staticFile("remocn-logo.svg")}
+    src={demoAsset("remocn-logo.svg")}
     style={{ width: size, height: size, display: "block" }}
   />
 );
@@ -552,12 +542,6 @@ const OutroScene: React.FC = () => {
   });
   const wordX = interpolate(wordIn, [0, 1], [-18, 0]);
   const wordOpacity = interpolate(frame, [62, 76], [0, 1], clampOpts);
-
-  const urlOpacity = interpolate(frame, [94, 112], [0, 1], clampOpts);
-  const urlY = interpolate(frame, [94, 114], [10, 0], {
-    ...clampOpts,
-    easing: Easing.out(Easing.cubic),
-  });
 
   const creditOpacity = interpolate(frame, [110, 128], [0, 1], clampOpts);
 

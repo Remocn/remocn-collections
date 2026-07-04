@@ -1,13 +1,6 @@
 import React, { type CSSProperties, type ReactNode } from "react";
-import {
-  AbsoluteFill,
-  Easing,
-  interpolate,
-  spring,
-  staticFile,
-  useCurrentFrame,
-  useVideoConfig,
-} from "remotion";
+import { AbsoluteFill, Easing, interpolate, spring, useCurrentFrame, useVideoConfig } from "remotion";
+import { demoAsset } from "@/lib/demo-assets";
 import {
   TransitionSeries,
   linearTiming,
@@ -100,16 +93,13 @@ const Mark: React.FC<{
   children: string;
   color?: string;
   after?: string;
-  delay?: number;
-}> = ({ children, color = GREEN, after = "", delay = 22 }) => (
+}> = ({ children, color = GREEN, after = "" }) => (
   <MarkerHighlight
-    inline
     highlight={children}
     after={after}
     markerColor={color}
     baseColor="#fafafa"
     highlightedTextColor="#0a0a0a"
-    delay={delay}
   />
 );
 
@@ -317,7 +307,7 @@ const HookScene: React.FC = () => (
         }}
       >
         Save up to{" "}
-        <Mark color={GREEN} delay={26}>
+        <Mark color={GREEN}>
           50%
         </Mark>{" "}
         on inference costs
@@ -614,7 +604,7 @@ export const BatchworkDemo: React.FC = () => {
         }
       >
         {/* Persistent image background for the whole video. */}
-        <Backdrop fill={{ type: "image", src: staticFile("bg.png") }} />
+        <Backdrop fill={{ type: "image", src: demoAsset("bg.png") }} />
         {/* Scrim to deepen contrast for foreground content. */}
         <AbsoluteFill
           style={{
@@ -648,7 +638,7 @@ export const BatchworkDemo: React.FC = () => {
               heading={
                 <>
                   One API for every{" "}
-                  <Mark color={GREEN} after="." delay={16}>
+                  <Mark color={GREEN} after=".">
                     batch provider
                   </Mark>
                 </>
@@ -670,7 +660,7 @@ export const BatchworkDemo: React.FC = () => {
               heading={
                 <>
                   Works with any{" "}
-                  <Mark color={GREEN} after="." delay={16}>
+                  <Mark color={GREEN} after=".">
                     AI SDK model
                   </Mark>
                 </>
@@ -692,11 +682,11 @@ export const BatchworkDemo: React.FC = () => {
               heading={
                 <>
                   Automatic{" "}
-                  <Mark color={YELLOW} delay={16}>
+                  <Mark color={YELLOW}>
                     polling
                   </Mark>{" "}
                   &amp;{" "}
-                  <Mark color={YELLOW} after="." delay={22}>
+                  <Mark color={YELLOW} after=".">
                     webhooks
                   </Mark>
                 </>
@@ -719,7 +709,7 @@ export const BatchworkDemo: React.FC = () => {
               heading={
                 <>
                   Drop straight into{" "}
-                  <Mark color={GREEN} after="." delay={16}>
+                  <Mark color={GREEN} after=".">
                     Next.js
                   </Mark>
                 </>

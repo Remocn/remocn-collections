@@ -1,14 +1,6 @@
 import React from "react";
-import {
-  AbsoluteFill,
-  Easing,
-  Img,
-  interpolate,
-  spring,
-  staticFile,
-  useCurrentFrame,
-  useVideoConfig,
-} from "remotion";
+import { AbsoluteFill, Easing, Img, interpolate, spring, useCurrentFrame, useVideoConfig } from "remotion";
+import { demoAsset } from "@/lib/demo-assets";
 import {
   TransitionSeries,
   linearTiming,
@@ -78,7 +70,7 @@ const IntroScene: React.FC = () => {
         }}
       >
         <Gif
-          src={staticFile("emoji.gif")}
+          src={demoAsset("emoji.gif")}
           width={size}
           height={size}
           fit="contain"
@@ -144,7 +136,7 @@ const AvatarVisual: React.FC = () => (
       }}
     />
     <Img
-      src={staticFile("ln.jpg")}
+      src={demoAsset("ln.jpg")}
       style={{
         position: "relative",
         width: AVATAR_SIZE,
@@ -340,7 +332,7 @@ export const SponsorLnDemo: React.FC = () => {
       }
     >
       {/* Persistent image background for the whole video. */}
-      <Backdrop fill={{ type: "image", src: staticFile("bg.png") }} />
+      <Backdrop fill={{ type: "image", src: demoAsset("bg.png") }} />
       {/* Scrim to deepen contrast for the foreground content. */}
       <AbsoluteFill
         style={{

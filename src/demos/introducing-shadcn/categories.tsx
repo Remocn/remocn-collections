@@ -13,10 +13,10 @@ import {
   CardDescription,
   CardHeader,
   CardTitle,
-} from "@/components/ui/card";
-import { Label } from "@/components/ui/label";
-import { Switch } from "@/components/ui/switch";
-import { AppSidebar } from "@/components/app-sidebar";
+} from "@/demos/_ui/card";
+import { Label } from "@/demos/_ui/label";
+import { Switch } from "@/demos/_ui/switch";
+import { AppSidebar } from "@/demos/_ui/app-sidebar";
 import {
   Breadcrumb,
   BreadcrumbItem,
@@ -24,14 +24,14 @@ import {
   BreadcrumbList,
   BreadcrumbPage,
   BreadcrumbSeparator,
-} from "@/components/ui/breadcrumb";
-import { Separator } from "@/components/ui/separator";
+} from "@/demos/_ui/breadcrumb";
+import { Separator } from "@/demos/_ui/separator";
 import {
   SidebarInset,
   SidebarProvider,
   SidebarTrigger,
-} from "@/components/ui/sidebar";
-import { TooltipProvider } from "@/components/ui/tooltip";
+} from "@/demos/_ui/sidebar";
+import { TooltipProvider } from "@/demos/_ui/tooltip";
 
 import { MiniBars } from "./field";
 

@@ -1,13 +1,6 @@
 import React from "react";
-import {
-  AbsoluteFill,
-  Sequence,
-  Easing,
-  interpolate,
-  staticFile,
-  useCurrentFrame,
-  useVideoConfig,
-} from "remotion";
+import { AbsoluteFill, Sequence, Easing, interpolate, useCurrentFrame, useVideoConfig } from "remotion";
+import { demoAsset } from "@/lib/demo-assets";
 import {
   TransitionSeries,
   linearTiming,
@@ -126,9 +119,8 @@ const IntroScene: React.FC = () => {
 const DemoContent: React.FC<{
   label: string;
   count: number;
-  prefix?: string;
   countFrames: number;
-}> = ({ label, count, prefix, countFrames }) => {
+}> = ({ label, count, countFrames }) => {
   const frame = useCurrentFrame();
   const { fps } = useVideoConfig();
 
@@ -161,7 +153,7 @@ const DemoContent: React.FC<{
 
       {/* Drive the count once the content begins. */}
       <Sequence durationInFrames={countFrames}>
-        <RollingNumber from={0} to={count} fontSize={150} color="#fafafa" prefix={prefix} />
+        <RollingNumber from={0} to={count} fontSize={150} color="#fafafa" />
       </Sequence>
     </AbsoluteFill>
   );
@@ -170,17 +162,15 @@ const DemoContent: React.FC<{
 const DemoScene: React.FC<{
   label: string;
   count: number;
-  prefix?: string;
   /** Hold the scene empty for this many frames before it starts playing. */
   startDelay?: number;
-}> = ({ label, count, prefix, startDelay = 0 }) => {
+}> = ({ label, count, startDelay = 0 }) => {
   return (
     <AbsoluteFill>
       <Sequence from={startDelay} durationInFrames={DEMO - startDelay}>
         <DemoContent
           label={label}
           count={count}
-          prefix={prefix}
           countFrames={DEMO - startDelay}
         />
       </Sequence>
@@ -301,7 +291,7 @@ export const ChangelogDemo: React.FC = () => {
         style={{ "--font-geist-sans": fontFamily } as React.CSSProperties}
       >
         {/* Persistent image background for the whole video. */}
-        <Backdrop fill={{ type: "image", src: staticFile("bg.png") }} />
+        <Backdrop fill={{ type: "image", src: demoAsset("bg.png") }} />
         {/* Subtle scrim to deepen contrast for the foreground text. */}
         <AbsoluteFill
           style={{
@@ -349,7 +339,7 @@ export const ChangelogDemo: React.FC = () => {
           />
 
           <TransitionSeries.Sequence durationInFrames={DEMO}>
-            <DemoScene label="Bounce Rate" count={47} prefix="%"/>
+            <DemoScene label="Bounce Rate" count={47}/>
           </TransitionSeries.Sequence>
 
           <TransitionSeries.Transition

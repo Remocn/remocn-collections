@@ -19,6 +19,7 @@ import { loadFont as loadSans } from "@remotion/google-fonts/Geist";
 import { loadFont as loadMono } from "@remotion/google-fonts/GeistMono";
 
 import { RemocnUIProvider } from "@/lib/remocn-ui";
+import { VideoScopeStyle } from "@/demos/_ui/video-scope";
 import { SharedAxisZ } from "@/components/remocn/shared-axis-z";
 import { TerminalSimulator } from "@/components/remocn/terminal-simulator";
 import { GlassCodeBlock } from "@/components/remocn/glass-code-block";
@@ -808,6 +809,7 @@ export const ShadcnDemo: React.FC = () => {
   return (
     <RemocnUIProvider>
       <AbsoluteFill
+        className="video-scope"
         style={
           {
             background: BG,
@@ -816,6 +818,7 @@ export const ShadcnDemo: React.FC = () => {
           } as React.CSSProperties
         }
       >
+        <VideoScopeStyle />
         {/* Hairline grid — the quiet shadcn dotted/lined backdrop. */}
         <AbsoluteFill
           style={{

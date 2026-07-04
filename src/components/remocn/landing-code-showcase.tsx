@@ -10,10 +10,10 @@ import {
   useCurrentFrame,
   useVideoConfig,
 } from "remotion";
-import { DashboardPopulate } from "@/components/dashboard-populate";
-import { FrostedGlassWipe } from "@/components/frosted-glass-wipe";
-import { SpatialPush } from "@/components/spatial-push";
-import { TerminalToBrowserDeploy } from "@/components/terminal-to-browser-deploy";
+import { DashboardPopulate } from "@/components/remocn/dashboard-populate";
+import { FrostedGlassWipe } from "@/components/remocn/frosted-glass-wipe";
+import { SpatialPush } from "@/components/remocn/spatial-push";
+import { TerminalToBrowserDeploy } from "@/components/remocn/terminal-to-browser-deploy";
 
 export interface LandingCodeShowcaseProps {
   accentColor?: string;

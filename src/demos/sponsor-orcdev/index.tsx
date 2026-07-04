@@ -1,13 +1,6 @@
 import React, { useState } from "react";
-import {
-  AbsoluteFill,
-  Img,
-  continueRender,
-  delayRender,
-  interpolate,
-  staticFile,
-  useCurrentFrame,
-} from "remotion";
+import { AbsoluteFill, Img, continueRender, delayRender, interpolate, useCurrentFrame } from "remotion";
+import { demoAsset } from "@/lib/demo-assets";
 import { TransitionSeries, linearTiming } from "@remotion/transitions";
 import { Gif } from "@remotion/gif";
 import { loadFont as loadPixel } from "@remotion/fonts";
@@ -37,7 +30,7 @@ const usePixelFont = () => {
     const handle = delayRender("geist-pixel");
     loadPixel({
       family: PIXEL_FAMILY,
-      url: staticFile("fonts/GeistPixel-Square.woff2"),
+      url: demoAsset("fonts/GeistPixel-Square.woff2"),
     })
       .catch(() => undefined)
       .then(() => {
@@ -164,7 +157,7 @@ const IntroScene: React.FC = () => {
             }}
           >
             <Gif
-              src={staticFile("orc.gif")}
+              src={demoAsset("orc.gif")}
               width={GIF_W / GIF_K}
               height={GIF_H / GIF_K}
               fit="cover"
@@ -271,7 +264,7 @@ const RevealScene: React.FC = () => {
       >
         <PixelBox border={6} color={ORC_GREEN} background={BG}>
           <Img
-            src={staticFile("orcdev-avatar.jpg")}
+            src={demoAsset("orcdev-avatar.jpg")}
             style={{
               display: "block",
               width: 190,
@@ -512,7 +505,7 @@ const LockupScene: React.FC = () => {
         >
           <PixelBox border={5} color={ORC_GREEN} background={BG}>
             <Img
-              src={staticFile("orcdev-avatar.jpg")}
+              src={demoAsset("orcdev-avatar.jpg")}
               style={{
                 display: "block",
                 width: 84,

@@ -1,6 +1,6 @@
 {
   "version": "1.0.0",
-  "lastScanned": 1783013794258,
+  "lastScanned": 1783154775606,
   "projectRoot": "/Users/dev_wandry/projects/opensource/remocn-demo",
   "techStack": {
     "languages": [
@@ -42,7 +42,7 @@
     "runtime": null
   },
   "build": {
-    "buildCommand": "npx tsc --noEmit 2>&1 | grep -E \"introducing-shadcn|demos/index\" ; echo TSC_OK",
+    "buildCommand": "npm run build",
     "testCommand": null,
     "lintCommand": "npm run lint",
     "devCommand": "npm run dev",
@@ -66,6 +66,7 @@
     "workspaces": [],
     "mainDirectories": [
       "public",
+      "scripts",
       "src"
     ],
     "gitBranches": null
@@ -75,33 +76,34 @@
     "out": {
       "path": "out",
       "purpose": "Build output",
-      "fileCount": 4,
-      "lastAccessed": 1783013794148,
+      "fileCount": 8,
+      "lastAccessed": 1783154775537,
       "keyFiles": [
         "introducing-remocn.mp4",
+        "introducing-shadcn.mp4",
+        "new-transitions.mp4",
         "paper-shaders.mp4",
-        "shieldcn.mp4",
-        "sponsor-shieldcn.mp4"
+        "shieldcn.mp4"
       ]
     },
     "public": {
       "path": "public",
       "purpose": "Public files",
-      "fileCount": 9,
-      "lastAccessed": 1783013794148,
+      "fileCount": 13,
+      "lastAccessed": 1783154775542,
       "keyFiles": [
         "bg.png",
         "emoji.gif",
         "favicon.ico",
         "ln.jpg",
-        "remocn-logo.svg"
+        "orc.gif"
       ]
     },
     "scratch-out": {
       "path": "scratch-out",
       "purpose": null,
-      "fileCount": 212,
-      "lastAccessed": 1783013794218,
+      "fileCount": 512,
+      "lastAccessed": 1783154775571,
       "keyFiles": [
         "ir-113.png",
         "ir-150.png",
@@ -110,18 +112,31 @@
         "ir-30.png"
       ]
     },
+    "scripts": {
+      "path": "scripts",
+      "purpose": "Build/utility scripts",
+      "fileCount": 6,
+      "lastAccessed": 1783154775572,
+      "keyFiles": [
+        "build-registry.mjs",
+        "frames.mjs",
+        "generate-og.mjs",
+        "generate-thumbnails.mjs",
+        "registry-verification.log"
+      ]
+    },
     "src": {
       "path": "src",
       "purpose": "Source code",
       "fileCount": 0,
-      "lastAccessed": 1783013794219,
+      "lastAccessed": 1783154775573,
       "keyFiles": []
     },
     "styles": {
       "path": "styles",
       "purpose": null,
       "fileCount": 1,
-      "lastAccessed": 1783013794220,
+      "lastAccessed": 1783154775574,
       "keyFiles": [
         "global.css"
       ]
@@ -130,7 +145,7 @@
       "path": "tegami-launch",
       "purpose": null,
       "fileCount": 2,
-      "lastAccessed": 1783013794220,
+      "lastAccessed": 1783154775574,
       "keyFiles": [
         "SCRIPT.md",
         "STORYBOARD.md"
@@ -140,43 +155,46 @@
       "path": "types",
       "purpose": "Type definitions",
       "fileCount": 0,
-      "lastAccessed": 1783013794221,
+      "lastAccessed": 1783154775575,
       "keyFiles": []
     },
     "src/components": {
       "path": "src/components",
       "purpose": "UI components",
-      "fileCount": 0,
-      "lastAccessed": 1783013794223,
-      "keyFiles": []
+      "fileCount": 11,
+      "lastAccessed": 1783154775579,
+      "keyFiles": [
+        "app-sidebar.tsx",
+        "code-block-command.tsx",
+        "copy-button.tsx"
+      ]
     },
     "src/helpers": {
       "path": "src/helpers",
       "purpose": "Helper functions",
-      "fileCount": 3,
-      "lastAccessed": 1783013794223,
-      "keyFiles": [
-        "api-response.ts",
-        "render-jobs.ts",
-        "use-rendering.ts"
-      ]
+      "fileCount": 0,
+      "lastAccessed": 1783154775581,
+      "keyFiles": []
     },
     "src/lib": {
       "path": "src/lib",
       "purpose": "Library code",
-      "fileCount": 1,
-      "lastAccessed": 1783013794224,
+      "fileCount": 4,
+      "lastAccessed": 1783154775582,
       "keyFiles": [
-        "utils.ts"
+        "demo-assets.ts",
+        "demo-page-data.ts",
+        "site-config.ts"
       ]
     },
     "src/pages": {
       "path": "src/pages",
       "purpose": "Page components",
-      "fileCount": 2,
-      "lastAccessed": 1783013794227,
+      "fileCount": 3,
+      "lastAccessed": 1783154775583,
       "keyFiles": [
         "_app.tsx",
+        "_document.tsx",
         "index.tsx"
       ]
     },
@@ -184,7 +202,7 @@
       "path": "src/types",
       "purpose": "Type definitions",
       "fileCount": 1,
-      "lastAccessed": 1783013794239,
+      "lastAccessed": 1783154775583,
       "keyFiles": [
         "culori.d.ts"
       ]
@@ -199,8 +217,8 @@
     },
     {
       "path": "src/demos/index.ts",
-      "accessCount": 57,
-      "lastAccessed": 1783083399127,
+      "accessCount": 61,
+      "lastAccessed": 1783092598223,
       "type": "file"
     },
     {
@@ -222,9 +240,27 @@
       "type": "file"
     },
     {
+      "path": "src/demos/typography/index.tsx",
+      "accessCount": 15,
+      "lastAccessed": 1783095609371,
+      "type": "file"
+    },
+    {
       "path": "src/components/remocn/glass-code-block.tsx",
       "accessCount": 12,
       "lastAccessed": 1782841697638,
+      "type": "file"
+    },
+    {
+      "path": "src/demos/batchwork/index.tsx",
+      "accessCount": 12,
+      "lastAccessed": 1783095580980,
+      "type": "file"
+    },
+    {
+      "path": "src/demos/chat-changelog/index.tsx",
+      "accessCount": 12,
+      "lastAccessed": 1783095599421,
       "type": "file"
     },
     {
@@ -234,9 +270,9 @@
       "type": "file"
     },
     {
-      "path": "src/demos/chat-changelog/index.tsx",
+      "path": "src/demos/changelog/index.tsx",
       "accessCount": 8,
-      "lastAccessed": 1782584834954,
+      "lastAccessed": 1783095591724,
       "type": "file"
     },
     {
@@ -252,9 +288,9 @@
       "type": "file"
     },
     {
-      "path": "src/demos/typography/index.tsx",
-      "accessCount": 5,
-      "lastAccessed": 1782829998886,
+      "path": "src/demos/shadcn-ui/index.tsx",
+      "accessCount": 6,
+      "lastAccessed": 1783092860543,
       "type": "file"
     },
     {
@@ -265,8 +301,8 @@
     },
     {
       "path": "src/components/remocn/rolling-number.tsx",
-      "accessCount": 4,
-      "lastAccessed": 1783018543677,
+      "accessCount": 5,
+      "lastAccessed": 1783093747919,
       "type": "file"
     },
     {
@@ -288,6 +324,18 @@
       "type": "file"
     },
     {
+      "path": "src/demos/shadcn-ui/STORYBOARD.md",
+      "accessCount": 3,
+      "lastAccessed": 1783092601230,
+      "type": "file"
+    },
+    {
+      "path": "src/components/remocn/x-followers-overview.tsx",
+      "accessCount": 3,
+      "lastAccessed": 1783093776139,
+      "type": "file"
+    },
+    {
       "path": "src/components/remocn/terminal-cursor-zoom.tsx",
       "accessCount": 2,
       "lastAccessed": 1782829997395,
@@ -306,27 +354,9 @@
       "type": "file"
     },
     {
-      "path": "src/demos/shadcn-ui/STORYBOARD.md",
-      "accessCount": 2,
-      "lastAccessed": 1782935599755,
-      "type": "file"
-    },
-    {
       "path": "src/demos/shadcn-ui/SCRIPT.md",
       "accessCount": 2,
       "lastAccessed": 1782935600396,
-      "type": "file"
-    },
-    {
-      "path": "src/demos/shadcn-ui/index.tsx",
-      "accessCount": 2,
-      "lastAccessed": 1782935608250,
-      "type": "file"
-    },
-    {
-      "path": "src/demos/changelog/index.tsx",
-      "accessCount": 1,
-      "lastAccessed": 1782385674175,
       "type": "file"
     },
     {
@@ -357,12 +387,6 @@
       "path": "src/lib/remocn-ui/types.ts",
       "accessCount": 1,
       "lastAccessed": 1782390523712,
-      "type": "file"
-    },
-    {
-      "path": "src/demos/batchwork/index.tsx",
-      "accessCount": 1,
-      "lastAccessed": 1782668486775,
       "type": "file"
     },
     {
@@ -405,12 +429,6 @@
       "path": "src/components/remocn/github-stars.tsx",
       "accessCount": 1,
       "lastAccessed": 1782841709952,
-      "type": "file"
-    },
-    {
-      "path": "src/components/remocn/x-followers-overview.tsx",
-      "accessCount": 1,
-      "lastAccessed": 1782919627464,
       "type": "file"
     },
     {
