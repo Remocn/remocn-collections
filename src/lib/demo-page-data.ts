@@ -46,7 +46,7 @@ export function installCommand(id: string): string {
 }
 
 export function renderCommand(id: string, usesShaders: boolean): string {
-  return `npx remotion render ${id} out/${id}.mp4${usesShaders ? " --gl=angle" : ""}`;
+  return `npx remotion render ${id} out/${id}.mp4 --scale=2 --crf=15 --x264-preset=slower --jpeg-quality=95${usesShaders ? " --gl=angle" : ""}`;
 }
 
 let highlighterPromise: Promise<Highlighter> | null = null;

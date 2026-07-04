@@ -13,10 +13,9 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import type { SourceFile } from "@/lib/demo-page-data";
 import { SITE_URL } from "@/lib/site-config";
 
-const Player = dynamic(
-  () => import("@remotion/player").then((m) => m.Player),
-  { ssr: false },
-);
+const Player = dynamic(() => import("@remotion/player").then((m) => m.Player), {
+  ssr: false,
+});
 
 type Props = {
   id: string;
@@ -67,7 +66,7 @@ const DemoPage: NextPage<Props> = ({
 
       <SiteHeader />
 
-      <main className="mx-auto max-w-4xl px-4 py-10 sm:px-6">
+      <main className="mx-auto max-w-6xl px-4 py-10 sm:px-6">
         <Link
           href="/"
           className="inline-flex items-center gap-1.5 text-base text-muted-foreground hover:text-foreground sm:text-sm"
@@ -80,9 +79,6 @@ const DemoPage: NextPage<Props> = ({
           <h1 className="max-w-[35ch] text-3xl font-semibold tracking-tight text-balance sm:text-4xl">
             {title}
           </h1>
-          <p className="mt-3 max-w-[56ch] text-lg text-pretty text-muted-foreground">
-            {description}
-          </p>
         </div>
 
         {/* Video */}
@@ -209,8 +205,13 @@ export const getStaticProps: GetStaticProps<Props> = async ({ params }) => {
   const demo = demos.find((d) => d.id === id);
   if (!demo) return { notFound: true };
 
-  const { readDemoMeta, readPrompt, readSources, installCommand, renderCommand } =
-    await import("@/lib/demo-page-data");
+  const {
+    readDemoMeta,
+    readPrompt,
+    readSources,
+    installCommand,
+    renderCommand,
+  } = await import("@/lib/demo-page-data");
   const meta = readDemoMeta()[id];
   const { prompt, isDraft } = readPrompt(id);
   const sources = await readSources(id);
