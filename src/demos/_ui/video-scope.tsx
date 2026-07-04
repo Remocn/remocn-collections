@@ -77,6 +77,16 @@ const CSS = `
   --sidebar-border: oklch(1 0 0 / 10%);
   --sidebar-ring: oklch(0.556 0 0);
 }
+/* CSS transitions/animations run on wall clock, not Remotion's frame clock:
+   a hard theme/var flip starts a real-time transition and the frame screenshot
+   catches it mid-flight (nondeterministic across frames and render workers).
+   All motion in demos is frame-driven via interpolate, so kill them outright. */
+.video-scope *,
+.video-scope *::before,
+.video-scope *::after {
+  transition: none !important;
+  animation: none !important;
+}
 `;
 
 export const VideoScopeStyle: React.FC = () => <style>{CSS}</style>;

@@ -196,8 +196,8 @@ const CreedBScene: React.FC = () => (
 );
 
 // The category montage lives in ./categories — real shadcn/ui blocks,
-// charts, theme flips, and the zinc ramp, hard-cut like a montage. The last
-// beat absorbs the dither overlap.
+// charts, theme flips, and the full Tailwind palette, hard-cut like a
+// montage. The last beat absorbs the dither overlap.
 const S_CATEGORIES = categorySceneDuration(T_DITHER);
 
 // ===========================================================================
