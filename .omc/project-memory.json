@@ -42,7 +42,7 @@
     "runtime": null
   },
   "build": {
-    "buildCommand": "npx tsc --noEmit 2>&1 | head -20",
+    "buildCommand": "npx tsc --noEmit; echo \"TSC_EXIT:$?\"; npm run lint > /dev/null 2>&1; echo \"LINT_EXIT:$?\"; npm run build > /private/tmp/claude-501/-Users-dev-wandry-projects-opensource-remocn-demo/700d0726-16ef-4f09-81a2-2365301a4356/scratchpad/build3.log 2>&1; echo \"BUILD_EXIT:$?\"; ls .next/server/app/demo/*.html 2>/dev/null | wc -l",
     "testCommand": null,
     "lintCommand": "npm run lint",
     "devCommand": "npm run dev",

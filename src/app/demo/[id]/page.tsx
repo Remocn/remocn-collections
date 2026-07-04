@@ -1,69 +1,68 @@
-import type { GetStaticPaths, GetStaticProps, NextPage } from "next";
-import Head from "next/head";
+import type { Metadata } from "next";
 import Link from "next/link";
-import dynamic from "next/dynamic";
+import { notFound } from "next/navigation";
 import { ArrowLeftIcon } from "lucide-react";
-import { demos, getDemo, DEFAULT_VIDEO } from "@/demos";
+import { demoCatalog } from "@/demos/catalog";
 import { SiteHeader } from "@/components/site/site-header";
-import {
-  CodeBlockCommand,
-  convertNpmCommand,
-} from "@/components/code-block-command";
+import { CodeBlockCommand } from "@/components/code-block-command";
+import { convertNpmCommand } from "@/lib/npm-command";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import type { SourceFile } from "@/lib/demo-page-data";
+import {
+  readDemoMeta,
+  readPrompt,
+  readSources,
+  installCommand,
+  renderCommand,
+} from "@/lib/demo-page-data";
 import { SITE_URL } from "@/lib/site-config";
+import { DemoPlayer } from "./demo-player";
 
-const Player = dynamic(() => import("@remotion/player").then((m) => m.Player), {
-  ssr: false,
-});
+export const dynamicParams = false;
 
-type Props = {
-  id: string;
-  title: string;
-  description: string;
-  prompt: string;
-  promptIsDraft: boolean;
-  installCmd: string;
-  renderCmd: string;
-  sources: SourceFile[];
+export function generateStaticParams() {
+  return demoCatalog.map((demo) => ({ id: demo.id }));
+}
+
+type PageProps = {
+  params: Promise<{ id: string }>;
 };
 
-const DemoPage: NextPage<Props> = ({
-  id,
-  title,
-  description,
-  prompt,
-  promptIsDraft,
-  installCmd,
-  renderCmd,
-  sources,
-}) => {
-  const demo = getDemo(id);
-  if (!demo) return null;
+export async function generateMetadata({
+  params,
+}: PageProps): Promise<Metadata> {
+  const { id } = await params;
+  const demo = demoCatalog.find((d) => d.id === id);
+  if (!demo) return {};
 
-  const fps = demo.fps ?? DEFAULT_VIDEO.fps;
-  const width = demo.width ?? DEFAULT_VIDEO.width;
-  const height = demo.height ?? DEFAULT_VIDEO.height;
+  return {
+    title: `${demo.title} — remocn demos`,
+    description: demo.description,
+    alternates: { canonical: `${SITE_URL}/demo/${id}` },
+    openGraph: {
+      type: "website",
+      siteName: "remocn demos",
+      url: `${SITE_URL}/demo/${id}`,
+      title: demo.title,
+      description: demo.description,
+      images: [{ url: `${SITE_URL}/og/${id}.png`, width: 1200, height: 630 }],
+    },
+    twitter: { card: "summary_large_image" },
+  };
+}
+
+export default async function DemoPage({ params }: PageProps) {
+  const { id } = await params;
+  const demo = demoCatalog.find((d) => d.id === id);
+  if (!demo) notFound();
+
+  const meta = readDemoMeta()[id];
+  const { prompt, isDraft: promptIsDraft } = readPrompt(id);
+  const sources = await readSources(id);
+  const installCmd = installCommand(id);
+  const renderCmd = renderCommand(id, meta?.usesShaders ?? false);
 
   return (
     <div className="min-h-dvh bg-background text-foreground">
-      <Head>
-        <title>{`${title} — remocn demos`}</title>
-        <meta name="description" content={description} />
-        <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <link rel="icon" href="/favicon.ico" />
-        <link rel="canonical" href={`${SITE_URL}/demo/${id}`} />
-        <meta property="og:type" content="website" />
-        <meta property="og:site_name" content="remocn demos" />
-        <meta property="og:url" content={`${SITE_URL}/demo/${id}`} />
-        <meta property="og:title" content={title} />
-        <meta property="og:description" content={description} />
-        <meta property="og:image" content={`${SITE_URL}/og/${id}.png`} />
-        <meta property="og:image:width" content="1200" />
-        <meta property="og:image:height" content="630" />
-        <meta name="twitter:card" content="summary_large_image" />
-      </Head>
-
       <SiteHeader />
 
       <main className="mx-auto max-w-6xl px-4 py-10 sm:px-6">
@@ -77,28 +76,12 @@ const DemoPage: NextPage<Props> = ({
 
         <div className="mt-6">
           <h1 className="max-w-[35ch] text-3xl font-semibold tracking-tight text-balance sm:text-4xl">
-            {title}
+            {demo.title}
           </h1>
         </div>
 
         {/* Video */}
-        <div
-          className="mt-8 overflow-hidden rounded-[min(1.5vw,14px)] outline-1 -outline-offset-1 outline-black/10 dark:outline-white/10"
-          style={{ aspectRatio: `${width} / ${height}` }}
-        >
-          <Player
-            component={demo.component}
-            durationInFrames={demo.durationInFrames}
-            fps={fps}
-            compositionWidth={width}
-            compositionHeight={height}
-            inputProps={demo.defaultProps ?? {}}
-            controls
-            autoPlay
-            loop
-            style={{ width: "100%" }}
-          />
-        </div>
+        <DemoPlayer id={id} />
 
         {/* Install */}
         <section className="mt-12">
@@ -193,41 +176,4 @@ const DemoPage: NextPage<Props> = ({
       </main>
     </div>
   );
-};
-
-export const getStaticPaths: GetStaticPaths = async () => ({
-  paths: demos.map((demo) => ({ params: { id: demo.id } })),
-  fallback: false,
-});
-
-export const getStaticProps: GetStaticProps<Props> = async ({ params }) => {
-  const id = params?.id as string;
-  const demo = demos.find((d) => d.id === id);
-  if (!demo) return { notFound: true };
-
-  const {
-    readDemoMeta,
-    readPrompt,
-    readSources,
-    installCommand,
-    renderCommand,
-  } = await import("@/lib/demo-page-data");
-  const meta = readDemoMeta()[id];
-  const { prompt, isDraft } = readPrompt(id);
-  const sources = await readSources(id);
-
-  return {
-    props: {
-      id,
-      title: demo.title,
-      description: demo.description,
-      prompt,
-      promptIsDraft: isDraft,
-      installCmd: installCommand(id),
-      renderCmd: renderCommand(id, meta?.usesShaders ?? false),
-      sources,
-    },
-  };
-};
-
-export default DemoPage;
+}
