@@ -906,6 +906,37 @@
       "docs": "Register the composition in your Remotion Root:\n\n  import { SkillChangelogDemo } from \"@/demos/skill-changelog\";\n  <Composition id=\"skill-changelog\" component={SkillChangelogDemo} durationInFrames={624} fps={30} width={1280} height={720} />\n\nRequires Tailwind v4 wired into Remotion (@remotion/tailwind-v4).\nRender locally: npx remotion render skill-changelog out/skill-changelog.mp4"
     },
     {
+      "name": "sponsor-canadian-ai",
+      "type": "registry:block",
+      "title": "remocn ✕ Canadian AI — New sponsor",
+      "description": "remocn demo composition \"remocn ✕ Canadian AI — New sponsor\" — installs the full Remotion composition. Generated with AI from the prompt in demos/sponsor-canadian-ai/prompt.md.",
+      "dependencies": [
+        "@paper-design/shaders-react",
+        "@remotion/google-fonts",
+        "@remotion/transitions",
+        "remotion"
+      ],
+      "registryDependencies": [
+        "https://remocn.dev/r/focus-pull.json",
+        "https://remocn.dev/r/push-through.json",
+        "https://remocn.dev/r/shader-grain-gradient.json",
+        "https://remocn.dev/r/soft-blur-in.json"
+      ],
+      "files": [
+        {
+          "path": "src/demos/sponsor-canadian-ai/index.tsx",
+          "type": "registry:component",
+          "target": "demos/sponsor-canadian-ai/index.tsx"
+        },
+        {
+          "path": "src/demos/sponsor-canadian-ai/prompt.md",
+          "type": "registry:file",
+          "target": "demos/sponsor-canadian-ai/prompt.md"
+        }
+      ],
+      "docs": "Register the composition in your Remotion Root:\n\n  import { SponsorCanadianAiDemo } from \"@/demos/sponsor-canadian-ai\";\n  <Composition id=\"sponsor-canadian-ai\" component={SponsorCanadianAiDemo} durationInFrames={504} fps={30} width={1280} height={720} />\n\nRequires Tailwind v4 wired into Remotion (@remotion/tailwind-v4).\nRender locally: npx remotion render sponsor-canadian-ai out/sponsor-canadian-ai.mp4 --gl=angle"
+    },
+    {
       "name": "sponsor-ln",
       "type": "registry:block",
       "title": "remocn ✕ LN — New sponsor",

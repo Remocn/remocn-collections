@@ -156,6 +156,10 @@ signup-flow: unpublished use-toast-transition.ts -> bundled
 skill-changelog: dep dynamic-grid
 skill-changelog: dep remocn-ui
 skill-changelog: dep rolling-number
+sponsor-canadian-ai: dep focus-pull
+sponsor-canadian-ai: dep push-through
+sponsor-canadian-ai: dep shader-grain-gradient
+sponsor-canadian-ai: dep soft-blur-in
 sponsor-ln: dep backdrop
 sponsor-ln: dep soft-blur-in
 sponsor-orcdev: dep dither-dissolve

@@ -690,8 +690,9 @@
       "shieldcn/chart-stars.svg",
       "shieldcn/header-graph.svg",
       "shieldcn/plus/${base}-${name}.svg",
-      "shieldcn/plus/${name}.svg",
-      "shieldcn/plus/header-acme-default.svg",
+      "shieldcn/plus/b-group-shieldcn.svg",
+      "shieldcn/plus/chart-stars-shieldcn.svg",
+      "shieldcn/plus/header-shieldcn.svg",
       "shieldcn/sponsors.svg"
     ],
     "usesShaders": true
@@ -774,6 +775,33 @@
     ],
     "assets": [],
     "usesShaders": false
+  },
+  "sponsor-canadian-ai": {
+    "graph": [
+      "src/components/remocn/focus-pull.tsx",
+      "src/components/remocn/push-through.tsx",
+      "src/components/remocn/shader-grain-gradient.tsx",
+      "src/components/remocn/soft-blur-in.tsx",
+      "src/demos/sponsor-canadian-ai/index.tsx"
+    ],
+    "ownFiles": [
+      "src/demos/sponsor-canadian-ai/index.tsx"
+    ],
+    "remocnComponents": [
+      "focus-pull",
+      "push-through",
+      "shader-grain-gradient",
+      "soft-blur-in"
+    ],
+    "npmPackages": [
+      "@paper-design/shaders-react",
+      "@remotion/google-fonts",
+      "@remotion/transitions",
+      "react",
+      "remotion"
+    ],
+    "assets": [],
+    "usesShaders": true
   },
   "sponsor-ln": {
     "graph": [

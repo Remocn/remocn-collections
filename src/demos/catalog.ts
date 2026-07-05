@@ -9,6 +9,12 @@ export type DemoCatalogEntry = {
 
 export const demoCatalog: DemoCatalogEntry[] = [
   {
+    id: "sponsor-canadian-ai",
+    title: "remocn ✕ Canadian AI — New sponsor",
+    description:
+      "A sponsor announcement for Canadian AI in their light editorial register — the only light sponsor spot in the collection: paper-white #FCFBF9 canvas, black ink, one amber accent #F59E0B (the site's Start-button color), Inter paired with Playfair Display serif italics, over a warm paper-grain gradient washed back toward the center. Every scene rides a slow camera drift. Intro: the real canadian-ai.ca swirl mark stroke-draws itself on in ink and the fill resolves. Hook: 'Say hello to my new sponsor' via soft-blur-in. Reveal: the Canadian AI wordmark resolves out of depth with the 'Operating System for Organizations' tagline settling tight beneath in serif italic. Beats: the site's own 'What we build' list hard-cut into three numbered slots — 01 Core / 02 Sales Agent / 03 Dev Agent — amber serif numerals over ink product names. Philosophy: 'Better tools create more value.' as a Playfair italic statement. Lockup: Remocn ✕ Canadian AI glides together from both sides, centered, nothing else on screen. Scene changes are push-through, crossfade, and focus-pull.",
+  },
+  {
     id: "shieldcn-plus",
     title: "shieldcn — Introducing shieldcn Plus",
     description:
