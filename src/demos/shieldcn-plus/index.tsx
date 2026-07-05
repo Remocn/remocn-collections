@@ -24,7 +24,10 @@ import { loadFont as loadSora } from "@remotion/google-fonts/Sora";
 
 import { RemocnUIProvider } from "@/lib/remocn-ui";
 import { ShortSlideRight } from "@/components/remocn/short-slide-right";
+import { ClaudeChat } from "@/components/remocn/claude-chat";
+import { ShimmerSweep } from "@/components/remocn/shimmer-sweep";
 import { LineByLineSlide } from "@/components/remocn/line-by-line-slide";
+import { RGBGlitchText } from "@/components/remocn/rgb-glitch-text";
 import { RollingNumber } from "@/components/remocn/rolling-number";
 import { BlurIn } from "@/components/remocn/blur-in";
 import { useBlurInTransition } from "@/components/remocn/use-blur-in-transition";
@@ -85,10 +88,25 @@ const S_MIGRATE = 132; //  mass migration PR cascade
 // entering at frame 6) — the beat holds the assembled line for ~20f before
 // the squeeze takes it, so the cut never lands mid-build.
 const S_AI_TITLE = 118; // "AI generates and polishes your READMEs" (kinetic build + hold)
-const S_AI = 114; //       AI writes the README
+// AI writes the README — the dark Claude chat types the prompt, then a
+// parallax hand-off pushes the chat DOWN while "Thinking" flies UP out of
+// it (a gentle initial kick, long deceleration), and the result lands.
+const AI_PUSH_AT = 88; //  the chat is pushed away right after typing settles
+const AI_PUSH_DUR = 18;
+const AI_THINK = 56;
+const AI_XFADE = 12; //    thinking → result cross-dissolve overlap
+const AI_RESULT = 88;
+const S_AI = AI_PUSH_AT + AI_THINK + AI_RESULT;
 const S_BRAND = 240; //    one managed brand — the crown
 const S_OFFER = 84; //     20% off your first 6 months (line-by-line)
 const S_CTA = 170; //      the closing shieldcn lockup
+// Post-credits stinger — a hard cut after the lockup (the shared warp
+// backdrop carries through, so it reads as a beat after the credits), then
+// the promo code catches signal.
+const STING_IN = 10; //     black beat before the code flickers on
+const STING_CAPTION = 34; // "promo code" label settles after the burst
+const STING_EXIT = 96; //   glitch-out burst + upward throw
+const S_STINGER = 122;
 
 const T_X = 14; //    crossfade
 const T_SQ = 16; //   squeeze — mechanical collapse hidden under a blur envelope
@@ -107,7 +125,8 @@ export const SHIELDCN_PLUS_DURATION =
   S_AI +
   S_BRAND +
   S_OFFER +
-  S_CTA -
+  S_CTA +
+  S_STINGER -
   (T_SQ +
     T_ZOOM +
     T_ZOOM +
@@ -551,7 +570,7 @@ const WhatScene: React.FC = () => (
               color: INK,
             }}
           >
-            This is shieldcn.
+            This is Shieldcn
           </span>
         </MicroPhase>
       </Series.Sequence>
@@ -659,7 +678,7 @@ const NewsScene: React.FC = () => {
           <SyncGlyph size={40} at={NEWS_GLYPH_AT} />
         </span>
         <SlideRich at={18}>
-          <span style={word}>with sync.</span>
+          <span style={word}>with sync</span>
         </SlideRich>
       </div>
     </AbsoluteFill>
@@ -778,7 +797,7 @@ const MeetPlusScene: React.FC = () => {
             color: MUTED,
           }}
         >
-          For maintainers who live in their READMEs.
+          For maintainers who live in their README
         </span>
       </Reveal>
     </AbsoluteFill>
@@ -1206,7 +1225,6 @@ const SoraKineticBuild: React.FC<{
     ctx.font = `${fontWeight} ${fontSize}px ${SORA_FAMILY}`;
     return words.map((w) => ctx.measureText(w).width);
     // fontsReady retriggers the measurement once the real face is available
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [words, fontSize, fontWeight, fontsReady]);
 
   const positionsAt = useMemo(() => {
@@ -1333,83 +1351,198 @@ const AiTitleScene: React.FC = () => (
   </AbsoluteFill>
 );
 
-const AI_PROMPT = "generate a readme for acme/app";
-const AI_TYPE_START = 6;
-const AI_RESULT_AT = 58;
-
-const AiScene: React.FC = () => {
+// The chat beat: the prompt types itself, then the chat dips DOWN with a
+// short push while a blur+fade envelope dissolves it by ~2/3 of the push —
+// the fade does the exit, so the travel stays small instead of sliding the
+// whole card off the stage.
+const AiChatBeat: React.FC = () => {
   const frame = useCurrentFrame();
-  const typed = Math.max(
-    0,
-    Math.min(AI_PROMPT.length, Math.floor((frame - AI_TYPE_START) * 0.75)),
-  );
-  const typingDone = typed >= AI_PROMPT.length;
-  const caretOn = typingDone ? Math.floor(frame / 15) % 2 === 0 : true;
-  const caretOpacity = interpolate(
+  const y = interpolate(
     frame,
-    [AI_RESULT_AT + 18, AI_RESULT_AT + 26],
+    [AI_PUSH_AT, AI_PUSH_AT + AI_PUSH_DUR],
+    [0, 240],
+    { ...clampOpts, easing: Easing.in(Easing.quad) },
+  );
+  const blur = interpolate(
+    frame,
+    [AI_PUSH_AT + 1, AI_PUSH_AT + 10],
+    [0, 16],
+    clampOpts,
+  );
+  const opacity = interpolate(
+    frame,
+    [AI_PUSH_AT + 3, AI_PUSH_AT + 12],
     [1, 0],
     clampOpts,
   );
   return (
     <AbsoluteFill
       style={{
-        alignItems: "center",
-        justifyContent: "center",
-        flexDirection: "column",
-        gap: 20,
+        transform: `translateY(${y}px)`,
+        filter: blur > 0.1 ? `blur(${blur}px)` : undefined,
+        opacity,
       }}
     >
-      {/* The result — a mini README assembling from real renders. Space is
-          reserved so the layout never shifts under the typing. */}
+      <ClaudeChat prompt="generate a readme for jal-co/shieldcn" speed={1.3} />
+    </AbsoluteFill>
+  );
+};
+
+// The thinking beat: "Thinking…" rises out of the chat-card zone (the card
+// spans ~y300–478 in the 720 ref frame; +70px starts the line inside it),
+// materializing through a reverse blur+fade as the dissolving chat departs —
+// it never enters from the screen edge and is never drawn over the chat.
+const AiThinkingBeat: React.FC = () => {
+  const frame = useCurrentFrame();
+  const yIn = interpolate(frame, [0, AI_PUSH_DUR + 6], [70, 0], {
+    ...clampOpts,
+    easing: Easing.bezier(0.45, 0.05, 0.15, 1),
+  });
+  // Exit: keeps drifting upward while dissolving, handing off to the result.
+  const yOut = interpolate(frame, [AI_THINK, AI_THINK + AI_XFADE], [0, -60], {
+    ...clampOpts,
+    easing: Easing.in(Easing.quad),
+  });
+  const blur =
+    interpolate(frame, [0, 14], [10, 0], clampOpts) +
+    interpolate(frame, [AI_THINK, AI_THINK + AI_XFADE], [0, 10], clampOpts);
+  const opacity =
+    interpolate(frame, [2, 12], [0, 1], clampOpts) *
+    interpolate(frame, [AI_THINK, AI_THINK + AI_XFADE - 2], [1, 0], clampOpts);
+  return (
+    <AbsoluteFill
+      style={{
+        alignItems: "center",
+        justifyContent: "center",
+        transform: `translateY(${yIn + yOut}px)`,
+        filter: blur > 0.1 ? `blur(${blur}px)` : undefined,
+        opacity,
+      }}
+    >
+      <ShimmerSweep
+        text="Thinking…"
+        fontSize={46}
+        fontWeight={400}
+        baseColor="#3f3f46"
+        shineColor={INK}
+      />
+    </AbsoluteFill>
+  );
+};
+
+// The result beat: the mini README materializes through a reverse blur+fade
+// rise while "Thinking…" dissolves upward — the same hand-off language as
+// the chat → thinking transition.
+const AiResultBeat: React.FC = () => {
+  const frame = useCurrentFrame();
+  const y = interpolate(frame, [0, 14], [36, 0], {
+    ...clampOpts,
+    easing: Easing.bezier(0.45, 0.05, 0.15, 1),
+  });
+  const blur = interpolate(frame, [0, 12], [8, 0], clampOpts);
+  const opacity = interpolate(frame, [0, 10], [0, 1], clampOpts);
+  return (
+    <AbsoluteFill
+      style={{
+        alignItems: "center",
+        justifyContent: "center",
+        transform: `translateY(${y}px)`,
+        filter: blur > 0.1 ? `blur(${blur}px)` : undefined,
+        opacity,
+      }}
+    >
+      {/* The result — the REAL jal-co/shieldcn README (live shieldcn.dev
+          renders: graph header, stats group, star-history chart), framed as
+          a README.md rendering on GitHub like the brand scene's card */}
       <div
         style={{
-          width: 560,
-          borderRadius: 14,
+          width: 620,
+          borderRadius: 12,
           border: `1px solid ${BORDER}`,
-          background: "#0c0c0e",
-          padding: 22,
-          display: "flex",
-          flexDirection: "column",
-          gap: 12,
+          background: CARD,
+          overflow: "hidden",
         }}
       >
-        <CardPop at={AI_RESULT_AT}>
-          <Img
-            src={demoAsset("shieldcn/plus/header-acme-default.svg")}
-            style={{ width: 516, height: "auto", display: "block" }}
-          />
-        </CardPop>
-        <div style={{ display: "flex", gap: 8, height: 24 }}>
-          {["b-build-default", "b-cov-default", "b-stars-default"].map((name, i) => (
-            <CardPop key={name} at={AI_RESULT_AT + 8 + i * 3}>
-              <Img
-                src={demoAsset(`shieldcn/plus/${name}.svg`)}
-                style={{ height: 24, width: "auto", display: "block" }}
-              />
-            </CardPop>
-          ))}
-        </div>
-      </div>
-      {/* The prompt */}
-      <div style={{ fontFamily: MONO, fontSize: 21, color: MUTED }}>
-        <span style={{ color: FAINT }}>$ </span>
-        <span>{AI_PROMPT.slice(0, typed)}</span>
-        <span
+        <div
           style={{
-            display: "inline-block",
-            width: 11,
-            height: 22,
-            marginLeft: 3,
-            verticalAlign: "-3px",
-            background: caretOn ? MUTED : "transparent",
-            opacity: caretOpacity,
+            display: "flex",
+            alignItems: "center",
+            gap: 8,
+            padding: "10px 16px",
+            borderBottom: `1px solid ${BORDER}`,
+            fontFamily: SANS,
+            fontSize: 13.5,
+            color: INK,
           }}
-        />
+        >
+          <svg width={16} height={16} viewBox="0 0 16 16">
+            <path
+              fill={MUTED}
+              d="M0 1.75A.75.75 0 0 1 .75 1h4.253c1.227 0 2.317.59 3 1.501A3.743 3.743 0 0 1 11.006 1h4.245a.75.75 0 0 1 .75.75v10.5a.75.75 0 0 1-.75.75h-4.507a2.25 2.25 0 0 0-1.591.659l-.622.621a.75.75 0 0 1-1.06 0l-.622-.621A2.25 2.25 0 0 0 5.258 13H.75a.75.75 0 0 1-.75-.75Zm7.251 10.324.004-5.073-.002-2.253A2.25 2.25 0 0 0 5.003 2.5H1.5v9h3.757a3.75 3.75 0 0 1 1.994.574ZM8.755 4.75l-.004 7.322a3.752 3.752 0 0 1 1.992-.572H14.5v-9h-3.495a2.25 2.25 0 0 0-2.25 2.25Z"
+            />
+          </svg>
+          README.md
+        </div>
+        <div
+          style={{
+            padding: 18,
+            display: "flex",
+            flexDirection: "column",
+            gap: 12,
+          }}
+        >
+          <CardPop at={8}>
+            <Img
+              src={demoAsset("shieldcn/plus/header-shieldcn.svg")}
+              style={{ width: 584, height: "auto", display: "block" }}
+            />
+          </CardPop>
+          <CardPop at={16}>
+            <Img
+              src={demoAsset("shieldcn/plus/b-group-shieldcn.svg")}
+              style={{ height: 24, width: "auto", display: "block" }}
+            />
+          </CardPop>
+          <CardPop at={22}>
+            <Img
+              src={demoAsset("shieldcn/plus/chart-stars-shieldcn.svg")}
+              style={{ width: 480, height: "auto", display: "block" }}
+            />
+          </CardPop>
+        </div>
       </div>
     </AbsoluteFill>
   );
 };
+
+// Three beats inside one AI story: the prompt is typed into the Claude chat
+// input (the remocn claude-chat component, local copy themed dark), the
+// parallax hand-off throws "Thinking" up out of the chat, and the generated
+// README lands.
+const AiScene: React.FC = () => (
+  <AbsoluteFill>
+    {/* Thinking renders BELOW the chat so the opaque card occludes it
+        until the push-down reveals it from underneath. Its sequence runs
+        AI_XFADE frames into the result beat for the cross-dissolve exit. */}
+    <Sequence
+      from={AI_PUSH_AT}
+      durationInFrames={AI_THINK + AI_XFADE}
+      layout="none"
+    >
+      <AiThinkingBeat />
+    </Sequence>
+    <Sequence durationInFrames={AI_PUSH_AT + AI_PUSH_DUR} layout="none">
+      <AiChatBeat />
+    </Sequence>
+    <Sequence
+      from={AI_PUSH_AT + AI_THINK}
+      durationInFrames={AI_RESULT}
+      layout="none"
+    >
+      <AiResultBeat />
+    </Sequence>
+  </AbsoluteFill>
+);
 
 // ===========================================================================
 // Scene 10 — One managed brand. The crown: the accent value flips in place,
@@ -1562,7 +1695,7 @@ const BrandScene: React.FC = () => {
         }}
       >
         <ShortSlideRight
-          text="One managed brand."
+          text="One managed brand"
           fontSize={50}
           color={INK}
           fontWeight={400}
@@ -1723,6 +1856,107 @@ const CtaScene: React.FC = () => (
     </div>
   </AbsoluteFill>
 );
+
+// ===========================================================================
+// Scene 13 — post-credits stinger. Empty beat, then "launch20" catches
+// signal: a deterministic flicker + RGB-split burst on entry, a quiet hold
+// with a muted label, and a glitch-out burst thrown upward through blur.
+// ===========================================================================
+// Pop-in flicker levels for the first frames after STING_IN.
+const STING_FLICKER = [1, 0.2, 1, 0.35, 1];
+
+const StingerScene: React.FC = () => {
+  const frame = useCurrentFrame();
+  const rel = frame - STING_IN;
+  const appear = rel < 0 ? 0 : (STING_FLICKER[rel] ?? 1);
+
+  const captionOpacity = interpolate(
+    frame,
+    [STING_CAPTION, STING_CAPTION + 10],
+    [0, 1],
+    clampOpts,
+  );
+  const captionRise = interpolate(
+    frame,
+    [STING_CAPTION, STING_CAPTION + 10],
+    [8, 0],
+    clampOpts,
+  );
+
+  const exitY = interpolate(frame, [STING_EXIT, STING_EXIT + 10], [0, -90], {
+    ...clampOpts,
+    easing: Easing.in(Easing.quad),
+  });
+  const exitBlur = interpolate(
+    frame,
+    [STING_EXIT, STING_EXIT + 10],
+    [0, 16],
+    clampOpts,
+  );
+  const exitOpacity = interpolate(
+    frame,
+    [STING_EXIT + 2, STING_EXIT + 11],
+    [1, 0],
+    clampOpts,
+  );
+
+  return (
+    <AbsoluteFill
+      style={{
+        transform: `translateY(${exitY}px)`,
+        filter: exitBlur > 0.1 ? `blur(${exitBlur}px)` : undefined,
+        opacity: exitOpacity,
+      }}
+    >
+      <div style={{ position: "absolute", inset: 0, opacity: appear }}>
+        {/* Two instances of the same text swap invisibly at STING_EXIT so the
+            one-window glitch component can burst twice: on entry and on exit. */}
+        <Sequence durationInFrames={STING_EXIT} layout="none">
+          <RGBGlitchText
+            text="launch20"
+            fontSize={92}
+            fontWeight={500}
+            color={INK}
+            glitchAt={STING_IN}
+            glitchDuration={10}
+            intensity={7}
+            seed="stinger-in"
+          />
+        </Sequence>
+        <Sequence from={STING_EXIT} layout="none">
+          <RGBGlitchText
+            text="launch20"
+            fontSize={92}
+            fontWeight={500}
+            color={INK}
+            glitchAt={0}
+            glitchDuration={14}
+            intensity={11}
+            seed="stinger-out"
+          />
+        </Sequence>
+        <div
+          style={{
+            position: "absolute",
+            left: 0,
+            right: 0,
+            top: "50%",
+            textAlign: "center",
+            transform: `translateY(${-96 + captionRise}px)`,
+            opacity: captionOpacity,
+            fontFamily: SANS,
+            fontWeight: 400,
+            fontSize: 22,
+            lineHeight: 1,
+            color: MUTED,
+          }}
+        >
+          Use promo code
+        </div>
+      </div>
+    </AbsoluteFill>
+  );
+};
 
 // ===========================================================================
 // Transition presentations — the shieldcn family grammar: squeeze, pill iris,
@@ -2001,6 +2235,12 @@ export const ShieldcnPlusDemo: React.FC = () => {
           {/* 12 — CTA */}
           <TransitionSeries.Sequence durationInFrames={S_CTA}>
             <CtaScene />
+          </TransitionSeries.Sequence>
+
+          {/* 13 — post-credits stinger: no transition on purpose; the hard
+              cut over the continuous warp backdrop IS the after-credits beat */}
+          <TransitionSeries.Sequence durationInFrames={S_STINGER}>
+            <StingerScene />
           </TransitionSeries.Sequence>
         </TransitionSeries>
       </AbsoluteFill>

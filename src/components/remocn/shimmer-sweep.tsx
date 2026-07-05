@@ -49,7 +49,7 @@ export function ShimmerSweep({
         display: "flex",
         alignItems: "center",
         justifyContent: "center",
-        background: "white",
+        background: "transparent",
       }}
     >
       <div style={{ position: "relative", display: "inline-block" }}>

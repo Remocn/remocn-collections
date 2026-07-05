@@ -14,3 +14,4 @@ silent and omitted.
 8. One managed brand. Change it once — every embed, in every repo, follows.
 9. 20% off your first 6 months.
 10. shieldcn.
+11. launch20. (post-credits stinger — the promo code, on-screen only)

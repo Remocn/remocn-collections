@@ -1,6 +1,6 @@
 {
   "version": "1.0.0",
-  "lastScanned": 1783154775606,
+  "lastScanned": 1783242719881,
   "projectRoot": "/Users/dev_wandry/projects/opensource/remocn-demo",
   "techStack": {
     "languages": [
@@ -42,7 +42,7 @@
     "runtime": null
   },
   "build": {
-    "buildCommand": "npx tsc --noEmit 2>&1 | head -3; echo \"TSC_EXIT:$?\"; npx eslint src/demos/shieldcn-plus/index.tsx 2>&1 | tail -3; echo \"LINT_EXIT:$?\"; OUT=/private/tmp/claude-501/-Users-dev-wandry-projects-opensource-remocn-demo/167fd691-064a-4db8-81b6-485d91993cd7/scratchpad/stills && for f in 1085 1330 1440; do npx remotion still src/remotion/index.ts shieldcn-plus \"$OUT/fin$f.png\" --frame=$f --gl=angle --log=error 2>&1 | grep -iE \"error|fail\" | head -2; done && node scripts/scan-demos.mjs && node scripts/build-registry.mjs 2>&1 | tail -1 && npx shadcn build registry.json --output public/r 2>&1 | tail -1; echo ALL_DONE",
+    "buildCommand": "npx tsc --noEmit; echo \"TSC_EXIT:$?\"; npx eslint src/demos/shieldcn-plus/index.tsx; echo \"LINT_EXIT:$?\"; node scripts/build-registry.mjs >/dev/null 2>&1 && npx shadcn build registry.json --output public/r >/dev/null 2>&1 && echo \"REGISTRY_OK\"; STILLS=/private/tmp/claude-501/-Users-dev-wandry-projects-opensource-remocn-demo/167fd691-064a-4db8-81b6-485d91993cd7/scratchpad/stills; npx remotion still src/remotion/index.ts shieldcn-plus \"$STILLS/left1215.png\" --frame=1215 --gl=angle --log=error; echo \"STILLS_EXIT:$?\"",
     "testCommand": null,
     "lintCommand": "npm run lint",
     "devCommand": "npm run dev",
@@ -77,7 +77,7 @@
       "path": "out",
       "purpose": "Build output",
       "fileCount": 8,
-      "lastAccessed": 1783154775537,
+      "lastAccessed": 1783242719843,
       "keyFiles": [
         "introducing-remocn.mp4",
         "introducing-shadcn.mp4",
@@ -89,21 +89,21 @@
     "public": {
       "path": "public",
       "purpose": "Public files",
-      "fileCount": 13,
-      "lastAccessed": 1783154775542,
+      "fileCount": 15,
+      "lastAccessed": 1783242719849,
       "keyFiles": [
         "bg.png",
         "emoji.gif",
         "favicon.ico",
-        "ln.jpg",
-        "orc.gif"
+        "hero.png",
+        "ln.jpg"
       ]
     },
     "scratch-out": {
       "path": "scratch-out",
       "purpose": null,
       "fileCount": 512,
-      "lastAccessed": 1783154775571,
+      "lastAccessed": 1783242719851,
       "keyFiles": [
         "ir-113.png",
         "ir-150.png",
@@ -116,7 +116,7 @@
       "path": "scripts",
       "purpose": "Build/utility scripts",
       "fileCount": 6,
-      "lastAccessed": 1783154775572,
+      "lastAccessed": 1783242719852,
       "keyFiles": [
         "build-registry.mjs",
         "frames.mjs",
@@ -129,14 +129,14 @@
       "path": "src",
       "purpose": "Source code",
       "fileCount": 0,
-      "lastAccessed": 1783154775573,
+      "lastAccessed": 1783242719852,
       "keyFiles": []
     },
     "styles": {
       "path": "styles",
       "purpose": null,
       "fileCount": 1,
-      "lastAccessed": 1783154775574,
+      "lastAccessed": 1783242719852,
       "keyFiles": [
         "global.css"
       ]
@@ -145,7 +145,7 @@
       "path": "tegami-launch",
       "purpose": null,
       "fileCount": 2,
-      "lastAccessed": 1783154775574,
+      "lastAccessed": 1783242719853,
       "keyFiles": [
         "SCRIPT.md",
         "STORYBOARD.md"
@@ -155,14 +155,24 @@
       "path": "types",
       "purpose": "Type definitions",
       "fileCount": 0,
-      "lastAccessed": 1783154775575,
+      "lastAccessed": 1783242719853,
       "keyFiles": []
+    },
+    "src/app": {
+      "path": "src/app",
+      "purpose": "Application code",
+      "fileCount": 2,
+      "lastAccessed": 1783242719855,
+      "keyFiles": [
+        "layout.tsx",
+        "page.tsx"
+      ]
     },
     "src/components": {
       "path": "src/components",
       "purpose": "UI components",
       "fileCount": 11,
-      "lastAccessed": 1783154775579,
+      "lastAccessed": 1783242719855,
       "keyFiles": [
         "app-sidebar.tsx",
         "code-block-command.tsx",
@@ -173,36 +183,25 @@
       "path": "src/helpers",
       "purpose": "Helper functions",
       "fileCount": 0,
-      "lastAccessed": 1783154775581,
+      "lastAccessed": 1783242719855,
       "keyFiles": []
     },
     "src/lib": {
       "path": "src/lib",
       "purpose": "Library code",
-      "fileCount": 4,
-      "lastAccessed": 1783154775582,
+      "fileCount": 5,
+      "lastAccessed": 1783242719855,
       "keyFiles": [
         "demo-assets.ts",
         "demo-page-data.ts",
-        "site-config.ts"
-      ]
-    },
-    "src/pages": {
-      "path": "src/pages",
-      "purpose": "Page components",
-      "fileCount": 3,
-      "lastAccessed": 1783154775583,
-      "keyFiles": [
-        "_app.tsx",
-        "_document.tsx",
-        "index.tsx"
+        "npm-command.ts"
       ]
     },
     "src/types": {
       "path": "src/types",
       "purpose": "Type definitions",
       "fileCount": 1,
-      "lastAccessed": 1783154775583,
+      "lastAccessed": 1783242719855,
       "keyFiles": [
         "culori.d.ts"
       ]
@@ -265,8 +264,8 @@
     },
     {
       "path": "src/components/remocn/claude-code.tsx",
-      "accessCount": 11,
-      "lastAccessed": 1782385901941,
+      "accessCount": 12,
+      "lastAccessed": 1783241611722,
       "type": "file"
     },
     {

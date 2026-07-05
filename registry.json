@@ -769,6 +769,7 @@
       ],
       "registryDependencies": [
         "https://remocn.dev/r/blur-in.json",
+        "https://remocn.dev/r/caret.json",
         "https://remocn.dev/r/line-by-line-slide.json",
         "https://remocn.dev/r/remocn-ui.json",
         "https://remocn.dev/r/rolling-number.json",
@@ -776,6 +777,21 @@
         "https://remocn.dev/r/short-slide-right.json"
       ],
       "files": [
+        {
+          "path": "src/components/remocn/claude-chat.tsx",
+          "type": "registry:component",
+          "target": "components/remocn/claude-chat.tsx"
+        },
+        {
+          "path": "src/components/remocn/rgb-glitch-text.tsx",
+          "type": "registry:component",
+          "target": "components/remocn/rgb-glitch-text.tsx"
+        },
+        {
+          "path": "src/components/remocn/shimmer-sweep.tsx",
+          "type": "registry:component",
+          "target": "components/remocn/shimmer-sweep.tsx"
+        },
         {
           "path": "src/demos/shieldcn-plus/index.tsx",
           "type": "registry:component",
