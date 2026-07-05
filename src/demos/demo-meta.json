@@ -643,9 +643,13 @@
   "shieldcn-plus": {
     "graph": [
       "src/components/remocn/blur-in.tsx",
+      "src/components/remocn/caret.tsx",
+      "src/components/remocn/claude-chat.tsx",
       "src/components/remocn/line-by-line-slide.tsx",
+      "src/components/remocn/rgb-glitch-text.tsx",
       "src/components/remocn/rolling-number.tsx",
       "src/components/remocn/shader-warp.tsx",
+      "src/components/remocn/shimmer-sweep.tsx",
       "src/components/remocn/short-slide-right.tsx",
       "src/components/remocn/use-blur-in-transition.ts",
       "src/demos/shieldcn-plus/index.tsx",
@@ -662,9 +666,13 @@
     ],
     "remocnComponents": [
       "blur-in",
+      "caret",
+      "claude-chat",
       "line-by-line-slide",
+      "rgb-glitch-text",
       "rolling-number",
       "shader-warp",
+      "shimmer-sweep",
       "short-slide-right",
       "use-blur-in-transition"
     ],

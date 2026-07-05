@@ -168,19 +168,19 @@ keyMessage: one action opens PRs across every repo.
 narrativeRole: names the zero-effort promise before the demo proves it.
 keyMessage: AI writes the README for you.
 
-## Frame 9b — AI writes it
+## Frame 9b — AI writes it (Claude chat)
 
-- scene: a prompt types itself in mono — "generate a readme for acme/app" — and on the return-stroke the artifacts snap in fast above it: the real acme header, then a real badge row, assembling a mini README in under a second. No caption — the title beat already said it.
+- scene: three beats inside one scene — (a) the remocn Claude chat input (local copy themed dark) bounces in and the prompt "generate a readme for jal-co/shieldcn" types itself; (b) a parallax hand-off: the chat is pushed DOWN off the stage while "Thinking…" (shimmer sweep, transparent bg) rises out from UNDER the chat card — it starts hidden behind the opaque card (never enters from the screen edge, never draws over the chat) and is revealed as the card clears it, then decelerates into the center; (c) a cross-dissolve hand-off — "Thinking…" keeps drifting upward while blurring out, and the result materializes through a reverse blur+fade rise: the REAL jal-co/shieldcn README framed as a README.md rendering on GitHub (live shieldcn.dev renders — graph header, stats group badge, star-history chart), its pieces popping in. No caption — the title beat already said it.
 - voiceover: (silent — the demo proves the title)
-- duration: 3.8s
+- duration: 7.9s
 - transition_in: squeeze
 - status: locked
-- src: ShieldcnPlusDemo → AiScene
+- src: ShieldcnPlusDemo → AiScene (ClaudeCode → ShimmerSweep → result card)
 - type: feature_showcase
 - persuasion: Show-don't-tell proof — the prompt visibly becomes the artifact
 - beat: ease + delight
-- blueprint: typewriter-reveal — someone is typing this, and it lands a result
-- asset_candidates: public/shieldcn/plus/header-acme-green.svg — real acme header; public/shieldcn/plus/b-build-green.svg, b-cov-green.svg, b-stars-green.svg — real branded badges
+- blueprint: device-surface-showcase — the feature experienced inside its real interface
+- asset_candidates: remocn/claude-chat (dark), remocn/shimmer-sweep (transparent bg); public/shieldcn/plus/header-acme-default.svg, b-build-default.svg, b-cov-default.svg, b-stars-default.svg — real default-styled renders
 
 narrativeRole: the zero-effort path — even writing the README disappears.
 keyMessage: AI turns a prompt into a finished README.
@@ -235,6 +235,23 @@ keyMessage: 20% off your first 6 months.
 
 narrativeRole: the closing stamp — name and mark, nothing competing.
 keyMessage: shieldcn.
+
+## Frame 13 — Post-credits stinger (launch20)
+
+- scene: a hard cut after the lockup — the warp backdrop carries through, so it reads as a beat after the credits. Ten empty frames, then "launch20" catches signal: a deterministic flicker + RGB-split glitch burst (rgb-glitch-text, local copy set to screen blend on transparent), a quiet hold with the muted "promo code" label above it, then a dynamic exit — a second, harder glitch burst as the whole beat is thrown upward through blur.
+- voiceover: (silent — the code is the punchline)
+- duration: 4.1s
+- transition_in: none — the hard cut IS the after-credits beat
+- status: locked
+- src: ShieldcnPlusDemo → StingerScene (RGBGlitchText ×2 swap at exit)
+- type: cta
+- persuasion: Scarcity nudge — the code rewards watching to the end
+- beat: payoff
+- blueprint: (none — post-credits stinger, composed freely)
+- asset_candidates: (typography-only)
+
+narrativeRole: the after-credits reward — the discount code as a punchline.
+keyMessage: launch20.
 
 ---
 
