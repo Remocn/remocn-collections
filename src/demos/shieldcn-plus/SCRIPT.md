@@ -12,5 +12,5 @@ silent and omitted.
 6. Mass migration — open PRs across all your repos at once.
 7. AI generates and polishes your READMEs.
 8. One managed brand. Change it once — every embed, in every repo, follows.
-9. Mostly, Plus keeps the lights on.
-10. shieldcn Plus — ten dollars a month. shieldcn.dev/pricing — launch20 for 20% off.
+9. 20% off your first 6 months.
+10. shieldcn.

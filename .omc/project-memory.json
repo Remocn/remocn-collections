@@ -42,7 +42,7 @@
     "runtime": null
   },
   "build": {
-    "buildCommand": "grep -rn \"demo\\.remocn\\.dev\" . --exclude-dir=node_modules --exclude-dir=.next --exclude-dir=.git --exclude=package-lock.json 2>/dev/null; echo \"REMAINING:$?\"; npx tsc --noEmit 2>&1 | head -5; echo \"TSC_EXIT:$?\"; grep -n \"remocn.dev\" /Users/dev_wandry/.claude/projects/-Users-dev-wandry-projects-opensource-remocn-demo/memory/remocn-demo-registry.md",
+    "buildCommand": "npx tsc --noEmit 2>&1 | head -3; echo \"TSC_EXIT:$?\"; npx eslint src/demos/shieldcn-plus/index.tsx 2>&1 | tail -3; echo \"LINT_EXIT:$?\"; OUT=/private/tmp/claude-501/-Users-dev-wandry-projects-opensource-remocn-demo/167fd691-064a-4db8-81b6-485d91993cd7/scratchpad/stills && for f in 1085 1330 1440; do npx remotion still src/remotion/index.ts shieldcn-plus \"$OUT/fin$f.png\" --frame=$f --gl=angle --log=error 2>&1 | grep -iE \"error|fail\" | head -2; done && node scripts/scan-demos.mjs && node scripts/build-registry.mjs 2>&1 | tail -1 && npx shadcn build registry.json --output public/r 2>&1 | tail -1; echo ALL_DONE",
     "testCommand": null,
     "lintCommand": "npm run lint",
     "devCommand": "npm run dev",
@@ -217,8 +217,8 @@
     },
     {
       "path": "src/demos/index.ts",
-      "accessCount": 61,
-      "lastAccessed": 1783092598223,
+      "accessCount": 64,
+      "lastAccessed": 1783234407656,
       "type": "file"
     },
     {
@@ -276,15 +276,15 @@
       "type": "file"
     },
     {
-      "path": "src/demos/types.ts",
-      "accessCount": 6,
-      "lastAccessed": 1782987368678,
+      "path": "src/remotion/Root.tsx",
+      "accessCount": 7,
+      "lastAccessed": 1783234424235,
       "type": "file"
     },
     {
-      "path": "src/remotion/Root.tsx",
+      "path": "src/demos/types.ts",
       "accessCount": 6,
-      "lastAccessed": 1783064529325,
+      "lastAccessed": 1782987368678,
       "type": "file"
     },
     {
