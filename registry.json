@@ -756,11 +756,49 @@
       "docs": "Register the composition in your Remotion Root:\n\n  import { ShieldcnDemo } from \"@/demos/shieldcn\";\n  <Composition id=\"shieldcn\" component={ShieldcnDemo} durationInFrames={1224} fps={30} width={1280} height={720} />\n\nRequires Tailwind v4 wired into Remotion (@remotion/tailwind-v4).\nRender locally: npx remotion render shieldcn out/shieldcn.mp4 --gl=angle"
     },
     {
+      "name": "shieldcn-plus",
+      "type": "registry:block",
+      "title": "shieldcn — Introducing shieldcn Plus",
+      "description": "remocn demo composition \"shieldcn — Introducing shieldcn Plus\" — installs the full Remotion composition. Generated with AI from the prompt in demos/shieldcn-plus/prompt.md.",
+      "dependencies": [
+        "@paper-design/shaders-react",
+        "@remotion/google-fonts",
+        "@remotion/transitions",
+        "culori",
+        "remotion"
+      ],
+      "registryDependencies": [
+        "https://remocn.dev/r/blur-in.json",
+        "https://remocn.dev/r/remocn-ui.json",
+        "https://remocn.dev/r/rolling-number.json",
+        "https://remocn.dev/r/scale-down-fade.json",
+        "https://remocn.dev/r/shader-warp.json",
+        "https://remocn.dev/r/short-slide-right.json"
+      ],
+      "files": [
+        {
+          "path": "src/demos/shieldcn-plus/index.tsx",
+          "type": "registry:component",
+          "target": "demos/shieldcn-plus/index.tsx"
+        },
+        {
+          "path": "src/lib/demo-assets.ts",
+          "type": "registry:component",
+          "target": "lib/demo-assets.ts"
+        }
+      ],
+      "docs": "Register the composition in your Remotion Root:\n\n  import { ShieldcnPlusDemo } from \"@/demos/shieldcn-plus\";\n  <Composition id=\"shieldcn-plus\" component={ShieldcnPlusDemo} durationInFrames={300} fps={30} width={1280} height={720} />\n\nRequires Tailwind v4 wired into Remotion (@remotion/tailwind-v4).\nRender locally: npx remotion render shieldcn-plus out/shieldcn-plus.mp4 --gl=angle"
+    },
+    {
       "name": "signup-flow",
       "type": "registry:block",
       "title": "Signup Flow",
       "description": "remocn demo composition \"Signup Flow\" — installs the full Remotion composition. Generated with AI from the prompt in demos/signup-flow/prompt.md.",
-      "dependencies": ["@remotion/google-fonts", "culori", "remotion"],
+      "dependencies": [
+        "@remotion/google-fonts",
+        "culori",
+        "remotion"
+      ],
       "registryDependencies": [
         "https://remocn.dev/r/blur-in.json",
         "https://remocn.dev/r/button.json",
