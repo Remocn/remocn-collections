@@ -9,6 +9,12 @@ export type DemoCatalogEntry = {
 
 export const demoCatalog: DemoCatalogEntry[] = [
   {
+    id: "shieldcn-plus",
+    title: "shieldcn — Introducing shieldcn Plus",
+    description:
+      "The launch video for shieldcn's accounts-with-sync release: Pro collapsed into a single Plus tier ($10/mo) for maintainers who live in their READMEs. Announcement-cascade arc mirroring the author's launch tweet, in the shieldcn register (zinc-950, ink, Geist, badge-value green #22c55e) over a monochrome paper.design warp backdrop (checks shape, quiet zinc grays). Opens on a camera-glide hook where a README assembles itself from REAL shieldcn.dev renders (graph header, xs badges, star chart, sponsor wall), then a shared-axis 'This is shieldcn' education beat, the news (accounts — with sync, a self-drawing green sync arc), the free-forever reassurance with a green marker sweep, and the Plus lockup with the repo's real shield icon stroke-drawing itself on. Four feature beats — a rolling 75 saved READMEs over a mini-README dashboard grid, a saved badges library shelf dropping the same real badge into three README rows, a mass-migration PR cascade over six mono repo rows, an AI prompt typing itself into a real acme header + branded badges — then the crown: one managed brand, where the accent hex flips in place (#22c55e → #8b5cf6 → #f59e0b) and every real artifact (header, badges, chart — all fetched from shieldcn.dev with color= params) re-renders simultaneously. A quiet 'Plus keeps the lights on' beat, and a CTA with price, shieldcn.dev/pricing, and the launch20 code. Transitions are the shieldcn family grammar only — squeeze, pill-iris, zoom-blur, crossfade; no swirl, no dither covers.",
+  },
+  {
     id: "introducing-shadcn",
     title: "shadcn/ui — Introducing shadcn/ui (gift cut)",
     description:
