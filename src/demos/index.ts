@@ -35,10 +35,17 @@ import {
   IntroducingShadcnDemo,
   INTRODUCING_SHADCN_DURATION,
 } from "./introducing-shadcn";
+import { ShieldcnPlusDemo, SHIELDCN_PLUS_DURATION } from "./shieldcn-plus";
 
 export * from "./types";
 
 export const demos: Demo[] = [
+  {
+    ...getCatalogEntry("shieldcn-plus"),
+    component: ShieldcnPlusDemo,
+    durationInFrames: SHIELDCN_PLUS_DURATION,
+    defaultProps: {},
+  },
   {
     ...getCatalogEntry("introducing-shadcn"),
     component: IntroducingShadcnDemo,

@@ -3,6 +3,7 @@
 // frame lands on a dark cut. Refresh against `npx remotion compositions`
 // when durations change.
 export const FRAMES = {
+  "shieldcn-plus": 500,
   "introducing-shadcn": 1089,
   "sponsor-orcdev": 241,
   "sponsor-reactbits": 193,
