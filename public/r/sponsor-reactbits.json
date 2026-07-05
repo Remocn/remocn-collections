@@ -23,7 +23,7 @@
     },
     {
       "path": "src/lib/demo-assets.ts",
-      "content": "// Demo assets are loaded from absolute URLs so a demo installed into another\n// project via the registry renders identically without copying this repo's\n// public/ directory. The same URLs are used on the site and in local renders,\n// which keeps a single code path (network access is required for rendering).\n// Override with REMOTION_DEMO_ASSETS_BASE (e.g. a local static server) — only\n// REMOTION_-prefixed env vars reach Remotion compositions.\nexport const DEMO_ASSETS_BASE =\n  process.env.REMOTION_DEMO_ASSETS_BASE ||\n  \"https://raw.githubusercontent.com/kapishdima/remocn-demo/main/public\";\n\nexport const demoAsset = (path: string): string =>\n  `${DEMO_ASSETS_BASE}/${path.replace(/^\\/+/, \"\")}`;\n",
+      "content": "// Demo assets are loaded from absolute URLs so a demo installed into another\n// project via the registry renders identically without copying this repo's\n// public/ directory. The same URLs are used on the site and in local renders,\n// which keeps a single code path (network access is required for rendering).\n// Override with REMOTION_DEMO_ASSETS_BASE (e.g. a local static server) — only\n// REMOTION_-prefixed env vars reach Remotion compositions.\nexport const DEMO_ASSETS_BASE =\n  process.env.REMOTION_DEMO_ASSETS_BASE ||\n  \"https://raw.githubusercontent.com/Remocn/remocn-collections/main/public\";\n\nexport const demoAsset = (path: string): string =>\n  `${DEMO_ASSETS_BASE}/${path.replace(/^\\/+/, \"\")}`;\n",
       "type": "registry:component",
       "target": "lib/demo-assets.ts"
     },

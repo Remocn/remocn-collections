@@ -6,7 +6,7 @@
 // REMOTION_-prefixed env vars reach Remotion compositions.
 export const DEMO_ASSETS_BASE =
   process.env.REMOTION_DEMO_ASSETS_BASE ||
-  "https://raw.githubusercontent.com/kapishdima/remocn-demo/main/public";
+  "https://raw.githubusercontent.com/Remocn/remocn-collections/main/public";
 
 export const demoAsset = (path: string): string =>
   `${DEMO_ASSETS_BASE}/${path.replace(/^\/+/, "")}`;
