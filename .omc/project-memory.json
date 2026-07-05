@@ -42,7 +42,7 @@
     "runtime": null
   },
   "build": {
-    "buildCommand": "npx tsc --noEmit; echo \"TSC_EXIT:$?\"; npx eslint src/demos/shieldcn-plus/index.tsx; echo \"LINT_EXIT:$?\"; node scripts/build-registry.mjs >/dev/null 2>&1 && npx shadcn build registry.json --output public/r >/dev/null 2>&1 && echo \"REGISTRY_OK\"; STILLS=/private/tmp/claude-501/-Users-dev-wandry-projects-opensource-remocn-demo/167fd691-064a-4db8-81b6-485d91993cd7/scratchpad/stills; npx remotion still src/remotion/index.ts shieldcn-plus \"$STILLS/left1215.png\" --frame=1215 --gl=angle --log=error; echo \"STILLS_EXIT:$?\"",
+    "buildCommand": "npx tsc --noEmit; echo \"TSC_EXIT:$?\"; npx eslint src/demos/sponsor-canadian-ai/index.tsx; echo \"LINT_EXIT:$?\"; npx remotion still src/remotion/index.ts sponsor-canadian-ai /tmp/ca-stills/v3-f470.png --frame=470 --gl=angle --log=error; echo \"STILL_EXIT:$?\"",
     "testCommand": null,
     "lintCommand": "npm run lint",
     "devCommand": "npm run dev",
@@ -216,20 +216,20 @@
     },
     {
       "path": "src/demos/index.ts",
-      "accessCount": 64,
-      "lastAccessed": 1783234407656,
+      "accessCount": 66,
+      "lastAccessed": 1783269067442,
+      "type": "file"
+    },
+    {
+      "path": "src/demos/sponsor-ln/index.tsx",
+      "accessCount": 20,
+      "lastAccessed": 1783268616011,
       "type": "file"
     },
     {
       "path": "src/demos/tegami/index.tsx",
       "accessCount": 19,
       "lastAccessed": 1782936905050,
-      "type": "file"
-    },
-    {
-      "path": "src/demos/sponsor-ln/index.tsx",
-      "accessCount": 19,
-      "lastAccessed": 1783063609842,
       "type": "file"
     },
     {
