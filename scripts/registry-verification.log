@@ -125,9 +125,9 @@ shadcn-ui: dep rolling-number
 shadcn-ui: dep shared-axis-z
 shadcn-ui: dep terminal-simulator
 shieldcn-plus: dep blur-in
+shieldcn-plus: dep line-by-line-slide
 shieldcn-plus: dep remocn-ui
 shieldcn-plus: dep rolling-number
-shieldcn-plus: dep scale-down-fade
 shieldcn-plus: dep shader-warp
 shieldcn-plus: dep short-slide-right
 shieldcn: dep blur-in

@@ -24,7 +24,7 @@ import { loadFont as loadSora } from "@remotion/google-fonts/Sora";
 
 import { RemocnUIProvider } from "@/lib/remocn-ui";
 import { ShortSlideRight } from "@/components/remocn/short-slide-right";
-import { ScaleDownFade } from "@/components/remocn/scale-down-fade";
+import { LineByLineSlide } from "@/components/remocn/line-by-line-slide";
 import { RollingNumber } from "@/components/remocn/rolling-number";
 import { BlurIn } from "@/components/remocn/blur-in";
 import { useBlurInTransition } from "@/components/remocn/use-blur-in-transition";
@@ -87,8 +87,8 @@ const S_MIGRATE = 132; //  mass migration PR cascade
 const S_AI_TITLE = 118; // "AI generates and polishes your READMEs" (kinetic build + hold)
 const S_AI = 114; //       AI writes the README
 const S_BRAND = 240; //    one managed brand — the crown
-const S_LIGHTS = 84; //    Plus keeps the lights on
-const S_CTA = 170; //      lockup, price, URL, launch code
+const S_OFFER = 84; //     20% off your first 6 months (line-by-line)
+const S_CTA = 170; //      the closing shieldcn lockup
 
 const T_X = 14; //    crossfade
 const T_SQ = 16; //   squeeze — mechanical collapse hidden under a blur envelope
@@ -106,7 +106,7 @@ export const SHIELDCN_PLUS_DURATION =
   S_AI_TITLE +
   S_AI +
   S_BRAND +
-  S_LIGHTS +
+  S_OFFER +
   S_CTA -
   (T_SQ +
     T_ZOOM +
@@ -1376,12 +1376,12 @@ const AiScene: React.FC = () => {
       >
         <CardPop at={AI_RESULT_AT}>
           <Img
-            src={demoAsset("shieldcn/plus/header-acme-green.svg")}
+            src={demoAsset("shieldcn/plus/header-acme-default.svg")}
             style={{ width: 516, height: "auto", display: "block" }}
           />
         </CardPop>
         <div style={{ display: "flex", gap: 8, height: 24 }}>
-          {["b-build-green", "b-cov-green", "b-stars-green"].map((name, i) => (
+          {["b-build-default", "b-cov-default", "b-stars-default"].map((name, i) => (
             <CardPop key={name} at={AI_RESULT_AT + 8 + i * 3}>
               <Img
                 src={demoAsset(`shieldcn/plus/${name}.svg`)}
@@ -1606,43 +1606,66 @@ const BrandScene: React.FC = () => {
                 </Sequence>
               </div>
             </Reveal>
-            <Reveal delay={54} distance={10} blur={7}>
-              <span
-                style={{
-                  fontFamily: SANS,
-                  fontSize: 19,
-                  color: FAINT,
-                  fontWeight: 400,
-                }}
-              >
-                Change it once —
-                <br />
-                every embed follows.
-              </span>
-            </Reveal>
           </div>
-          {/* Right — the same real artifacts, re-rendered per accent */}
+          {/* Right — the same real artifacts, re-rendered per accent,
+              framed as a README rendering on GitHub */}
           <Sequence from={-BRAND_STAGE_AT} layout="none">
-            <div
-              style={{
-                display: "flex",
-                flexDirection: "column",
-                gap: 12,
-                transform: `scale(${colScale})`,
-              }}
-            >
-              <Reveal delay={BRAND_STAGE_AT + 6} distance={18} blur={12}>
-                <MorphStack base="header-acme" width={505} height={175} />
-              </Reveal>
-              <Reveal delay={BRAND_STAGE_AT + 12} distance={14} blur={10}>
-                <div style={{ display: "flex", gap: 9 }}>
-                  <MorphStack base="b-build" width={94} height={26} />
-                  <MorphStack base="b-cov" width={102} height={26} />
-                  <MorphStack base="b-stars" width={91} height={26} />
+            <div style={{ transform: `scale(${colScale})` }}>
+              <Reveal delay={BRAND_STAGE_AT + 4} distance={18} blur={12}>
+                <div
+                  style={{
+                    width: 541,
+                    borderRadius: 12,
+                    border: `1px solid ${BORDER}`,
+                    background: CARD,
+                    overflow: "hidden",
+                  }}
+                >
+                  {/* GitHub's README file header, in the video's own card
+                      palette so it matches the ?brand token card */}
+                  <div
+                    style={{
+                      display: "flex",
+                      alignItems: "center",
+                      gap: 8,
+                      padding: "10px 16px",
+                      borderBottom: `1px solid ${BORDER}`,
+                      fontFamily: SANS,
+                      fontSize: 13.5,
+                      color: INK,
+                    }}
+                  >
+                    <svg width={16} height={16} viewBox="0 0 16 16">
+                      <path
+                        fill={MUTED}
+                        d="M0 1.75A.75.75 0 0 1 .75 1h4.253c1.227 0 2.317.59 3 1.501A3.743 3.743 0 0 1 11.006 1h4.245a.75.75 0 0 1 .75.75v10.5a.75.75 0 0 1-.75.75h-4.507a2.25 2.25 0 0 0-1.591.659l-.622.621a.75.75 0 0 1-1.06 0l-.622-.621A2.25 2.25 0 0 0 5.258 13H.75a.75.75 0 0 1-.75-.75Zm7.251 10.324.004-5.073-.002-2.253A2.25 2.25 0 0 0 5.003 2.5H1.5v9h3.757a3.75 3.75 0 0 1 1.994.574ZM8.755 4.75l-.004 7.322a3.752 3.752 0 0 1 1.992-.572H14.5v-9h-3.495a2.25 2.25 0 0 0-2.25 2.25Z"
+                      />
+                    </svg>
+                    README.md
+                  </div>
+                  <div
+                    style={{
+                      padding: 18,
+                      display: "flex",
+                      flexDirection: "column",
+                      gap: 12,
+                    }}
+                  >
+                    <Reveal delay={BRAND_STAGE_AT + 10} distance={16} blur={10}>
+                      <MorphStack base="header-acme" width={505} height={175} />
+                    </Reveal>
+                    <Reveal delay={BRAND_STAGE_AT + 16} distance={12} blur={9}>
+                      <div style={{ display: "flex", gap: 9 }}>
+                        <MorphStack base="b-build" width={94} height={26} />
+                        <MorphStack base="b-cov" width={102} height={26} />
+                        <MorphStack base="b-stars" width={91} height={26} />
+                      </div>
+                    </Reveal>
+                    <Reveal delay={BRAND_STAGE_AT + 22} distance={16} blur={10}>
+                      <MorphStack base="chart" width={430} height={215} />
+                    </Reveal>
+                  </div>
                 </div>
-              </Reveal>
-              <Reveal delay={BRAND_STAGE_AT + 18} distance={18} blur={12}>
-                <MorphStack base="chart" width={430} height={215} />
               </Reveal>
             </div>
           </Sequence>
@@ -1653,91 +1676,53 @@ const BrandScene: React.FC = () => {
 };
 
 // ===========================================================================
-// Scene 11 — The lights. One quiet line, the author's honesty.
+// Scene 11 — The offer. The launch discount accumulates line by line.
 // ===========================================================================
-const LightsScene: React.FC = () => (
+const OfferScene: React.FC = () => (
   <AbsoluteFill>
-    <Sequence from={6} durationInFrames={72}>
-      <ScaleDownFade
-        text="Mostly, Plus keeps the lights on."
-        fontSize={34}
+    <Sequence from={10}>
+      <LineByLineSlide
+        text={"20% off\nyour first 6 months"}
+        fontSize={50}
         fontWeight={400}
-        color={MUTED}
+        color={INK}
       />
     </Sequence>
   </AbsoluteFill>
 );
 
 // ===========================================================================
-// Scene 12 — CTA. The shield draws on once more; price, URL, launch code.
+// Scene 12 — CTA. The shield draws on once more and the wordmark settles —
+// nothing else competes with the lockup.
 // ===========================================================================
-const CtaScene: React.FC = () => {
-  const frame = useCurrentFrame();
-  const { fps } = useVideoConfig();
-  const plusPop = spring({
-    frame: frame - 24,
-    fps,
-    config: { damping: 13, mass: 0.7 },
-  });
-  return (
-    <AbsoluteFill
-      style={{
-        alignItems: "center",
-        justifyContent: "center",
-        flexDirection: "column",
-        gap: 14,
-      }}
-    >
-      <div style={{ display: "flex", alignItems: "center", gap: 14 }}>
-        {/* The enlarged mark's viewBox padding is pulled back in, so the
-            visible glyph sits one word-space from the name. */}
-        <span style={{ display: "inline-flex", marginRight: -18 }}>
-          <ShieldMark size={112} />
-        </span>
-        <Reveal delay={8} distance={12} blur={10} display="inline-block">
-          <span
-            style={{
-              fontFamily: SANS,
-              fontWeight: 500,
-              fontSize: 62,
-              color: INK,
-            }}
-          >
-            shieldcn
-          </span>
-        </Reveal>
+const CtaScene: React.FC = () => (
+  <AbsoluteFill
+    style={{
+      alignItems: "center",
+      justifyContent: "center",
+    }}
+  >
+    <div style={{ display: "flex", alignItems: "center", gap: 14 }}>
+      {/* The enlarged mark's viewBox padding is pulled back in, so the
+          visible glyph sits one word-space from the name. */}
+      <span style={{ display: "inline-flex", marginRight: -18 }}>
+        <ShieldMark size={112} />
+      </span>
+      <Reveal delay={8} distance={12} blur={10} display="inline-block">
         <span
           style={{
             fontFamily: SANS,
             fontWeight: 500,
             fontSize: 62,
-            color: GREEN,
-            display: "inline-block",
-            opacity: interpolate(frame, [24, 32], [0, 1], clampOpts),
-            transform: `scale(${0.7 + plusPop * 0.3}) translateY(${(1 - plusPop) * 8}px)`,
+            color: INK,
           }}
         >
-          Plus
-        </span>
-      </div>
-      <Reveal delay={42} distance={10} blur={7}>
-        <span style={{ fontFamily: SANS, fontSize: 20, color: FAINT }}>
-          $10 a month
+          shieldcn
         </span>
       </Reveal>
-      <Reveal delay={56} distance={10} blur={7}>
-        <span style={{ fontFamily: MONO, fontSize: 23, color: MUTED }}>
-          shieldcn.dev/pricing
-        </span>
-      </Reveal>
-      <Reveal delay={78} distance={8} blur={6}>
-        <span style={{ fontFamily: SANS, fontSize: 17, color: FAINT }}>
-          launch20 — 20% off your first 6 months
-        </span>
-      </Reveal>
-    </AbsoluteFill>
-  );
-};
+    </div>
+  </AbsoluteFill>
+);
 
 // ===========================================================================
 // Transition presentations — the shieldcn family grammar: squeeze, pill iris,
@@ -2004,9 +1989,9 @@ export const ShieldcnPlusDemo: React.FC = () => {
             presentation={crossfade()}
           />
 
-          {/* 11 — The lights */}
-          <TransitionSeries.Sequence durationInFrames={S_LIGHTS}>
-            <LightsScene />
+          {/* 11 — The offer */}
+          <TransitionSeries.Sequence durationInFrames={S_OFFER}>
+            <OfferScene />
           </TransitionSeries.Sequence>
           <TransitionSeries.Transition
             timing={linearTiming({ durationInFrames: T_IRIS })}

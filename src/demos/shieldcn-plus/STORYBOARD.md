@@ -187,7 +187,7 @@ keyMessage: AI turns a prompt into a finished README.
 
 ## Frame 10 — One managed brand (the crown)
 
-- scene: the author's favorite feature gets the longest beat. Left: a brand token card — `?brand=acme` in mono on top, below it the accent value `#22c55e` with a green dot. Right: a column of REAL acme-branded artifacts (header, build/coverage/stars badges, star chart). The accent value flips in place to `#8b5cf6` — and EVERY artifact re-renders violet simultaneously with a tiny settle pop; it flips again to `#f59e0b` — everything follows amber. Under the card: "Change it once — every embed follows."
+- scene: the author's favorite feature gets the longest beat. Left: a brand token card — `?brand=acme` in mono on top, below it the accent value `#22c55e` with a green dot. Right: the REAL acme-branded artifacts (header, build/coverage/stars badges, star chart) framed inside a GitHub README page — dark GitHub chrome with a "README.md" file header and book octicon, as if the README is rendering on github.com. The accent value flips in place to `#8b5cf6` — and EVERY artifact re-renders violet simultaneously with a tiny settle pop; it flips again to `#f59e0b` — everything follows amber. No caption — the flip carries the message.
 - voiceover: "One managed brand. Change it once — every embed, in every repo, follows."
 - duration: 8.0s
 - transition_in: zoom-through
@@ -202,39 +202,39 @@ keyMessage: AI turns a prompt into a finished README.
 narrativeRole: the climax — the one feature that makes Plus feel like magic, proven with real renders.
 keyMessage: edit the brand once, everything everywhere re-styles.
 
-## Frame 11 — The lights
+## Frame 11 — The offer
 
-- scene: one quiet line lands alone in the calm zinc world, muted, smaller than every headline before it — the author's honesty.
-- voiceover: "Mostly, Plus keeps the lights on."
+- scene: the launch discount accumulates as a two-line block via line-by-line-slide — "20% off" then "your first 6 months" slide in one after another and hold.
+- voiceover: "20% off your first 6 months."
 - duration: 2.8s
 - transition_in: crossfade
 - status: locked
-- src: ShieldcnPlusDemo → LightsScene
-- type: branding
-- persuasion: Disarming honesty — support framing, not SaaS framing
-- beat: warmth + belonging
-- blueprint: titlecard-reveal — the calm value beat; low motion is the point
+- src: ShieldcnPlusDemo → OfferScene
+- type: cta
+- persuasion: Launch scarcity — the discount gets its own beat
+- beat: urgency-to-act
+- blueprint: grid-card-assemble — an accumulating value list (line-by-line-slide)
 - asset_candidates: (typography-only)
 
-narrativeRole: the tweet's soul — this is support for an indie project, not a growth funnel.
-keyMessage: Plus exists to keep shieldcn independent.
+narrativeRole: the nudge — the launch offer lands alone before the brand stamp.
+keyMessage: 20% off your first 6 months.
 
 ## Frame 12 — CTA
 
-- scene: the shield mark draws on once more, the "shieldcn Plus" lockup settles (Plus in green), "$10 a month" small and muted beneath, then `shieldcn.dev/pricing` in mono, and last the launch code line — "launch20 — 20% off your first 6 months."
-- voiceover: "shieldcn Plus — ten dollars a month. shieldcn.dev/pricing — launch20 for 20% off."
+- scene: the shield mark draws itself on once more and the wordmark "shieldcn" settles beside it — a clean closing lockup, nothing else on stage.
+- voiceover: "shieldcn."
 - duration: 5.4s
 - transition_in: pill-iris (the badge-shaped reveal — the brand's own aperture)
 - status: locked
 - src: ShieldcnPlusDemo → CtaScene
 - type: cta
-- persuasion: Friction reduction (price named plainly) + launch scarcity (the code)
-- beat: motivation + urgency-to-act
-- blueprint: logo-assemble-lockup — the mark draws on and resolves on the URL
-- asset_candidates: shield mark — real path from the repo; typography for URL and code
+- persuasion: Brand stamp — the mark alone closes the loop
+- beat: confidence
+- blueprint: logo-assemble-lockup — the mark draws on, the name completes the lockup
+- asset_candidates: shield mark — real path from the repo
 
-narrativeRole: converts goodwill into the one next action, with the launch code as the nudge.
-keyMessage: shieldcn.dev/pricing — launch20.
+narrativeRole: the closing stamp — name and mark, nothing competing.
+keyMessage: shieldcn.
 
 ---
 

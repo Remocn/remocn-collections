@@ -769,9 +769,9 @@
       ],
       "registryDependencies": [
         "https://remocn.dev/r/blur-in.json",
+        "https://remocn.dev/r/line-by-line-slide.json",
         "https://remocn.dev/r/remocn-ui.json",
         "https://remocn.dev/r/rolling-number.json",
-        "https://remocn.dev/r/scale-down-fade.json",
         "https://remocn.dev/r/shader-warp.json",
         "https://remocn.dev/r/short-slide-right.json"
       ],
