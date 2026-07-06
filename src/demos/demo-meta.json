@@ -803,6 +803,35 @@
     "assets": [],
     "usesShaders": true
   },
+  "sponsor-gramotion": {
+    "graph": [
+      "src/components/remocn/focus-pull.tsx",
+      "src/components/remocn/line-by-line-slide.tsx",
+      "src/components/remocn/push-through.tsx",
+      "src/components/remocn/soft-blur-in.tsx",
+      "src/demos/sponsor-gramotion/gramotion-warp.tsx",
+      "src/demos/sponsor-gramotion/index.tsx"
+    ],
+    "ownFiles": [
+      "src/demos/sponsor-gramotion/gramotion-warp.tsx",
+      "src/demos/sponsor-gramotion/index.tsx"
+    ],
+    "remocnComponents": [
+      "focus-pull",
+      "line-by-line-slide",
+      "push-through",
+      "soft-blur-in"
+    ],
+    "npmPackages": [
+      "@paper-design/shaders-react",
+      "@remotion/google-fonts",
+      "@remotion/transitions",
+      "react",
+      "remotion"
+    ],
+    "assets": [],
+    "usesShaders": true
+  },
   "sponsor-ln": {
     "graph": [
       "src/components/remocn/backdrop.tsx",
@@ -887,6 +916,37 @@
     "assets": [
       "reactbits-logo.svg"
     ],
+    "usesShaders": true
+  },
+  "sponsor-shadcn-ui-kit": {
+    "graph": [
+      "src/components/remocn/focus-pull.tsx",
+      "src/components/remocn/kinetic-center-build.tsx",
+      "src/components/remocn/line-by-line-slide.tsx",
+      "src/components/remocn/push-through.tsx",
+      "src/components/remocn/soft-blur-in.tsx",
+      "src/demos/sponsor-shadcn-ui-kit/index.tsx",
+      "src/demos/sponsor-shadcn-ui-kit/shadcn-ui-kit-warp.tsx"
+    ],
+    "ownFiles": [
+      "src/demos/sponsor-shadcn-ui-kit/index.tsx",
+      "src/demos/sponsor-shadcn-ui-kit/shadcn-ui-kit-warp.tsx"
+    ],
+    "remocnComponents": [
+      "focus-pull",
+      "kinetic-center-build",
+      "line-by-line-slide",
+      "push-through",
+      "soft-blur-in"
+    ],
+    "npmPackages": [
+      "@paper-design/shaders-react",
+      "@remotion/google-fonts",
+      "@remotion/transitions",
+      "react",
+      "remotion"
+    ],
+    "assets": [],
     "usesShaders": true
   },
   "sponsor-shieldcn": {

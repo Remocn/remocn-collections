@@ -10,6 +10,12 @@ export interface KineticCenterBuildProps {
   color?: string;
   fontWeight?: number;
   speed?: number;
+  /**
+   * Widths are measured with the system font; when the rendered font runs
+   * wider or narrower, scale the measurements to match (e.g. 1.15 for a wide
+   * display face). Defaults to 1.
+   */
+  measureScale?: number;
   className?: string;
 }
 
@@ -40,14 +46,16 @@ export function KineticCenterBuild({
   color = "#171717",
   fontWeight = 600,
   speed = 1,
+  measureScale = 1,
   className,
 }: KineticCenterBuildProps) {
   const frame = useCurrentFrame() * speed;
 
   const words = useMemo(() => text.split(" "), [text]);
   const widths = useMemo(
-    () => measureWidths(words, fontSize, fontWeight),
-    [words, fontSize, fontWeight],
+    () =>
+      measureWidths(words, fontSize, fontWeight).map((w) => w * measureScale),
+    [words, fontSize, fontWeight, measureScale],
   );
 
   const gap = 10;

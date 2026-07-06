@@ -9,6 +9,18 @@ export type DemoCatalogEntry = {
 
 export const demoCatalog: DemoCatalogEntry[] = [
   {
+    id: "sponsor-shadcn-ui-kit",
+    title: "remocn ✕ Shadcn UI Kit — New sponsor",
+    description:
+      "A partner-level sponsor announcement for Shadcn UI Kit, the dashboards-templates-components kit for shadcn/ui, in its own register lifted from shadcnuikit.com: dark #0a0a0a canvas, #fafafa ink, the indigo #6366f1 hero accent, Cal Sans headings over Inter body — the site's own font faces. One persistent paper.design warp shader (edge shape, swirl 0.86 with 7 iterations, recolored into the kit's indigo family #a5b4fc / #312e81 / #0a0a0a) carries the whole video behind a vignette, every scene riding a slow camera drift. Hook: 'Say hello to my new sponsor' via soft-blur-in. Reveal: the rounded-square mark redrawn in code (five diagonal round-cap strokes measured off the shipped logo) draws itself on while the ink Shadcn UI Kit wordmark resolves out of depth, 'Launch your projects faster' settling beneath. What's inside: three hard-cut stations, each acted out inside a tiny code-drawn fragment of the kit — a mini admin dashboard assembling (sidebar rows, counting stat cards, growing chart bars, a self-drawing indigo donut), a bento of blocks snapping in tile by tile, and the theme generator re-tinting the same surface live as the accent flips indigo to emerald to amber with a hopping swatch ring. Kinetic bridge: 'Copy, paste, ship' via kinetic-center-build. Value stack: four lines via line-by-line-slide. Proof: a plain 780 components count-up (no plus-suffix). CTA: 'Your next dashboard is already built'. Lockup: Remocn ✕ the mark + Shadcn UI Kit glide together from both sides, centered, nothing else on screen. No letter-spacing, no uppercase, no pills, no badges, no pulsing, no trailing periods, compact spacing. Scene changes are push-through, focus-pull, and crossfade.",
+  },
+  {
+    id: "sponsor-gramotion",
+    title: "remocn ✕ Gramotion — New sponsor",
+    description:
+      "A partner-level sponsor announcement for Gramotion, the browser-based motion graphics tool, in its own dark register: #0a0a0a canvas, #fafafa ink, the single orange accent #ff6825, Cal Sans headings over Plus Jakarta Sans body with JetBrains Mono for the timeline register. One persistent paper.design warp shader (checks shape, the warm #3c1515 / #944752 / #ffc085 family) carries the whole video behind a vignette, every scene riding a slow camera drift, and a quiet mono timecode ticks along the bottom edge — the spot wears the product's own editor chrome. Hook: 'Say hello to my new sponsor' via soft-blur-in. Reveal: the lowercase gramotion wordmark resolves out of depth, its orange dot springs in last, 'Create stunning motion graphics' settles beneath. How it works: the site's three-step flow hard-cut into three beats — Design / Animate / Export — each acted out inside a tiny code-drawn fragment of the Gramotion editor (shapes dropping onto a canvas with a cursor landing a handled selection frame, a timeline where the cursor drags the orange animation bar under a sweeping playhead, an export progress bar resolving into shipped mp4/gif files). Value stack: four feature lines via line-by-line-slide. Proof: a plain 1,200 waitlist count-up (no plus-suffix). CTA: 'Be there at the first frame'. Lockup: Remocn ✕ gramotion glides together from both sides, centered, nothing else on screen. No letter-spacing, no uppercase, no pills, no badges, no pulsing, no trailing periods, compact spacing. Scene changes are push-through, focus-pull, and crossfade.",
+  },
+  {
     id: "sponsor-canadian-ai",
     title: "remocn ✕ Canadian AI — New sponsor",
     description:
