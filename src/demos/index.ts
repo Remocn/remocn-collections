@@ -40,10 +40,30 @@ import {
   SponsorCanadianAiDemo,
   SPONSOR_CANADIAN_AI_DURATION,
 } from "./sponsor-canadian-ai";
+import {
+  SponsorGramotionDemo,
+  SPONSOR_GRAMOTION_DURATION,
+} from "./sponsor-gramotion";
+import {
+  SponsorShadcnUiKitDemo,
+  SPONSOR_SHADCN_UI_KIT_DURATION,
+} from "./sponsor-shadcn-ui-kit";
 
 export * from "./types";
 
 export const demos: Demo[] = [
+  {
+    ...getCatalogEntry("sponsor-shadcn-ui-kit"),
+    component: SponsorShadcnUiKitDemo,
+    durationInFrames: SPONSOR_SHADCN_UI_KIT_DURATION,
+    defaultProps: {},
+  },
+  {
+    ...getCatalogEntry("sponsor-gramotion"),
+    component: SponsorGramotionDemo,
+    durationInFrames: SPONSOR_GRAMOTION_DURATION,
+    defaultProps: {},
+  },
   {
     ...getCatalogEntry("sponsor-canadian-ai"),
     component: SponsorCanadianAiDemo,
