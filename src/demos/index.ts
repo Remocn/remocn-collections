@@ -48,10 +48,30 @@ import {
   SponsorShadcnUiKitDemo,
   SPONSOR_SHADCN_UI_KIT_DURATION,
 } from "./sponsor-shadcn-ui-kit";
+import {
+  IntroducingVideorcDemo,
+  INTRODUCING_VIDEORC_DURATION,
+} from "./introducing-videorc";
+import {
+  IntroducingTenkitDemo,
+  INTRODUCING_TENKIT_DURATION,
+} from "./introducing-tenkit";
 
 export * from "./types";
 
 export const demos: Demo[] = [
+  {
+    ...getCatalogEntry("introducing-tenkit"),
+    component: IntroducingTenkitDemo,
+    durationInFrames: INTRODUCING_TENKIT_DURATION,
+    defaultProps: {},
+  },
+  {
+    ...getCatalogEntry("introducing-videorc"),
+    component: IntroducingVideorcDemo,
+    durationInFrames: INTRODUCING_VIDEORC_DURATION,
+    defaultProps: {},
+  },
   {
     ...getCatalogEntry("sponsor-shadcn-ui-kit"),
     component: SponsorShadcnUiKitDemo,
