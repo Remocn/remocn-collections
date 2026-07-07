@@ -1,6 +1,6 @@
 {
   "version": "1.0.0",
-  "lastScanned": 1783332300567,
+  "lastScanned": 1783431437649,
   "projectRoot": "/Users/dev_wandry/projects/opensource/remocn-demo",
   "techStack": {
     "languages": [
@@ -42,7 +42,7 @@
     "runtime": null
   },
   "build": {
-    "buildCommand": "npx tsc --noEmit && npx eslint src/demos/sponsor-shadcn-ui-kit/ src/demos/catalog.ts && echo CHECKS_OK",
+    "buildCommand": "npx tsc --noEmit 2>&1 | head -8; npx eslint src/demos/introducing-tenkit/index.tsx 2>&1 | tail -5; echo checks-done",
     "testCommand": null,
     "lintCommand": "npm run lint",
     "devCommand": "npm run dev",
@@ -76,8 +76,8 @@
     "out": {
       "path": "out",
       "purpose": "Build output",
-      "fileCount": 10,
-      "lastAccessed": 1783332299998,
+      "fileCount": 11,
+      "lastAccessed": 1783431437574,
       "keyFiles": [
         "introducing-remocn.mp4",
         "introducing-shadcn.mp4",
@@ -90,7 +90,7 @@
       "path": "public",
       "purpose": "Public files",
       "fileCount": 15,
-      "lastAccessed": 1783332300032,
+      "lastAccessed": 1783431437576,
       "keyFiles": [
         "bg.png",
         "emoji.gif",
@@ -103,7 +103,7 @@
       "path": "scratch-out",
       "purpose": null,
       "fileCount": 512,
-      "lastAccessed": 1783332300205,
+      "lastAccessed": 1783431437612,
       "keyFiles": [
         "ir-113.png",
         "ir-150.png",
@@ -116,7 +116,7 @@
       "path": "scripts",
       "purpose": "Build/utility scripts",
       "fileCount": 6,
-      "lastAccessed": 1783332300207,
+      "lastAccessed": 1783431437612,
       "keyFiles": [
         "build-registry.mjs",
         "frames.mjs",
@@ -129,14 +129,14 @@
       "path": "src",
       "purpose": "Source code",
       "fileCount": 0,
-      "lastAccessed": 1783332300207,
+      "lastAccessed": 1783431437613,
       "keyFiles": []
     },
     "styles": {
       "path": "styles",
       "purpose": null,
       "fileCount": 1,
-      "lastAccessed": 1783332300208,
+      "lastAccessed": 1783431437613,
       "keyFiles": [
         "global.css"
       ]
@@ -145,7 +145,7 @@
       "path": "tegami-launch",
       "purpose": null,
       "fileCount": 2,
-      "lastAccessed": 1783332300210,
+      "lastAccessed": 1783431437614,
       "keyFiles": [
         "SCRIPT.md",
         "STORYBOARD.md"
@@ -155,14 +155,14 @@
       "path": "types",
       "purpose": "Type definitions",
       "fileCount": 0,
-      "lastAccessed": 1783332300214,
+      "lastAccessed": 1783431437616,
       "keyFiles": []
     },
     "src/app": {
       "path": "src/app",
       "purpose": "Application code",
       "fileCount": 2,
-      "lastAccessed": 1783332300222,
+      "lastAccessed": 1783431437622,
       "keyFiles": [
         "layout.tsx",
         "page.tsx"
@@ -172,7 +172,7 @@
       "path": "src/components",
       "purpose": "UI components",
       "fileCount": 11,
-      "lastAccessed": 1783332300226,
+      "lastAccessed": 1783431437623,
       "keyFiles": [
         "app-sidebar.tsx",
         "code-block-command.tsx",
@@ -183,14 +183,14 @@
       "path": "src/helpers",
       "purpose": "Helper functions",
       "fileCount": 0,
-      "lastAccessed": 1783332300230,
+      "lastAccessed": 1783431437624,
       "keyFiles": []
     },
     "src/lib": {
       "path": "src/lib",
       "purpose": "Library code",
       "fileCount": 5,
-      "lastAccessed": 1783332300232,
+      "lastAccessed": 1783431437624,
       "keyFiles": [
         "demo-assets.ts",
         "demo-page-data.ts",
@@ -201,13 +201,31 @@
       "path": "src/types",
       "purpose": "Type definitions",
       "fileCount": 1,
-      "lastAccessed": 1783332300233,
+      "lastAccessed": 1783431437625,
       "keyFiles": [
         "culori.d.ts"
       ]
     }
   },
   "hotPaths": [
+    {
+      "path": "src/demos/introducing-videorc/index.tsx",
+      "accessCount": 55,
+      "lastAccessed": 1783436601534,
+      "type": "file"
+    },
+    {
+      "path": "src/demos/introducing-tenkit/index.tsx",
+      "accessCount": 17,
+      "lastAccessed": 1783457738699,
+      "type": "file"
+    },
+    {
+      "path": "src/demos/catalog.ts",
+      "accessCount": 16,
+      "lastAccessed": 1783457755995,
+      "type": "file"
+    },
     {
       "path": "src/demos/sponsor-shadcn-ui-kit/index.tsx",
       "accessCount": 13,
@@ -221,9 +239,9 @@
       "type": "file"
     },
     {
-      "path": "src/demos/catalog.ts",
-      "accessCount": 6,
-      "lastAccessed": 1783334974886,
+      "path": "src/demos/index.ts",
+      "accessCount": 8,
+      "lastAccessed": 1783456136263,
       "type": "file"
     },
     {
@@ -233,9 +251,27 @@
       "type": "file"
     },
     {
-      "path": "src/demos/index.ts",
+      "path": "src/demos/introducing-videorc/STORYBOARD.md",
+      "accessCount": 5,
+      "lastAccessed": 1783435633618,
+      "type": "file"
+    },
+    {
+      "path": "src/demos/introducing-videorc/SCRIPT.md",
+      "accessCount": 4,
+      "lastAccessed": 1783435634418,
+      "type": "file"
+    },
+    {
+      "path": "remotion.config.ts",
       "accessCount": 3,
-      "lastAccessed": 1783333371783,
+      "lastAccessed": 1783437143101,
+      "type": "file"
+    },
+    {
+      "path": "src/demos/introducing-tenkit/STORYBOARD.md",
+      "accessCount": 3,
+      "lastAccessed": 1783457754196,
       "type": "file"
     },
     {
@@ -314,6 +350,84 @@
       "path": "src/components/remocn/marker-highlight.tsx",
       "accessCount": 1,
       "lastAccessed": 1783334559322,
+      "type": "file"
+    },
+    {
+      "path": "src/demos/introducing-remocn/STORYBOARD.md",
+      "accessCount": 1,
+      "lastAccessed": 1783431827728,
+      "type": "file"
+    },
+    {
+      "path": "src/demos/introducing-remocn/index.tsx",
+      "accessCount": 1,
+      "lastAccessed": 1783431849150,
+      "type": "file"
+    },
+    {
+      "path": "src/demos/introducing-shadcn/STORYBOARD.md",
+      "accessCount": 1,
+      "lastAccessed": 1783431849645,
+      "type": "file"
+    },
+    {
+      "path": "src/lib/demo-assets.ts",
+      "accessCount": 1,
+      "lastAccessed": 1783431860543,
+      "type": "file"
+    },
+    {
+      "path": "src/remotion/Root.tsx",
+      "accessCount": 1,
+      "lastAccessed": 1783431883914,
+      "type": "file"
+    },
+    {
+      "path": "src/demos/sponsor-orcdev/index.tsx",
+      "accessCount": 1,
+      "lastAccessed": 1783431897565,
+      "type": "file"
+    },
+    {
+      "path": "src/components/remocn/ripple-zoom.tsx",
+      "accessCount": 1,
+      "lastAccessed": 1783431928057,
+      "type": "file"
+    },
+    {
+      "path": "src/components/remocn/wave-wipe.tsx",
+      "accessCount": 1,
+      "lastAccessed": 1783431928390,
+      "type": "file"
+    },
+    {
+      "path": "src/demos/introducing-videorc/prompt.md",
+      "accessCount": 1,
+      "lastAccessed": 1783432455281,
+      "type": "file"
+    },
+    {
+      "path": "src/demos/new-transitions/index.tsx",
+      "accessCount": 1,
+      "lastAccessed": 1783433081443,
+      "type": "file"
+    },
+    {
+      "path": "src/demos/shieldcn-plus/index.tsx",
+      "accessCount": 1,
+      "lastAccessed": 1783435115617,
+      "type": "file"
+    },
+    {
+      "path": "src/lib/demo-page-data.ts",
+      "accessCount": 1,
+      "lastAccessed": 1783437213702,
+      "type": "file"
+    },
+    {
+      "path": "src/components/remocn/shader-voronoi.tsx",
+      "accessCount": 1,
+      "lastAccessed": 1783455220562,
       "type": "file"
     }
   ],
