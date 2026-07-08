@@ -392,7 +392,6 @@
  "introducing-tenkit": {
   "graph": [
    "src/components/remocn/focus-pull.tsx",
-   "src/components/remocn/kinetic-center-build.tsx",
    "src/components/remocn/push-through.tsx",
    "src/components/remocn/shader-voronoi.tsx",
    "src/components/remocn/whip-pan.tsx",
@@ -403,7 +402,6 @@
   ],
   "remocnComponents": [
    "focus-pull",
-   "kinetic-center-build",
    "push-through",
    "shader-voronoi",
    "whip-pan"

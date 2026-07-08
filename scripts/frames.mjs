@@ -3,6 +3,7 @@
 // frame lands on a dark cut. Refresh against `npx remotion compositions`
 // when durations change.
 export const FRAMES = {
+  "introducing-tenkit": 182,
   "sponsor-shadcn-ui-kit": 112,
   "sponsor-gramotion": 110,
   "shieldcn-plus": 500,
