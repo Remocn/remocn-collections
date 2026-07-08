@@ -1,5 +1,14 @@
 import React from "react";
-import { AbsoluteFill, Easing, Sequence, interpolate, spring, useCurrentFrame, useVideoConfig } from "remotion";
+import {
+  AbsoluteFill,
+  Easing,
+  Sequence,
+  interpolate,
+  interpolateColors,
+  spring,
+  useCurrentFrame,
+  useVideoConfig,
+} from "remotion";
 import {
   TransitionSeries,
   linearTiming,
@@ -14,7 +23,6 @@ import { ShaderVoronoi } from "@/components/remocn/shader-voronoi";
 import { whipPan } from "@/components/remocn/whip-pan";
 import { pushThrough } from "@/components/remocn/push-through";
 import { focusPull } from "@/components/remocn/focus-pull";
-import { KineticCenterBuild } from "@/components/remocn/kinetic-center-build";
 
 // Tenkit speaks in its own fonts: Space Grotesk is the site's font-heading,
 // Inter its body face, Geist Mono its code register.
@@ -66,21 +74,21 @@ const clampOpts = {
 // the split — three tenant dots converge back into the one mark. Every beat
 // holds long enough to be READ before the next one moves.
 // ---------------------------------------------------------------------------
-const S_HOOK = 116; //   "One codebase" lands, holds, then fans into three
-const S_REVEAL = 190; // mark faces assemble → one descent into the boxed lockup
-const S_LINE = 92; //    kinetic "The setup you actually ship"
-const S_BEATS = 128; //  White label / Runtime tenant / Generic + standalone
-const S_TRIO = 232; //   statement text first, then the three-phone money shot
-const F_CONFIG = 108; // station 1 — text beat, then the typed variants config
-const F_CLI = 108; //    station 2 — text beat, then the local CLI commands
-const F_EAS = 124; //    station 3 — text beat, then EAS builds (absorbs the pull)
-const S_CREATE = 90; //  pnpm create tenkit@latest types itself, nothing else
-const S_OUTRO = 150; //  reverse split → lockup + tenkit.dev
+const S_HOOK = 92; //    "One codebase" lands, then fans into three
+const S_REVEAL = 134; //  mark faces assemble → descent into the real lockup proportions
+const S_LINE = 72; //     "The setup you actually ship"
+const S_BEATS = 108; //   White label / Runtime tenant / Generic + standalone
+const S_TRIO = 190; //    statement text first, then a concise three-phone money shot
+const F_CONFIG = 118; //  station 1 — text beat, then the app variant file
+const F_CLI = 118; //     station 2 — text beat, then the local CLI commands
+const F_EAS = 128; //     station 3 — text beat, then EAS builds
+const S_CREATE = 108; //  package-manager create command cycle
+const S_OUTRO = 128; //   reverse split → lockup + tenkit.dev
 
-const T_PUSH = 18; //    push-through
-const T_FP = 18; //      focus-pull
-const T_BLOOM = 54; //   voronoi bloom (tenant-tinted cells growing)
-const T_WHIP = 14; //    whip-pan left
+const T_PUSH = 18; //     push-through
+const T_FP = 14; //       focus-pull
+const T_BLOOM = 54; //    voronoi bloom (tenant-tinted cells growing)
+const T_WHIP = 10; //     whip-pan left
 
 const S_MONTAGE = F_CONFIG + F_CLI + F_EAS - T_WHIP * 2;
 
@@ -96,7 +104,7 @@ export const INTRODUCING_TENKIT_DURATION =
   (T_PUSH + T_FP + T_FP + T_BLOOM + T_WHIP + T_FP + T_PUSH);
 
 // ---------------------------------------------------------------------------
-// The real tenkit-logo-long.svg, embedded path by path. The shipped file is
+// The supplied Group 84.svg logo, embedded path by path. The shipped file is
 // one 374×157 viewBox; here the mark and the wordmark live in their own
 // boxes so the lockup can be recomposed with the wordmark's letter height
 // matching the mark's height — everything sits in one tight box.
@@ -105,6 +113,9 @@ const MARK_VB = "-1 -1 115 160"; // mark bbox ≈ x[-0.5,112.5] y[-0.2,157.5]
 const MARK_AR = 115 / 160; // width / height
 const WORD_VB = "129.6 41.9 243.8 79.1"; // letters bbox in the shipped viewBox
 const WORD_AR = 243.8 / 79.1;
+const WORD_TO_MARK_H = 79.1 / 160;
+const WORD_TOP_TO_MARK_H = 41.9 / 160;
+const WORD_GAP_TO_MARK_H = 17.1 / 160;
 
 const MARK_BOTTOM =
   "M34.54 90.6967C34.54 89.2775 35.2785 87.9607 36.4894 87.2205L71.4017 65.702C74.1164 64.0426 77.6005 65.9964 77.6005 69.1781V129.342C77.6005 130.706 76.9181 131.979 75.7825 132.735L40.8702 156.218C38.1624 158.019 34.54 156.078 34.54 152.826L34.54 90.6967Z";
@@ -133,7 +144,13 @@ const SvgLayer: React.FC<{
   style?: React.CSSProperties;
 }> = ({ d, viewBox, width, height, color, style }) => (
   <div style={{ position: "absolute", inset: 0, ...style }}>
-    <svg width={width} height={height} viewBox={viewBox} fill="none" style={{ display: "block" }}>
+    <svg
+      width={width}
+      height={height}
+      viewBox={viewBox}
+      fill="none"
+      style={{ display: "block" }}
+    >
       <path d={d} fill={color} />
     </svg>
   </div>
@@ -143,14 +160,18 @@ const SvgLayer: React.FC<{
 // height, the tagline underneath spans the full lockup width — one tight box.
 const lockupGeometry = (h: number, gap: number) => {
   const markW = h * MARK_AR;
-  const wordW = h * WORD_AR;
+  const wordH = h * WORD_TO_MARK_H;
+  const wordW = wordH * WORD_AR;
+  const realGap = gap || h * WORD_GAP_TO_MARK_H;
   return {
     h,
-    gap,
+    gap: realGap,
     markW,
+    wordH,
     wordW,
-    w: markW + gap + wordW,
-    markCx: markW / 2 - (markW + gap + wordW) / 2,
+    wordTop: h * WORD_TOP_TO_MARK_H,
+    w: markW + realGap + wordW,
+    markCx: markW / 2 - (markW + realGap + wordW) / 2,
   };
 };
 
@@ -163,11 +184,9 @@ const lockupGeometry = (h: number, gap: number) => {
 // ---------------------------------------------------------------------------
 type EmptyProps = Record<string, never>;
 
-const VoronoiBloom: React.FC<TransitionPresentationComponentProps<EmptyProps>> = ({
-  children,
-  presentationProgress,
-  presentationDirection,
-}) => {
+const VoronoiBloom: React.FC<
+  TransitionPresentationComponentProps<EmptyProps>
+> = ({ children, presentationProgress, presentationDirection }) => {
   const p = presentationProgress;
   if (presentationDirection === "exiting") {
     return (
@@ -255,7 +274,14 @@ const WordsRise: React.FC<{
   fontFamily?: string;
   delay?: number;
   stagger?: number;
-}> = ({ text, fontSize, color = INK, fontFamily = HEAD, delay = 0, stagger = 3 }) => {
+}> = ({
+  text,
+  fontSize,
+  color = INK,
+  fontFamily = HEAD,
+  delay = 0,
+  stagger = 3,
+}) => {
   const frame = useCurrentFrame();
   const ease = Easing.bezier(0.2, 0.8, 0.2, 1);
   const words = text.split(" ");
@@ -300,8 +326,8 @@ const WordsRise: React.FC<{
 // holds the center, teal descends. The sentence literally becomes many, and
 // the push-through dives through the vacated center.
 // ===========================================================================
-const FAN_FROM = 62;
-const FAN_TO = 96;
+const FAN_FROM = 42;
+const FAN_TO = 70;
 const FAN_SPREAD = 96;
 
 const HookScene: React.FC = () => {
@@ -367,21 +393,27 @@ const HookScene: React.FC = () => {
 // box: the wordmark stands as tall as the mark, the tagline spans exactly
 // the lockup width.
 // ===========================================================================
-const RV = lockupGeometry(150, 36);
-// The tagline is sized so the sentence spans the lockup width (tuned on
-// full-scale stills).
-const TAGLINE = "Ship one Expo app as many branded apps";
+const RV = lockupGeometry(198, 0);
+// The tagline stays centered in the frame, and avoids using platform marks
+// as part of Tenkit's primary identity.
+const TAGLINE = "Ship one app as many branded apps";
 const TAGLINE_SIZE = 29;
-const REVEAL_SETTLE_FROM = 84;
-const REVEAL_SETTLE_TO = 148;
+const REVEAL_SETTLE_FROM = 36;
+const REVEAL_SETTLE_TO = 86;
 
 const RevealScene: React.FC = () => {
   const frame = useCurrentFrame();
 
   // Face assembly — the two folds glide together along their own planes.
   const ease = Easing.bezier(0.2, 0.8, 0.2, 1);
-  const topP = interpolate(frame, [6, 40], [0, 1], { ...clampOpts, easing: ease });
-  const botP = interpolate(frame, [14, 48], [0, 1], { ...clampOpts, easing: ease });
+  const topP = interpolate(frame, [2, 28], [0, 1], {
+    ...clampOpts,
+    easing: ease,
+  });
+  const botP = interpolate(frame, [6, 32], [0, 1], {
+    ...clampOpts,
+    easing: ease,
+  });
 
   // The one descent: scale and the walk into the lockup slot ride the same
   // curve, so the shrink and the move are one motion.
@@ -425,7 +457,15 @@ const RevealScene: React.FC = () => {
         >
           {/* The mark: top fold arrives along its own diagonal, bottom fold
               rises to meet it. */}
-          <div style={{ position: "absolute", left: 0, top: 0, width: RV.markW, height: RV.h }}>
+          <div
+            style={{
+              position: "absolute",
+              left: 0,
+              top: 0,
+              width: RV.markW,
+              height: RV.h,
+            }}
+          >
             <SvgLayer
               d={MARK_TOP}
               viewBox={MARK_VB}
@@ -456,9 +496,9 @@ const RevealScene: React.FC = () => {
             style={{
               position: "absolute",
               left: RV.markW + RV.gap,
-              top: 0,
+              top: RV.wordTop,
               width: RV.wordW,
-              height: RV.h,
+              height: RV.wordH,
             }}
           >
             {WORD_LETTERS.map((d, i) => (
@@ -467,20 +507,27 @@ const RevealScene: React.FC = () => {
                 d={d}
                 viewBox={WORD_VB}
                 width={RV.wordW}
-                height={RV.h}
+                height={RV.wordH}
                 color={INK}
                 style={letter(i)}
               />
             ))}
           </div>
         </div>
-        {/* The tagline — sized to span the lockup width exactly. */}
-        <div style={{ width: RV.w, textAlign: "center", whiteSpace: "nowrap" }}>
+        {/* The tagline — centered on the frame, not the lockup wrapper. */}
+        <div
+          style={{
+            width: "100%",
+            display: "flex",
+            justifyContent: "center",
+            whiteSpace: "nowrap",
+          }}
+        >
           <WordsRise
             text={TAGLINE}
             fontSize={TAGLINE_SIZE}
             color={MUTED}
-            delay={134}
+            delay={68}
             stagger={3}
           />
         </div>
@@ -494,15 +541,9 @@ const RevealScene: React.FC = () => {
 // ===========================================================================
 const SetupLineScene: React.FC = () => (
   <Drift>
-    <AbsoluteFill>
-      <Sequence from={6}>
-        <KineticCenterBuild
-          text="The setup you actually ship"
-          fontSize={54}
-          fontWeight={400}
-          color={INK}
-          measureScale={1.14}
-        />
+    <AbsoluteFill style={{ alignItems: "center", justifyContent: "center" }}>
+      <Sequence from={8} layout="none">
+        <WordsRise text="The setup you actually ship" fontSize={54} />
       </Sequence>
     </AbsoluteFill>
   </Drift>
@@ -512,7 +553,11 @@ const SetupLineScene: React.FC = () => (
 // Scene 4 — The three real Setup Types hard-cut on a beat, each holding
 // long enough to be read.
 // ===========================================================================
-const SETUPS = ["White label apps", "Runtime tenant app", "Generic + standalone"];
+const SETUPS = [
+  "White label apps",
+  "Runtime tenant app",
+  "Generic + standalone",
+];
 const SETUP_STARTS = [8, 46, 84];
 
 const SetupBeatsScene: React.FC = () => {
@@ -560,12 +605,13 @@ const SetupBeatsScene: React.FC = () => {
 // ===========================================================================
 const PHONE_W = 148;
 const PHONE_H = 300;
-const PHONE_GAP = 252;
-const TRIO_TEXT_EXIT = 104;
-const PHONE_ENTER = 112;
-const SPLIT_FROM = 136;
-const SPLIT_TO = 166;
-const BRAND_STARTS = [172, 184, 196];
+const PHONE_SCALE = 1.13;
+const PHONE_GAP = 292;
+const TRIO_TEXT_EXIT = 62;
+const PHONE_ENTER = 72;
+const SPLIT_FROM = 92;
+const SPLIT_TO = 120;
+const BRAND_STARTS = [124, 134, 144];
 
 const Phone: React.FC<{
   tenant: (typeof TENANTS)[number];
@@ -580,7 +626,7 @@ const Phone: React.FC<{
     opacity: brandP,
     transform: `translateY(${(1 - brandP) * 7}px)`,
   };
-  const pulse = 1 + Math.sin(brandP * Math.PI) * 0.02;
+  const pulse = PHONE_SCALE + Math.sin(brandP * Math.PI) * 0.02;
   return (
     <div
       style={{
@@ -757,10 +803,15 @@ const TrioScene: React.FC = () => {
   const frame = useCurrentFrame();
 
   // Beat 1 — the statement alone.
-  const textExit = interpolate(frame, [TRIO_TEXT_EXIT, TRIO_TEXT_EXIT + 16], [0, 1], {
-    ...clampOpts,
-    easing: Easing.in(Easing.cubic),
-  });
+  const textExit = interpolate(
+    frame,
+    [TRIO_TEXT_EXIT, TRIO_TEXT_EXIT + 16],
+    [0, 1],
+    {
+      ...clampOpts,
+      easing: Easing.in(Easing.cubic),
+    },
+  );
 
   // Beat 2 — the screens act it out, rising into the space the words left.
   const phoneIn = interpolate(frame, [PHONE_ENTER, PHONE_ENTER + 22], [0, 1], {
@@ -839,8 +890,8 @@ const TrioScene: React.FC = () => {
 // its seat while the fragment arrives from the right, decelerating out of
 // the whip's leftward momentum.
 // ===========================================================================
-const ST_TEXT_HOLD = 52; //  the label reads alone until here
-const ST_VIS_FROM = 58; //   the fragment enters here
+const ST_TEXT_HOLD = 18; //  the label reads alone until here
+const ST_VIS_FROM = 24; //   the fragment enters here
 
 const Station: React.FC<{
   label: string;
@@ -848,7 +899,10 @@ const Station: React.FC<{
 }> = ({ label, children }) => {
   const frame = useCurrentFrame();
   const ease = Easing.out(Easing.cubic);
-  const labelIn = interpolate(frame - 4, [0, 16], [0, 1], { ...clampOpts, easing: ease });
+  const labelIn = interpolate(frame - 4, [0, 16], [0, 1], {
+    ...clampOpts,
+    easing: ease,
+  });
   const seatP = interpolate(frame, [ST_TEXT_HOLD, ST_TEXT_HOLD + 18], [0, 1], {
     ...clampOpts,
     easing: Easing.bezier(0.45, 0, 0.25, 1),
@@ -859,7 +913,9 @@ const Station: React.FC<{
       <AbsoluteFill style={{ alignItems: "center", justifyContent: "center" }}>
         {/* The fragment enters only after the label has been read. */}
         <Sequence from={ST_VIS_FROM}>
-          <AbsoluteFill style={{ alignItems: "center", justifyContent: "center" }}>
+          <AbsoluteFill
+            style={{ alignItems: "center", justifyContent: "center" }}
+          >
             <StationVisual>{children}</StationVisual>
           </AbsoluteFill>
         </Sequence>
@@ -886,7 +942,9 @@ const Station: React.FC<{
 
 // The fragment slides in from the right, decelerating — same direction the
 // whip travels, same direction the label arrived.
-const StationVisual: React.FC<{ children: React.ReactNode }> = ({ children }) => {
+const StationVisual: React.FC<{ children: React.ReactNode }> = ({
+  children,
+}) => {
   const frame = useCurrentFrame();
   const p = interpolate(frame, [0, 18], [0, 1], {
     ...clampOpts,
@@ -905,30 +963,33 @@ const StationVisual: React.FC<{ children: React.ReactNode }> = ({ children }) =>
   );
 };
 
-// Station 1 — Typed variants. The config file, each tenant's hex wearing its
-// own color — the identity lives in one reviewable file.
+// Station 1 — App variants. The generated file, each tenant's accent wearing
+// its own color — native identity lives in one reviewable file.
 type Token = { t: string; c: string };
 const CONFIG_LINES: Token[][] = [
-  [{ t: "export const variants = {", c: INK }],
+  [{ t: "export const appVariants = [", c: INK }],
   [
-    { t: "  atlas:", c: INK },
-    { t: " { theme: ", c: MUTED },
-    { t: '"#208AEF"', c: TENANTS[0].color },
-    { t: " },", c: MUTED },
+    { t: "  { slug: ", c: MUTED },
+    { t: "'atlas'", c: INK },
+    { t: ", theme: { accent: ", c: MUTED },
+    { t: "'#208AEF'", c: TENANTS[0].color },
+    { t: " } },", c: MUTED },
   ],
   [
-    { t: "  ember:", c: INK },
-    { t: " { theme: ", c: MUTED },
-    { t: '"#EF8520"', c: TENANTS[1].color },
-    { t: " },", c: MUTED },
+    { t: "  { slug: ", c: MUTED },
+    { t: "'ember'", c: INK },
+    { t: ", theme: { accent: ", c: MUTED },
+    { t: "'#EF8520'", c: TENANTS[1].color },
+    { t: " } },", c: MUTED },
   ],
   [
-    { t: "  mint:", c: INK },
-    { t: "  { theme: ", c: MUTED },
-    { t: '"#2DD4A8"', c: TENANTS[2].color },
-    { t: " },", c: MUTED },
+    { t: "  { slug: ", c: MUTED },
+    { t: "'mint'", c: INK },
+    { t: ", theme: { accent: ", c: MUTED },
+    { t: "'#2DD4A8'", c: TENANTS[2].color },
+    { t: " } },", c: MUTED },
   ],
-  [{ t: "}", c: INK }],
+  [{ t: "] satisfies readonly AppVariant[];", c: INK }],
 ];
 
 const ConfigScene: React.FC = () => {
@@ -938,15 +999,15 @@ const ConfigScene: React.FC = () => {
       <span
         style={{
           fontFamily: MONO,
-          fontSize: 14,
+          fontSize: 15,
           color: FAINT,
           marginBottom: 10,
         }}
       >
-        variants.config.ts
+        src/constants/app-variants.ts
       </span>
       {CONFIG_LINES.map((tokens, i) => {
-        const p = interpolate(frame - (4 + i * 5), [0, 14], [0, 1], {
+        const p = interpolate(frame - (6 + i * 7), [0, 18], [0, 1], {
           ...clampOpts,
           easing: Easing.out(Easing.cubic),
         });
@@ -955,7 +1016,7 @@ const ConfigScene: React.FC = () => {
             key={i}
             style={{
               fontFamily: MONO,
-              fontSize: 23,
+              fontSize: 21,
               lineHeight: 1.55,
               whiteSpace: "pre",
               opacity: p,
@@ -976,20 +1037,35 @@ const ConfigScene: React.FC = () => {
 };
 
 // Station 2 — The local CLI. The repo's real commands, one per beat.
-const CLI_ROWS = ["pnpm tenkit build", "pnpm tenkit doctor", "pnpm tenkit reset"];
+const CLI_ROWS = [
+  { cmd: "pnpm tenkit build", detail: "prepare the selected app variant" },
+  { cmd: "pnpm tenkit doctor", detail: "check identity, assets, and env" },
+  { cmd: "pnpm tenkit reset", detail: "return native projects to default" },
+];
 
 const CliScene: React.FC = () => {
   const frame = useCurrentFrame();
   return (
-    <div style={{ display: "flex", flexDirection: "column", gap: 20 }}>
+    <div
+      style={{
+        width: 590,
+        padding: "24px 28px",
+        border: `1px solid ${HAIRLINE}`,
+        borderRadius: 18,
+        background: "rgba(15,15,19,0.72)",
+        display: "flex",
+        flexDirection: "column",
+        gap: 22,
+      }}
+    >
       {CLI_ROWS.map((row, i) => {
-        const p = interpolate(frame - (2 + i * 8), [0, 14], [0, 1], {
+        const p = interpolate(frame - (4 + i * 14), [0, 18], [0, 1], {
           ...clampOpts,
           easing: Easing.out(Easing.cubic),
         });
         return (
           <div
-            key={row}
+            key={row.cmd}
             style={{
               display: "flex",
               alignItems: "baseline",
@@ -999,8 +1075,17 @@ const CliScene: React.FC = () => {
               filter: p < 1 ? `blur(${(1 - p) * 5}px)` : undefined,
             }}
           >
-            <span style={{ fontFamily: MONO, fontSize: 26, color: FAINT }}>$</span>
-            <span style={{ fontFamily: MONO, fontSize: 26, color: INK }}>{row}</span>
+            <span style={{ fontFamily: MONO, fontSize: 26, color: FAINT }}>
+              $
+            </span>
+            <div style={{ display: "flex", flexDirection: "column", gap: 5 }}>
+              <span style={{ fontFamily: MONO, fontSize: 26, color: INK }}>
+                {row.cmd}
+              </span>
+              <span style={{ fontFamily: BODY, fontSize: 16, color: FAINT }}>
+                {row.detail}
+              </span>
+            </div>
           </div>
         );
       })}
@@ -1014,22 +1099,34 @@ const EasScene: React.FC = () => {
   const frame = useCurrentFrame();
   const { fps } = useVideoConfig();
   return (
-    <div style={{ display: "flex", flexDirection: "column", gap: 22 }}>
+    <div
+      style={{
+        width: 520,
+        padding: "24px 28px",
+        border: `1px solid ${HAIRLINE}`,
+        borderRadius: 18,
+        background: "rgba(15,15,19,0.72)",
+        display: "flex",
+        flexDirection: "column",
+        gap: 24,
+      }}
+    >
       {TENANTS.map((tenant, i) => {
-        const start = 2 + i * 9;
-        const p = interpolate(frame - start, [0, 12], [0, 1], {
+        const start = 4 + i * 14;
+        const p = interpolate(frame - start, [0, 18], [0, 1], {
           ...clampOpts,
           easing: Easing.out(Easing.cubic),
         });
-        const fill = interpolate(frame - (start + 8), [0, 22], [0, 1], {
+        const fill = interpolate(frame - (start + 10), [0, 34], [0, 1], {
           ...clampOpts,
           easing: Easing.bezier(0.3, 0, 0.3, 1),
         });
         const checkIn = spring({
-          frame: frame - (start + 30),
+          frame: frame - (start + 46),
           fps,
           config: { damping: 12, stiffness: 170, mass: 0.7 },
         });
+        const checkP = Math.max(0, Math.min(1, checkIn));
         return (
           <div
             key={tenant.name}
@@ -1055,7 +1152,7 @@ const EasScene: React.FC = () => {
                 fontWeight: 400,
                 fontSize: 23,
                 color: INK,
-                width: 128,
+                width: 108,
                 whiteSpace: "nowrap",
               }}
             >
@@ -1064,9 +1161,9 @@ const EasScene: React.FC = () => {
             <div
               style={{
                 position: "relative",
-                width: 190,
-                height: 3,
-                borderRadius: 2,
+                width: 236,
+                height: 4,
+                borderRadius: 3,
                 background: HAIRLINE,
                 overflow: "hidden",
               }}
@@ -1082,17 +1179,35 @@ const EasScene: React.FC = () => {
                 }}
               />
             </div>
-            <span
+            <div
               style={{
-                fontFamily: BODY,
-                fontSize: 19,
-                color: MUTED,
-                opacity: Math.min(1, checkIn * 1.3),
-                transform: `scale(${interpolate(checkIn, [0, 1], [0.4, 1])})`,
+                width: 24,
+                height: 24,
+                opacity: checkP,
+                transform: `scale(${interpolate(checkP, [0, 1], [0.72, 1])})`,
               }}
             >
-              ✓
-            </span>
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                <circle
+                  cx="12"
+                  cy="12"
+                  r="10"
+                  fill="rgba(250,250,250,0.04)"
+                  stroke={tenant.color}
+                  strokeOpacity={0.72}
+                  strokeWidth="1.4"
+                />
+                <path
+                  d="M7.5 12.1L10.4 15L16.8 8.8"
+                  stroke={INK}
+                  strokeWidth="2"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeDasharray="14"
+                  strokeDashoffset={(1 - checkP) * 14}
+                />
+              </svg>
+            </div>
           </div>
         );
       })}
@@ -1104,7 +1219,7 @@ const MontageScene: React.FC = () => (
   <AbsoluteFill>
     <TransitionSeries>
       <TransitionSeries.Sequence durationInFrames={F_CONFIG}>
-        <Station label="Typed variants, one config">
+        <Station label="App variants, one file">
           <ConfigScene />
         </Station>
       </TransitionSeries.Sequence>
@@ -1131,28 +1246,93 @@ const MontageScene: React.FC = () => (
 );
 
 // ===========================================================================
-// Scene 8 — Create. The one command types itself. Nothing else on screen.
+// Scene 8 — Create. Package managers alternate quickly while the Tenkit
+// create command stays locked and readable.
 // ===========================================================================
-const CREATE_CMD = "pnpm create tenkit@latest";
+const PACKAGE_MANAGERS = [
+  { name: "pnpm", color: "#F69220" },
+  { name: "bun", color: "#fafafa" },
+  { name: "npm", color: "#CB3837" },
+  { name: "pnpm", color: "#F69220" },
+] as const;
+
+const PackageManagerCycle: React.FC = () => {
+  const frame = useCurrentFrame();
+  return (
+    <span
+      style={{
+        position: "relative",
+        display: "inline-block",
+        width: 86,
+        height: 52,
+        overflow: "hidden",
+        verticalAlign: "bottom",
+      }}
+    >
+      {PACKAGE_MANAGERS.map((pm, i) => {
+        const start = i * 22;
+        const p = interpolate(frame - start, [0, 10], [0, 1], {
+          ...clampOpts,
+          easing: Easing.bezier(0.2, 0.8, 0.2, 1),
+        });
+        const out = interpolate(frame - start, [18, 30], [0, 1], {
+          ...clampOpts,
+          easing: Easing.in(Easing.cubic),
+        });
+        const opacity = p * (1 - out);
+        const y = (1 - p) * 30 - out * 28;
+        return (
+          <span
+            key={`${pm.name}-${i}`}
+            style={{
+              position: "absolute",
+              right: 0,
+              top: 0,
+              fontFamily: MONO,
+              fontSize: 34,
+              lineHeight: "52px",
+              color: pm.color,
+              opacity,
+              transform: `translateY(${y}px)`,
+              filter:
+                opacity > 0 && opacity < 1
+                  ? `blur(${(1 - opacity) * 5}px)`
+                  : undefined,
+              whiteSpace: "pre",
+            }}
+          >
+            {pm.name}
+          </span>
+        );
+      })}
+    </span>
+  );
+};
 
 const CreateScene: React.FC = () => {
   const frame = useCurrentFrame();
-  const typed = Math.max(0, Math.min(CREATE_CMD.length, Math.floor((frame - 12) * 1.1)));
-  const done = typed >= CREATE_CMD.length;
-  const caretOn = !done || Math.floor(frame / 15) % 2 === 0;
+  const tailP = interpolate(frame, [8, 24], [0, 1], {
+    ...clampOpts,
+    easing: Easing.out(Easing.cubic),
+  });
+  const caretOn = frame < 56 || Math.floor(frame / 12) % 2 === 0;
   return (
     <Drift>
       <AbsoluteFill style={{ alignItems: "center", justifyContent: "center" }}>
         <div style={{ display: "flex", alignItems: "center" }}>
+          <PackageManagerCycle />
           <span
             style={{
               fontFamily: MONO,
               fontSize: 34,
               color: INK,
               whiteSpace: "pre",
+              opacity: tailP,
+              transform: `translateX(${(1 - tailP) * 22}px)`,
+              filter: tailP < 1 ? `blur(${(1 - tailP) * 5}px)` : undefined,
             }}
           >
-            {CREATE_CMD.slice(0, typed)}
+            {" create tenkit@latest"}
           </span>
           <div
             style={{
@@ -1175,8 +1355,9 @@ const CreateScene: React.FC = () => {
 // one codebase again. The mark pops where they merge, the letters stagger
 // in, tenkit.dev rests at the bottom.
 // ===========================================================================
-const OT = lockupGeometry(134, 32);
+const OT = lockupGeometry(174, 0);
 const MERGE_AT = 34;
+const MARK_POP_AT = MERGE_AT + 8;
 
 const OutroScene: React.FC = () => {
   const frame = useCurrentFrame();
@@ -1186,17 +1367,49 @@ const OutroScene: React.FC = () => {
     ...clampOpts,
     easing: Easing.bezier(0.4, 0, 0.2, 1),
   });
-  const dotsOpacity = interpolate(frame, [MERGE_AT - 2, MERGE_AT + 4], [1, 0], clampOpts);
+  const dotsOpacity = interpolate(
+    frame,
+    [MERGE_AT + 2, MERGE_AT + 10],
+    [1, 0],
+    clampOpts,
+  );
+  const mergeBallIn = interpolate(frame, [MERGE_AT - 6, MERGE_AT + 3], [0, 1], {
+    ...clampOpts,
+    easing: Easing.out(Easing.cubic),
+  });
+  const mergeBallOut = interpolate(
+    frame,
+    [MARK_POP_AT, MARK_POP_AT + 12],
+    [1, 0],
+    {
+      ...clampOpts,
+      easing: Easing.in(Easing.cubic),
+    },
+  );
+  const mergeBallScale = interpolate(
+    frame,
+    [MERGE_AT - 4, MERGE_AT + 6, MARK_POP_AT + 12],
+    [0.45, 1.45, 0.72],
+    {
+      ...clampOpts,
+      easing: Easing.bezier(0.2, 0.8, 0.2, 1),
+    },
+  );
   const markIn = spring({
-    frame: frame - MERGE_AT,
+    frame: frame - MARK_POP_AT,
     fps,
     config: { damping: 13, stiffness: 150, mass: 0.8 },
   });
   const letter = (i: number) => {
-    const lp = interpolate(frame - (MERGE_AT + 10 + i * 4), [0, 16], [0, 1], {
-      ...clampOpts,
-      easing: Easing.out(Easing.cubic),
-    });
+    const lp = interpolate(
+      frame - (MARK_POP_AT + 12 + i * 4),
+      [0, 16],
+      [0, 1],
+      {
+        ...clampOpts,
+        easing: Easing.out(Easing.cubic),
+      },
+    );
     return {
       opacity: lp,
       transform: `translateX(${(1 - lp) * 26}px)`,
@@ -1227,6 +1440,15 @@ const OutroScene: React.FC = () => {
             const [fx, fy] = DOT_FROM[i];
             const x = OT.markCx + fx * (1 - converge);
             const y = fy * (1 - converge);
+            const dotColor = interpolateColors(
+              converge,
+              [0, 0.72, 1],
+              [tenant.color, tenant.color, INK],
+            );
+            const dotScale = interpolate(converge, [0, 0.82, 1], [1, 1, 1.38], {
+              ...clampOpts,
+              easing: Easing.out(Easing.cubic),
+            });
             return (
               <div
                 key={tenant.name}
@@ -1239,14 +1461,30 @@ const OutroScene: React.FC = () => {
                   marginLeft: -9,
                   marginTop: -9,
                   borderRadius: "50%",
-                  background: tenant.color,
+                  background: dotColor,
                   opacity: dotsOpacity,
-                  transform: `translate(${x}px, ${y}px)`,
+                  transform: `translate(${x}px, ${y}px) scale(${dotScale})`,
                 }}
               />
             );
           })}
-          {/* The mark pops where they merge. */}
+          {/* A single white merge point bridges the dots into the mark. */}
+          <div
+            style={{
+              position: "absolute",
+              left: "50%",
+              top: "50%",
+              width: 30,
+              height: 30,
+              marginLeft: -15,
+              marginTop: -15,
+              borderRadius: "50%",
+              background: INK,
+              opacity: mergeBallIn * mergeBallOut,
+              transform: `translate(${OT.markCx}px, 0px) scale(${mergeBallScale})`,
+            }}
+          />
+          {/* The mark grows out of the white merge point. */}
           <div
             style={{
               position: "absolute",
@@ -1255,20 +1493,33 @@ const OutroScene: React.FC = () => {
               width: OT.markW,
               height: OT.h,
               opacity: Math.min(1, markIn * 1.3),
-              transform: `scale(${interpolate(markIn, [0, 1], [0.55, 1])})`,
+              transform: `scale(${interpolate(markIn, [0, 1], [0.18, 1])})`,
+              transformOrigin: "50% 50%",
             }}
           >
-            <SvgLayer d={MARK_TOP} viewBox={MARK_VB} width={OT.markW} height={OT.h} color={INK} />
-            <SvgLayer d={MARK_BOTTOM} viewBox={MARK_VB} width={OT.markW} height={OT.h} color={INK} />
+            <SvgLayer
+              d={MARK_TOP}
+              viewBox={MARK_VB}
+              width={OT.markW}
+              height={OT.h}
+              color={INK}
+            />
+            <SvgLayer
+              d={MARK_BOTTOM}
+              viewBox={MARK_VB}
+              width={OT.markW}
+              height={OT.h}
+              color={INK}
+            />
           </div>
           {/* The wordmark, letter by letter, as tall as the mark. */}
           <div
             style={{
               position: "absolute",
               left: OT.markW + OT.gap,
-              top: 0,
+              top: OT.wordTop,
               width: OT.wordW,
-              height: OT.h,
+              height: OT.wordH,
             }}
           >
             {WORD_LETTERS.map((d, i) => (
@@ -1277,7 +1528,7 @@ const OutroScene: React.FC = () => {
                 d={d}
                 viewBox={WORD_VB}
                 width={OT.wordW}
-                height={OT.h}
+                height={OT.wordH}
                 color={INK}
                 style={letter(i)}
               />
