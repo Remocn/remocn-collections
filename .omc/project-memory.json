@@ -1,6 +1,6 @@
 {
   "version": "1.0.0",
-  "lastScanned": 1783431437649,
+  "lastScanned": 1783621017516,
   "projectRoot": "/Users/dev_wandry/projects/opensource/remocn-demo",
   "techStack": {
     "languages": [
@@ -42,7 +42,7 @@
     "runtime": null
   },
   "build": {
-    "buildCommand": "npx tsc --noEmit 2>&1 | head -8; npx eslint src/demos/introducing-tenkit/index.tsx 2>&1 | tail -5; echo checks-done",
+    "buildCommand": "npx tsc --noEmit 2>&1 | head -3; for f in 980 992 1010; do npx remotionb still remocn-icons --frame=$f --scale=0.5 --gl=angle \"/private/tmp/claude-501/-Users-dev-wandry-projects-opensource-remocn-demo/37ee6a73-324a-4b18-b045-64528176792f/scratchpad/stills/v10-f$f.png\" 2>&1 | grep -c \"Rendered 1/1\"; done",
     "testCommand": null,
     "lintCommand": "npm run lint",
     "devCommand": "npm run dev",
@@ -76,21 +76,21 @@
     "out": {
       "path": "out",
       "purpose": "Build output",
-      "fileCount": 11,
-      "lastAccessed": 1783431437574,
+      "fileCount": 15,
+      "lastAccessed": 1783621017459,
       "keyFiles": [
         "introducing-remocn.mp4",
         "introducing-shadcn.mp4",
-        "new-transitions.mp4",
-        "paper-shaders.mp4",
-        "shieldcn-plus.mp4"
+        "introducing-tenkit.mp4",
+        "introducing-videorc.mp4",
+        "introducing-videorc.mp4.zip"
       ]
     },
     "public": {
       "path": "public",
       "purpose": "Public files",
-      "fileCount": 15,
-      "lastAccessed": 1783431437576,
+      "fileCount": 18,
+      "lastAccessed": 1783621017483,
       "keyFiles": [
         "bg.png",
         "emoji.gif",
@@ -103,7 +103,7 @@
       "path": "scratch-out",
       "purpose": null,
       "fileCount": 512,
-      "lastAccessed": 1783431437612,
+      "lastAccessed": 1783621017486,
       "keyFiles": [
         "ir-113.png",
         "ir-150.png",
@@ -116,7 +116,7 @@
       "path": "scripts",
       "purpose": "Build/utility scripts",
       "fileCount": 6,
-      "lastAccessed": 1783431437612,
+      "lastAccessed": 1783621017487,
       "keyFiles": [
         "build-registry.mjs",
         "frames.mjs",
@@ -129,14 +129,14 @@
       "path": "src",
       "purpose": "Source code",
       "fileCount": 0,
-      "lastAccessed": 1783431437613,
+      "lastAccessed": 1783621017488,
       "keyFiles": []
     },
     "styles": {
       "path": "styles",
       "purpose": null,
       "fileCount": 1,
-      "lastAccessed": 1783431437613,
+      "lastAccessed": 1783621017489,
       "keyFiles": [
         "global.css"
       ]
@@ -145,7 +145,7 @@
       "path": "tegami-launch",
       "purpose": null,
       "fileCount": 2,
-      "lastAccessed": 1783431437614,
+      "lastAccessed": 1783621017490,
       "keyFiles": [
         "SCRIPT.md",
         "STORYBOARD.md"
@@ -155,14 +155,14 @@
       "path": "types",
       "purpose": "Type definitions",
       "fileCount": 0,
-      "lastAccessed": 1783431437616,
+      "lastAccessed": 1783621017491,
       "keyFiles": []
     },
     "src/app": {
       "path": "src/app",
       "purpose": "Application code",
       "fileCount": 2,
-      "lastAccessed": 1783431437622,
+      "lastAccessed": 1783621017493,
       "keyFiles": [
         "layout.tsx",
         "page.tsx"
@@ -172,7 +172,7 @@
       "path": "src/components",
       "purpose": "UI components",
       "fileCount": 11,
-      "lastAccessed": 1783431437623,
+      "lastAccessed": 1783621017494,
       "keyFiles": [
         "app-sidebar.tsx",
         "code-block-command.tsx",
@@ -183,14 +183,14 @@
       "path": "src/helpers",
       "purpose": "Helper functions",
       "fileCount": 0,
-      "lastAccessed": 1783431437624,
+      "lastAccessed": 1783621017494,
       "keyFiles": []
     },
     "src/lib": {
       "path": "src/lib",
       "purpose": "Library code",
       "fileCount": 5,
-      "lastAccessed": 1783431437624,
+      "lastAccessed": 1783621017498,
       "keyFiles": [
         "demo-assets.ts",
         "demo-page-data.ts",
@@ -201,7 +201,7 @@
       "path": "src/types",
       "purpose": "Type definitions",
       "fileCount": 1,
-      "lastAccessed": 1783431437625,
+      "lastAccessed": 1783621017499,
       "keyFiles": [
         "culori.d.ts"
       ]
@@ -209,225 +209,81 @@
   },
   "hotPaths": [
     {
-      "path": "src/demos/introducing-videorc/index.tsx",
-      "accessCount": 55,
-      "lastAccessed": 1783436601534,
+      "path": "src/demos/remocn-icons/index.tsx",
+      "accessCount": 34,
+      "lastAccessed": 1783626381583,
       "type": "file"
     },
     {
-      "path": "src/demos/introducing-tenkit/index.tsx",
-      "accessCount": 17,
-      "lastAccessed": 1783457738699,
-      "type": "file"
-    },
-    {
-      "path": "src/demos/catalog.ts",
-      "accessCount": 16,
-      "lastAccessed": 1783457755995,
-      "type": "file"
-    },
-    {
-      "path": "src/demos/sponsor-shadcn-ui-kit/index.tsx",
-      "accessCount": 13,
-      "lastAccessed": 1783334942621,
-      "type": "file"
-    },
-    {
-      "path": "src/demos/sponsor-shadcn-ui-kit/STORYBOARD.md",
+      "path": "src/demos/remocn-icons/STORYBOARD.md",
       "accessCount": 9,
-      "lastAccessed": 1783334964359,
-      "type": "file"
-    },
-    {
-      "path": "src/demos/index.ts",
-      "accessCount": 8,
-      "lastAccessed": 1783456136263,
-      "type": "file"
-    },
-    {
-      "path": "src/demos/sponsor-shadcn-ui-kit/prompt.md",
-      "accessCount": 5,
-      "lastAccessed": 1783334970438,
-      "type": "file"
-    },
-    {
-      "path": "src/demos/introducing-videorc/STORYBOARD.md",
-      "accessCount": 5,
-      "lastAccessed": 1783435633618,
-      "type": "file"
-    },
-    {
-      "path": "src/demos/introducing-videorc/SCRIPT.md",
-      "accessCount": 4,
-      "lastAccessed": 1783435634418,
-      "type": "file"
-    },
-    {
-      "path": "remotion.config.ts",
-      "accessCount": 3,
-      "lastAccessed": 1783437143101,
-      "type": "file"
-    },
-    {
-      "path": "src/demos/introducing-tenkit/STORYBOARD.md",
-      "accessCount": 3,
-      "lastAccessed": 1783457754196,
-      "type": "file"
-    },
-    {
-      "path": "scripts/frames.mjs",
-      "accessCount": 2,
-      "lastAccessed": 1783333404698,
-      "type": "file"
-    },
-    {
-      "path": "src/demos/sponsor-shadcn-ui-kit/SCRIPT.md",
-      "accessCount": 2,
-      "lastAccessed": 1783334966381,
-      "type": "file"
-    },
-    {
-      "path": "src/demos/sponsor-gramotion/index.tsx",
-      "accessCount": 1,
-      "lastAccessed": 1783332488483,
-      "type": "file"
-    },
-    {
-      "path": "src/demos/sponsor-gramotion/gramotion-warp.tsx",
-      "accessCount": 1,
-      "lastAccessed": 1783332489194,
-      "type": "file"
-    },
-    {
-      "path": "src/demos/sponsor-gramotion/STORYBOARD.md",
-      "accessCount": 1,
-      "lastAccessed": 1783332489851,
-      "type": "file"
-    },
-    {
-      "path": "src/demos/sponsor-gramotion/SCRIPT.md",
-      "accessCount": 1,
-      "lastAccessed": 1783332503042,
-      "type": "file"
-    },
-    {
-      "path": "src/demos/sponsor-gramotion/prompt.md",
-      "accessCount": 1,
-      "lastAccessed": 1783332504328,
-      "type": "file"
-    },
-    {
-      "path": "src/components/remocn/soft-blur-in.tsx",
-      "accessCount": 1,
-      "lastAccessed": 1783332829144,
+      "lastAccessed": 1783625905587,
       "type": "file"
     },
     {
       "path": "src/demos/demo-meta.json",
-      "accessCount": 1,
-      "lastAccessed": 1783332829235,
+      "accessCount": 8,
+      "lastAccessed": 1783623963994,
       "type": "file"
     },
     {
-      "path": "src/components/remocn/line-by-line-slide.tsx",
-      "accessCount": 1,
-      "lastAccessed": 1783332829258,
+      "path": "src/demos/catalog.ts",
+      "accessCount": 6,
+      "lastAccessed": 1783625908175,
       "type": "file"
     },
     {
-      "path": "src/demos/sponsor-shadcn-ui-kit/shadcn-ui-kit-warp.tsx",
-      "accessCount": 1,
-      "lastAccessed": 1783333112438,
+      "path": "src/demos/index.ts",
+      "accessCount": 3,
+      "lastAccessed": 1783622259467,
       "type": "file"
     },
     {
-      "path": "public/thumbnails/sponsor-shadcn-ui-kit.png",
+      "path": "src/demos/remocn-new-logo/index.tsx",
       "accessCount": 1,
-      "lastAccessed": 1783333852843,
+      "lastAccessed": 1783621554440,
       "type": "file"
     },
     {
-      "path": "src/components/remocn/marker-highlight.tsx",
+      "path": "src/demos/introducing-remocn/SCRIPT.md",
       "accessCount": 1,
-      "lastAccessed": 1783334559322,
+      "lastAccessed": 1783621565455,
       "type": "file"
     },
     {
       "path": "src/demos/introducing-remocn/STORYBOARD.md",
       "accessCount": 1,
-      "lastAccessed": 1783431827728,
+      "lastAccessed": 1783621566454,
       "type": "file"
     },
     {
-      "path": "src/demos/introducing-remocn/index.tsx",
+      "path": "src/components/remocn/soft-blur-in.tsx",
       "accessCount": 1,
-      "lastAccessed": 1783431849150,
+      "lastAccessed": 1783621695565,
       "type": "file"
     },
     {
-      "path": "src/demos/introducing-shadcn/STORYBOARD.md",
+      "path": "src/components/remocn/shader-neuro-noise.tsx",
       "accessCount": 1,
-      "lastAccessed": 1783431849645,
+      "lastAccessed": 1783621696645,
       "type": "file"
     },
     {
-      "path": "src/lib/demo-assets.ts",
+      "path": "src/demos/remocn-icons/SCRIPT.md",
       "accessCount": 1,
-      "lastAccessed": 1783431860543,
+      "lastAccessed": 1783621867843,
+      "type": "file"
+    },
+    {
+      "path": "src/components/remocn/icon-bell.tsx",
+      "accessCount": 1,
+      "lastAccessed": 1783622057717,
       "type": "file"
     },
     {
       "path": "src/remotion/Root.tsx",
       "accessCount": 1,
-      "lastAccessed": 1783431883914,
-      "type": "file"
-    },
-    {
-      "path": "src/demos/sponsor-orcdev/index.tsx",
-      "accessCount": 1,
-      "lastAccessed": 1783431897565,
-      "type": "file"
-    },
-    {
-      "path": "src/components/remocn/ripple-zoom.tsx",
-      "accessCount": 1,
-      "lastAccessed": 1783431928057,
-      "type": "file"
-    },
-    {
-      "path": "src/components/remocn/wave-wipe.tsx",
-      "accessCount": 1,
-      "lastAccessed": 1783431928390,
-      "type": "file"
-    },
-    {
-      "path": "src/demos/introducing-videorc/prompt.md",
-      "accessCount": 1,
-      "lastAccessed": 1783432455281,
-      "type": "file"
-    },
-    {
-      "path": "src/demos/new-transitions/index.tsx",
-      "accessCount": 1,
-      "lastAccessed": 1783433081443,
-      "type": "file"
-    },
-    {
-      "path": "src/demos/shieldcn-plus/index.tsx",
-      "accessCount": 1,
-      "lastAccessed": 1783435115617,
-      "type": "file"
-    },
-    {
-      "path": "src/lib/demo-page-data.ts",
-      "accessCount": 1,
-      "lastAccessed": 1783437213702,
-      "type": "file"
-    },
-    {
-      "path": "src/components/remocn/shader-voronoi.tsx",
-      "accessCount": 1,
-      "lastAccessed": 1783455220562,
+      "lastAccessed": 1783622299817,
       "type": "file"
     }
   ],

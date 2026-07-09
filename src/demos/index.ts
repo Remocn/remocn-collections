@@ -56,10 +56,27 @@ import {
   IntroducingTenkitDemo,
   INTRODUCING_TENKIT_DURATION,
 } from "./introducing-tenkit";
+import {
+  RemocnNewLogoDemo,
+  REMOCN_NEW_LOGO_DURATION,
+} from "./remocn-new-logo";
+import { RemocnIconsDemo, REMOCN_ICONS_DURATION } from "./remocn-icons";
 
 export * from "./types";
 
 export const demos: Demo[] = [
+  {
+    ...getCatalogEntry("remocn-icons"),
+    component: RemocnIconsDemo,
+    durationInFrames: REMOCN_ICONS_DURATION,
+    defaultProps: {},
+  },
+  {
+    ...getCatalogEntry("remocn-new-logo"),
+    component: RemocnNewLogoDemo,
+    durationInFrames: REMOCN_NEW_LOGO_DURATION,
+    defaultProps: {},
+  },
   {
     ...getCatalogEntry("introducing-tenkit"),
     component: IntroducingTenkitDemo,
