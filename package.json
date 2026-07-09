@@ -5,6 +5,7 @@
   "dependencies": {
     "@base-ui/react": "^1.6.0",
     "@paper-design/shaders-react": "^0.0.76",
+    "@react-three/fiber": "9.6.1",
     "@remotion/bundler": "4.0.481",
     "@remotion/cli": "4.0.481",
     "@remotion/fonts": "4.0.481",
@@ -15,6 +16,7 @@
     "@remotion/renderer": "4.0.481",
     "@remotion/shapes": "4.0.481",
     "@remotion/tailwind-v4": "4.0.481",
+    "@remotion/three": "4.0.481",
     "@remotion/transitions": "4.0.481",
     "@rexa-developer/tiks": "^0.3.0",
     "class-variance-authority": "^0.7.1",
@@ -36,6 +38,7 @@
     "shadcn": "^4.13.0",
     "shiki": "^4.3.1",
     "tailwind-merge": "^3.6.0",
+    "three": "0.185.1",
     "web-haptics": "^0.0.6",
     "zod": "4.3.6"
   },
@@ -48,6 +51,7 @@
     "@types/node": "20.12.14",
     "@types/react": "19.2.7",
     "@types/react-dom": "19.2.3",
+    "@types/three": "^0.185.1",
     "@types/web": "0.0.166",
     "@typescript-eslint/eslint-plugin": "8.46.0",
     "@typescript-eslint/parser": "8.46.0",

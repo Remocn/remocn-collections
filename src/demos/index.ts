@@ -61,10 +61,30 @@ import {
   REMOCN_NEW_LOGO_DURATION,
 } from "./remocn-new-logo";
 import { RemocnIconsDemo, REMOCN_ICONS_DURATION } from "./remocn-icons";
+import {
+  RemocnIconsOnetakeDemo,
+  REMOCN_ICONS_ONETAKE_DURATION,
+} from "./remocn-icons-onetake";
+import {
+  RemocnIcons3DDemo,
+  REMOCN_ICONS_3D_DURATION,
+} from "./remocn-icons-3d";
 
 export * from "./types";
 
 export const demos: Demo[] = [
+  {
+    ...getCatalogEntry("remocn-icons-3d"),
+    component: RemocnIcons3DDemo,
+    durationInFrames: REMOCN_ICONS_3D_DURATION,
+    defaultProps: {},
+  },
+  {
+    ...getCatalogEntry("remocn-icons-onetake"),
+    component: RemocnIconsOnetakeDemo,
+    durationInFrames: REMOCN_ICONS_ONETAKE_DURATION,
+    defaultProps: {},
+  },
   {
     ...getCatalogEntry("remocn-icons"),
     component: RemocnIconsDemo,
