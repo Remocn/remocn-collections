@@ -42,7 +42,7 @@
     "runtime": null
   },
   "build": {
-    "buildCommand": "npx tsc --noEmit 2>&1 | head -5; echo TS-OK; SCRATCH=/private/tmp/claude-501/-Users-dev-wandry-projects-opensource-remocn-demo/3667d05a-ac62-4dab-99fd-6723bca853e0/scratchpad; for f in 300 325 405; do npx remotionb still introducing-shadcn-typeset --gl=angle --frame=$f --scale=0.5 $SCRATCH/stills2/s$f.png 2>&1 | tail -1; done; echo DONE",
+    "buildCommand": "npx tsc --noEmit 2>&1 | head -5; npx eslint src/demos/introducing-shadcn-typeset/index.tsx 2>&1 | tail -3; echo CHECKS-OK; SCRATCH=/private/tmp/claude-501/-Users-dev-wandry-projects-opensource-remocn-demo/3667d05a-ac62-4dab-99fd-6723bca853e0/scratchpad; npx remotionb still introducing-shadcn-typeset --gl=angle --frame=655 --scale=0.5 $SCRATCH/stills2/w655.png 2>&1 | tail -1",
     "testCommand": null,
     "lintCommand": "npm run lint",
     "devCommand": "npm run dev",
@@ -210,20 +210,20 @@
   "hotPaths": [
     {
       "path": "src/demos/introducing-shadcn-typeset/index.tsx",
-      "accessCount": 28,
-      "lastAccessed": 1783712680359,
+      "accessCount": 31,
+      "lastAccessed": 1783713355799,
       "type": "file"
     },
     {
       "path": "src/demos/introducing-shadcn-typeset/STORYBOARD.md",
-      "accessCount": 6,
-      "lastAccessed": 1783711935273,
+      "accessCount": 7,
+      "lastAccessed": 1783713360472,
       "type": "file"
     },
     {
       "path": "src/demos/catalog.ts",
-      "accessCount": 4,
-      "lastAccessed": 1783712335133,
+      "accessCount": 5,
+      "lastAccessed": 1783713362778,
       "type": "file"
     },
     {

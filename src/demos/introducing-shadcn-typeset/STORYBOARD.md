@@ -140,9 +140,9 @@ keyMessage: one pass, every element.
 
 ## Frame 7 — One class
 
-- scene: a real markdown document rendered in raw browser defaults (Times, cramped margins, naked table) sits center-frame; `class="typeset"` types itself in mono beneath it — and on the closing quote the ENTIRE document snaps into set type: Geist, calm leading, even flow, ruled table. One cut, before → after, no morph tricks.
+- scene: a real markdown document rendered in raw browser defaults (Times, cramped margins, naked table) sits center-frame; `class="typeset"` types itself in mono beneath it — and on the closing quote the document BREATHES into set type: the letterforms dissolve Georgia → Geist fast while leading and flow open up slower, so the spacing (the product) visibly does the work. A short set-type beat, then the hard cut into the controls scene keeps the document moving.
 - voiceover: "One class. The whole document follows."
-- duration: 5.5s
+- duration: 3.7s
 - transition_in: cut (the title exits itself first — no overlap)
 - status: locked
 - src: IntroducingShadcnTypesetDemo → OneClassScene

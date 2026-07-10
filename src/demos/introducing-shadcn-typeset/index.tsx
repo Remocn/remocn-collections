@@ -85,7 +85,10 @@ const S_FIGHT = 130; //   "Every time, the same fight — sizing and spacing"
 const S_MEET = 130; //    "This is shadcn/typeset"
 const S_TAGLINE = 80; //  "Typography for HTML — from blog posts to streaming chat"
 const S_ONCE = 66; //     "Style it once"
-const S_ONECLASS = 170; //typed class="typeset" → the document snaps into set type
+// Typed class="typeset" → the document breathes into set type. The morph
+// lands around frame 79; a short beat of set-type read follows, then the
+// hard cut into the controls scene keeps the document moving.
+const S_ONECLASS = 112;
 const S_CONTROLS = 200; //size / leading / flow flip, the document reflows live
 const S_RHYTHM = 66; //   "We call it rhythm"
 const PRESET_BEAT = 70; //one preset hard cut
@@ -128,32 +131,66 @@ const DOC_TABLE: Array<[string, string]> = [
   ["flow", "1.25em"],
 ];
 
-const Doc: React.FC<{
-  mode: "raw" | "sans" | "serif";
+const lerp = (a: number, b: number, t: number) => a + (b - a) * t;
+
+// One font layer of the document. Geometry (sizes, line heights, margins,
+// paddings) comes in SHARED between layers, so two stacked layers always have
+// identical box heights — only letterforms, colors, weights, and border
+// paints differ. That's what makes the raw→typeset crossfade morph clean.
+const DocLayer: React.FC<{
+  raw: boolean;
+  serif: boolean;
   size: number;
   leading: number;
-  flow: number;
+  flowPx: number;
   width: number;
-  showList?: boolean;
-  showTable?: boolean;
-}> = ({ mode, size, leading, flow, width, showList = true, showTable = true }) => {
-  const raw = mode === "raw";
+  rawGeo: number; // 1 = cramped raw geometry, 0 = set geometry
+  showList: boolean;
+  showTable: boolean;
+  opacity: number;
+  absolute: boolean;
+}> = ({
+  raw,
+  serif,
+  size,
+  leading,
+  flowPx,
+  width,
+  rawGeo,
+  showList,
+  showTable,
+  opacity,
+  absolute,
+}) => {
   const family = raw
     ? "Georgia, 'Times New Roman', serif"
-    : mode === "serif"
+    : serif
       ? SERIF
       : SANS;
-  const flowPx = raw ? size * 0.55 : size * flow;
+  const cellPad = `${lerp(6, 3, rawGeo)}px ${lerp(2, 6, rawGeo)}px`;
+  const listIndent = lerp(6, 30, rawGeo);
+  const listGap = lerp(size * 0.35, 0, rawGeo);
+  const dotSize = Math.max(4, size * lerp(0.3, 0.36, rawGeo));
+  const hair = raw ? "#999999" : PAGE_HAIR;
+  // Same border-box on both layers: the raw grid paints all four sides, the
+  // set layer paints only the bottom rule — the rest stay transparent.
+  const cellBorder = (bottomOnly: boolean) =>
+    bottomOnly
+      ? `1px solid transparent`
+      : `1px solid ${hair}`;
 
   return (
     <div
       style={{
+        position: absolute ? "absolute" : "relative",
+        inset: absolute ? 0 : undefined,
         width,
         fontFamily: family,
         fontSize: size,
         lineHeight: leading,
         color: raw ? "#111111" : PAGE_MUTED,
         textAlign: "left",
+        opacity,
       }}
     >
       <div
@@ -169,43 +206,33 @@ const Doc: React.FC<{
       </div>
       <div>{DOC_PARA}</div>
       {showList ? (
-        raw ? (
-          // Real UA list markup so the browser's own disc markers show.
-          <ul style={{ margin: 0, marginTop: flowPx, paddingLeft: 34 }}>
-            {DOC_LIST.map((item) => (
-              <li key={item}>{item}</li>
-            ))}
-          </ul>
-        ) : (
-          // Flex containers swallow ::marker — draw the discs ourselves.
-          <div
-            style={{
-              marginTop: flowPx,
-              display: "flex",
-              flexDirection: "column",
-              gap: size * 0.35,
-              paddingLeft: 6,
-            }}
-          >
-            {DOC_LIST.map((item) => (
-              <div
-                key={item}
-                style={{ display: "flex", alignItems: "center", gap: 11 }}
-              >
-                <span
-                  style={{
-                    width: Math.max(4, size * 0.3),
-                    height: Math.max(4, size * 0.3),
-                    borderRadius: 999,
-                    background: "#a1a1aa",
-                    flexShrink: 0,
-                  }}
-                />
-                {item}
-              </div>
-            ))}
-          </div>
-        )
+        <div
+          style={{
+            marginTop: flowPx,
+            display: "flex",
+            flexDirection: "column",
+            gap: listGap,
+            paddingLeft: listIndent,
+          }}
+        >
+          {DOC_LIST.map((item) => (
+            <div
+              key={item}
+              style={{ display: "flex", alignItems: "center", gap: 11 }}
+            >
+              <span
+                style={{
+                  width: dotSize,
+                  height: dotSize,
+                  borderRadius: 999,
+                  background: raw ? "#111111" : "#a1a1aa",
+                  flexShrink: 0,
+                }}
+              />
+              {item}
+            </div>
+          ))}
+        </div>
       ) : null}
       {showTable ? (
         <table
@@ -225,9 +252,9 @@ const Doc: React.FC<{
                     textAlign: "left",
                     fontWeight: raw ? 700 : 400,
                     color: raw ? "#000000" : PAGE_INK,
-                    padding: raw ? "3px 6px" : "6px 2px",
-                    border: raw ? "1px solid #999999" : undefined,
-                    borderBottom: raw ? "1px solid #999999" : `1px solid ${PAGE_HAIR}`,
+                    padding: cellPad,
+                    border: cellBorder(!raw),
+                    borderBottom: `1px solid ${hair}`,
                   }}
                 >
                   {h}
@@ -240,20 +267,20 @@ const Doc: React.FC<{
               <tr key={control}>
                 <td
                   style={{
-                    padding: raw ? "3px 6px" : "6px 2px",
-                    border: raw ? "1px solid #999999" : undefined,
-                    borderBottom: raw ? undefined : `1px solid ${PAGE_HAIR}`,
+                    padding: cellPad,
+                    border: cellBorder(!raw),
+                    borderBottom: `1px solid ${raw ? hair : PAGE_HAIR}`,
                   }}
                 >
                   {control}
                 </td>
                 <td
                   style={{
-                    padding: raw ? "3px 6px" : "6px 2px",
+                    padding: cellPad,
                     fontFamily: raw ? family : MONO,
                     fontSize: raw ? undefined : size * 0.88,
-                    border: raw ? "1px solid #999999" : undefined,
-                    borderBottom: raw ? undefined : `1px solid ${PAGE_HAIR}`,
+                    border: cellBorder(!raw),
+                    borderBottom: `1px solid ${raw ? hair : PAGE_HAIR}`,
                   }}
                 >
                   {value}
@@ -262,6 +289,59 @@ const Doc: React.FC<{
             ))}
           </tbody>
         </table>
+      ) : null}
+    </div>
+  );
+};
+
+const Doc: React.FC<{
+  mode: "sans" | "serif";
+  size: number;
+  leading: number;
+  flow: number;
+  width: number;
+  showList?: boolean;
+  showTable?: boolean;
+  /** 1 = raw browser-default paint (Georgia, bold, solid borders), 0 = set.
+   *  Between the two, both font layers render stacked and crossfade. */
+  rawMix?: number;
+  /** 1 = cramped raw geometry (indents, cell padding), 0 = set geometry. */
+  rawGeo?: number;
+}> = ({
+  mode,
+  size,
+  leading,
+  flow,
+  width,
+  showList = true,
+  showTable = true,
+  rawMix = 0,
+  rawGeo = 0,
+}) => {
+  const flowPx = size * flow;
+  const shared = {
+    serif: mode === "serif",
+    size,
+    leading,
+    flowPx,
+    width,
+    rawGeo,
+    showList,
+    showTable,
+  };
+
+  return (
+    <div style={{ position: "relative", width }}>
+      {rawMix > 0.001 ? (
+        <DocLayer {...shared} raw opacity={rawMix} absolute={false} />
+      ) : null}
+      {rawMix < 0.999 ? (
+        <DocLayer
+          {...shared}
+          raw={false}
+          opacity={1 - rawMix}
+          absolute={rawMix > 0.001}
+        />
       ) : null}
     </div>
   );
@@ -663,26 +743,36 @@ const OneClassScene: React.FC = () => {
     Math.min(WRAP_CODE.length, Math.floor((frame - TYPE_START) * TYPE_SPEED)),
   );
   const caretOn = typed >= WRAP_CODE.length ? Math.floor(frame / 15) % 2 === 0 : true;
-  const snapped = frame >= SNAP_AT;
 
-  // A small pop on the snap sells "the whole document just restyled".
-  const pop = interpolate(frame, [SNAP_AT, SNAP_AT + 6, SNAP_AT + 18], [0, 1, 0], clampOpts);
+  // The FLIP morph: the closing quote lands and the document BREATHES into
+  // set type — the letterforms dissolve fast while leading and flow open up
+  // slower, so you watch the spacing (the product) do the work.
+  const geoP = interpolate(frame, [SNAP_AT, SNAP_AT + 26], [0, 1], {
+    ...clampOpts,
+    easing: Easing.inOut(Easing.cubic),
+  });
+  const mixP = interpolate(frame, [SNAP_AT + 2, SNAP_AT + 14], [0, 1], {
+    ...clampOpts,
+    easing: Easing.inOut(Easing.quad),
+  });
 
   return (
     <AbsoluteFill style={{ alignItems: "center", justifyContent: "center" }}>
       <div
         style={{
           opacity: pageIn,
-          transform: `translateY(${(1 - pageIn) * 18}px) scale(${0.86 * (1 + pop * 0.02)})`,
+          transform: `translateY(${(1 - pageIn) * 18}px) scale(0.86)`,
         }}
       >
         <Page>
           <Doc
-            mode={snapped ? "sans" : "raw"}
-            size={snapped ? DOC_SIZE : 16}
-            leading={snapped ? DOC_LEADING : 1.25}
-            flow={DOC_FLOW}
+            mode="sans"
+            size={lerp(16, DOC_SIZE, geoP)}
+            leading={lerp(1.25, DOC_LEADING, geoP)}
+            flow={lerp(0.55, DOC_FLOW, geoP)}
             width={DOC_W}
+            rawMix={1 - mixP}
+            rawGeo={1 - geoP}
           />
         </Page>
       </div>
