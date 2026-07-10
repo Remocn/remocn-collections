@@ -69,10 +69,20 @@ import {
   RemocnIcons3DDemo,
   REMOCN_ICONS_3D_DURATION,
 } from "./remocn-icons-3d";
+import {
+  IntroducingShadcnTypesetDemo,
+  INTRODUCING_SHADCN_TYPESET_DURATION,
+} from "./introducing-shadcn-typeset";
 
 export * from "./types";
 
 export const demos: Demo[] = [
+  {
+    ...getCatalogEntry("introducing-shadcn-typeset"),
+    component: IntroducingShadcnTypesetDemo,
+    durationInFrames: INTRODUCING_SHADCN_TYPESET_DURATION,
+    defaultProps: {},
+  },
   {
     ...getCatalogEntry("remocn-icons-3d"),
     component: RemocnIcons3DDemo,

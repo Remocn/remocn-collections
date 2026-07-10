@@ -32,6 +32,7 @@ import { HeartIconStatic } from "@/components/remocn/icon-heart";
 import { StarIconStatic } from "@/components/remocn/icon-star";
 
 import { Gallery3DScene } from "./gallery-3d";
+import { ROutro3D } from "./outro-r-3d";
 
 const { fontFamily: SANS_FAMILY } = loadSans("normal", {
   subsets: ["latin"],
@@ -79,7 +80,7 @@ const S_POS = 96; //      "100 Lucide icons, rewritten for video"
 const S_GALLERY = 168; // 24 tube-stroke icons draw on in a 3D field, camera dollies in
 const S_ACTS = 464; //    "Then it acts" + one stroke morphs through ten icons
 const S_INSTALL = 180; // the typed command with a rolodex of icon names
-const S_OUTRO = 162; //   the new-logo lockup animation, inherited
+const S_OUTRO = 198; //   the lockup, inherited — plus one 3D coin turn of the R
 
 const T_CROSS_A = 16; //  hookA → hookB (fade-through: out, then in)
 const T_PUSH_IN = 32; //  hookB → reveal
@@ -804,77 +805,27 @@ const InstallScene: React.FC = () => {
 };
 
 // ===========================================================================
-// Scene 8 — The lockup, inherited from the rebrand video: the R letterform
-// stroke-draws itself on at cap height, the ink fills beneath the tracing
-// outline, then "emocn" slides out from behind the mark as the outline
-// thins away.
+// Scene 8 — The lockup, entirely in 3D (./outro-r-3d.tsx): the same ritual,
+// one dimension up. A 3D tube traces the R on, the extruded solid fades in
+// beneath the tracing outline, and one slow camera arc carries the whole
+// scene from a three-quarter view into dead face-on — landing with zero
+// velocity exactly as "emocn" slides out from behind the mark. The tail and
+// the destination line stay DOM; the canvas never unmounts, so nothing
+// flashes.
 // ===========================================================================
-const R_VIEWBOX = "0 0 131.75 144.15";
 const R_RATIO = 131.75 / 144.15;
 const R_PATH =
   "M 0.35 7.55 L 0.35 0.35 L 86.55 0.35 C 110.55 1.35, 131.25 24.05, 131.25 47.55 C 131.25 71.05, 112.55 88.55, 93.55 94.35 L 131.75 144.15 L 101.55 144.15 C 96.55 144.15, 94.55 141.55, 93.25 138.45 L 63.95 104.05 C 60.55 98.75, 56.55 97.35, 51.55 97.35 L 43.05 97.35 C 35.05 98.05, 28.85 102.55, 28.85 112.05 L 28.85 144.15 L 0.35 144.15 L 0.35 106.05 C 0.35 88.05, 21.55 71.05, 32.55 69.65 L 86.55 66.55 C 96.55 65.55, 102.15 58.55, 102.15 47.55 C 102.15 36.55, 96.05 30.35, 84.55 29.25 L 28.55 29.05 C 16.55 28.05, 3.05 17.55, 0.35 7.55 Z";
-const R_THIN = 6;
-
-const RemocnMark: React.FC<{
-  height: number;
-  draw?: number;
-  fill?: number;
-  color?: string;
-  thin?: number;
-}> = ({ height, draw = 1, fill = 1, color = INK, thin = 1 }) => {
-  const maskId = React.useId();
-  return (
-    <svg
-      viewBox={R_VIEWBOX}
-      width={height * R_RATIO}
-      height={height}
-      style={{ display: "block", color, overflow: "visible" }}
-    >
-      <mask
-        id={maskId}
-        maskUnits="userSpaceOnUse"
-        x={-10}
-        y={-10}
-        width={152}
-        height={165}
-      >
-        <path
-          d={R_PATH}
-          fill="#ffffff"
-          stroke="#000000"
-          strokeWidth={R_THIN * thin}
-          strokeLinejoin="round"
-        />
-      </mask>
-      <rect
-        x={-10}
-        y={-10}
-        width={152}
-        height={165}
-        fill="currentColor"
-        opacity={fill}
-        mask={`url(#${maskId})`}
-      />
-      <path
-        d={R_PATH}
-        pathLength={1}
-        fill="none"
-        stroke="currentColor"
-        strokeWidth={2.2}
-        strokeLinejoin="round"
-        strokeDasharray={1}
-        strokeDashoffset={1 - draw}
-        opacity={1 - thin}
-      />
-    </svg>
-  );
-};
+const R_VIEWBOX_H = 144.15;
 
 const WORD_TAIL = "emocn";
 const WORD_SIZE = 92;
 const WORD_TRACKING = -0.03; // em — the wordmark's own tracking, inherited
 const MARK_H = 66;
-const M_SLIDE = 96;
+const M_SLIDE = 132; // the camera arc lands face-on here — then the tail slides
+const SHINE_FROM = 164; // once the lockup has settled, one sheen crosses it
+const SHINE_TO = 192;
+const SHINE_BAND = 120; // px — the width of the traveling streak
 
 // Canvas-measured width of the tail at the loaded Manrope, corrected for CSS
 // letter-spacing, which canvas ignores.
@@ -938,7 +889,28 @@ const OutroScene: React.FC = () => {
     height / 2 + MARK_H / 2 - (WORD_SIZE - Math.round(WORD_SIZE * 0.115));
   const wordLeft = width / 2 + markCx + markW / 2;
 
-  const urlOpacity = interpolate(frame, [126, 146], [0, 1], clampOpts);
+  const urlOpacity = interpolate(frame, [162, 182], [0, 1], clampOpts);
+
+  // The metallic sheen: after the wordmark assembles, one glossy white
+  // streak crosses the whole lockup — the 3D mark and the DOM tail read as
+  // one surface. Pure white alone would vanish on ink glyphs, so the band
+  // wears subtle dark shoulders: shadow–highlight–shadow, the way gloss
+  // actually reads on a bright surface.
+  const shineOn = frame >= SHINE_FROM && frame <= SHINE_TO;
+  const shineT = interpolate(frame, [SHINE_FROM, SHINE_TO], [0, 1], {
+    ...clampOpts,
+    easing: Easing.inOut(Easing.quad),
+  });
+  const markLeftPx = width / 2 + markCx - markW / 2;
+  const lockRightPx = wordLeft + tailWidth;
+  const shineX = interpolate(
+    shineT,
+    [0, 1],
+    [markLeftPx - SHINE_BAND, lockRightPx + SHINE_BAND],
+  );
+  // The same streak in the R's path units, for the SVG-masked overlay.
+  const shineGx = ((shineX - markLeftPx) / markW) * 131.75;
+  const SHINE_GB = (SHINE_BAND / 2 / markW) * 131.75;
 
   return (
     <AbsoluteFill>
@@ -971,31 +943,84 @@ const OutroScene: React.FC = () => {
         </span>
       </div>
 
-      {/* the mark */}
-      <div
-        style={{
-          position: "absolute",
-          left: "50%",
-          top: "50%",
-          transform: `translate(-50%, -50%) translate(${markCx}px, 0px)`,
-          width: markW,
-          height: MARK_H,
-        }}
-      >
-        <div
-          style={{
-            transform: `scale(${interpolate(markSettle, [0, 1], [0.94, 1])})`,
-            transformOrigin: "center",
-          }}
-        >
-          <RemocnMark
-            height={MARK_H}
-            draw={markDraw}
-            fill={markFill}
-            thin={thin}
-          />
-        </div>
-      </div>
+      {/* the mark — a 3D solid for the whole scene, canvas never unmounts */}
+      <ROutro3D
+        d={R_PATH}
+        viewBoxHeight={R_VIEWBOX_H}
+        markHeightPx={MARK_H}
+        frame={frame}
+        draw={markDraw}
+        fill={markFill}
+        outline={1 - thin}
+        settle={interpolate(markSettle, [0, 1], [0.94, 1])}
+        markCxPx={markCx}
+      />
+
+      {/* the sheen — one streak crossing the whole lockup */}
+      {shineOn && (
+        <>
+          <div
+            style={{
+              position: "absolute",
+              left: "50%",
+              top: "50%",
+              transform: `translate(-50%, -50%) translate(${markCx}px, 0px)`,
+              width: markW,
+              height: MARK_H,
+              pointerEvents: "none",
+            }}
+          >
+            <svg
+              viewBox="0 0 131.75 144.15"
+              width={markW}
+              height={MARK_H}
+              style={{ display: "block" }}
+            >
+              <defs>
+                <linearGradient
+                  id="r-shine"
+                  gradientUnits="userSpaceOnUse"
+                  x1={shineGx - SHINE_GB}
+                  y1={144.15 * 0.78}
+                  x2={shineGx + SHINE_GB}
+                  y2={144.15 * 0.22}
+                >
+                  <stop offset="0" stopColor="#000000" stopOpacity="0" />
+                  <stop offset="0.35" stopColor="#000000" stopOpacity="0.22" />
+                  <stop offset="0.5" stopColor="#ffffff" stopOpacity="1" />
+                  <stop offset="0.65" stopColor="#000000" stopOpacity="0.22" />
+                  <stop offset="1" stopColor="#000000" stopOpacity="0" />
+                </linearGradient>
+              </defs>
+              <path d={R_PATH} fill="url(#r-shine)" />
+            </svg>
+          </div>
+          <span
+            style={{
+              position: "absolute",
+              left: wordLeft,
+              top: wordTop,
+              whiteSpace: "nowrap",
+              lineHeight: 1,
+              fontFamily: SANS,
+              fontWeight: 400,
+              fontSize: WORD_SIZE,
+              letterSpacing: `${WORD_TRACKING}em`,
+              color: "transparent",
+              pointerEvents: "none",
+              backgroundImage:
+                "linear-gradient(105deg, rgba(0,0,0,0) 0%, rgba(0,0,0,0.22) 35%, #ffffff 50%, rgba(0,0,0,0.22) 65%, rgba(0,0,0,0) 100%)",
+              backgroundRepeat: "no-repeat",
+              backgroundSize: `${SHINE_BAND}px 100%`,
+              backgroundPosition: `${shineX - wordLeft - SHINE_BAND / 2}px 0`,
+              WebkitBackgroundClip: "text",
+              backgroundClip: "text",
+            }}
+          >
+            {WORD_TAIL}
+          </span>
+        </>
+      )}
 
       {/* the destination */}
       <span

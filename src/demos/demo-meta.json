@@ -386,6 +386,41 @@
     "assets": [],
     "usesShaders": true
   },
+  "introducing-shadcn-typeset": {
+    "graph": [
+      "src/components/remocn/line-by-line-slide.tsx",
+      "src/components/remocn/rolodex-flip.tsx",
+      "src/components/remocn/scale-down-fade.tsx",
+      "src/components/remocn/shader-dithering.tsx",
+      "src/components/remocn/shader-simplex-noise.tsx",
+      "src/components/remocn/shader-smoke-ring.tsx",
+      "src/components/remocn/short-slide-right.tsx",
+      "src/components/remocn/smoke-dissolve.tsx",
+      "src/demos/introducing-shadcn-typeset/index.tsx"
+    ],
+    "ownFiles": [
+      "src/demos/introducing-shadcn-typeset/index.tsx"
+    ],
+    "remocnComponents": [
+      "line-by-line-slide",
+      "rolodex-flip",
+      "scale-down-fade",
+      "shader-dithering",
+      "shader-simplex-noise",
+      "shader-smoke-ring",
+      "short-slide-right",
+      "smoke-dissolve"
+    ],
+    "npmPackages": [
+      "@paper-design/shaders-react",
+      "@remotion/google-fonts",
+      "@remotion/transitions",
+      "react",
+      "remotion"
+    ],
+    "assets": [],
+    "usesShaders": true
+  },
   "introducing-tenkit": {
     "graph": [
       "src/components/remocn/focus-pull.tsx",
@@ -667,11 +702,13 @@
       "src/components/remocn/whip-pan.tsx",
       "src/demos/remocn-icons-3d/gallery-3d.tsx",
       "src/demos/remocn-icons-3d/index.tsx",
+      "src/demos/remocn-icons-3d/outro-r-3d.tsx",
       "src/lib/remocn-icons/index.ts"
     ],
     "ownFiles": [
       "src/demos/remocn-icons-3d/gallery-3d.tsx",
-      "src/demos/remocn-icons-3d/index.tsx"
+      "src/demos/remocn-icons-3d/index.tsx",
+      "src/demos/remocn-icons-3d/outro-r-3d.tsx"
     ],
     "remocnComponents": [
       "focus-pull",
