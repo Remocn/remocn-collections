@@ -25,6 +25,14 @@ export type GrainDissolveProps = {
   noise?: number;
   zoom?: number;
   speed?: number;
+  /**
+   * Progress window over which the grain field fades IN. Widen it for a
+   * gentler, less abrupt onset (the field pops if this is too short).
+   * Default [0, 0.26].
+   */
+  fieldFade?: [number, number];
+  /** Progress window over which the outgoing scene fades OUT. Default [0.14, 0.34]. */
+  exitFade?: [number, number];
 };
 
 const GrainDissolvePresentation: React.FC<
@@ -42,19 +50,21 @@ const GrainDissolvePresentation: React.FC<
     noise = 0.3,
     zoom = 2,
     speed = 1,
+    fieldFade = [0, 0.26],
+    exitFade = [0.14, 0.34],
   } = passedProps;
   const entering = presentationDirection === "entering";
   const p = presentationProgress;
 
   if (!entering) {
     const exitStyle: React.CSSProperties = {
-      opacity: interpolate(p, [0.14, 0.34], [1, 0], clampOpts),
-      filter: `blur(${interpolate(p, [0.06, 0.34], [0, 10], clampOpts)}px)`,
+      opacity: interpolate(p, exitFade, [1, 0], clampOpts),
+      filter: `blur(${interpolate(p, [exitFade[0] * 0.4, exitFade[1]], [0, 10], clampOpts)}px)`,
     };
     return <AbsoluteFill style={exitStyle}>{children}</AbsoluteFill>;
   }
 
-  const fieldOpacity = interpolate(p, [0, 0.26], [0, 1], {
+  const fieldOpacity = interpolate(p, fieldFade, [0, 1], {
     ...clampOpts,
     easing: Easing.bezier(0.42, 0, 0.58, 1),
   });

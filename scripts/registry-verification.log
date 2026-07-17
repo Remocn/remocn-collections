@@ -1,57 +1,89 @@
+agent-skill: DIVERGED line-by-line-slide -> bundling local copy
+agent-skill: DIVERGED logo-enter -> bundling local copy
+agent-skill: dep shader-simplex-noise
+agent-skill: dep shader-smoke-ring
+agent-skills: DIVERGED alert-dialog -> bundling local copy
+agent-skills: DIVERGED blur-in -> bundling local copy
+agent-skills: DIVERGED button -> bundling local copy
+agent-skills: DIVERGED checkbox -> bundling local copy
 agent-skills: DIVERGED claude-code -> bundling local copy
+agent-skills: DIVERGED confetti -> bundling local copy
+agent-skills: DIVERGED drawer -> bundling local copy
+agent-skills: DIVERGED github-stars -> bundling local copy
 agent-skills: DIVERGED glass-code-block -> bundling local copy
 agent-skills: DIVERGED input -> bundling local copy
+agent-skills: DIVERGED kinetic-center-build -> bundling local copy
+agent-skills: DIVERGED number-wheel -> bundling local copy
+agent-skills: DIVERGED select -> bundling local copy
+agent-skills: DIVERGED select-item -> bundling local copy
+agent-skills: DIVERGED sheet -> bundling local copy
+agent-skills: DIVERGED terminal-simulator -> bundling local copy
 agent-skills: DIVERGED x-followers-overview -> bundling local copy
-agent-skills: dep alert-dialog
 agent-skills: dep backdrop
-agent-skills: dep blur-in
-agent-skills: dep button
 agent-skills: dep caret
-agent-skills: dep checkbox
-agent-skills: dep confetti
-agent-skills: dep drawer
-agent-skills: dep github-stars
-agent-skills: dep kinetic-center-build
-agent-skills: dep number-wheel
 agent-skills: dep remocn-ui
-agent-skills: dep select
-agent-skills: dep select-item
-agent-skills: dep sheet
 agent-skills: dep short-slide-down
 agent-skills: dep spinner
-agent-skills: dep terminal-simulator
+agent-skills: unpublished use-alert-dialog-transition.ts -> bundled
+agent-skills: unpublished use-blur-in-transition.ts -> bundled
+agent-skills: unpublished use-checkbox-transition.ts -> bundled
+agent-skills: unpublished use-drawer-transition.ts -> bundled
 agent-skills: unpublished use-input-transition.ts -> bundled
+agent-skills: unpublished use-select-transition.ts -> bundled
+agent-skills: unpublished use-sheet-transition.ts -> bundled
+batchwork: DIVERGED blur-in -> bundling local copy
 batchwork: DIVERGED glass-code-block -> bundling local copy
 batchwork: dep backdrop
-batchwork: dep blur-in
 batchwork: dep marker-highlight
 batchwork: dep remocn-ui
+batchwork: unpublished use-blur-in-transition.ts -> bundled
+changelog: DIVERGED rolling-number -> bundling local copy
 changelog: DIVERGED typewriter -> bundling local copy
 changelog: dep backdrop
 changelog: dep caret
 changelog: dep remocn-ui
-changelog: dep rolling-number
 changelog: unpublished blur-reveal.tsx -> bundled
-chat-changelog: DIVERGED typewriter -> bundling local copy
-chat-changelog: dep backdrop
+chat-changelog: DIVERGED chat-flow -> bundling local copy
+chat-changelog: DIVERGED imessage-chat-flow -> bundling local copy
+chat-changelog: DIVERGED line-by-line-slide -> bundling local copy
+chat-changelog: DIVERGED message-bubble -> bundling local copy
+chat-changelog: DIVERGED short-slide-right -> bundling local copy
+chat-changelog: DIVERGED telegram-chat-flow -> bundling local copy
 chat-changelog: dep caret
-chat-changelog: dep chat-flow
-chat-changelog: dep imessage-chat-flow
-chat-changelog: dep message-bubble
 chat-changelog: dep remocn-ui
-chat-changelog: dep telegram-chat-flow
+chat-changelog: dep shader-simplex-noise
+chat-changelog: dep shader-smoke-ring
 chat-changelog: dep typing-indicator
+chat-changelog: unpublished bubble-bloom.tsx -> bundled
+chat-changelog: unpublished use-message-bubble-transition.ts -> bundled
+chat-transition-variants: DIVERGED message-bubble -> bundling local copy
+chat-transition-variants: dep remocn-ui
+chat-transition-variants: dep shader-simplex-noise
+chat-transition-variants: dep typing-indicator
+chat-transition-variants: unpublished bubble-bloom.tsx -> bundled
+chat-transition-variants: unpublished message-send.tsx -> bundled
+fonttrio: DIVERGED blur-in -> bundling local copy
 fonttrio: DIVERGED glass-code-block -> bundling local copy
+fonttrio: DIVERGED rolling-number -> bundling local copy
+fonttrio: DIVERGED terminal-cursor-zoom -> bundling local copy
+fonttrio: DIVERGED terminal-simulator -> bundling local copy
 fonttrio: dep backdrop
-fonttrio: dep blur-in
 fonttrio: dep remocn-ui
-fonttrio: dep rolling-number
 fonttrio: dep shared-axis-z
-fonttrio: dep terminal-cursor-zoom
-fonttrio: dep terminal-simulator
-introducing-remocn: dep kinetic-center-build
-introducing-remocn: dep line-by-line-slide
-introducing-remocn: dep scale-down-fade
+fonttrio: unpublished use-blur-in-transition.ts -> bundled
+introducing-nextjs: DIVERGED focus-pull -> bundling local copy
+introducing-nextjs: DIVERGED grain-dissolve -> bundling local copy
+introducing-nextjs: DIVERGED push-through -> bundling local copy
+introducing-nextjs: DIVERGED soft-blur-in -> bundling local copy
+introducing-nextjs: DIVERGED typewriter -> bundling local copy
+introducing-nextjs: DIVERGED whip-pan -> bundling local copy
+introducing-nextjs: dep caret
+introducing-nextjs: dep remocn-ui
+introducing-nextjs: dep shader-grain-gradient
+introducing-remocn: DIVERGED kinetic-center-build -> bundling local copy
+introducing-remocn: DIVERGED line-by-line-slide -> bundling local copy
+introducing-remocn: DIVERGED scale-down-fade -> bundling local copy
+introducing-remocn: DIVERGED short-slide-right -> bundling local copy
 introducing-remocn: dep shader-color-panels
 introducing-remocn: dep shader-dithering
 introducing-remocn: dep shader-god-rays
@@ -62,40 +94,69 @@ introducing-remocn: dep shader-smoke-ring
 introducing-remocn: dep shader-swirl
 introducing-remocn: dep shader-voronoi
 introducing-remocn: dep shader-warp
-introducing-remocn: dep short-slide-right
-introducing-shadcn: dep kinetic-center-build
-introducing-shadcn: dep line-by-line-slide
-introducing-shadcn: dep scale-down-fade
+introducing-shadcn-typeset: DIVERGED line-by-line-slide -> bundling local copy
+introducing-shadcn-typeset: DIVERGED scale-down-fade -> bundling local copy
+introducing-shadcn-typeset: DIVERGED short-slide-right -> bundling local copy
+introducing-shadcn-typeset: dep rolodex-flip
+introducing-shadcn-typeset: dep shader-dithering
+introducing-shadcn-typeset: dep shader-simplex-noise
+introducing-shadcn-typeset: dep shader-smoke-ring
+introducing-shadcn: DIVERGED kinetic-center-build -> bundling local copy
+introducing-shadcn: DIVERGED line-by-line-slide -> bundling local copy
+introducing-shadcn: DIVERGED scale-down-fade -> bundling local copy
+introducing-shadcn: DIVERGED short-slide-right -> bundling local copy
+introducing-shadcn: DIVERGED whip-pan -> bundling local copy
 introducing-shadcn: dep shader-dithering
 introducing-shadcn: dep shader-simplex-noise
 introducing-shadcn: dep shader-smoke-ring
 introducing-shadcn: dep shader-swirl
-introducing-shadcn: dep short-slide-right
-introducing-shadcn: dep whip-pan
-new-transitions: dep blur-out-up
-new-transitions: dep dither-dissolve
-new-transitions: dep focus-pull
-new-transitions: dep grain-dissolve
-new-transitions: dep line-by-line-slide
-new-transitions: dep perlin-dissolve
-new-transitions: dep push-through
-new-transitions: dep ripple-zoom
-new-transitions: dep scale-down-fade
+introducing-tenkit: DIVERGED focus-pull -> bundling local copy
+introducing-tenkit: DIVERGED push-through -> bundling local copy
+introducing-tenkit: DIVERGED whip-pan -> bundling local copy
+introducing-tenkit: dep shader-voronoi
+introducing-vercel: DIVERGED scale-down-fade -> bundling local copy
+introducing-vercel: dep shader-god-rays
+introducing-vercel: dep shader-grain-gradient
+introducing-videorc: DIVERGED focus-pull -> bundling local copy
+introducing-videorc: DIVERGED kinetic-center-build -> bundling local copy
+introducing-videorc: DIVERGED line-by-line-slide -> bundling local copy
+introducing-videorc: DIVERGED push-through -> bundling local copy
+introducing-videorc: DIVERGED whip-pan -> bundling local copy
+introducing-videorc: dep shader-grain-gradient
+llms-txt-variants: DIVERGED scale-down-fade -> bundling local copy
+llms-txt-variants: dep shader-simplex-noise
+llms-txt-variants: unpublished ascii-dissolve.tsx -> bundled
+llms-txt: DIVERGED line-by-line-slide -> bundling local copy
+llms-txt: DIVERGED scale-down-fade -> bundling local copy
+llms-txt: DIVERGED short-slide-right -> bundling local copy
+llms-txt: dep shader-simplex-noise
+llms-txt: dep shader-smoke-ring
+llms-txt: unpublished ascii-dissolve.tsx -> bundled
+new-transitions: DIVERGED blur-out-up -> bundling local copy
+new-transitions: DIVERGED dither-dissolve -> bundling local copy
+new-transitions: DIVERGED focus-pull -> bundling local copy
+new-transitions: DIVERGED grain-dissolve -> bundling local copy
+new-transitions: DIVERGED line-by-line-slide -> bundling local copy
+new-transitions: DIVERGED perlin-dissolve -> bundling local copy
+new-transitions: DIVERGED push-through -> bundling local copy
+new-transitions: DIVERGED ripple-zoom -> bundling local copy
+new-transitions: DIVERGED scale-down-fade -> bundling local copy
+new-transitions: DIVERGED short-slide-right -> bundling local copy
+new-transitions: DIVERGED smoke-dissolve -> bundling local copy
+new-transitions: DIVERGED swirl-dissolve -> bundling local copy
+new-transitions: DIVERGED warp-dissolve -> bundling local copy
+new-transitions: DIVERGED wave-wipe -> bundling local copy
+new-transitions: DIVERGED whip-pan -> bundling local copy
 new-transitions: dep shader-dithering
 new-transitions: dep shader-grain-gradient
 new-transitions: dep shader-perlin-noise
 new-transitions: dep shader-smoke-ring
 new-transitions: dep shader-swirl
 new-transitions: dep shader-warp
-new-transitions: dep short-slide-right
-new-transitions: dep smoke-dissolve
-new-transitions: dep swirl-dissolve
-new-transitions: dep warp-dissolve
-new-transitions: dep wave-wipe
-new-transitions: dep whip-pan
-paper-shaders: dep blur-out-up
-paper-shaders: dep kinetic-center-build
-paper-shaders: dep line-by-line-slide
+paper-shaders: DIVERGED blur-out-up -> bundling local copy
+paper-shaders: DIVERGED kinetic-center-build -> bundling local copy
+paper-shaders: DIVERGED line-by-line-slide -> bundling local copy
+paper-shaders: DIVERGED short-slide-right -> bundling local copy
 paper-shaders: dep shader-dithering
 paper-shaders: dep shader-dot-orbit
 paper-shaders: dep shader-god-rays
@@ -110,87 +171,236 @@ paper-shaders: dep shader-swirl
 paper-shaders: dep shader-voronoi
 paper-shaders: dep shader-warp
 paper-shaders: dep shader-water
-paper-shaders: dep short-slide-right
+perf-guards: DIVERGED kinetic-center-build -> bundling local copy
+perf-guards: DIVERGED line-by-line-slide -> bundling local copy
+perf-guards: DIVERGED scale-down-fade -> bundling local copy
+perf-guards: DIVERGED short-slide-right -> bundling local copy
+perf-guards: DIVERGED soft-blur-in -> bundling local copy
+perf-guards: dep remocn-ui
+perf-guards: dep shader-simplex-noise
+perf-guards: dep shader-smoke-ring
+perf-guards: unpublished sync-snap.tsx -> bundled
+remocn-icons-3d: DIVERGED focus-pull -> bundling local copy
+remocn-icons-3d: DIVERGED kinetic-center-build -> bundling local copy
+remocn-icons-3d: DIVERGED push-through -> bundling local copy
+remocn-icons-3d: DIVERGED scale-down-fade -> bundling local copy
+remocn-icons-3d: DIVERGED soft-blur-in -> bundling local copy
+remocn-icons-3d: DIVERGED whip-pan -> bundling local copy
+remocn-icons-3d: dep icon-bell
+remocn-icons-3d: dep icon-heart
+remocn-icons-3d: dep icon-star
+remocn-icons-3d: dep rolodex-flip
+remocn-icons-3d: dep shader-neuro-noise
+remocn-icons-onetake: DIVERGED icon-moon -> bundling local copy
+remocn-icons-onetake: DIVERGED icon-party-popper -> bundling local copy
+remocn-icons-onetake: DIVERGED icon-rocket -> bundling local copy
+remocn-icons-onetake: DIVERGED icon-search -> bundling local copy
+remocn-icons-onetake: DIVERGED icon-send -> bundling local copy
+remocn-icons-onetake: DIVERGED icon-trophy -> bundling local copy
+remocn-icons-onetake: DIVERGED icon-zap -> bundling local copy
+remocn-icons-onetake: DIVERGED kinetic-center-build -> bundling local copy
+remocn-icons-onetake: DIVERGED scale-down-fade -> bundling local copy
+remocn-icons-onetake: DIVERGED soft-blur-in -> bundling local copy
+remocn-icons-onetake: dep icon-bell
+remocn-icons-onetake: dep icon-camera
+remocn-icons-onetake: dep icon-check-circle
+remocn-icons-onetake: dep icon-cloud
+remocn-icons-onetake: dep icon-crown
+remocn-icons-onetake: dep icon-flame
+remocn-icons-onetake: dep icon-heart
+remocn-icons-onetake: dep icon-lock
+remocn-icons-onetake: dep icon-mail
+remocn-icons-onetake: dep icon-play
+remocn-icons-onetake: dep icon-settings
+remocn-icons-onetake: dep icon-sparkles
+remocn-icons-onetake: dep icon-star
+remocn-icons-onetake: dep icon-sun
+remocn-icons-onetake: dep icon-timer
+remocn-icons-onetake: dep icon-trending-up
+remocn-icons-onetake: dep icon-wallet
+remocn-icons-onetake: dep rolodex-flip
+remocn-icons-onetake: dep shader-neuro-noise
+remocn-icons: DIVERGED focus-pull -> bundling local copy
+remocn-icons: DIVERGED icon-moon -> bundling local copy
+remocn-icons: DIVERGED icon-party-popper -> bundling local copy
+remocn-icons: DIVERGED icon-rocket -> bundling local copy
+remocn-icons: DIVERGED icon-search -> bundling local copy
+remocn-icons: DIVERGED icon-send -> bundling local copy
+remocn-icons: DIVERGED icon-trophy -> bundling local copy
+remocn-icons: DIVERGED icon-zap -> bundling local copy
+remocn-icons: DIVERGED kinetic-center-build -> bundling local copy
+remocn-icons: DIVERGED push-through -> bundling local copy
+remocn-icons: DIVERGED scale-down-fade -> bundling local copy
+remocn-icons: DIVERGED soft-blur-in -> bundling local copy
+remocn-icons: DIVERGED whip-pan -> bundling local copy
+remocn-icons: dep icon-bell
+remocn-icons: dep icon-camera
+remocn-icons: dep icon-check-circle
+remocn-icons: dep icon-cloud
+remocn-icons: dep icon-crown
+remocn-icons: dep icon-flame
+remocn-icons: dep icon-heart
+remocn-icons: dep icon-lock
+remocn-icons: dep icon-mail
+remocn-icons: dep icon-play
+remocn-icons: dep icon-settings
+remocn-icons: dep icon-sparkles
+remocn-icons: dep icon-star
+remocn-icons: dep icon-sun
+remocn-icons: dep icon-timer
+remocn-icons: dep icon-trending-up
+remocn-icons: dep icon-wallet
+remocn-icons: dep rolodex-flip
+remocn-icons: dep shader-neuro-noise
+remocn-new-logo: DIVERGED push-through -> bundling local copy
+remocn-new-logo: DIVERGED scale-down-fade -> bundling local copy
+remocn-new-logo: dep shader-warp
+remocn-ui: DIVERGED button -> bundling local copy
+remocn-ui: DIVERGED checkbox -> bundling local copy
+remocn-ui: DIVERGED command-menu-item -> bundling local copy
+remocn-ui: DIVERGED line-by-line-slide -> bundling local copy
+remocn-ui: DIVERGED scale-down-fade -> bundling local copy
+remocn-ui: DIVERGED select -> bundling local copy
+remocn-ui: DIVERGED select-item -> bundling local copy
+remocn-ui: DIVERGED short-slide-right -> bundling local copy
+remocn-ui: DIVERGED switch -> bundling local copy
+remocn-ui: DIVERGED tabs -> bundling local copy
+remocn-ui: DIVERGED toast -> bundling local copy
+remocn-ui: dep command-menu
+remocn-ui: dep remocn-ui
+remocn-ui: dep shader-simplex-noise
+remocn-ui: dep shader-smoke-ring
+remocn-ui: dep spinner
+remocn-ui: unpublished skeleton-swap.tsx -> bundled
+remocn-ui: unpublished use-button-transition.ts -> bundled
+remocn-ui: unpublished use-checkbox-transition.ts -> bundled
+remocn-ui: unpublished use-select-transition.ts -> bundled
+remocn-ui: unpublished use-switch-transition.ts -> bundled
+remocn-ui: unpublished use-tabs-transition.ts -> bundled
+remocn-ui: unpublished use-toast-transition.ts -> bundled
+render-sdk: DIVERGED blur-in -> bundling local copy
 render-sdk: DIVERGED glass-code-block -> bundling local copy
+render-sdk: DIVERGED logo-enter -> bundling local copy
+render-sdk: DIVERGED terminal-simulator -> bundling local copy
 render-sdk: dep backdrop
-render-sdk: dep blur-in
-render-sdk: dep logo-enter
 render-sdk: dep remocn-ui
 render-sdk: dep shared-axis-z
-render-sdk: dep terminal-simulator
+render-sdk: unpublished use-blur-in-transition.ts -> bundled
+shadcn-aria-opus: unpublished shader-weave.tsx -> bundled
+shadcn-react-aria: unpublished shader-strata.tsx -> bundled
+shadcn-ui: DIVERGED blur-in -> bundling local copy
 shadcn-ui: DIVERGED glass-code-block -> bundling local copy
-shadcn-ui: dep blur-in
+shadcn-ui: DIVERGED rolling-number -> bundling local copy
+shadcn-ui: DIVERGED terminal-simulator -> bundling local copy
 shadcn-ui: dep remocn-ui
-shadcn-ui: dep rolling-number
 shadcn-ui: dep shared-axis-z
-shadcn-ui: dep terminal-simulator
+shadcn-ui: unpublished use-blur-in-transition.ts -> bundled
+shieldcn-plus: DIVERGED blur-in -> bundling local copy
 shieldcn-plus: DIVERGED claude-chat -> bundling local copy
+shieldcn-plus: DIVERGED line-by-line-slide -> bundling local copy
 shieldcn-plus: DIVERGED rgb-glitch-text -> bundling local copy
+shieldcn-plus: DIVERGED rolling-number -> bundling local copy
 shieldcn-plus: DIVERGED shimmer-sweep -> bundling local copy
-shieldcn-plus: dep blur-in
+shieldcn-plus: DIVERGED short-slide-right -> bundling local copy
 shieldcn-plus: dep caret
-shieldcn-plus: dep line-by-line-slide
 shieldcn-plus: dep remocn-ui
-shieldcn-plus: dep rolling-number
 shieldcn-plus: dep shader-warp
-shieldcn-plus: dep short-slide-right
-shieldcn: dep blur-in
-shieldcn: dep github-stars
-shieldcn: dep number-wheel
+shieldcn-plus: unpublished use-blur-in-transition.ts -> bundled
+shieldcn: DIVERGED blur-in -> bundling local copy
+shieldcn: DIVERGED github-stars -> bundling local copy
+shieldcn: DIVERGED number-wheel -> bundling local copy
+shieldcn: DIVERGED short-slide-right -> bundling local copy
+shieldcn: DIVERGED terminal-simulator -> bundling local copy
 shieldcn: dep remocn-ui
 shieldcn: dep shader-grain-gradient
-shieldcn: dep short-slide-right
-shieldcn: dep terminal-simulator
+shieldcn: unpublished use-blur-in-transition.ts -> bundled
+signup-flow: DIVERGED blur-in -> bundling local copy
+signup-flow: DIVERGED button -> bundling local copy
 signup-flow: DIVERGED cursor -> bundling local copy
 signup-flow: DIVERGED field -> bundling local copy
 signup-flow: DIVERGED input -> bundling local copy
 signup-flow: DIVERGED signup-flow -> bundling local copy
 signup-flow: DIVERGED toast -> bundling local copy
-signup-flow: dep blur-in
-signup-flow: dep button
 signup-flow: dep remocn-ui
 signup-flow: dep spinner
+signup-flow: unpublished use-blur-in-transition.ts -> bundled
+signup-flow: unpublished use-button-transition.ts -> bundled
 signup-flow: unpublished use-cursor-path.ts -> bundled
 signup-flow: unpublished use-input-transition.ts -> bundled
 signup-flow: unpublished use-toast-transition.ts -> bundled
-skill-changelog: dep dynamic-grid
+skill-changelog: DIVERGED rolling-number -> bundling local copy
 skill-changelog: dep remocn-ui
-skill-changelog: dep rolling-number
-sponsor-canadian-ai: dep focus-pull
-sponsor-canadian-ai: dep push-through
+skill-changelog: unpublished dynamic-grid.tsx -> bundled
+sponsor-canadian-ai: DIVERGED focus-pull -> bundling local copy
+sponsor-canadian-ai: DIVERGED push-through -> bundling local copy
+sponsor-canadian-ai: DIVERGED soft-blur-in -> bundling local copy
 sponsor-canadian-ai: dep shader-grain-gradient
-sponsor-canadian-ai: dep soft-blur-in
+sponsor-gramotion: DIVERGED focus-pull -> bundling local copy
+sponsor-gramotion: DIVERGED line-by-line-slide -> bundling local copy
+sponsor-gramotion: DIVERGED push-through -> bundling local copy
+sponsor-gramotion: DIVERGED soft-blur-in -> bundling local copy
+sponsor-ln: DIVERGED soft-blur-in -> bundling local copy
 sponsor-ln: dep backdrop
-sponsor-ln: dep soft-blur-in
-sponsor-orcdev: dep dither-dissolve
+sponsor-orcdev: DIVERGED dither-dissolve -> bundling local copy
 sponsor-orcdev: dep shader-dithering
-sponsor-reactbits: dep focus-pull
-sponsor-reactbits: dep push-through
+sponsor-reactbits: DIVERGED focus-pull -> bundling local copy
+sponsor-reactbits: DIVERGED push-through -> bundling local copy
 sponsor-reactbits: dep shader-dithering
+sponsor-reui: DIVERGED focus-pull -> bundling local copy
+sponsor-reui: DIVERGED icon-moon -> bundling local copy
+sponsor-reui: DIVERGED icon-rocket -> bundling local copy
+sponsor-reui: DIVERGED icon-search -> bundling local copy
+sponsor-reui: DIVERGED icon-trophy -> bundling local copy
+sponsor-reui: DIVERGED icon-zap -> bundling local copy
+sponsor-reui: DIVERGED push-through -> bundling local copy
+sponsor-reui: DIVERGED soft-blur-in -> bundling local copy
+sponsor-reui: dep icon-bell
+sponsor-reui: dep icon-camera
+sponsor-reui: dep icon-check-circle
+sponsor-reui: dep icon-cloud
+sponsor-reui: dep icon-crown
+sponsor-reui: dep icon-heart
+sponsor-reui: dep icon-mail
+sponsor-reui: dep icon-play
+sponsor-reui: dep icon-settings
+sponsor-reui: dep icon-sparkles
+sponsor-reui: dep icon-star
+sponsor-reui: dep icon-sun
+sponsor-reui: dep icon-trending-up
+sponsor-reui: dep shader-simplex-noise
+sponsor-reui: dep shader-smoke-ring
+sponsor-reui: dep shared-axis-z
+sponsor-reui: unpublished icon-scatter.tsx -> bundled
+sponsor-shadcn-ui-kit: DIVERGED focus-pull -> bundling local copy
+sponsor-shadcn-ui-kit: DIVERGED kinetic-center-build -> bundling local copy
+sponsor-shadcn-ui-kit: DIVERGED line-by-line-slide -> bundling local copy
+sponsor-shadcn-ui-kit: DIVERGED push-through -> bundling local copy
+sponsor-shadcn-ui-kit: DIVERGED soft-blur-in -> bundling local copy
+sponsor-shieldcn: DIVERGED soft-blur-in -> bundling local copy
 sponsor-shieldcn: dep shader-god-rays
-sponsor-shieldcn: dep soft-blur-in
-tegami: dep blur-in
+tegami: DIVERGED blur-in -> bundling local copy
 tegami: dep remocn-ui
 tegami: dep strikethrough-replace
-typography: DIVERGED typewriter -> bundling local copy
-typography: dep backdrop
-typography: dep blur-out-up
-typography: dep bottom-up-letters
-typography: dep caret
+tegami: unpublished use-blur-in-transition.ts -> bundled
+typography: DIVERGED blur-out-up -> bundling local copy
+typography: DIVERGED bottom-up-letters -> bundling local copy
+typography: DIVERGED focus-blur-resolve -> bundling local copy
+typography: DIVERGED kinetic-center-build -> bundling local copy
+typography: DIVERGED line-by-line-slide -> bundling local copy
+typography: DIVERGED mask-reveal-up -> bundling local copy
+typography: DIVERGED per-character-rise -> bundling local copy
+typography: DIVERGED scale-down-fade -> bundling local copy
+typography: DIVERGED short-slide-right -> bundling local copy
+typography: DIVERGED soft-blur-in -> bundling local copy
+typography: DIVERGED spring-scale-in -> bundling local copy
+typography: DIVERGED top-down-letters -> bundling local copy
 typography: dep fade-through
-typography: dep focus-blur-resolve
-typography: dep kinetic-center-build
-typography: dep line-by-line-slide
-typography: dep mask-reveal-up
 typography: dep micro-scale-fade
-typography: dep per-character-rise
 typography: dep per-word-crossfade
 typography: dep remocn-ui
-typography: dep scale-down-fade
+typography: dep shader-simplex-noise
+typography: dep shader-smoke-ring
 typography: dep shared-axis-y
 typography: dep shared-axis-z
 typography: dep short-slide-down
-typography: dep short-slide-right
-typography: dep soft-blur-in
-typography: dep spring-scale-in
-typography: dep top-down-letters
+typography: unpublished caret-wipe.tsx -> bundled

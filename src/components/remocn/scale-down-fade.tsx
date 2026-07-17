@@ -25,6 +25,9 @@ export function ScaleDownFade({
   const enterDurFrames = 16;
   const exitDurFrames = 11;
   const exitStart = Math.max(enterDurFrames, durationInFrames - exitDurFrames);
+  // In a clip shorter than the enter, there is no room for an exit — skip it so
+  // interpolate() is never handed an inverted range (e.g. a clipped Loop tail).
+  const hasExit = exitStart < durationInFrames;
 
   const enterEasing = Easing.bezier(0.22, 1, 0.36, 1);
   const exitEasing = Easing.bezier(0.64, 0, 0.78, 0);
@@ -35,11 +38,13 @@ export function ScaleDownFade({
     easing: enterEasing,
   });
 
-  const exitP = interpolate(frame, [exitStart, durationInFrames], [0, 1], {
-    extrapolateLeft: "clamp",
-    extrapolateRight: "clamp",
-    easing: exitEasing,
-  });
+  const exitP = hasExit
+    ? interpolate(frame, [exitStart, durationInFrames], [0, 1], {
+        extrapolateLeft: "clamp",
+        extrapolateRight: "clamp",
+        easing: exitEasing,
+      })
+    : 0;
 
   const opacity = enterP * (1 - exitP);
 
@@ -49,11 +54,7 @@ export function ScaleDownFade({
     easing: enterEasing,
   });
 
-  const yExit = interpolate(frame, [exitStart, durationInFrames], [0, -8], {
-    extrapolateLeft: "clamp",
-    extrapolateRight: "clamp",
-    easing: exitEasing,
-  });
+  const yExit = exitP * -8;
 
   const y = yEnter + yExit;
 
@@ -63,16 +64,7 @@ export function ScaleDownFade({
     easing: enterEasing,
   });
 
-  const scaleExitDelta = interpolate(
-    frame,
-    [exitStart, durationInFrames],
-    [0, -0.06],
-    {
-      extrapolateLeft: "clamp",
-      extrapolateRight: "clamp",
-      easing: exitEasing,
-    }
-  );
+  const scaleExitDelta = exitP * -0.06;
 
   const scale = scaleEnter + scaleExitDelta;
 

@@ -5,6 +5,7 @@ import { ChangelogDemo, CHANGELOG_DURATION } from "./changelog";
 import { ChatChangelogDemo, CHAT_CHANGELOG_DURATION } from "./chat-changelog";
 import { BatchworkDemo, BATCHWORK_DURATION } from "./batchwork";
 import { TypographyDemo, TYPOGRAPHY_DURATION } from "./typography";
+import { PerfGuardsDemo, PERF_GUARDS_DURATION } from "./perf-guards";
 import { AgentSkillsDemo, AGENT_SKILLS_DURATION } from "./agent-skills";
 import { RenderSdkDemo, RENDER_SDK_DURATION } from "./render-sdk";
 import { FonttrioDemo, FONTTRIO_DURATION } from "./fonttrio";
@@ -73,10 +74,98 @@ import {
   IntroducingShadcnTypesetDemo,
   INTRODUCING_SHADCN_TYPESET_DURATION,
 } from "./introducing-shadcn-typeset";
+import {
+  IntroducingVercelDemo,
+  INTRODUCING_VERCEL_DURATION,
+} from "./introducing-vercel";
+import {
+  IntroducingNextjsDemo,
+  INTRODUCING_NEXTJS_DURATION,
+} from "./introducing-nextjs";
+import { RemocnUiDemo, REMOCN_UI_DURATION } from "./remocn-ui";
+import { LlmsTxtDemo, LLMS_TXT_DURATION } from "./llms-txt";
+import {
+  AsciiVariantsDemo,
+  ASCII_VARIANTS_DURATION,
+} from "./llms-txt-variants";
+import {
+  ChatTransitionVariantsDemo,
+  CHAT_TRANSITION_VARIANTS_DURATION,
+} from "./chat-transition-variants";
+import { SponsorReuiDemo, SPONSOR_REUI_DURATION } from "./sponsor-reui";
+import { AgentSkillDemo, AGENT_SKILL_DURATION } from "./agent-skill";
+import {
+  ShadcnReactAriaDemo,
+  SHADCN_REACT_ARIA_DURATION,
+} from "./shadcn-react-aria";
+import {
+  ShadcnAriaOpusDemo,
+  SHADCN_ARIA_OPUS_DURATION,
+} from "./shadcn-aria-opus";
 
 export * from "./types";
 
 export const demos: Demo[] = [
+  {
+    ...getCatalogEntry("shadcn-aria-opus"),
+    component: ShadcnAriaOpusDemo,
+    durationInFrames: SHADCN_ARIA_OPUS_DURATION,
+    defaultProps: {},
+  },
+  {
+    ...getCatalogEntry("shadcn-react-aria"),
+    component: ShadcnReactAriaDemo,
+    durationInFrames: SHADCN_REACT_ARIA_DURATION,
+    defaultProps: {},
+  },
+  {
+    ...getCatalogEntry("agent-skill"),
+    component: AgentSkillDemo,
+    durationInFrames: AGENT_SKILL_DURATION,
+    defaultProps: {},
+  },
+  {
+    ...getCatalogEntry("sponsor-reui"),
+    component: SponsorReuiDemo,
+    durationInFrames: SPONSOR_REUI_DURATION,
+    defaultProps: {},
+  },
+  {
+    ...getCatalogEntry("chat-transition-variants"),
+    component: ChatTransitionVariantsDemo,
+    durationInFrames: CHAT_TRANSITION_VARIANTS_DURATION,
+    defaultProps: {},
+  },
+  {
+    ...getCatalogEntry("llms-txt-variants"),
+    component: AsciiVariantsDemo,
+    durationInFrames: ASCII_VARIANTS_DURATION,
+    defaultProps: {},
+  },
+  {
+    ...getCatalogEntry("llms-txt"),
+    component: LlmsTxtDemo,
+    durationInFrames: LLMS_TXT_DURATION,
+    defaultProps: {},
+  },
+  {
+    ...getCatalogEntry("remocn-ui"),
+    component: RemocnUiDemo,
+    durationInFrames: REMOCN_UI_DURATION,
+    defaultProps: {},
+  },
+  {
+    ...getCatalogEntry("introducing-nextjs"),
+    component: IntroducingNextjsDemo,
+    durationInFrames: INTRODUCING_NEXTJS_DURATION,
+    defaultProps: {},
+  },
+  {
+    ...getCatalogEntry("introducing-vercel"),
+    component: IntroducingVercelDemo,
+    durationInFrames: INTRODUCING_VERCEL_DURATION,
+    defaultProps: {},
+  },
   {
     ...getCatalogEntry("introducing-shadcn-typeset"),
     component: IntroducingShadcnTypesetDemo,
@@ -237,6 +326,12 @@ export const demos: Demo[] = [
     ...getCatalogEntry("typography"),
     component: TypographyDemo,
     durationInFrames: TYPOGRAPHY_DURATION,
+    defaultProps: {},
+  },
+  {
+    ...getCatalogEntry("perf-guards"),
+    component: PerfGuardsDemo,
+    durationInFrames: PERF_GUARDS_DURATION,
     defaultProps: {},
   },
   {

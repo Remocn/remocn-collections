@@ -1,4 +1,31 @@
 {
+  "agent-skill": {
+    "graph": [
+      "src/components/remocn/line-by-line-slide.tsx",
+      "src/components/remocn/logo-enter.tsx",
+      "src/components/remocn/shader-simplex-noise.tsx",
+      "src/components/remocn/shader-smoke-ring.tsx",
+      "src/demos/agent-skill/index.tsx"
+    ],
+    "ownFiles": [
+      "src/demos/agent-skill/index.tsx"
+    ],
+    "remocnComponents": [
+      "line-by-line-slide",
+      "logo-enter",
+      "shader-simplex-noise",
+      "shader-smoke-ring"
+    ],
+    "npmPackages": [
+      "@paper-design/shaders-react",
+      "@remotion/google-fonts",
+      "@remotion/transitions",
+      "react",
+      "remotion"
+    ],
+    "assets": [],
+    "usesShaders": true
+  },
   "agent-skills": {
     "graph": [
       "src/components/remocn/alert-dialog.tsx",
@@ -165,13 +192,16 @@
   },
   "chat-changelog": {
     "graph": [
-      "src/components/remocn/backdrop.tsx",
+      "src/components/remocn/bubble-bloom.tsx",
       "src/components/remocn/caret.tsx",
       "src/components/remocn/chat-flow.tsx",
       "src/components/remocn/imessage-chat-flow.tsx",
+      "src/components/remocn/line-by-line-slide.tsx",
       "src/components/remocn/message-bubble.tsx",
+      "src/components/remocn/shader-simplex-noise.tsx",
+      "src/components/remocn/shader-smoke-ring.tsx",
+      "src/components/remocn/short-slide-right.tsx",
       "src/components/remocn/telegram-chat-flow.tsx",
-      "src/components/remocn/typewriter.tsx",
       "src/components/remocn/typing-indicator.tsx",
       "src/components/remocn/use-message-bubble-transition.ts",
       "src/demos/chat-changelog/index.tsx",
@@ -187,17 +217,21 @@
       "src/demos/chat-changelog/index.tsx"
     ],
     "remocnComponents": [
-      "backdrop",
+      "bubble-bloom",
       "caret",
       "chat-flow",
       "imessage-chat-flow",
+      "line-by-line-slide",
       "message-bubble",
+      "shader-simplex-noise",
+      "shader-smoke-ring",
+      "short-slide-right",
       "telegram-chat-flow",
-      "typewriter",
       "typing-indicator",
       "use-message-bubble-transition"
     ],
     "npmPackages": [
+      "@paper-design/shaders-react",
       "@remotion/google-fonts",
       "@remotion/transitions",
       "culori",
@@ -206,10 +240,45 @@
       "remotion"
     ],
     "assets": [
-      "bg.png",
       "shadcn-avatar.png"
     ],
-    "usesShaders": false
+    "usesShaders": true
+  },
+  "chat-transition-variants": {
+    "graph": [
+      "src/components/remocn/bubble-bloom.tsx",
+      "src/components/remocn/message-bubble.tsx",
+      "src/components/remocn/message-send.tsx",
+      "src/components/remocn/shader-simplex-noise.tsx",
+      "src/components/remocn/typing-indicator.tsx",
+      "src/demos/chat-transition-variants/index.tsx",
+      "src/lib/remocn-ui/color.ts",
+      "src/lib/remocn-ui/index.ts",
+      "src/lib/remocn-ui/motion.ts",
+      "src/lib/remocn-ui/theme.ts",
+      "src/lib/remocn-ui/timeline.ts",
+      "src/lib/remocn-ui/types.ts"
+    ],
+    "ownFiles": [
+      "src/demos/chat-transition-variants/index.tsx"
+    ],
+    "remocnComponents": [
+      "bubble-bloom",
+      "message-bubble",
+      "message-send",
+      "shader-simplex-noise",
+      "typing-indicator"
+    ],
+    "npmPackages": [
+      "@paper-design/shaders-react",
+      "@remotion/google-fonts",
+      "@remotion/transitions",
+      "culori",
+      "react",
+      "remotion"
+    ],
+    "assets": [],
+    "usesShaders": true
   },
   "fonttrio": {
     "graph": [
@@ -255,6 +324,58 @@
       "bg.png"
     ],
     "usesShaders": false
+  },
+  "introducing-nextjs": {
+    "graph": [
+      "src/components/remocn/caret.tsx",
+      "src/components/remocn/focus-pull.tsx",
+      "src/components/remocn/grain-dissolve.tsx",
+      "src/components/remocn/push-through.tsx",
+      "src/components/remocn/shader-grain-gradient.tsx",
+      "src/components/remocn/soft-blur-in.tsx",
+      "src/components/remocn/typewriter.tsx",
+      "src/components/remocn/whip-pan.tsx",
+      "src/demos/introducing-nextjs/decorations.tsx",
+      "src/demos/introducing-nextjs/features.tsx",
+      "src/demos/introducing-nextjs/index.tsx",
+      "src/demos/introducing-nextjs/logotype.tsx",
+      "src/demos/introducing-nextjs/powered-by.tsx",
+      "src/demos/introducing-nextjs/theme.ts",
+      "src/lib/remocn-ui/color.ts",
+      "src/lib/remocn-ui/index.ts",
+      "src/lib/remocn-ui/motion.ts",
+      "src/lib/remocn-ui/theme.ts",
+      "src/lib/remocn-ui/timeline.ts",
+      "src/lib/remocn-ui/types.ts"
+    ],
+    "ownFiles": [
+      "src/demos/introducing-nextjs/decorations.tsx",
+      "src/demos/introducing-nextjs/features.tsx",
+      "src/demos/introducing-nextjs/index.tsx",
+      "src/demos/introducing-nextjs/logotype.tsx",
+      "src/demos/introducing-nextjs/powered-by.tsx",
+      "src/demos/introducing-nextjs/theme.ts"
+    ],
+    "remocnComponents": [
+      "caret",
+      "focus-pull",
+      "grain-dissolve",
+      "push-through",
+      "shader-grain-gradient",
+      "soft-blur-in",
+      "typewriter",
+      "whip-pan"
+    ],
+    "npmPackages": [
+      "@paper-design/shaders-react",
+      "@remotion/google-fonts",
+      "@remotion/transitions",
+      "culori",
+      "react",
+      "remotion"
+    ],
+    "assets": [],
+    "usesShaders": true
   },
   "introducing-remocn": {
     "graph": [
@@ -395,7 +516,6 @@
       "src/components/remocn/shader-simplex-noise.tsx",
       "src/components/remocn/shader-smoke-ring.tsx",
       "src/components/remocn/short-slide-right.tsx",
-      "src/components/remocn/smoke-dissolve.tsx",
       "src/demos/introducing-shadcn-typeset/index.tsx"
     ],
     "ownFiles": [
@@ -408,8 +528,7 @@
       "shader-dithering",
       "shader-simplex-noise",
       "shader-smoke-ring",
-      "short-slide-right",
-      "smoke-dissolve"
+      "short-slide-right"
     ],
     "npmPackages": [
       "@paper-design/shaders-react",
@@ -437,6 +556,37 @@
       "push-through",
       "shader-voronoi",
       "whip-pan"
+    ],
+    "npmPackages": [
+      "@paper-design/shaders-react",
+      "@remotion/google-fonts",
+      "@remotion/transitions",
+      "react",
+      "remotion"
+    ],
+    "assets": [],
+    "usesShaders": true
+  },
+  "introducing-vercel": {
+    "graph": [
+      "src/components/remocn/scale-down-fade.tsx",
+      "src/components/remocn/shader-god-rays.tsx",
+      "src/components/remocn/shader-grain-gradient.tsx",
+      "src/demos/introducing-vercel/index.tsx",
+      "src/demos/introducing-vercel/prism-spin.tsx",
+      "src/demos/introducing-vercel/seamless-zoom.tsx",
+      "src/demos/introducing-vercel/triangle-portal.tsx"
+    ],
+    "ownFiles": [
+      "src/demos/introducing-vercel/index.tsx",
+      "src/demos/introducing-vercel/prism-spin.tsx",
+      "src/demos/introducing-vercel/seamless-zoom.tsx",
+      "src/demos/introducing-vercel/triangle-portal.tsx"
+    ],
+    "remocnComponents": [
+      "scale-down-fade",
+      "shader-god-rays",
+      "shader-grain-gradient"
     ],
     "npmPackages": [
       "@paper-design/shaders-react",
@@ -481,6 +631,62 @@
       "videorc-logo.png",
       "videorc-orb.png"
     ],
+    "usesShaders": true
+  },
+  "llms-txt": {
+    "graph": [
+      "src/components/remocn/ascii-dissolve.tsx",
+      "src/components/remocn/line-by-line-slide.tsx",
+      "src/components/remocn/scale-down-fade.tsx",
+      "src/components/remocn/shader-simplex-noise.tsx",
+      "src/components/remocn/shader-smoke-ring.tsx",
+      "src/components/remocn/short-slide-right.tsx",
+      "src/demos/llms-txt/index.tsx"
+    ],
+    "ownFiles": [
+      "src/demos/llms-txt/index.tsx"
+    ],
+    "remocnComponents": [
+      "ascii-dissolve",
+      "line-by-line-slide",
+      "scale-down-fade",
+      "shader-simplex-noise",
+      "shader-smoke-ring",
+      "short-slide-right"
+    ],
+    "npmPackages": [
+      "@paper-design/shaders-react",
+      "@remotion/google-fonts",
+      "@remotion/transitions",
+      "react",
+      "remotion"
+    ],
+    "assets": [],
+    "usesShaders": true
+  },
+  "llms-txt-variants": {
+    "graph": [
+      "src/components/remocn/ascii-dissolve.tsx",
+      "src/components/remocn/scale-down-fade.tsx",
+      "src/components/remocn/shader-simplex-noise.tsx",
+      "src/demos/llms-txt-variants/index.tsx"
+    ],
+    "ownFiles": [
+      "src/demos/llms-txt-variants/index.tsx"
+    ],
+    "remocnComponents": [
+      "ascii-dissolve",
+      "scale-down-fade",
+      "shader-simplex-noise"
+    ],
+    "npmPackages": [
+      "@paper-design/shaders-react",
+      "@remotion/google-fonts",
+      "@remotion/transitions",
+      "react",
+      "remotion"
+    ],
+    "assets": [],
     "usesShaders": true
   },
   "new-transitions": {
@@ -596,6 +802,48 @@
       "@paper-design/shaders-react",
       "@remotion/google-fonts",
       "@remotion/transitions",
+      "react",
+      "remotion"
+    ],
+    "assets": [],
+    "usesShaders": true
+  },
+  "perf-guards": {
+    "graph": [
+      "src/components/remocn/kinetic-center-build.tsx",
+      "src/components/remocn/line-by-line-slide.tsx",
+      "src/components/remocn/scale-down-fade.tsx",
+      "src/components/remocn/shader-simplex-noise.tsx",
+      "src/components/remocn/shader-smoke-ring.tsx",
+      "src/components/remocn/short-slide-right.tsx",
+      "src/components/remocn/soft-blur-in.tsx",
+      "src/components/remocn/sync-snap.tsx",
+      "src/demos/perf-guards/index.tsx",
+      "src/lib/remocn-ui/color.ts",
+      "src/lib/remocn-ui/index.ts",
+      "src/lib/remocn-ui/motion.ts",
+      "src/lib/remocn-ui/theme.ts",
+      "src/lib/remocn-ui/timeline.ts",
+      "src/lib/remocn-ui/types.ts"
+    ],
+    "ownFiles": [
+      "src/demos/perf-guards/index.tsx"
+    ],
+    "remocnComponents": [
+      "kinetic-center-build",
+      "line-by-line-slide",
+      "scale-down-fade",
+      "shader-simplex-noise",
+      "shader-smoke-ring",
+      "short-slide-right",
+      "soft-blur-in",
+      "sync-snap"
+    ],
+    "npmPackages": [
+      "@paper-design/shaders-react",
+      "@remotion/google-fonts",
+      "@remotion/transitions",
+      "culori",
       "react",
       "remotion"
     ],
@@ -840,6 +1088,78 @@
     "assets": [],
     "usesShaders": true
   },
+  "remocn-ui": {
+    "graph": [
+      "src/components/remocn/button.tsx",
+      "src/components/remocn/checkbox.tsx",
+      "src/components/remocn/command-menu-item.tsx",
+      "src/components/remocn/command-menu.tsx",
+      "src/components/remocn/line-by-line-slide.tsx",
+      "src/components/remocn/scale-down-fade.tsx",
+      "src/components/remocn/select-item.tsx",
+      "src/components/remocn/select.tsx",
+      "src/components/remocn/shader-simplex-noise.tsx",
+      "src/components/remocn/shader-smoke-ring.tsx",
+      "src/components/remocn/short-slide-right.tsx",
+      "src/components/remocn/skeleton-swap.tsx",
+      "src/components/remocn/spinner.tsx",
+      "src/components/remocn/switch.tsx",
+      "src/components/remocn/tabs.tsx",
+      "src/components/remocn/toast.tsx",
+      "src/components/remocn/use-button-transition.ts",
+      "src/components/remocn/use-checkbox-transition.ts",
+      "src/components/remocn/use-command-menu-transition.ts",
+      "src/components/remocn/use-select-transition.ts",
+      "src/components/remocn/use-switch-transition.ts",
+      "src/components/remocn/use-tabs-transition.ts",
+      "src/components/remocn/use-toast-transition.ts",
+      "src/demos/remocn-ui/index.tsx",
+      "src/lib/remocn-ui/color.ts",
+      "src/lib/remocn-ui/index.ts",
+      "src/lib/remocn-ui/motion.ts",
+      "src/lib/remocn-ui/theme.ts",
+      "src/lib/remocn-ui/timeline.ts",
+      "src/lib/remocn-ui/types.ts"
+    ],
+    "ownFiles": [
+      "src/demos/remocn-ui/index.tsx"
+    ],
+    "remocnComponents": [
+      "button",
+      "checkbox",
+      "command-menu",
+      "command-menu-item",
+      "line-by-line-slide",
+      "scale-down-fade",
+      "select",
+      "select-item",
+      "shader-simplex-noise",
+      "shader-smoke-ring",
+      "short-slide-right",
+      "skeleton-swap",
+      "spinner",
+      "switch",
+      "tabs",
+      "toast",
+      "use-button-transition",
+      "use-checkbox-transition",
+      "use-command-menu-transition",
+      "use-select-transition",
+      "use-switch-transition",
+      "use-tabs-transition",
+      "use-toast-transition"
+    ],
+    "npmPackages": [
+      "@paper-design/shaders-react",
+      "@remotion/google-fonts",
+      "@remotion/transitions",
+      "culori",
+      "react",
+      "remotion"
+    ],
+    "assets": [],
+    "usesShaders": true
+  },
   "render-sdk": {
     "graph": [
       "src/components/remocn/backdrop.tsx",
@@ -883,6 +1203,66 @@
       "bg.png"
     ],
     "usesShaders": false
+  },
+  "shadcn-aria-opus": {
+    "graph": [
+      "src/components/remocn/shader-weave.tsx",
+      "src/demos/_ui/button.tsx",
+      "src/demos/_ui/input.tsx",
+      "src/demos/_ui/label.tsx",
+      "src/demos/_ui/switch.tsx",
+      "src/demos/_ui/video-scope.tsx",
+      "src/demos/shadcn-aria-opus/index.tsx",
+      "src/lib/utils.ts"
+    ],
+    "ownFiles": [
+      "src/demos/shadcn-aria-opus/index.tsx"
+    ],
+    "remocnComponents": [
+      "shader-weave"
+    ],
+    "npmPackages": [
+      "@remotion/google-fonts",
+      "@remotion/transitions",
+      "class-variance-authority",
+      "clsx",
+      "radix-ui",
+      "react",
+      "remotion",
+      "tailwind-merge"
+    ],
+    "assets": [],
+    "usesShaders": true
+  },
+  "shadcn-react-aria": {
+    "graph": [
+      "src/components/remocn/shader-strata.tsx",
+      "src/demos/_ui/button.tsx",
+      "src/demos/_ui/input.tsx",
+      "src/demos/_ui/label.tsx",
+      "src/demos/_ui/switch.tsx",
+      "src/demos/_ui/video-scope.tsx",
+      "src/demos/shadcn-react-aria/index.tsx",
+      "src/lib/utils.ts"
+    ],
+    "ownFiles": [
+      "src/demos/shadcn-react-aria/index.tsx"
+    ],
+    "remocnComponents": [
+      "shader-strata"
+    ],
+    "npmPackages": [
+      "@remotion/google-fonts",
+      "@remotion/transitions",
+      "class-variance-authority",
+      "clsx",
+      "radix-ui",
+      "react",
+      "remotion",
+      "tailwind-merge"
+    ],
+    "assets": [],
+    "usesShaders": true
   },
   "shadcn-ui": {
     "graph": [
@@ -1250,6 +1630,77 @@
     ],
     "usesShaders": true
   },
+  "sponsor-reui": {
+    "graph": [
+      "src/components/remocn/focus-pull.tsx",
+      "src/components/remocn/icon-bell.tsx",
+      "src/components/remocn/icon-camera.tsx",
+      "src/components/remocn/icon-check-circle.tsx",
+      "src/components/remocn/icon-cloud.tsx",
+      "src/components/remocn/icon-crown.tsx",
+      "src/components/remocn/icon-heart.tsx",
+      "src/components/remocn/icon-mail.tsx",
+      "src/components/remocn/icon-moon.tsx",
+      "src/components/remocn/icon-play.tsx",
+      "src/components/remocn/icon-rocket.tsx",
+      "src/components/remocn/icon-scatter.tsx",
+      "src/components/remocn/icon-search.tsx",
+      "src/components/remocn/icon-settings.tsx",
+      "src/components/remocn/icon-sparkles.tsx",
+      "src/components/remocn/icon-star.tsx",
+      "src/components/remocn/icon-sun.tsx",
+      "src/components/remocn/icon-trending-up.tsx",
+      "src/components/remocn/icon-trophy.tsx",
+      "src/components/remocn/icon-zap.tsx",
+      "src/components/remocn/push-through.tsx",
+      "src/components/remocn/shader-simplex-noise.tsx",
+      "src/components/remocn/shader-smoke-ring.tsx",
+      "src/components/remocn/shared-axis-z.tsx",
+      "src/components/remocn/soft-blur-in.tsx",
+      "src/demos/sponsor-reui/index.tsx",
+      "src/lib/remocn-icons/index.ts"
+    ],
+    "ownFiles": [
+      "src/demos/sponsor-reui/index.tsx"
+    ],
+    "remocnComponents": [
+      "focus-pull",
+      "icon-bell",
+      "icon-camera",
+      "icon-check-circle",
+      "icon-cloud",
+      "icon-crown",
+      "icon-heart",
+      "icon-mail",
+      "icon-moon",
+      "icon-play",
+      "icon-rocket",
+      "icon-scatter",
+      "icon-search",
+      "icon-settings",
+      "icon-sparkles",
+      "icon-star",
+      "icon-sun",
+      "icon-trending-up",
+      "icon-trophy",
+      "icon-zap",
+      "push-through",
+      "shader-simplex-noise",
+      "shader-smoke-ring",
+      "shared-axis-z",
+      "soft-blur-in"
+    ],
+    "npmPackages": [
+      "@paper-design/shaders-react",
+      "@remotion/google-fonts",
+      "@remotion/paths",
+      "@remotion/transitions",
+      "react",
+      "remotion"
+    ],
+    "assets": [],
+    "usesShaders": true
+  },
   "sponsor-shadcn-ui-kit": {
     "graph": [
       "src/components/remocn/focus-pull.tsx",
@@ -1346,10 +1797,9 @@
   },
   "typography": {
     "graph": [
-      "src/components/remocn/backdrop.tsx",
       "src/components/remocn/blur-out-up.tsx",
       "src/components/remocn/bottom-up-letters.tsx",
-      "src/components/remocn/caret.tsx",
+      "src/components/remocn/caret-wipe.tsx",
       "src/components/remocn/fade-through.tsx",
       "src/components/remocn/focus-blur-resolve.tsx",
       "src/components/remocn/kinetic-center-build.tsx",
@@ -1359,6 +1809,8 @@
       "src/components/remocn/per-character-rise.tsx",
       "src/components/remocn/per-word-crossfade.tsx",
       "src/components/remocn/scale-down-fade.tsx",
+      "src/components/remocn/shader-simplex-noise.tsx",
+      "src/components/remocn/shader-smoke-ring.tsx",
       "src/components/remocn/shared-axis-y.tsx",
       "src/components/remocn/shared-axis-z.tsx",
       "src/components/remocn/short-slide-down.tsx",
@@ -1366,9 +1818,7 @@
       "src/components/remocn/soft-blur-in.tsx",
       "src/components/remocn/spring-scale-in.tsx",
       "src/components/remocn/top-down-letters.tsx",
-      "src/components/remocn/typewriter.tsx",
       "src/demos/typography/index.tsx",
-      "src/lib/demo-assets.ts",
       "src/lib/remocn-ui/color.ts",
       "src/lib/remocn-ui/index.ts",
       "src/lib/remocn-ui/motion.ts",
@@ -1380,10 +1830,9 @@
       "src/demos/typography/index.tsx"
     ],
     "remocnComponents": [
-      "backdrop",
       "blur-out-up",
       "bottom-up-letters",
-      "caret",
+      "caret-wipe",
       "fade-through",
       "focus-blur-resolve",
       "kinetic-center-build",
@@ -1393,25 +1842,25 @@
       "per-character-rise",
       "per-word-crossfade",
       "scale-down-fade",
+      "shader-simplex-noise",
+      "shader-smoke-ring",
       "shared-axis-y",
       "shared-axis-z",
       "short-slide-down",
       "short-slide-right",
       "soft-blur-in",
       "spring-scale-in",
-      "top-down-letters",
-      "typewriter"
+      "top-down-letters"
     ],
     "npmPackages": [
+      "@paper-design/shaders-react",
       "@remotion/google-fonts",
       "@remotion/transitions",
       "culori",
       "react",
       "remotion"
     ],
-    "assets": [
-      "bg.png"
-    ],
-    "usesShaders": false
+    "assets": [],
+    "usesShaders": true
   }
 }

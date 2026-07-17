@@ -27,6 +27,9 @@ export function FocusBlurResolve({
   const enterDur = 23;
   const exitDur = 16;
   const exitStart = Math.max(enterDur, durationInFrames - exitDur);
+  // In a clip shorter than the enter, there is no room for an exit — skip it so
+  // interpolate() is never handed an inverted range (e.g. a clipped Loop tail).
+  const hasExit = exitStart < durationInFrames;
 
   const enterEasing = Easing.bezier(0.22, 1, 0.36, 1);
   const exitEasing = Easing.bezier(0.64, 0, 0.78, 0);
@@ -37,11 +40,13 @@ export function FocusBlurResolve({
     easing: enterEasing,
   });
 
-  const exitP = interpolate(frame, [exitStart, durationInFrames], [0, 1], {
-    extrapolateLeft: "clamp",
-    extrapolateRight: "clamp",
-    easing: exitEasing,
-  });
+  const exitP = hasExit
+    ? interpolate(frame, [exitStart, durationInFrames], [0, 1], {
+        extrapolateLeft: "clamp",
+        extrapolateRight: "clamp",
+        easing: exitEasing,
+      })
+    : 0;
 
   const opacity = enterP * (1 - exitP);
 
@@ -51,11 +56,7 @@ export function FocusBlurResolve({
     easing: enterEasing,
   });
 
-  const yExit = interpolate(frame, [exitStart, durationInFrames], [0, -10], {
-    extrapolateLeft: "clamp",
-    extrapolateRight: "clamp",
-    easing: exitEasing,
-  });
+  const yExit = exitP * -10;
 
   const y = yEnter + yExit;
 
@@ -65,11 +66,7 @@ export function FocusBlurResolve({
     easing: enterEasing,
   });
 
-  const blurExit = interpolate(frame, [exitStart, durationInFrames], [0, 10], {
-    extrapolateLeft: "clamp",
-    extrapolateRight: "clamp",
-    easing: exitEasing,
-  });
+  const blurExit = exitP * 10;
 
   const blurVal = blurEnter + blurExit;
 

@@ -4,6 +4,40 @@
   "homepage": "https://collections.remocn.dev",
   "items": [
     {
+      "name": "agent-skill",
+      "type": "registry:block",
+      "title": "Changelog — The remocn agent skill",
+      "description": "remocn demo composition \"Changelog — The remocn agent skill\" — installs the full Remotion composition. Generated with AI from the prompt in demos/agent-skill/prompt.md.",
+      "dependencies": [
+        "@paper-design/shaders-react",
+        "@remotion/google-fonts",
+        "@remotion/transitions",
+        "remotion"
+      ],
+      "registryDependencies": [
+        "https://remocn.dev/r/shader-simplex-noise.json",
+        "https://remocn.dev/r/shader-smoke-ring.json"
+      ],
+      "files": [
+        {
+          "path": "src/components/remocn/line-by-line-slide.tsx",
+          "type": "registry:component",
+          "target": "components/remocn/line-by-line-slide.tsx"
+        },
+        {
+          "path": "src/components/remocn/logo-enter.tsx",
+          "type": "registry:component",
+          "target": "components/remocn/logo-enter.tsx"
+        },
+        {
+          "path": "src/demos/agent-skill/index.tsx",
+          "type": "registry:component",
+          "target": "demos/agent-skill/index.tsx"
+        }
+      ],
+      "docs": "Register the composition in your Remotion Root:\n\n  import { AgentSkillDemo } from \"@/demos/agent-skill\";\n  <Composition id=\"agent-skill\" component={AgentSkillDemo} durationInFrames={300} fps={30} width={1280} height={720} />\n\nRequires Tailwind v4 wired into Remotion (@remotion/tailwind-v4).\nRender locally: npx remotion render agent-skill out/agent-skill.mp4 --gl=angle"
+    },
+    {
       "name": "agent-skills",
       "type": "registry:block",
       "title": "Agent Skills — Claude Code makes the video",
@@ -16,30 +50,52 @@
         "remotion"
       ],
       "registryDependencies": [
-        "https://remocn.dev/r/alert-dialog.json",
         "https://remocn.dev/r/backdrop.json",
-        "https://remocn.dev/r/blur-in.json",
-        "https://remocn.dev/r/button.json",
         "https://remocn.dev/r/caret.json",
-        "https://remocn.dev/r/checkbox.json",
-        "https://remocn.dev/r/confetti.json",
-        "https://remocn.dev/r/drawer.json",
-        "https://remocn.dev/r/github-stars.json",
-        "https://remocn.dev/r/kinetic-center-build.json",
-        "https://remocn.dev/r/number-wheel.json",
         "https://remocn.dev/r/remocn-ui.json",
-        "https://remocn.dev/r/select-item.json",
-        "https://remocn.dev/r/select.json",
-        "https://remocn.dev/r/sheet.json",
         "https://remocn.dev/r/short-slide-down.json",
-        "https://remocn.dev/r/spinner.json",
-        "https://remocn.dev/r/terminal-simulator.json"
+        "https://remocn.dev/r/spinner.json"
       ],
       "files": [
+        {
+          "path": "src/components/remocn/alert-dialog.tsx",
+          "type": "registry:component",
+          "target": "components/remocn/alert-dialog.tsx"
+        },
+        {
+          "path": "src/components/remocn/blur-in.tsx",
+          "type": "registry:component",
+          "target": "components/remocn/blur-in.tsx"
+        },
+        {
+          "path": "src/components/remocn/button.tsx",
+          "type": "registry:component",
+          "target": "components/remocn/button.tsx"
+        },
+        {
+          "path": "src/components/remocn/checkbox.tsx",
+          "type": "registry:component",
+          "target": "components/remocn/checkbox.tsx"
+        },
         {
           "path": "src/components/remocn/claude-code.tsx",
           "type": "registry:component",
           "target": "components/remocn/claude-code.tsx"
+        },
+        {
+          "path": "src/components/remocn/confetti.tsx",
+          "type": "registry:component",
+          "target": "components/remocn/confetti.tsx"
+        },
+        {
+          "path": "src/components/remocn/drawer.tsx",
+          "type": "registry:component",
+          "target": "components/remocn/drawer.tsx"
+        },
+        {
+          "path": "src/components/remocn/github-stars.tsx",
+          "type": "registry:component",
+          "target": "components/remocn/github-stars.tsx"
         },
         {
           "path": "src/components/remocn/glass-code-block.tsx",
@@ -52,9 +108,69 @@
           "target": "components/remocn/input.tsx"
         },
         {
+          "path": "src/components/remocn/kinetic-center-build.tsx",
+          "type": "registry:component",
+          "target": "components/remocn/kinetic-center-build.tsx"
+        },
+        {
+          "path": "src/components/remocn/number-wheel.tsx",
+          "type": "registry:component",
+          "target": "components/remocn/number-wheel.tsx"
+        },
+        {
+          "path": "src/components/remocn/select-item.tsx",
+          "type": "registry:component",
+          "target": "components/remocn/select-item.tsx"
+        },
+        {
+          "path": "src/components/remocn/select.tsx",
+          "type": "registry:component",
+          "target": "components/remocn/select.tsx"
+        },
+        {
+          "path": "src/components/remocn/sheet.tsx",
+          "type": "registry:component",
+          "target": "components/remocn/sheet.tsx"
+        },
+        {
+          "path": "src/components/remocn/terminal-simulator.tsx",
+          "type": "registry:component",
+          "target": "components/remocn/terminal-simulator.tsx"
+        },
+        {
+          "path": "src/components/remocn/use-alert-dialog-transition.ts",
+          "type": "registry:component",
+          "target": "components/remocn/use-alert-dialog-transition.ts"
+        },
+        {
+          "path": "src/components/remocn/use-blur-in-transition.ts",
+          "type": "registry:component",
+          "target": "components/remocn/use-blur-in-transition.ts"
+        },
+        {
+          "path": "src/components/remocn/use-checkbox-transition.ts",
+          "type": "registry:component",
+          "target": "components/remocn/use-checkbox-transition.ts"
+        },
+        {
+          "path": "src/components/remocn/use-drawer-transition.ts",
+          "type": "registry:component",
+          "target": "components/remocn/use-drawer-transition.ts"
+        },
+        {
           "path": "src/components/remocn/use-input-transition.ts",
           "type": "registry:component",
           "target": "components/remocn/use-input-transition.ts"
+        },
+        {
+          "path": "src/components/remocn/use-select-transition.ts",
+          "type": "registry:component",
+          "target": "components/remocn/use-select-transition.ts"
+        },
+        {
+          "path": "src/components/remocn/use-sheet-transition.ts",
+          "type": "registry:component",
+          "target": "components/remocn/use-sheet-transition.ts"
         },
         {
           "path": "src/components/remocn/x-followers-overview.tsx",
@@ -92,15 +208,24 @@
       ],
       "registryDependencies": [
         "https://remocn.dev/r/backdrop.json",
-        "https://remocn.dev/r/blur-in.json",
         "https://remocn.dev/r/marker-highlight.json",
         "https://remocn.dev/r/remocn-ui.json"
       ],
       "files": [
         {
+          "path": "src/components/remocn/blur-in.tsx",
+          "type": "registry:component",
+          "target": "components/remocn/blur-in.tsx"
+        },
+        {
           "path": "src/components/remocn/glass-code-block.tsx",
           "type": "registry:component",
           "target": "components/remocn/glass-code-block.tsx"
+        },
+        {
+          "path": "src/components/remocn/use-blur-in-transition.ts",
+          "type": "registry:component",
+          "target": "components/remocn/use-blur-in-transition.ts"
         },
         {
           "path": "src/demos/batchwork/index.tsx",
@@ -134,14 +259,18 @@
       "registryDependencies": [
         "https://remocn.dev/r/backdrop.json",
         "https://remocn.dev/r/caret.json",
-        "https://remocn.dev/r/remocn-ui.json",
-        "https://remocn.dev/r/rolling-number.json"
+        "https://remocn.dev/r/remocn-ui.json"
       ],
       "files": [
         {
           "path": "src/components/remocn/blur-reveal.tsx",
           "type": "registry:component",
           "target": "components/remocn/blur-reveal.tsx"
+        },
+        {
+          "path": "src/components/remocn/rolling-number.tsx",
+          "type": "registry:component",
+          "target": "components/remocn/rolling-number.tsx"
         },
         {
           "path": "src/components/remocn/typewriter.tsx",
@@ -172,6 +301,7 @@
       "title": "Changelog — New Chat Components",
       "description": "remocn demo composition \"Changelog — New Chat Components\" — installs the full Remotion composition. Generated with AI from the prompt in demos/chat-changelog/prompt.md.",
       "dependencies": [
+        "@paper-design/shaders-react",
         "@remotion/google-fonts",
         "@remotion/transitions",
         "culori",
@@ -179,20 +309,52 @@
         "remotion"
       ],
       "registryDependencies": [
-        "https://remocn.dev/r/backdrop.json",
         "https://remocn.dev/r/caret.json",
-        "https://remocn.dev/r/chat-flow.json",
-        "https://remocn.dev/r/imessage-chat-flow.json",
-        "https://remocn.dev/r/message-bubble.json",
         "https://remocn.dev/r/remocn-ui.json",
-        "https://remocn.dev/r/telegram-chat-flow.json",
+        "https://remocn.dev/r/shader-simplex-noise.json",
+        "https://remocn.dev/r/shader-smoke-ring.json",
         "https://remocn.dev/r/typing-indicator.json"
       ],
       "files": [
         {
-          "path": "src/components/remocn/typewriter.tsx",
+          "path": "src/components/remocn/bubble-bloom.tsx",
           "type": "registry:component",
-          "target": "components/remocn/typewriter.tsx"
+          "target": "components/remocn/bubble-bloom.tsx"
+        },
+        {
+          "path": "src/components/remocn/chat-flow.tsx",
+          "type": "registry:component",
+          "target": "components/remocn/chat-flow.tsx"
+        },
+        {
+          "path": "src/components/remocn/imessage-chat-flow.tsx",
+          "type": "registry:component",
+          "target": "components/remocn/imessage-chat-flow.tsx"
+        },
+        {
+          "path": "src/components/remocn/line-by-line-slide.tsx",
+          "type": "registry:component",
+          "target": "components/remocn/line-by-line-slide.tsx"
+        },
+        {
+          "path": "src/components/remocn/message-bubble.tsx",
+          "type": "registry:component",
+          "target": "components/remocn/message-bubble.tsx"
+        },
+        {
+          "path": "src/components/remocn/short-slide-right.tsx",
+          "type": "registry:component",
+          "target": "components/remocn/short-slide-right.tsx"
+        },
+        {
+          "path": "src/components/remocn/telegram-chat-flow.tsx",
+          "type": "registry:component",
+          "target": "components/remocn/telegram-chat-flow.tsx"
+        },
+        {
+          "path": "src/components/remocn/use-message-bubble-transition.ts",
+          "type": "registry:component",
+          "target": "components/remocn/use-message-bubble-transition.ts"
         },
         {
           "path": "src/demos/chat-changelog/index.tsx",
@@ -210,7 +372,48 @@
           "target": "demos/chat-changelog/prompt.md"
         }
       ],
-      "docs": "Register the composition in your Remotion Root:\n\n  import { ChatChangelogDemo } from \"@/demos/chat-changelog\";\n  <Composition id=\"chat-changelog\" component={ChatChangelogDemo} durationInFrames={693} fps={30} width={1280} height={720} />\n\nRequires Tailwind v4 wired into Remotion (@remotion/tailwind-v4).\nRender locally: npx remotion render chat-changelog out/chat-changelog.mp4"
+      "docs": "Register the composition in your Remotion Root:\n\n  import { ChatChangelogDemo } from \"@/demos/chat-changelog\";\n  <Composition id=\"chat-changelog\" component={ChatChangelogDemo} durationInFrames={693} fps={30} width={1280} height={720} />\n\nRequires Tailwind v4 wired into Remotion (@remotion/tailwind-v4).\nRender locally: npx remotion render chat-changelog out/chat-changelog.mp4 --gl=angle"
+    },
+    {
+      "name": "chat-transition-variants",
+      "type": "registry:block",
+      "title": "Scratch — chat transition candidates",
+      "description": "remocn demo composition \"Scratch — chat transition candidates\" — installs the full Remotion composition. Generated with AI from the prompt in demos/chat-transition-variants/prompt.md.",
+      "dependencies": [
+        "@paper-design/shaders-react",
+        "@remotion/google-fonts",
+        "@remotion/transitions",
+        "culori",
+        "remotion"
+      ],
+      "registryDependencies": [
+        "https://remocn.dev/r/remocn-ui.json",
+        "https://remocn.dev/r/shader-simplex-noise.json",
+        "https://remocn.dev/r/typing-indicator.json"
+      ],
+      "files": [
+        {
+          "path": "src/components/remocn/bubble-bloom.tsx",
+          "type": "registry:component",
+          "target": "components/remocn/bubble-bloom.tsx"
+        },
+        {
+          "path": "src/components/remocn/message-bubble.tsx",
+          "type": "registry:component",
+          "target": "components/remocn/message-bubble.tsx"
+        },
+        {
+          "path": "src/components/remocn/message-send.tsx",
+          "type": "registry:component",
+          "target": "components/remocn/message-send.tsx"
+        },
+        {
+          "path": "src/demos/chat-transition-variants/index.tsx",
+          "type": "registry:component",
+          "target": "demos/chat-transition-variants/index.tsx"
+        }
+      ],
+      "docs": "Register the composition in your Remotion Root:\n\n  import { ChatTransitionVariantsDemo } from \"@/demos/chat-transition-variants\";\n  <Composition id=\"chat-transition-variants\" component={ChatTransitionVariantsDemo} durationInFrames={300} fps={30} width={1280} height={720} />\n\nRequires Tailwind v4 wired into Remotion (@remotion/tailwind-v4).\nRender locally: npx remotion render chat-transition-variants out/chat-transition-variants.mp4 --gl=angle"
     },
     {
       "name": "fonttrio",
@@ -226,18 +429,39 @@
       ],
       "registryDependencies": [
         "https://remocn.dev/r/backdrop.json",
-        "https://remocn.dev/r/blur-in.json",
         "https://remocn.dev/r/remocn-ui.json",
-        "https://remocn.dev/r/rolling-number.json",
-        "https://remocn.dev/r/shared-axis-z.json",
-        "https://remocn.dev/r/terminal-cursor-zoom.json",
-        "https://remocn.dev/r/terminal-simulator.json"
+        "https://remocn.dev/r/shared-axis-z.json"
       ],
       "files": [
+        {
+          "path": "src/components/remocn/blur-in.tsx",
+          "type": "registry:component",
+          "target": "components/remocn/blur-in.tsx"
+        },
         {
           "path": "src/components/remocn/glass-code-block.tsx",
           "type": "registry:component",
           "target": "components/remocn/glass-code-block.tsx"
+        },
+        {
+          "path": "src/components/remocn/rolling-number.tsx",
+          "type": "registry:component",
+          "target": "components/remocn/rolling-number.tsx"
+        },
+        {
+          "path": "src/components/remocn/terminal-cursor-zoom.tsx",
+          "type": "registry:component",
+          "target": "components/remocn/terminal-cursor-zoom.tsx"
+        },
+        {
+          "path": "src/components/remocn/terminal-simulator.tsx",
+          "type": "registry:component",
+          "target": "components/remocn/terminal-simulator.tsx"
+        },
+        {
+          "path": "src/components/remocn/use-blur-in-transition.ts",
+          "type": "registry:component",
+          "target": "components/remocn/use-blur-in-transition.ts"
         },
         {
           "path": "src/demos/fonttrio/index.tsx",
@@ -258,6 +482,87 @@
       "docs": "Register the composition in your Remotion Root:\n\n  import { FonttrioDemo } from \"@/demos/fonttrio\";\n  <Composition id=\"fonttrio\" component={FonttrioDemo} durationInFrames={744} fps={30} width={1280} height={720} />\n\nRequires Tailwind v4 wired into Remotion (@remotion/tailwind-v4).\nRender locally: npx remotion render fonttrio out/fonttrio.mp4"
     },
     {
+      "name": "introducing-nextjs",
+      "type": "registry:block",
+      "title": "Next.js — Introducing Next.js",
+      "description": "remocn demo composition \"Next.js — Introducing Next.js\" — installs the full Remotion composition. Generated with AI from the prompt in demos/introducing-nextjs/prompt.md.",
+      "dependencies": [
+        "@paper-design/shaders-react",
+        "@remotion/google-fonts",
+        "@remotion/transitions",
+        "culori",
+        "remotion"
+      ],
+      "registryDependencies": [
+        "https://remocn.dev/r/caret.json",
+        "https://remocn.dev/r/remocn-ui.json",
+        "https://remocn.dev/r/shader-grain-gradient.json"
+      ],
+      "files": [
+        {
+          "path": "src/components/remocn/focus-pull.tsx",
+          "type": "registry:component",
+          "target": "components/remocn/focus-pull.tsx"
+        },
+        {
+          "path": "src/components/remocn/grain-dissolve.tsx",
+          "type": "registry:component",
+          "target": "components/remocn/grain-dissolve.tsx"
+        },
+        {
+          "path": "src/components/remocn/push-through.tsx",
+          "type": "registry:component",
+          "target": "components/remocn/push-through.tsx"
+        },
+        {
+          "path": "src/components/remocn/soft-blur-in.tsx",
+          "type": "registry:component",
+          "target": "components/remocn/soft-blur-in.tsx"
+        },
+        {
+          "path": "src/components/remocn/typewriter.tsx",
+          "type": "registry:component",
+          "target": "components/remocn/typewriter.tsx"
+        },
+        {
+          "path": "src/components/remocn/whip-pan.tsx",
+          "type": "registry:component",
+          "target": "components/remocn/whip-pan.tsx"
+        },
+        {
+          "path": "src/demos/introducing-nextjs/decorations.tsx",
+          "type": "registry:component",
+          "target": "demos/introducing-nextjs/decorations.tsx"
+        },
+        {
+          "path": "src/demos/introducing-nextjs/features.tsx",
+          "type": "registry:component",
+          "target": "demos/introducing-nextjs/features.tsx"
+        },
+        {
+          "path": "src/demos/introducing-nextjs/index.tsx",
+          "type": "registry:component",
+          "target": "demos/introducing-nextjs/index.tsx"
+        },
+        {
+          "path": "src/demos/introducing-nextjs/logotype.tsx",
+          "type": "registry:component",
+          "target": "demos/introducing-nextjs/logotype.tsx"
+        },
+        {
+          "path": "src/demos/introducing-nextjs/powered-by.tsx",
+          "type": "registry:component",
+          "target": "demos/introducing-nextjs/powered-by.tsx"
+        },
+        {
+          "path": "src/demos/introducing-nextjs/theme.ts",
+          "type": "registry:component",
+          "target": "demos/introducing-nextjs/theme.ts"
+        }
+      ],
+      "docs": "Register the composition in your Remotion Root:\n\n  import { IntroducingNextjsDemo } from \"@/demos/introducing-nextjs\";\n  <Composition id=\"introducing-nextjs\" component={IntroducingNextjsDemo} durationInFrames={300} fps={30} width={1280} height={720} />\n\nRequires Tailwind v4 wired into Remotion (@remotion/tailwind-v4).\nRender locally: npx remotion render introducing-nextjs out/introducing-nextjs.mp4 --gl=angle"
+    },
+    {
       "name": "introducing-remocn",
       "type": "registry:block",
       "title": "remocn — Introducing remocn (shaders cut)",
@@ -269,9 +574,6 @@
         "remotion"
       ],
       "registryDependencies": [
-        "https://remocn.dev/r/kinetic-center-build.json",
-        "https://remocn.dev/r/line-by-line-slide.json",
-        "https://remocn.dev/r/scale-down-fade.json",
         "https://remocn.dev/r/shader-color-panels.json",
         "https://remocn.dev/r/shader-dithering.json",
         "https://remocn.dev/r/shader-god-rays.json",
@@ -281,19 +583,33 @@
         "https://remocn.dev/r/shader-smoke-ring.json",
         "https://remocn.dev/r/shader-swirl.json",
         "https://remocn.dev/r/shader-voronoi.json",
-        "https://remocn.dev/r/shader-warp.json",
-        "https://remocn.dev/r/short-slide-right.json"
+        "https://remocn.dev/r/shader-warp.json"
       ],
       "files": [
+        {
+          "path": "src/components/remocn/kinetic-center-build.tsx",
+          "type": "registry:component",
+          "target": "components/remocn/kinetic-center-build.tsx"
+        },
+        {
+          "path": "src/components/remocn/line-by-line-slide.tsx",
+          "type": "registry:component",
+          "target": "components/remocn/line-by-line-slide.tsx"
+        },
+        {
+          "path": "src/components/remocn/scale-down-fade.tsx",
+          "type": "registry:component",
+          "target": "components/remocn/scale-down-fade.tsx"
+        },
+        {
+          "path": "src/components/remocn/short-slide-right.tsx",
+          "type": "registry:component",
+          "target": "components/remocn/short-slide-right.tsx"
+        },
         {
           "path": "src/demos/introducing-remocn/index.tsx",
           "type": "registry:component",
           "target": "demos/introducing-remocn/index.tsx"
-        },
-        {
-          "path": "src/lib/demo-assets.ts",
-          "type": "registry:component",
-          "target": "lib/demo-assets.ts"
         },
         {
           "path": "src/demos/introducing-remocn/prompt.md",
@@ -322,18 +638,38 @@
         "tailwind-merge"
       ],
       "registryDependencies": [
-        "https://remocn.dev/r/kinetic-center-build.json",
-        "https://remocn.dev/r/line-by-line-slide.json",
-        "https://remocn.dev/r/scale-down-fade.json",
         "https://remocn.dev/r/shader-dithering.json",
         "https://remocn.dev/r/shader-simplex-noise.json",
         "https://remocn.dev/r/shader-smoke-ring.json",
         "https://remocn.dev/r/shader-swirl.json",
-        "https://remocn.dev/r/short-slide-right.json",
-        "https://remocn.dev/r/whip-pan.json",
         "utils"
       ],
       "files": [
+        {
+          "path": "src/components/remocn/kinetic-center-build.tsx",
+          "type": "registry:component",
+          "target": "components/remocn/kinetic-center-build.tsx"
+        },
+        {
+          "path": "src/components/remocn/line-by-line-slide.tsx",
+          "type": "registry:component",
+          "target": "components/remocn/line-by-line-slide.tsx"
+        },
+        {
+          "path": "src/components/remocn/scale-down-fade.tsx",
+          "type": "registry:component",
+          "target": "components/remocn/scale-down-fade.tsx"
+        },
+        {
+          "path": "src/components/remocn/short-slide-right.tsx",
+          "type": "registry:component",
+          "target": "components/remocn/short-slide-right.tsx"
+        },
+        {
+          "path": "src/components/remocn/whip-pan.tsx",
+          "type": "registry:component",
+          "target": "components/remocn/whip-pan.tsx"
+        },
         {
           "path": "src/demos/_ui/app-sidebar.tsx",
           "type": "registry:component",
@@ -528,6 +864,264 @@
       "docs": "Register the composition in your Remotion Root:\n\n  import { IntroducingShadcnDemo } from \"@/demos/introducing-shadcn\";\n  <Composition id=\"introducing-shadcn\" component={IntroducingShadcnDemo} durationInFrames={2178} fps={30} width={1280} height={720} />\n\nRequires Tailwind v4 wired into Remotion (@remotion/tailwind-v4).\nRender locally: npx remotion render introducing-shadcn out/introducing-shadcn.mp4 --gl=angle"
     },
     {
+      "name": "introducing-shadcn-typeset",
+      "type": "registry:block",
+      "title": "shadcn/typeset — Introducing shadcn/typeset",
+      "description": "remocn demo composition \"shadcn/typeset — Introducing shadcn/typeset\" — installs the full Remotion composition. Generated with AI from the prompt in demos/introducing-shadcn-typeset/prompt.md.",
+      "dependencies": [
+        "@paper-design/shaders-react",
+        "@remotion/google-fonts",
+        "@remotion/transitions",
+        "remotion"
+      ],
+      "registryDependencies": [
+        "https://remocn.dev/r/rolodex-flip.json",
+        "https://remocn.dev/r/shader-dithering.json",
+        "https://remocn.dev/r/shader-simplex-noise.json",
+        "https://remocn.dev/r/shader-smoke-ring.json"
+      ],
+      "files": [
+        {
+          "path": "src/components/remocn/line-by-line-slide.tsx",
+          "type": "registry:component",
+          "target": "components/remocn/line-by-line-slide.tsx"
+        },
+        {
+          "path": "src/components/remocn/scale-down-fade.tsx",
+          "type": "registry:component",
+          "target": "components/remocn/scale-down-fade.tsx"
+        },
+        {
+          "path": "src/components/remocn/short-slide-right.tsx",
+          "type": "registry:component",
+          "target": "components/remocn/short-slide-right.tsx"
+        },
+        {
+          "path": "src/demos/introducing-shadcn-typeset/index.tsx",
+          "type": "registry:component",
+          "target": "demos/introducing-shadcn-typeset/index.tsx"
+        }
+      ],
+      "docs": "Register the composition in your Remotion Root:\n\n  import { IntroducingShadcnTypesetDemo } from \"@/demos/introducing-shadcn-typeset\";\n  <Composition id=\"introducing-shadcn-typeset\" component={IntroducingShadcnTypesetDemo} durationInFrames={300} fps={30} width={1280} height={720} />\n\nRequires Tailwind v4 wired into Remotion (@remotion/tailwind-v4).\nRender locally: npx remotion render introducing-shadcn-typeset out/introducing-shadcn-typeset.mp4 --gl=angle"
+    },
+    {
+      "name": "introducing-tenkit",
+      "type": "registry:block",
+      "title": "tenkit — Introducing tenkit",
+      "description": "remocn demo composition \"tenkit — Introducing tenkit\" — installs the full Remotion composition. Generated with AI from the prompt in demos/introducing-tenkit/prompt.md.",
+      "dependencies": [
+        "@paper-design/shaders-react",
+        "@remotion/google-fonts",
+        "@remotion/transitions",
+        "remotion"
+      ],
+      "registryDependencies": [
+        "https://remocn.dev/r/shader-voronoi.json"
+      ],
+      "files": [
+        {
+          "path": "src/components/remocn/focus-pull.tsx",
+          "type": "registry:component",
+          "target": "components/remocn/focus-pull.tsx"
+        },
+        {
+          "path": "src/components/remocn/push-through.tsx",
+          "type": "registry:component",
+          "target": "components/remocn/push-through.tsx"
+        },
+        {
+          "path": "src/components/remocn/whip-pan.tsx",
+          "type": "registry:component",
+          "target": "components/remocn/whip-pan.tsx"
+        },
+        {
+          "path": "src/demos/introducing-tenkit/index.tsx",
+          "type": "registry:component",
+          "target": "demos/introducing-tenkit/index.tsx"
+        }
+      ],
+      "docs": "Register the composition in your Remotion Root:\n\n  import { IntroducingTenkitDemo } from \"@/demos/introducing-tenkit\";\n  <Composition id=\"introducing-tenkit\" component={IntroducingTenkitDemo} durationInFrames={300} fps={30} width={1280} height={720} />\n\nRequires Tailwind v4 wired into Remotion (@remotion/tailwind-v4).\nRender locally: npx remotion render introducing-tenkit out/introducing-tenkit.mp4 --gl=angle"
+    },
+    {
+      "name": "introducing-vercel",
+      "type": "registry:block",
+      "title": "Vercel — Introducing Vercel",
+      "description": "remocn demo composition \"Vercel — Introducing Vercel\" — installs the full Remotion composition. Generated with AI from the prompt in demos/introducing-vercel/prompt.md.",
+      "dependencies": [
+        "@paper-design/shaders-react",
+        "@remotion/google-fonts",
+        "@remotion/transitions",
+        "remotion"
+      ],
+      "registryDependencies": [
+        "https://remocn.dev/r/shader-god-rays.json",
+        "https://remocn.dev/r/shader-grain-gradient.json"
+      ],
+      "files": [
+        {
+          "path": "src/components/remocn/scale-down-fade.tsx",
+          "type": "registry:component",
+          "target": "components/remocn/scale-down-fade.tsx"
+        },
+        {
+          "path": "src/demos/introducing-vercel/index.tsx",
+          "type": "registry:component",
+          "target": "demos/introducing-vercel/index.tsx"
+        },
+        {
+          "path": "src/demos/introducing-vercel/prism-spin.tsx",
+          "type": "registry:component",
+          "target": "demos/introducing-vercel/prism-spin.tsx"
+        },
+        {
+          "path": "src/demos/introducing-vercel/seamless-zoom.tsx",
+          "type": "registry:component",
+          "target": "demos/introducing-vercel/seamless-zoom.tsx"
+        },
+        {
+          "path": "src/demos/introducing-vercel/triangle-portal.tsx",
+          "type": "registry:component",
+          "target": "demos/introducing-vercel/triangle-portal.tsx"
+        }
+      ],
+      "docs": "Register the composition in your Remotion Root:\n\n  import { IntroducingVercelDemo } from \"@/demos/introducing-vercel\";\n  <Composition id=\"introducing-vercel\" component={IntroducingVercelDemo} durationInFrames={300} fps={30} width={1280} height={720} />\n\nRequires Tailwind v4 wired into Remotion (@remotion/tailwind-v4).\nRender locally: npx remotion render introducing-vercel out/introducing-vercel.mp4 --gl=angle"
+    },
+    {
+      "name": "introducing-videorc",
+      "type": "registry:block",
+      "title": "Videorc — Introducing Videorc",
+      "description": "remocn demo composition \"Videorc — Introducing Videorc\" — installs the full Remotion composition. Generated with AI from the prompt in demos/introducing-videorc/prompt.md.",
+      "dependencies": [
+        "@paper-design/shaders-react",
+        "@remotion/google-fonts",
+        "@remotion/transitions",
+        "remotion"
+      ],
+      "registryDependencies": [
+        "https://remocn.dev/r/shader-grain-gradient.json"
+      ],
+      "files": [
+        {
+          "path": "src/components/remocn/focus-pull.tsx",
+          "type": "registry:component",
+          "target": "components/remocn/focus-pull.tsx"
+        },
+        {
+          "path": "src/components/remocn/kinetic-center-build.tsx",
+          "type": "registry:component",
+          "target": "components/remocn/kinetic-center-build.tsx"
+        },
+        {
+          "path": "src/components/remocn/line-by-line-slide.tsx",
+          "type": "registry:component",
+          "target": "components/remocn/line-by-line-slide.tsx"
+        },
+        {
+          "path": "src/components/remocn/push-through.tsx",
+          "type": "registry:component",
+          "target": "components/remocn/push-through.tsx"
+        },
+        {
+          "path": "src/components/remocn/whip-pan.tsx",
+          "type": "registry:component",
+          "target": "components/remocn/whip-pan.tsx"
+        },
+        {
+          "path": "src/demos/introducing-videorc/index.tsx",
+          "type": "registry:component",
+          "target": "demos/introducing-videorc/index.tsx"
+        },
+        {
+          "path": "src/lib/demo-assets.ts",
+          "type": "registry:component",
+          "target": "lib/demo-assets.ts"
+        },
+        {
+          "path": "src/demos/introducing-videorc/prompt.md",
+          "type": "registry:file",
+          "target": "demos/introducing-videorc/prompt.md"
+        }
+      ],
+      "docs": "Register the composition in your Remotion Root:\n\n  import { IntroducingVideorcDemo } from \"@/demos/introducing-videorc\";\n  <Composition id=\"introducing-videorc\" component={IntroducingVideorcDemo} durationInFrames={300} fps={30} width={1280} height={720} />\n\nRequires Tailwind v4 wired into Remotion (@remotion/tailwind-v4).\nRender locally: npx remotion render introducing-videorc out/introducing-videorc.mp4 --gl=angle"
+    },
+    {
+      "name": "llms-txt",
+      "type": "registry:block",
+      "title": "Changelog — llms.txt for AI agents",
+      "description": "remocn demo composition \"Changelog — llms.txt for AI agents\" — installs the full Remotion composition. Generated with AI from the prompt in demos/llms-txt/prompt.md.",
+      "dependencies": [
+        "@paper-design/shaders-react",
+        "@remotion/google-fonts",
+        "@remotion/transitions",
+        "remotion"
+      ],
+      "registryDependencies": [
+        "https://remocn.dev/r/shader-simplex-noise.json",
+        "https://remocn.dev/r/shader-smoke-ring.json"
+      ],
+      "files": [
+        {
+          "path": "src/components/remocn/ascii-dissolve.tsx",
+          "type": "registry:component",
+          "target": "components/remocn/ascii-dissolve.tsx"
+        },
+        {
+          "path": "src/components/remocn/line-by-line-slide.tsx",
+          "type": "registry:component",
+          "target": "components/remocn/line-by-line-slide.tsx"
+        },
+        {
+          "path": "src/components/remocn/scale-down-fade.tsx",
+          "type": "registry:component",
+          "target": "components/remocn/scale-down-fade.tsx"
+        },
+        {
+          "path": "src/components/remocn/short-slide-right.tsx",
+          "type": "registry:component",
+          "target": "components/remocn/short-slide-right.tsx"
+        },
+        {
+          "path": "src/demos/llms-txt/index.tsx",
+          "type": "registry:component",
+          "target": "demos/llms-txt/index.tsx"
+        }
+      ],
+      "docs": "Register the composition in your Remotion Root:\n\n  import { LlmsTxtDemo } from \"@/demos/llms-txt\";\n  <Composition id=\"llms-txt\" component={LlmsTxtDemo} durationInFrames={300} fps={30} width={1280} height={720} />\n\nRequires Tailwind v4 wired into Remotion (@remotion/tailwind-v4).\nRender locally: npx remotion render llms-txt out/llms-txt.mp4 --gl=angle"
+    },
+    {
+      "name": "llms-txt-variants",
+      "type": "registry:block",
+      "title": "Scratch — ascii-dissolve enter styles",
+      "description": "remocn demo composition \"Scratch — ascii-dissolve enter styles\" — installs the full Remotion composition. Generated with AI from the prompt in demos/llms-txt-variants/prompt.md.",
+      "dependencies": [
+        "@paper-design/shaders-react",
+        "@remotion/google-fonts",
+        "@remotion/transitions",
+        "remotion"
+      ],
+      "registryDependencies": [
+        "https://remocn.dev/r/shader-simplex-noise.json"
+      ],
+      "files": [
+        {
+          "path": "src/components/remocn/ascii-dissolve.tsx",
+          "type": "registry:component",
+          "target": "components/remocn/ascii-dissolve.tsx"
+        },
+        {
+          "path": "src/components/remocn/scale-down-fade.tsx",
+          "type": "registry:component",
+          "target": "components/remocn/scale-down-fade.tsx"
+        },
+        {
+          "path": "src/demos/llms-txt-variants/index.tsx",
+          "type": "registry:component",
+          "target": "demos/llms-txt-variants/index.tsx"
+        }
+      ],
+      "docs": "Register the composition in your Remotion Root:\n\n  import { AsciiVariantsDemo } from \"@/demos/llms-txt-variants\";\n  <Composition id=\"llms-txt-variants\" component={AsciiVariantsDemo} durationInFrames={300} fps={30} width={1280} height={720} />\n\nRequires Tailwind v4 wired into Remotion (@remotion/tailwind-v4).\nRender locally: npx remotion render llms-txt-variants out/llms-txt-variants.mp4 --gl=angle"
+    },
+    {
       "name": "new-transitions",
       "type": "registry:block",
       "title": "Changelog — Eleven New Transitions",
@@ -539,29 +1133,89 @@
         "remotion"
       ],
       "registryDependencies": [
-        "https://remocn.dev/r/blur-out-up.json",
-        "https://remocn.dev/r/dither-dissolve.json",
-        "https://remocn.dev/r/focus-pull.json",
-        "https://remocn.dev/r/grain-dissolve.json",
-        "https://remocn.dev/r/line-by-line-slide.json",
-        "https://remocn.dev/r/perlin-dissolve.json",
-        "https://remocn.dev/r/push-through.json",
-        "https://remocn.dev/r/ripple-zoom.json",
-        "https://remocn.dev/r/scale-down-fade.json",
         "https://remocn.dev/r/shader-dithering.json",
         "https://remocn.dev/r/shader-grain-gradient.json",
         "https://remocn.dev/r/shader-perlin-noise.json",
         "https://remocn.dev/r/shader-smoke-ring.json",
         "https://remocn.dev/r/shader-swirl.json",
-        "https://remocn.dev/r/shader-warp.json",
-        "https://remocn.dev/r/short-slide-right.json",
-        "https://remocn.dev/r/smoke-dissolve.json",
-        "https://remocn.dev/r/swirl-dissolve.json",
-        "https://remocn.dev/r/warp-dissolve.json",
-        "https://remocn.dev/r/wave-wipe.json",
-        "https://remocn.dev/r/whip-pan.json"
+        "https://remocn.dev/r/shader-warp.json"
       ],
       "files": [
+        {
+          "path": "src/components/remocn/blur-out-up.tsx",
+          "type": "registry:component",
+          "target": "components/remocn/blur-out-up.tsx"
+        },
+        {
+          "path": "src/components/remocn/dither-dissolve.tsx",
+          "type": "registry:component",
+          "target": "components/remocn/dither-dissolve.tsx"
+        },
+        {
+          "path": "src/components/remocn/focus-pull.tsx",
+          "type": "registry:component",
+          "target": "components/remocn/focus-pull.tsx"
+        },
+        {
+          "path": "src/components/remocn/grain-dissolve.tsx",
+          "type": "registry:component",
+          "target": "components/remocn/grain-dissolve.tsx"
+        },
+        {
+          "path": "src/components/remocn/line-by-line-slide.tsx",
+          "type": "registry:component",
+          "target": "components/remocn/line-by-line-slide.tsx"
+        },
+        {
+          "path": "src/components/remocn/perlin-dissolve.tsx",
+          "type": "registry:component",
+          "target": "components/remocn/perlin-dissolve.tsx"
+        },
+        {
+          "path": "src/components/remocn/push-through.tsx",
+          "type": "registry:component",
+          "target": "components/remocn/push-through.tsx"
+        },
+        {
+          "path": "src/components/remocn/ripple-zoom.tsx",
+          "type": "registry:component",
+          "target": "components/remocn/ripple-zoom.tsx"
+        },
+        {
+          "path": "src/components/remocn/scale-down-fade.tsx",
+          "type": "registry:component",
+          "target": "components/remocn/scale-down-fade.tsx"
+        },
+        {
+          "path": "src/components/remocn/short-slide-right.tsx",
+          "type": "registry:component",
+          "target": "components/remocn/short-slide-right.tsx"
+        },
+        {
+          "path": "src/components/remocn/smoke-dissolve.tsx",
+          "type": "registry:component",
+          "target": "components/remocn/smoke-dissolve.tsx"
+        },
+        {
+          "path": "src/components/remocn/swirl-dissolve.tsx",
+          "type": "registry:component",
+          "target": "components/remocn/swirl-dissolve.tsx"
+        },
+        {
+          "path": "src/components/remocn/warp-dissolve.tsx",
+          "type": "registry:component",
+          "target": "components/remocn/warp-dissolve.tsx"
+        },
+        {
+          "path": "src/components/remocn/wave-wipe.tsx",
+          "type": "registry:component",
+          "target": "components/remocn/wave-wipe.tsx"
+        },
+        {
+          "path": "src/components/remocn/whip-pan.tsx",
+          "type": "registry:component",
+          "target": "components/remocn/whip-pan.tsx"
+        },
         {
           "path": "src/demos/new-transitions/index.tsx",
           "type": "registry:component",
@@ -592,9 +1246,6 @@
         "remotion"
       ],
       "registryDependencies": [
-        "https://remocn.dev/r/blur-out-up.json",
-        "https://remocn.dev/r/kinetic-center-build.json",
-        "https://remocn.dev/r/line-by-line-slide.json",
         "https://remocn.dev/r/shader-dithering.json",
         "https://remocn.dev/r/shader-dot-orbit.json",
         "https://remocn.dev/r/shader-god-rays.json",
@@ -608,10 +1259,29 @@
         "https://remocn.dev/r/shader-swirl.json",
         "https://remocn.dev/r/shader-voronoi.json",
         "https://remocn.dev/r/shader-warp.json",
-        "https://remocn.dev/r/shader-water.json",
-        "https://remocn.dev/r/short-slide-right.json"
+        "https://remocn.dev/r/shader-water.json"
       ],
       "files": [
+        {
+          "path": "src/components/remocn/blur-out-up.tsx",
+          "type": "registry:component",
+          "target": "components/remocn/blur-out-up.tsx"
+        },
+        {
+          "path": "src/components/remocn/kinetic-center-build.tsx",
+          "type": "registry:component",
+          "target": "components/remocn/kinetic-center-build.tsx"
+        },
+        {
+          "path": "src/components/remocn/line-by-line-slide.tsx",
+          "type": "registry:component",
+          "target": "components/remocn/line-by-line-slide.tsx"
+        },
+        {
+          "path": "src/components/remocn/short-slide-right.tsx",
+          "type": "registry:component",
+          "target": "components/remocn/short-slide-right.tsx"
+        },
         {
           "path": "src/demos/paper-shaders/index.tsx",
           "type": "registry:component",
@@ -624,6 +1294,500 @@
         }
       ],
       "docs": "Register the composition in your Remotion Root:\n\n  import { PaperShadersDemo } from \"@/demos/paper-shaders\";\n  <Composition id=\"paper-shaders\" component={PaperShadersDemo} durationInFrames={984} fps={30} width={1280} height={720} />\n\nRequires Tailwind v4 wired into Remotion (@remotion/tailwind-v4).\nRender locally: npx remotion render paper-shaders out/paper-shaders.mp4 --gl=angle"
+    },
+    {
+      "name": "perf-guards",
+      "type": "registry:block",
+      "title": "Changelog — Faster site, stronger guards",
+      "description": "remocn demo composition \"Changelog — Faster site, stronger guards\" — installs the full Remotion composition. Generated with AI from the prompt in demos/perf-guards/prompt.md.",
+      "dependencies": [
+        "@paper-design/shaders-react",
+        "@remotion/google-fonts",
+        "@remotion/transitions",
+        "culori",
+        "remotion"
+      ],
+      "registryDependencies": [
+        "https://remocn.dev/r/remocn-ui.json",
+        "https://remocn.dev/r/shader-simplex-noise.json",
+        "https://remocn.dev/r/shader-smoke-ring.json"
+      ],
+      "files": [
+        {
+          "path": "src/components/remocn/kinetic-center-build.tsx",
+          "type": "registry:component",
+          "target": "components/remocn/kinetic-center-build.tsx"
+        },
+        {
+          "path": "src/components/remocn/line-by-line-slide.tsx",
+          "type": "registry:component",
+          "target": "components/remocn/line-by-line-slide.tsx"
+        },
+        {
+          "path": "src/components/remocn/scale-down-fade.tsx",
+          "type": "registry:component",
+          "target": "components/remocn/scale-down-fade.tsx"
+        },
+        {
+          "path": "src/components/remocn/short-slide-right.tsx",
+          "type": "registry:component",
+          "target": "components/remocn/short-slide-right.tsx"
+        },
+        {
+          "path": "src/components/remocn/soft-blur-in.tsx",
+          "type": "registry:component",
+          "target": "components/remocn/soft-blur-in.tsx"
+        },
+        {
+          "path": "src/components/remocn/sync-snap.tsx",
+          "type": "registry:component",
+          "target": "components/remocn/sync-snap.tsx"
+        },
+        {
+          "path": "src/demos/perf-guards/index.tsx",
+          "type": "registry:component",
+          "target": "demos/perf-guards/index.tsx"
+        }
+      ],
+      "docs": "Register the composition in your Remotion Root:\n\n  import { PerfGuardsDemo } from \"@/demos/perf-guards\";\n  <Composition id=\"perf-guards\" component={PerfGuardsDemo} durationInFrames={300} fps={30} width={1280} height={720} />\n\nRequires Tailwind v4 wired into Remotion (@remotion/tailwind-v4).\nRender locally: npx remotion render perf-guards out/perf-guards.mp4 --gl=angle"
+    },
+    {
+      "name": "remocn-icons",
+      "type": "registry:block",
+      "title": "remocn icons — Introducing remocn icons",
+      "description": "remocn demo composition \"remocn icons — Introducing remocn icons\" — installs the full Remotion composition. Generated with AI from the prompt in demos/remocn-icons/prompt.md.",
+      "dependencies": [
+        "@paper-design/shaders-react",
+        "@remotion/google-fonts",
+        "@remotion/paths",
+        "@remotion/transitions",
+        "remotion"
+      ],
+      "registryDependencies": [
+        "https://remocn.dev/r/icon-bell.json",
+        "https://remocn.dev/r/icon-camera.json",
+        "https://remocn.dev/r/icon-check-circle.json",
+        "https://remocn.dev/r/icon-cloud.json",
+        "https://remocn.dev/r/icon-crown.json",
+        "https://remocn.dev/r/icon-flame.json",
+        "https://remocn.dev/r/icon-heart.json",
+        "https://remocn.dev/r/icon-lock.json",
+        "https://remocn.dev/r/icon-mail.json",
+        "https://remocn.dev/r/icon-play.json",
+        "https://remocn.dev/r/icon-settings.json",
+        "https://remocn.dev/r/icon-sparkles.json",
+        "https://remocn.dev/r/icon-star.json",
+        "https://remocn.dev/r/icon-sun.json",
+        "https://remocn.dev/r/icon-timer.json",
+        "https://remocn.dev/r/icon-trending-up.json",
+        "https://remocn.dev/r/icon-wallet.json",
+        "https://remocn.dev/r/rolodex-flip.json",
+        "https://remocn.dev/r/shader-neuro-noise.json"
+      ],
+      "files": [
+        {
+          "path": "src/components/remocn/focus-pull.tsx",
+          "type": "registry:component",
+          "target": "components/remocn/focus-pull.tsx"
+        },
+        {
+          "path": "src/components/remocn/icon-moon.tsx",
+          "type": "registry:component",
+          "target": "components/remocn/icon-moon.tsx"
+        },
+        {
+          "path": "src/components/remocn/icon-party-popper.tsx",
+          "type": "registry:component",
+          "target": "components/remocn/icon-party-popper.tsx"
+        },
+        {
+          "path": "src/components/remocn/icon-rocket.tsx",
+          "type": "registry:component",
+          "target": "components/remocn/icon-rocket.tsx"
+        },
+        {
+          "path": "src/components/remocn/icon-search.tsx",
+          "type": "registry:component",
+          "target": "components/remocn/icon-search.tsx"
+        },
+        {
+          "path": "src/components/remocn/icon-send.tsx",
+          "type": "registry:component",
+          "target": "components/remocn/icon-send.tsx"
+        },
+        {
+          "path": "src/components/remocn/icon-trophy.tsx",
+          "type": "registry:component",
+          "target": "components/remocn/icon-trophy.tsx"
+        },
+        {
+          "path": "src/components/remocn/icon-zap.tsx",
+          "type": "registry:component",
+          "target": "components/remocn/icon-zap.tsx"
+        },
+        {
+          "path": "src/components/remocn/kinetic-center-build.tsx",
+          "type": "registry:component",
+          "target": "components/remocn/kinetic-center-build.tsx"
+        },
+        {
+          "path": "src/components/remocn/push-through.tsx",
+          "type": "registry:component",
+          "target": "components/remocn/push-through.tsx"
+        },
+        {
+          "path": "src/components/remocn/scale-down-fade.tsx",
+          "type": "registry:component",
+          "target": "components/remocn/scale-down-fade.tsx"
+        },
+        {
+          "path": "src/components/remocn/soft-blur-in.tsx",
+          "type": "registry:component",
+          "target": "components/remocn/soft-blur-in.tsx"
+        },
+        {
+          "path": "src/components/remocn/whip-pan.tsx",
+          "type": "registry:component",
+          "target": "components/remocn/whip-pan.tsx"
+        },
+        {
+          "path": "src/demos/remocn-icons/index.tsx",
+          "type": "registry:component",
+          "target": "demos/remocn-icons/index.tsx"
+        },
+        {
+          "path": "src/lib/remocn-icons/index.ts",
+          "type": "registry:component",
+          "target": "lib/remocn-icons/index.ts"
+        }
+      ],
+      "docs": "Register the composition in your Remotion Root:\n\n  import { RemocnIconsDemo } from \"@/demos/remocn-icons\";\n  <Composition id=\"remocn-icons\" component={RemocnIconsDemo} durationInFrames={300} fps={30} width={1280} height={720} />\n\nRequires Tailwind v4 wired into Remotion (@remotion/tailwind-v4).\nRender locally: npx remotion render remocn-icons out/remocn-icons.mp4 --gl=angle"
+    },
+    {
+      "name": "remocn-icons-3d",
+      "type": "registry:block",
+      "title": "remocn icons — Introducing remocn icons (3D gallery cut)",
+      "description": "remocn demo composition \"remocn icons — Introducing remocn icons (3D gallery cut)\" — installs the full Remotion composition. Generated with AI from the prompt in demos/remocn-icons-3d/prompt.md.",
+      "dependencies": [
+        "@paper-design/shaders-react",
+        "@remotion/google-fonts",
+        "@remotion/paths",
+        "@remotion/three",
+        "@remotion/transitions",
+        "remotion"
+      ],
+      "registryDependencies": [
+        "https://remocn.dev/r/icon-bell.json",
+        "https://remocn.dev/r/icon-heart.json",
+        "https://remocn.dev/r/icon-star.json",
+        "https://remocn.dev/r/rolodex-flip.json",
+        "https://remocn.dev/r/shader-neuro-noise.json"
+      ],
+      "files": [
+        {
+          "path": "src/components/remocn/focus-pull.tsx",
+          "type": "registry:component",
+          "target": "components/remocn/focus-pull.tsx"
+        },
+        {
+          "path": "src/components/remocn/kinetic-center-build.tsx",
+          "type": "registry:component",
+          "target": "components/remocn/kinetic-center-build.tsx"
+        },
+        {
+          "path": "src/components/remocn/push-through.tsx",
+          "type": "registry:component",
+          "target": "components/remocn/push-through.tsx"
+        },
+        {
+          "path": "src/components/remocn/scale-down-fade.tsx",
+          "type": "registry:component",
+          "target": "components/remocn/scale-down-fade.tsx"
+        },
+        {
+          "path": "src/components/remocn/soft-blur-in.tsx",
+          "type": "registry:component",
+          "target": "components/remocn/soft-blur-in.tsx"
+        },
+        {
+          "path": "src/components/remocn/whip-pan.tsx",
+          "type": "registry:component",
+          "target": "components/remocn/whip-pan.tsx"
+        },
+        {
+          "path": "src/demos/remocn-icons-3d/gallery-3d.tsx",
+          "type": "registry:component",
+          "target": "demos/remocn-icons-3d/gallery-3d.tsx"
+        },
+        {
+          "path": "src/demos/remocn-icons-3d/index.tsx",
+          "type": "registry:component",
+          "target": "demos/remocn-icons-3d/index.tsx"
+        },
+        {
+          "path": "src/demos/remocn-icons-3d/outro-r-3d.tsx",
+          "type": "registry:component",
+          "target": "demos/remocn-icons-3d/outro-r-3d.tsx"
+        },
+        {
+          "path": "src/lib/remocn-icons/index.ts",
+          "type": "registry:component",
+          "target": "lib/remocn-icons/index.ts"
+        }
+      ],
+      "docs": "Register the composition in your Remotion Root:\n\n  import { RemocnIcons3DDemo } from \"@/demos/remocn-icons-3d\";\n  <Composition id=\"remocn-icons-3d\" component={RemocnIcons3DDemo} durationInFrames={300} fps={30} width={1280} height={720} />\n\nRequires Tailwind v4 wired into Remotion (@remotion/tailwind-v4).\nRender locally: npx remotion render remocn-icons-3d out/remocn-icons-3d.mp4 --gl=angle"
+    },
+    {
+      "name": "remocn-icons-onetake",
+      "type": "registry:block",
+      "title": "remocn icons — Introducing remocn icons (one-take cut)",
+      "description": "remocn demo composition \"remocn icons — Introducing remocn icons (one-take cut)\" — installs the full Remotion composition. Generated with AI from the prompt in demos/remocn-icons-onetake/prompt.md.",
+      "dependencies": [
+        "@paper-design/shaders-react",
+        "@remotion/google-fonts",
+        "@remotion/paths",
+        "remotion"
+      ],
+      "registryDependencies": [
+        "https://remocn.dev/r/icon-bell.json",
+        "https://remocn.dev/r/icon-camera.json",
+        "https://remocn.dev/r/icon-check-circle.json",
+        "https://remocn.dev/r/icon-cloud.json",
+        "https://remocn.dev/r/icon-crown.json",
+        "https://remocn.dev/r/icon-flame.json",
+        "https://remocn.dev/r/icon-heart.json",
+        "https://remocn.dev/r/icon-lock.json",
+        "https://remocn.dev/r/icon-mail.json",
+        "https://remocn.dev/r/icon-play.json",
+        "https://remocn.dev/r/icon-settings.json",
+        "https://remocn.dev/r/icon-sparkles.json",
+        "https://remocn.dev/r/icon-star.json",
+        "https://remocn.dev/r/icon-sun.json",
+        "https://remocn.dev/r/icon-timer.json",
+        "https://remocn.dev/r/icon-trending-up.json",
+        "https://remocn.dev/r/icon-wallet.json",
+        "https://remocn.dev/r/rolodex-flip.json",
+        "https://remocn.dev/r/shader-neuro-noise.json"
+      ],
+      "files": [
+        {
+          "path": "src/components/remocn/icon-moon.tsx",
+          "type": "registry:component",
+          "target": "components/remocn/icon-moon.tsx"
+        },
+        {
+          "path": "src/components/remocn/icon-party-popper.tsx",
+          "type": "registry:component",
+          "target": "components/remocn/icon-party-popper.tsx"
+        },
+        {
+          "path": "src/components/remocn/icon-rocket.tsx",
+          "type": "registry:component",
+          "target": "components/remocn/icon-rocket.tsx"
+        },
+        {
+          "path": "src/components/remocn/icon-search.tsx",
+          "type": "registry:component",
+          "target": "components/remocn/icon-search.tsx"
+        },
+        {
+          "path": "src/components/remocn/icon-send.tsx",
+          "type": "registry:component",
+          "target": "components/remocn/icon-send.tsx"
+        },
+        {
+          "path": "src/components/remocn/icon-trophy.tsx",
+          "type": "registry:component",
+          "target": "components/remocn/icon-trophy.tsx"
+        },
+        {
+          "path": "src/components/remocn/icon-zap.tsx",
+          "type": "registry:component",
+          "target": "components/remocn/icon-zap.tsx"
+        },
+        {
+          "path": "src/components/remocn/kinetic-center-build.tsx",
+          "type": "registry:component",
+          "target": "components/remocn/kinetic-center-build.tsx"
+        },
+        {
+          "path": "src/components/remocn/scale-down-fade.tsx",
+          "type": "registry:component",
+          "target": "components/remocn/scale-down-fade.tsx"
+        },
+        {
+          "path": "src/components/remocn/soft-blur-in.tsx",
+          "type": "registry:component",
+          "target": "components/remocn/soft-blur-in.tsx"
+        },
+        {
+          "path": "src/demos/remocn-icons-onetake/index.tsx",
+          "type": "registry:component",
+          "target": "demos/remocn-icons-onetake/index.tsx"
+        },
+        {
+          "path": "src/lib/remocn-icons/index.ts",
+          "type": "registry:component",
+          "target": "lib/remocn-icons/index.ts"
+        }
+      ],
+      "docs": "Register the composition in your Remotion Root:\n\n  import { RemocnIconsOnetakeDemo } from \"@/demos/remocn-icons-onetake\";\n  <Composition id=\"remocn-icons-onetake\" component={RemocnIconsOnetakeDemo} durationInFrames={300} fps={30} width={1280} height={720} />\n\nRequires Tailwind v4 wired into Remotion (@remotion/tailwind-v4).\nRender locally: npx remotion render remocn-icons-onetake out/remocn-icons-onetake.mp4 --gl=angle"
+    },
+    {
+      "name": "remocn-new-logo",
+      "type": "registry:block",
+      "title": "remocn — A new logo",
+      "description": "remocn demo composition \"remocn — A new logo\" — installs the full Remotion composition. Generated with AI from the prompt in demos/remocn-new-logo/prompt.md.",
+      "dependencies": [
+        "@paper-design/shaders-react",
+        "@remotion/google-fonts",
+        "@remotion/transitions",
+        "remotion"
+      ],
+      "registryDependencies": [
+        "https://remocn.dev/r/shader-warp.json"
+      ],
+      "files": [
+        {
+          "path": "src/components/remocn/push-through.tsx",
+          "type": "registry:component",
+          "target": "components/remocn/push-through.tsx"
+        },
+        {
+          "path": "src/components/remocn/scale-down-fade.tsx",
+          "type": "registry:component",
+          "target": "components/remocn/scale-down-fade.tsx"
+        },
+        {
+          "path": "src/demos/remocn-new-logo/index.tsx",
+          "type": "registry:component",
+          "target": "demos/remocn-new-logo/index.tsx"
+        }
+      ],
+      "docs": "Register the composition in your Remotion Root:\n\n  import { RemocnNewLogoDemo } from \"@/demos/remocn-new-logo\";\n  <Composition id=\"remocn-new-logo\" component={RemocnNewLogoDemo} durationInFrames={300} fps={30} width={1280} height={720} />\n\nRequires Tailwind v4 wired into Remotion (@remotion/tailwind-v4).\nRender locally: npx remotion render remocn-new-logo out/remocn-new-logo.mp4 --gl=angle"
+    },
+    {
+      "name": "remocn-ui",
+      "type": "registry:block",
+      "title": "Changelog — remocn/ui arrives",
+      "description": "remocn demo composition \"Changelog — remocn/ui arrives\" — installs the full Remotion composition. Generated with AI from the prompt in demos/remocn-ui/prompt.md.",
+      "dependencies": [
+        "@paper-design/shaders-react",
+        "@remotion/google-fonts",
+        "@remotion/transitions",
+        "culori",
+        "remotion"
+      ],
+      "registryDependencies": [
+        "https://remocn.dev/r/command-menu.json",
+        "https://remocn.dev/r/remocn-ui.json",
+        "https://remocn.dev/r/shader-simplex-noise.json",
+        "https://remocn.dev/r/shader-smoke-ring.json",
+        "https://remocn.dev/r/spinner.json"
+      ],
+      "files": [
+        {
+          "path": "src/components/remocn/button.tsx",
+          "type": "registry:component",
+          "target": "components/remocn/button.tsx"
+        },
+        {
+          "path": "src/components/remocn/checkbox.tsx",
+          "type": "registry:component",
+          "target": "components/remocn/checkbox.tsx"
+        },
+        {
+          "path": "src/components/remocn/command-menu-item.tsx",
+          "type": "registry:component",
+          "target": "components/remocn/command-menu-item.tsx"
+        },
+        {
+          "path": "src/components/remocn/line-by-line-slide.tsx",
+          "type": "registry:component",
+          "target": "components/remocn/line-by-line-slide.tsx"
+        },
+        {
+          "path": "src/components/remocn/scale-down-fade.tsx",
+          "type": "registry:component",
+          "target": "components/remocn/scale-down-fade.tsx"
+        },
+        {
+          "path": "src/components/remocn/select-item.tsx",
+          "type": "registry:component",
+          "target": "components/remocn/select-item.tsx"
+        },
+        {
+          "path": "src/components/remocn/select.tsx",
+          "type": "registry:component",
+          "target": "components/remocn/select.tsx"
+        },
+        {
+          "path": "src/components/remocn/short-slide-right.tsx",
+          "type": "registry:component",
+          "target": "components/remocn/short-slide-right.tsx"
+        },
+        {
+          "path": "src/components/remocn/skeleton-swap.tsx",
+          "type": "registry:component",
+          "target": "components/remocn/skeleton-swap.tsx"
+        },
+        {
+          "path": "src/components/remocn/switch.tsx",
+          "type": "registry:component",
+          "target": "components/remocn/switch.tsx"
+        },
+        {
+          "path": "src/components/remocn/tabs.tsx",
+          "type": "registry:component",
+          "target": "components/remocn/tabs.tsx"
+        },
+        {
+          "path": "src/components/remocn/toast.tsx",
+          "type": "registry:component",
+          "target": "components/remocn/toast.tsx"
+        },
+        {
+          "path": "src/components/remocn/use-button-transition.ts",
+          "type": "registry:component",
+          "target": "components/remocn/use-button-transition.ts"
+        },
+        {
+          "path": "src/components/remocn/use-checkbox-transition.ts",
+          "type": "registry:component",
+          "target": "components/remocn/use-checkbox-transition.ts"
+        },
+        {
+          "path": "src/components/remocn/use-select-transition.ts",
+          "type": "registry:component",
+          "target": "components/remocn/use-select-transition.ts"
+        },
+        {
+          "path": "src/components/remocn/use-switch-transition.ts",
+          "type": "registry:component",
+          "target": "components/remocn/use-switch-transition.ts"
+        },
+        {
+          "path": "src/components/remocn/use-tabs-transition.ts",
+          "type": "registry:component",
+          "target": "components/remocn/use-tabs-transition.ts"
+        },
+        {
+          "path": "src/components/remocn/use-toast-transition.ts",
+          "type": "registry:component",
+          "target": "components/remocn/use-toast-transition.ts"
+        },
+        {
+          "path": "src/demos/remocn-ui/index.tsx",
+          "type": "registry:component",
+          "target": "demos/remocn-ui/index.tsx"
+        },
+        {
+          "path": "src/demos/remocn-ui/prompt.md",
+          "type": "registry:file",
+          "target": "demos/remocn-ui/prompt.md"
+        }
+      ],
+      "docs": "Register the composition in your Remotion Root:\n\n  import { RemocnUiDemo } from \"@/demos/remocn-ui\";\n  <Composition id=\"remocn-ui\" component={RemocnUiDemo} durationInFrames={300} fps={30} width={1280} height={720} />\n\nRequires Tailwind v4 wired into Remotion (@remotion/tailwind-v4).\nRender locally: npx remotion render remocn-ui out/remocn-ui.mp4 --gl=angle"
     },
     {
       "name": "render-sdk",
@@ -639,17 +1803,34 @@
       ],
       "registryDependencies": [
         "https://remocn.dev/r/backdrop.json",
-        "https://remocn.dev/r/blur-in.json",
-        "https://remocn.dev/r/logo-enter.json",
         "https://remocn.dev/r/remocn-ui.json",
-        "https://remocn.dev/r/shared-axis-z.json",
-        "https://remocn.dev/r/terminal-simulator.json"
+        "https://remocn.dev/r/shared-axis-z.json"
       ],
       "files": [
+        {
+          "path": "src/components/remocn/blur-in.tsx",
+          "type": "registry:component",
+          "target": "components/remocn/blur-in.tsx"
+        },
         {
           "path": "src/components/remocn/glass-code-block.tsx",
           "type": "registry:component",
           "target": "components/remocn/glass-code-block.tsx"
+        },
+        {
+          "path": "src/components/remocn/logo-enter.tsx",
+          "type": "registry:component",
+          "target": "components/remocn/logo-enter.tsx"
+        },
+        {
+          "path": "src/components/remocn/terminal-simulator.tsx",
+          "type": "registry:component",
+          "target": "components/remocn/terminal-simulator.tsx"
+        },
+        {
+          "path": "src/components/remocn/use-blur-in-transition.ts",
+          "type": "registry:component",
+          "target": "components/remocn/use-blur-in-transition.ts"
         },
         {
           "path": "src/demos/render-sdk/index.tsx",
@@ -670,6 +1851,128 @@
       "docs": "Register the composition in your Remotion Root:\n\n  import { RenderSdkDemo } from \"@/demos/render-sdk\";\n  <Composition id=\"render-sdk\" component={RenderSdkDemo} durationInFrames={618} fps={30} width={1280} height={720} />\n\nRequires Tailwind v4 wired into Remotion (@remotion/tailwind-v4).\nRender locally: npx remotion render render-sdk out/render-sdk.mp4"
     },
     {
+      "name": "shadcn-aria-opus",
+      "type": "registry:block",
+      "title": "shadcn/ui × React Aria — The base you don't see",
+      "description": "remocn demo composition \"shadcn/ui × React Aria — The base you don't see\" — installs the full Remotion composition. Generated with AI from the prompt in demos/shadcn-aria-opus/prompt.md.",
+      "dependencies": [
+        "@remotion/google-fonts",
+        "@remotion/transitions",
+        "class-variance-authority",
+        "clsx",
+        "radix-ui",
+        "remotion",
+        "tailwind-merge"
+      ],
+      "registryDependencies": [
+        "utils"
+      ],
+      "files": [
+        {
+          "path": "src/components/remocn/shader-weave.tsx",
+          "type": "registry:component",
+          "target": "components/remocn/shader-weave.tsx"
+        },
+        {
+          "path": "src/demos/_ui/button.tsx",
+          "type": "registry:component",
+          "target": "demos/_ui/button.tsx"
+        },
+        {
+          "path": "src/demos/_ui/input.tsx",
+          "type": "registry:component",
+          "target": "demos/_ui/input.tsx"
+        },
+        {
+          "path": "src/demos/_ui/label.tsx",
+          "type": "registry:component",
+          "target": "demos/_ui/label.tsx"
+        },
+        {
+          "path": "src/demos/_ui/switch.tsx",
+          "type": "registry:component",
+          "target": "demos/_ui/switch.tsx"
+        },
+        {
+          "path": "src/demos/_ui/video-scope.tsx",
+          "type": "registry:component",
+          "target": "demos/_ui/video-scope.tsx"
+        },
+        {
+          "path": "src/demos/shadcn-aria-opus/index.tsx",
+          "type": "registry:component",
+          "target": "demos/shadcn-aria-opus/index.tsx"
+        },
+        {
+          "path": "src/demos/shadcn-aria-opus/prompt.md",
+          "type": "registry:file",
+          "target": "demos/shadcn-aria-opus/prompt.md"
+        }
+      ],
+      "docs": "Register the composition in your Remotion Root:\n\n  import { ShadcnAriaOpusDemo } from \"@/demos/shadcn-aria-opus\";\n  <Composition id=\"shadcn-aria-opus\" component={ShadcnAriaOpusDemo} durationInFrames={1462} fps={30} width={1280} height={720} />\n\nRequires Tailwind v4 wired into Remotion (@remotion/tailwind-v4).\nRender locally: npx remotion render shadcn-aria-opus out/shadcn-aria-opus.mp4 --gl=angle"
+    },
+    {
+      "name": "shadcn-react-aria",
+      "type": "registry:block",
+      "title": "shadcn/ui — A new base: React Aria",
+      "description": "remocn demo composition \"shadcn/ui — A new base: React Aria\" — installs the full Remotion composition. Generated with AI from the prompt in demos/shadcn-react-aria/prompt.md.",
+      "dependencies": [
+        "@remotion/google-fonts",
+        "@remotion/transitions",
+        "class-variance-authority",
+        "clsx",
+        "radix-ui",
+        "remotion",
+        "tailwind-merge"
+      ],
+      "registryDependencies": [
+        "utils"
+      ],
+      "files": [
+        {
+          "path": "src/components/remocn/shader-strata.tsx",
+          "type": "registry:component",
+          "target": "components/remocn/shader-strata.tsx"
+        },
+        {
+          "path": "src/demos/_ui/button.tsx",
+          "type": "registry:component",
+          "target": "demos/_ui/button.tsx"
+        },
+        {
+          "path": "src/demos/_ui/input.tsx",
+          "type": "registry:component",
+          "target": "demos/_ui/input.tsx"
+        },
+        {
+          "path": "src/demos/_ui/label.tsx",
+          "type": "registry:component",
+          "target": "demos/_ui/label.tsx"
+        },
+        {
+          "path": "src/demos/_ui/switch.tsx",
+          "type": "registry:component",
+          "target": "demos/_ui/switch.tsx"
+        },
+        {
+          "path": "src/demos/_ui/video-scope.tsx",
+          "type": "registry:component",
+          "target": "demos/_ui/video-scope.tsx"
+        },
+        {
+          "path": "src/demos/shadcn-react-aria/index.tsx",
+          "type": "registry:component",
+          "target": "demos/shadcn-react-aria/index.tsx"
+        },
+        {
+          "path": "src/demos/shadcn-react-aria/prompt.md",
+          "type": "registry:file",
+          "target": "demos/shadcn-react-aria/prompt.md"
+        }
+      ],
+      "docs": "Register the composition in your Remotion Root:\n\n  import { ShadcnReactAriaDemo } from \"@/demos/shadcn-react-aria\";\n  <Composition id=\"shadcn-react-aria\" component={ShadcnReactAriaDemo} durationInFrames={300} fps={30} width={1280} height={720} />\n\nRequires Tailwind v4 wired into Remotion (@remotion/tailwind-v4).\nRender locally: npx remotion render shadcn-react-aria out/shadcn-react-aria.mp4 --gl=angle"
+    },
+    {
       "name": "shadcn-ui",
       "type": "registry:block",
       "title": "shadcn/ui — Not a library. Your code.",
@@ -683,17 +1986,34 @@
         "remotion"
       ],
       "registryDependencies": [
-        "https://remocn.dev/r/blur-in.json",
         "https://remocn.dev/r/remocn-ui.json",
-        "https://remocn.dev/r/rolling-number.json",
-        "https://remocn.dev/r/shared-axis-z.json",
-        "https://remocn.dev/r/terminal-simulator.json"
+        "https://remocn.dev/r/shared-axis-z.json"
       ],
       "files": [
+        {
+          "path": "src/components/remocn/blur-in.tsx",
+          "type": "registry:component",
+          "target": "components/remocn/blur-in.tsx"
+        },
         {
           "path": "src/components/remocn/glass-code-block.tsx",
           "type": "registry:component",
           "target": "components/remocn/glass-code-block.tsx"
+        },
+        {
+          "path": "src/components/remocn/rolling-number.tsx",
+          "type": "registry:component",
+          "target": "components/remocn/rolling-number.tsx"
+        },
+        {
+          "path": "src/components/remocn/terminal-simulator.tsx",
+          "type": "registry:component",
+          "target": "components/remocn/terminal-simulator.tsx"
+        },
+        {
+          "path": "src/components/remocn/use-blur-in-transition.ts",
+          "type": "registry:component",
+          "target": "components/remocn/use-blur-in-transition.ts"
         },
         {
           "path": "src/demos/_ui/video-scope.tsx",
@@ -728,15 +2048,40 @@
         "remotion"
       ],
       "registryDependencies": [
-        "https://remocn.dev/r/blur-in.json",
-        "https://remocn.dev/r/github-stars.json",
-        "https://remocn.dev/r/number-wheel.json",
         "https://remocn.dev/r/remocn-ui.json",
-        "https://remocn.dev/r/shader-grain-gradient.json",
-        "https://remocn.dev/r/short-slide-right.json",
-        "https://remocn.dev/r/terminal-simulator.json"
+        "https://remocn.dev/r/shader-grain-gradient.json"
       ],
       "files": [
+        {
+          "path": "src/components/remocn/blur-in.tsx",
+          "type": "registry:component",
+          "target": "components/remocn/blur-in.tsx"
+        },
+        {
+          "path": "src/components/remocn/github-stars.tsx",
+          "type": "registry:component",
+          "target": "components/remocn/github-stars.tsx"
+        },
+        {
+          "path": "src/components/remocn/number-wheel.tsx",
+          "type": "registry:component",
+          "target": "components/remocn/number-wheel.tsx"
+        },
+        {
+          "path": "src/components/remocn/short-slide-right.tsx",
+          "type": "registry:component",
+          "target": "components/remocn/short-slide-right.tsx"
+        },
+        {
+          "path": "src/components/remocn/terminal-simulator.tsx",
+          "type": "registry:component",
+          "target": "components/remocn/terminal-simulator.tsx"
+        },
+        {
+          "path": "src/components/remocn/use-blur-in-transition.ts",
+          "type": "registry:component",
+          "target": "components/remocn/use-blur-in-transition.ts"
+        },
         {
           "path": "src/demos/shieldcn/index.tsx",
           "type": "registry:component",
@@ -768,19 +2113,25 @@
         "remotion"
       ],
       "registryDependencies": [
-        "https://remocn.dev/r/blur-in.json",
         "https://remocn.dev/r/caret.json",
-        "https://remocn.dev/r/line-by-line-slide.json",
         "https://remocn.dev/r/remocn-ui.json",
-        "https://remocn.dev/r/rolling-number.json",
-        "https://remocn.dev/r/shader-warp.json",
-        "https://remocn.dev/r/short-slide-right.json"
+        "https://remocn.dev/r/shader-warp.json"
       ],
       "files": [
+        {
+          "path": "src/components/remocn/blur-in.tsx",
+          "type": "registry:component",
+          "target": "components/remocn/blur-in.tsx"
+        },
         {
           "path": "src/components/remocn/claude-chat.tsx",
           "type": "registry:component",
           "target": "components/remocn/claude-chat.tsx"
+        },
+        {
+          "path": "src/components/remocn/line-by-line-slide.tsx",
+          "type": "registry:component",
+          "target": "components/remocn/line-by-line-slide.tsx"
         },
         {
           "path": "src/components/remocn/rgb-glitch-text.tsx",
@@ -788,9 +2139,24 @@
           "target": "components/remocn/rgb-glitch-text.tsx"
         },
         {
+          "path": "src/components/remocn/rolling-number.tsx",
+          "type": "registry:component",
+          "target": "components/remocn/rolling-number.tsx"
+        },
+        {
           "path": "src/components/remocn/shimmer-sweep.tsx",
           "type": "registry:component",
           "target": "components/remocn/shimmer-sweep.tsx"
+        },
+        {
+          "path": "src/components/remocn/short-slide-right.tsx",
+          "type": "registry:component",
+          "target": "components/remocn/short-slide-right.tsx"
+        },
+        {
+          "path": "src/components/remocn/use-blur-in-transition.ts",
+          "type": "registry:component",
+          "target": "components/remocn/use-blur-in-transition.ts"
         },
         {
           "path": "src/demos/shieldcn-plus/index.tsx",
@@ -816,12 +2182,20 @@
         "remotion"
       ],
       "registryDependencies": [
-        "https://remocn.dev/r/blur-in.json",
-        "https://remocn.dev/r/button.json",
         "https://remocn.dev/r/remocn-ui.json",
         "https://remocn.dev/r/spinner.json"
       ],
       "files": [
+        {
+          "path": "src/components/remocn/blur-in.tsx",
+          "type": "registry:component",
+          "target": "components/remocn/blur-in.tsx"
+        },
+        {
+          "path": "src/components/remocn/button.tsx",
+          "type": "registry:component",
+          "target": "components/remocn/button.tsx"
+        },
         {
           "path": "src/components/remocn/cursor.tsx",
           "type": "registry:component",
@@ -846,6 +2220,16 @@
           "path": "src/components/remocn/toast.tsx",
           "type": "registry:component",
           "target": "components/remocn/toast.tsx"
+        },
+        {
+          "path": "src/components/remocn/use-blur-in-transition.ts",
+          "type": "registry:component",
+          "target": "components/remocn/use-blur-in-transition.ts"
+        },
+        {
+          "path": "src/components/remocn/use-button-transition.ts",
+          "type": "registry:component",
+          "target": "components/remocn/use-button-transition.ts"
         },
         {
           "path": "src/components/remocn/use-cursor-path.ts",
@@ -887,11 +2271,19 @@
         "remotion"
       ],
       "registryDependencies": [
-        "https://remocn.dev/r/dynamic-grid.json",
-        "https://remocn.dev/r/remocn-ui.json",
-        "https://remocn.dev/r/rolling-number.json"
+        "https://remocn.dev/r/remocn-ui.json"
       ],
       "files": [
+        {
+          "path": "src/components/remocn/dynamic-grid.tsx",
+          "type": "registry:component",
+          "target": "components/remocn/dynamic-grid.tsx"
+        },
+        {
+          "path": "src/components/remocn/rolling-number.tsx",
+          "type": "registry:component",
+          "target": "components/remocn/rolling-number.tsx"
+        },
         {
           "path": "src/demos/skill-changelog/index.tsx",
           "type": "registry:component",
@@ -917,12 +2309,24 @@
         "remotion"
       ],
       "registryDependencies": [
-        "https://remocn.dev/r/focus-pull.json",
-        "https://remocn.dev/r/push-through.json",
-        "https://remocn.dev/r/shader-grain-gradient.json",
-        "https://remocn.dev/r/soft-blur-in.json"
+        "https://remocn.dev/r/shader-grain-gradient.json"
       ],
       "files": [
+        {
+          "path": "src/components/remocn/focus-pull.tsx",
+          "type": "registry:component",
+          "target": "components/remocn/focus-pull.tsx"
+        },
+        {
+          "path": "src/components/remocn/push-through.tsx",
+          "type": "registry:component",
+          "target": "components/remocn/push-through.tsx"
+        },
+        {
+          "path": "src/components/remocn/soft-blur-in.tsx",
+          "type": "registry:component",
+          "target": "components/remocn/soft-blur-in.tsx"
+        },
         {
           "path": "src/demos/sponsor-canadian-ai/index.tsx",
           "type": "registry:component",
@@ -937,6 +2341,57 @@
       "docs": "Register the composition in your Remotion Root:\n\n  import { SponsorCanadianAiDemo } from \"@/demos/sponsor-canadian-ai\";\n  <Composition id=\"sponsor-canadian-ai\" component={SponsorCanadianAiDemo} durationInFrames={504} fps={30} width={1280} height={720} />\n\nRequires Tailwind v4 wired into Remotion (@remotion/tailwind-v4).\nRender locally: npx remotion render sponsor-canadian-ai out/sponsor-canadian-ai.mp4 --gl=angle"
     },
     {
+      "name": "sponsor-gramotion",
+      "type": "registry:block",
+      "title": "remocn ✕ Gramotion — New sponsor",
+      "description": "remocn demo composition \"remocn ✕ Gramotion — New sponsor\" — installs the full Remotion composition. Generated with AI from the prompt in demos/sponsor-gramotion/prompt.md.",
+      "dependencies": [
+        "@paper-design/shaders-react",
+        "@remotion/google-fonts",
+        "@remotion/transitions",
+        "remotion"
+      ],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "src/components/remocn/focus-pull.tsx",
+          "type": "registry:component",
+          "target": "components/remocn/focus-pull.tsx"
+        },
+        {
+          "path": "src/components/remocn/line-by-line-slide.tsx",
+          "type": "registry:component",
+          "target": "components/remocn/line-by-line-slide.tsx"
+        },
+        {
+          "path": "src/components/remocn/push-through.tsx",
+          "type": "registry:component",
+          "target": "components/remocn/push-through.tsx"
+        },
+        {
+          "path": "src/components/remocn/soft-blur-in.tsx",
+          "type": "registry:component",
+          "target": "components/remocn/soft-blur-in.tsx"
+        },
+        {
+          "path": "src/demos/sponsor-gramotion/gramotion-warp.tsx",
+          "type": "registry:component",
+          "target": "demos/sponsor-gramotion/gramotion-warp.tsx"
+        },
+        {
+          "path": "src/demos/sponsor-gramotion/index.tsx",
+          "type": "registry:component",
+          "target": "demos/sponsor-gramotion/index.tsx"
+        },
+        {
+          "path": "src/demos/sponsor-gramotion/prompt.md",
+          "type": "registry:file",
+          "target": "demos/sponsor-gramotion/prompt.md"
+        }
+      ],
+      "docs": "Register the composition in your Remotion Root:\n\n  import { SponsorGramotionDemo } from \"@/demos/sponsor-gramotion\";\n  <Composition id=\"sponsor-gramotion\" component={SponsorGramotionDemo} durationInFrames={300} fps={30} width={1280} height={720} />\n\nRequires Tailwind v4 wired into Remotion (@remotion/tailwind-v4).\nRender locally: npx remotion render sponsor-gramotion out/sponsor-gramotion.mp4 --gl=angle"
+    },
+    {
       "name": "sponsor-ln",
       "type": "registry:block",
       "title": "remocn ✕ LN — New sponsor",
@@ -948,10 +2403,14 @@
         "remotion"
       ],
       "registryDependencies": [
-        "https://remocn.dev/r/backdrop.json",
-        "https://remocn.dev/r/soft-blur-in.json"
+        "https://remocn.dev/r/backdrop.json"
       ],
       "files": [
+        {
+          "path": "src/components/remocn/soft-blur-in.tsx",
+          "type": "registry:component",
+          "target": "components/remocn/soft-blur-in.tsx"
+        },
         {
           "path": "src/demos/sponsor-ln/index.tsx",
           "type": "registry:component",
@@ -984,10 +2443,14 @@
         "remotion"
       ],
       "registryDependencies": [
-        "https://remocn.dev/r/dither-dissolve.json",
         "https://remocn.dev/r/shader-dithering.json"
       ],
       "files": [
+        {
+          "path": "src/components/remocn/dither-dissolve.tsx",
+          "type": "registry:component",
+          "target": "components/remocn/dither-dissolve.tsx"
+        },
         {
           "path": "src/demos/sponsor-orcdev/index.tsx",
           "type": "registry:component",
@@ -1018,11 +2481,19 @@
         "remotion"
       ],
       "registryDependencies": [
-        "https://remocn.dev/r/focus-pull.json",
-        "https://remocn.dev/r/push-through.json",
         "https://remocn.dev/r/shader-dithering.json"
       ],
       "files": [
+        {
+          "path": "src/components/remocn/focus-pull.tsx",
+          "type": "registry:component",
+          "target": "components/remocn/focus-pull.tsx"
+        },
+        {
+          "path": "src/components/remocn/push-through.tsx",
+          "type": "registry:component",
+          "target": "components/remocn/push-through.tsx"
+        },
         {
           "path": "src/demos/sponsor-reactbits/index.tsx",
           "type": "registry:component",
@@ -1042,6 +2513,156 @@
       "docs": "Register the composition in your Remotion Root:\n\n  import { SponsorReactbitsDemo } from \"@/demos/sponsor-reactbits\";\n  <Composition id=\"sponsor-reactbits\" component={SponsorReactbitsDemo} durationInFrames={386} fps={30} width={1280} height={720} />\n\nRequires Tailwind v4 wired into Remotion (@remotion/tailwind-v4).\nRender locally: npx remotion render sponsor-reactbits out/sponsor-reactbits.mp4 --gl=angle"
     },
     {
+      "name": "sponsor-reui",
+      "type": "registry:block",
+      "title": "reui — Say hello to my new sponsor",
+      "description": "remocn demo composition \"reui — Say hello to my new sponsor\" — installs the full Remotion composition. Generated with AI from the prompt in demos/sponsor-reui/prompt.md.",
+      "dependencies": [
+        "@paper-design/shaders-react",
+        "@remotion/google-fonts",
+        "@remotion/paths",
+        "@remotion/transitions",
+        "remotion"
+      ],
+      "registryDependencies": [
+        "https://remocn.dev/r/icon-bell.json",
+        "https://remocn.dev/r/icon-camera.json",
+        "https://remocn.dev/r/icon-check-circle.json",
+        "https://remocn.dev/r/icon-cloud.json",
+        "https://remocn.dev/r/icon-crown.json",
+        "https://remocn.dev/r/icon-heart.json",
+        "https://remocn.dev/r/icon-mail.json",
+        "https://remocn.dev/r/icon-play.json",
+        "https://remocn.dev/r/icon-settings.json",
+        "https://remocn.dev/r/icon-sparkles.json",
+        "https://remocn.dev/r/icon-star.json",
+        "https://remocn.dev/r/icon-sun.json",
+        "https://remocn.dev/r/icon-trending-up.json",
+        "https://remocn.dev/r/shader-simplex-noise.json",
+        "https://remocn.dev/r/shader-smoke-ring.json",
+        "https://remocn.dev/r/shared-axis-z.json"
+      ],
+      "files": [
+        {
+          "path": "src/components/remocn/focus-pull.tsx",
+          "type": "registry:component",
+          "target": "components/remocn/focus-pull.tsx"
+        },
+        {
+          "path": "src/components/remocn/icon-moon.tsx",
+          "type": "registry:component",
+          "target": "components/remocn/icon-moon.tsx"
+        },
+        {
+          "path": "src/components/remocn/icon-rocket.tsx",
+          "type": "registry:component",
+          "target": "components/remocn/icon-rocket.tsx"
+        },
+        {
+          "path": "src/components/remocn/icon-scatter.tsx",
+          "type": "registry:component",
+          "target": "components/remocn/icon-scatter.tsx"
+        },
+        {
+          "path": "src/components/remocn/icon-search.tsx",
+          "type": "registry:component",
+          "target": "components/remocn/icon-search.tsx"
+        },
+        {
+          "path": "src/components/remocn/icon-trophy.tsx",
+          "type": "registry:component",
+          "target": "components/remocn/icon-trophy.tsx"
+        },
+        {
+          "path": "src/components/remocn/icon-zap.tsx",
+          "type": "registry:component",
+          "target": "components/remocn/icon-zap.tsx"
+        },
+        {
+          "path": "src/components/remocn/push-through.tsx",
+          "type": "registry:component",
+          "target": "components/remocn/push-through.tsx"
+        },
+        {
+          "path": "src/components/remocn/soft-blur-in.tsx",
+          "type": "registry:component",
+          "target": "components/remocn/soft-blur-in.tsx"
+        },
+        {
+          "path": "src/demos/sponsor-reui/index.tsx",
+          "type": "registry:component",
+          "target": "demos/sponsor-reui/index.tsx"
+        },
+        {
+          "path": "src/lib/remocn-icons/index.ts",
+          "type": "registry:component",
+          "target": "lib/remocn-icons/index.ts"
+        },
+        {
+          "path": "src/demos/sponsor-reui/prompt.md",
+          "type": "registry:file",
+          "target": "demos/sponsor-reui/prompt.md"
+        }
+      ],
+      "docs": "Register the composition in your Remotion Root:\n\n  import { SponsorReuiDemo } from \"@/demos/sponsor-reui\";\n  <Composition id=\"sponsor-reui\" component={SponsorReuiDemo} durationInFrames={300} fps={30} width={1280} height={720} />\n\nRequires Tailwind v4 wired into Remotion (@remotion/tailwind-v4).\nRender locally: npx remotion render sponsor-reui out/sponsor-reui.mp4 --gl=angle"
+    },
+    {
+      "name": "sponsor-shadcn-ui-kit",
+      "type": "registry:block",
+      "title": "remocn ✕ Shadcn UI Kit — New sponsor",
+      "description": "remocn demo composition \"remocn ✕ Shadcn UI Kit — New sponsor\" — installs the full Remotion composition. Generated with AI from the prompt in demos/sponsor-shadcn-ui-kit/prompt.md.",
+      "dependencies": [
+        "@paper-design/shaders-react",
+        "@remotion/google-fonts",
+        "@remotion/transitions",
+        "remotion"
+      ],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "src/components/remocn/focus-pull.tsx",
+          "type": "registry:component",
+          "target": "components/remocn/focus-pull.tsx"
+        },
+        {
+          "path": "src/components/remocn/kinetic-center-build.tsx",
+          "type": "registry:component",
+          "target": "components/remocn/kinetic-center-build.tsx"
+        },
+        {
+          "path": "src/components/remocn/line-by-line-slide.tsx",
+          "type": "registry:component",
+          "target": "components/remocn/line-by-line-slide.tsx"
+        },
+        {
+          "path": "src/components/remocn/push-through.tsx",
+          "type": "registry:component",
+          "target": "components/remocn/push-through.tsx"
+        },
+        {
+          "path": "src/components/remocn/soft-blur-in.tsx",
+          "type": "registry:component",
+          "target": "components/remocn/soft-blur-in.tsx"
+        },
+        {
+          "path": "src/demos/sponsor-shadcn-ui-kit/index.tsx",
+          "type": "registry:component",
+          "target": "demos/sponsor-shadcn-ui-kit/index.tsx"
+        },
+        {
+          "path": "src/demos/sponsor-shadcn-ui-kit/shadcn-ui-kit-warp.tsx",
+          "type": "registry:component",
+          "target": "demos/sponsor-shadcn-ui-kit/shadcn-ui-kit-warp.tsx"
+        },
+        {
+          "path": "src/demos/sponsor-shadcn-ui-kit/prompt.md",
+          "type": "registry:file",
+          "target": "demos/sponsor-shadcn-ui-kit/prompt.md"
+        }
+      ],
+      "docs": "Register the composition in your Remotion Root:\n\n  import { SponsorShadcnUiKitDemo } from \"@/demos/sponsor-shadcn-ui-kit\";\n  <Composition id=\"sponsor-shadcn-ui-kit\" component={SponsorShadcnUiKitDemo} durationInFrames={300} fps={30} width={1280} height={720} />\n\nRequires Tailwind v4 wired into Remotion (@remotion/tailwind-v4).\nRender locally: npx remotion render sponsor-shadcn-ui-kit out/sponsor-shadcn-ui-kit.mp4 --gl=angle"
+    },
+    {
       "name": "sponsor-shieldcn",
       "type": "registry:block",
       "title": "remocn ✕ shieldcn — New sponsor",
@@ -1053,10 +2674,14 @@
         "remotion"
       ],
       "registryDependencies": [
-        "https://remocn.dev/r/shader-god-rays.json",
-        "https://remocn.dev/r/soft-blur-in.json"
+        "https://remocn.dev/r/shader-god-rays.json"
       ],
       "files": [
+        {
+          "path": "src/components/remocn/soft-blur-in.tsx",
+          "type": "registry:component",
+          "target": "components/remocn/soft-blur-in.tsx"
+        },
         {
           "path": "src/demos/sponsor-shieldcn/index.tsx",
           "type": "registry:component",
@@ -1088,11 +2713,20 @@
         "remotion"
       ],
       "registryDependencies": [
-        "https://remocn.dev/r/blur-in.json",
         "https://remocn.dev/r/remocn-ui.json",
         "https://remocn.dev/r/strikethrough-replace.json"
       ],
       "files": [
+        {
+          "path": "src/components/remocn/blur-in.tsx",
+          "type": "registry:component",
+          "target": "components/remocn/blur-in.tsx"
+        },
+        {
+          "path": "src/components/remocn/use-blur-in-transition.ts",
+          "type": "registry:component",
+          "target": "components/remocn/use-blur-in-transition.ts"
+        },
         {
           "path": "src/demos/tegami/index.tsx",
           "type": "registry:component",
@@ -1117,39 +2751,88 @@
       "title": "Typography — New Text Animations",
       "description": "remocn demo composition \"Typography — New Text Animations\" — installs the full Remotion composition. Generated with AI from the prompt in demos/typography/prompt.md.",
       "dependencies": [
+        "@paper-design/shaders-react",
         "@remotion/google-fonts",
         "@remotion/transitions",
         "culori",
         "remotion"
       ],
       "registryDependencies": [
-        "https://remocn.dev/r/backdrop.json",
-        "https://remocn.dev/r/blur-out-up.json",
-        "https://remocn.dev/r/bottom-up-letters.json",
-        "https://remocn.dev/r/caret.json",
         "https://remocn.dev/r/fade-through.json",
-        "https://remocn.dev/r/focus-blur-resolve.json",
-        "https://remocn.dev/r/kinetic-center-build.json",
-        "https://remocn.dev/r/line-by-line-slide.json",
-        "https://remocn.dev/r/mask-reveal-up.json",
         "https://remocn.dev/r/micro-scale-fade.json",
-        "https://remocn.dev/r/per-character-rise.json",
         "https://remocn.dev/r/per-word-crossfade.json",
         "https://remocn.dev/r/remocn-ui.json",
-        "https://remocn.dev/r/scale-down-fade.json",
+        "https://remocn.dev/r/shader-simplex-noise.json",
+        "https://remocn.dev/r/shader-smoke-ring.json",
         "https://remocn.dev/r/shared-axis-y.json",
         "https://remocn.dev/r/shared-axis-z.json",
-        "https://remocn.dev/r/short-slide-down.json",
-        "https://remocn.dev/r/short-slide-right.json",
-        "https://remocn.dev/r/soft-blur-in.json",
-        "https://remocn.dev/r/spring-scale-in.json",
-        "https://remocn.dev/r/top-down-letters.json"
+        "https://remocn.dev/r/short-slide-down.json"
       ],
       "files": [
         {
-          "path": "src/components/remocn/typewriter.tsx",
+          "path": "src/components/remocn/blur-out-up.tsx",
           "type": "registry:component",
-          "target": "components/remocn/typewriter.tsx"
+          "target": "components/remocn/blur-out-up.tsx"
+        },
+        {
+          "path": "src/components/remocn/bottom-up-letters.tsx",
+          "type": "registry:component",
+          "target": "components/remocn/bottom-up-letters.tsx"
+        },
+        {
+          "path": "src/components/remocn/caret-wipe.tsx",
+          "type": "registry:component",
+          "target": "components/remocn/caret-wipe.tsx"
+        },
+        {
+          "path": "src/components/remocn/focus-blur-resolve.tsx",
+          "type": "registry:component",
+          "target": "components/remocn/focus-blur-resolve.tsx"
+        },
+        {
+          "path": "src/components/remocn/kinetic-center-build.tsx",
+          "type": "registry:component",
+          "target": "components/remocn/kinetic-center-build.tsx"
+        },
+        {
+          "path": "src/components/remocn/line-by-line-slide.tsx",
+          "type": "registry:component",
+          "target": "components/remocn/line-by-line-slide.tsx"
+        },
+        {
+          "path": "src/components/remocn/mask-reveal-up.tsx",
+          "type": "registry:component",
+          "target": "components/remocn/mask-reveal-up.tsx"
+        },
+        {
+          "path": "src/components/remocn/per-character-rise.tsx",
+          "type": "registry:component",
+          "target": "components/remocn/per-character-rise.tsx"
+        },
+        {
+          "path": "src/components/remocn/scale-down-fade.tsx",
+          "type": "registry:component",
+          "target": "components/remocn/scale-down-fade.tsx"
+        },
+        {
+          "path": "src/components/remocn/short-slide-right.tsx",
+          "type": "registry:component",
+          "target": "components/remocn/short-slide-right.tsx"
+        },
+        {
+          "path": "src/components/remocn/soft-blur-in.tsx",
+          "type": "registry:component",
+          "target": "components/remocn/soft-blur-in.tsx"
+        },
+        {
+          "path": "src/components/remocn/spring-scale-in.tsx",
+          "type": "registry:component",
+          "target": "components/remocn/spring-scale-in.tsx"
+        },
+        {
+          "path": "src/components/remocn/top-down-letters.tsx",
+          "type": "registry:component",
+          "target": "components/remocn/top-down-letters.tsx"
         },
         {
           "path": "src/demos/typography/index.tsx",
@@ -1157,17 +2840,12 @@
           "target": "demos/typography/index.tsx"
         },
         {
-          "path": "src/lib/demo-assets.ts",
-          "type": "registry:component",
-          "target": "lib/demo-assets.ts"
-        },
-        {
           "path": "src/demos/typography/prompt.md",
           "type": "registry:file",
           "target": "demos/typography/prompt.md"
         }
       ],
-      "docs": "Register the composition in your Remotion Root:\n\n  import { TypographyDemo } from \"@/demos/typography\";\n  <Composition id=\"typography\" component={TypographyDemo} durationInFrames={1538} fps={30} width={1280} height={720} />\n\nRequires Tailwind v4 wired into Remotion (@remotion/tailwind-v4).\nRender locally: npx remotion render typography out/typography.mp4"
+      "docs": "Register the composition in your Remotion Root:\n\n  import { TypographyDemo } from \"@/demos/typography\";\n  <Composition id=\"typography\" component={TypographyDemo} durationInFrames={1538} fps={30} width={1280} height={720} />\n\nRequires Tailwind v4 wired into Remotion (@remotion/tailwind-v4).\nRender locally: npx remotion render typography out/typography.mp4 --gl=angle"
     }
   ]
 }

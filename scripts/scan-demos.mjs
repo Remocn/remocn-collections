@@ -65,7 +65,11 @@ function scanDemo(id) {
     ].sort(),
     npmPackages: [...pkgs].sort(),
     assets: [...assets].sort(),
-    usesShaders: pkgs.has("@paper-design/shaders-react"),
+    // Paper-design shaders AND our own WebGL shader components (shader-*)
+    // both need --gl=angle at render time.
+    usesShaders:
+      pkgs.has("@paper-design/shaders-react") ||
+      graph.some((f) => basename(f).startsWith("shader-")),
   };
 }
 

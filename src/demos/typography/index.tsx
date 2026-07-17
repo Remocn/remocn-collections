@@ -1,944 +1,259 @@
 import React, { type ReactNode } from "react";
-import { AbsoluteFill, Easing, Loop, Sequence, interpolate, useCurrentFrame } from "remotion";
-import { demoAsset } from "@/lib/demo-assets";
+import {
+  AbsoluteFill,
+  Easing,
+  Series,
+  interpolate,
+  spring,
+  useCurrentFrame,
+  useVideoConfig,
+} from "remotion";
 import {
   TransitionSeries,
   linearTiming,
   type TransitionPresentation,
+  type TransitionPresentationComponentProps,
 } from "@remotion/transitions";
-import { fade, type FadeProps } from "@remotion/transitions/fade";
-import { loadFont } from "@remotion/google-fonts/Manrope";
-import { loadFont as loadMono } from "@remotion/google-fonts/JetBrainsMono";
+import { loadFont as loadSans } from "@remotion/google-fonts/Manrope";
+import { loadFont as loadMono } from "@remotion/google-fonts/GeistMono";
 
 import { RemocnUIProvider } from "@/lib/remocn-ui";
-import { Backdrop } from "@/components/remocn/backdrop";
+import { caretWipe } from "@/components/remocn/caret-wipe";
+import { ShaderSimplexNoise } from "@/components/remocn/shader-simplex-noise";
+import { ShaderSmokeRing } from "@/components/remocn/shader-smoke-ring";
 
-// Typography animations — the cast of this showcase.
+// The wave's cast — every effect appears in the montage animating its own name.
 import { SoftBlurIn } from "@/components/remocn/soft-blur-in";
-import { Typewriter } from "@/components/remocn/typewriter";
-import { FocusBlurResolve } from "@/components/remocn/focus-blur-resolve";
 import { PerCharacterRise } from "@/components/remocn/per-character-rise";
-import { TopDownLetters } from "@/components/remocn/top-down-letters";
 import { BottomUpLetters } from "@/components/remocn/bottom-up-letters";
+import { TopDownLetters } from "@/components/remocn/top-down-letters";
 import { SpringScaleIn } from "@/components/remocn/spring-scale-in";
 import { MicroScaleFade } from "@/components/remocn/micro-scale-fade";
-import { ScaleDownFade } from "@/components/remocn/scale-down-fade";
 import { MaskRevealUp } from "@/components/remocn/mask-reveal-up";
 import { LineByLineSlide } from "@/components/remocn/line-by-line-slide";
 import { KineticCenterBuild } from "@/components/remocn/kinetic-center-build";
-import { ShortSlideDown } from "@/components/remocn/short-slide-down";
-import { ShortSlideRight } from "@/components/remocn/short-slide-right";
+import { FocusBlurResolve } from "@/components/remocn/focus-blur-resolve";
 import { BlurOutUp } from "@/components/remocn/blur-out-up";
+import { ScaleDownFade } from "@/components/remocn/scale-down-fade";
 import { FadeThrough } from "@/components/remocn/fade-through";
+import { PerWordCrossfade } from "@/components/remocn/per-word-crossfade";
 import { SharedAxisY } from "@/components/remocn/shared-axis-y";
 import { SharedAxisZ } from "@/components/remocn/shared-axis-z";
-import { PerWordCrossfade } from "@/components/remocn/per-word-crossfade";
+import { ShortSlideDown } from "@/components/remocn/short-slide-down";
+import { ShortSlideRight } from "@/components/remocn/short-slide-right";
 
 // Manrope, bound to the CSS variable every remocn typography component reads.
-const { fontFamily } = loadFont("normal", {
+const { fontFamily: SANS_FAMILY } = loadSans("normal", {
   subsets: ["latin"],
-  weights: ["400", "500", "600", "700", "800"],
+  weights: ["400", "500", "600", "700"],
 });
-
-const FONT_STACK = `${fontFamily}, sans-serif`;
-const INK = "#fafafa";
-
-// Monospace for the install command pill.
-const { fontFamily: monoFamily } = loadMono("normal", {
+const { fontFamily: MONO_FAMILY } = loadMono("normal", {
   subsets: ["latin"],
   weights: ["400", "500"],
 });
-const MONO_STACK = `${monoFamily}, ui-monospace, SFMono-Regular, Menlo, monospace`;
 
-// Global slow-down for the full-screen demos. Components advance their internal
-// clock by `useCurrentFrame() * speed`, so < 1 plays the motion more slowly and
-// gives each animation room to breathe.
-const SPEED = 0.85;
+const SANS =
+  "var(--font-geist-sans), -apple-system, BlinkMacSystemFont, sans-serif";
+const MONO = `${MONO_FAMILY}, ui-monospace, SFMono-Regular, monospace`;
 
-// Trims the held tail of each montage scene so the faster effects don't sit
-// around — keeps the pacing snappy. (Enter still completes before Stage's exit.)
-const DUR_SCALE = 0.85;
+// The shipped remocn.dev brand — warm obsidian + one lime accent. No
+// letter-spacing, sentence case, weight 400 everywhere.
+const OBSIDIAN = "#141318";
+const INK = "#f2f2f2";
+const MUTED = "rgba(242,242,242,0.62)";
+const FAINT = "rgba(242,242,242,0.4)";
+const LIME = "#C3E88D";
 
-const NAME_SIZE = 70;
-const NAME_WEIGHT = 700;
-const CARD_SIZE = 26;
-
-// ---------------------------------------------------------------------------
-// Animation registry — one source of truth used by BOTH the overview grid
-// (small sample) and the full-screen montage (the effect spelled out by name).
-// ---------------------------------------------------------------------------
-type Anim = {
-  name: string;
-  /** montage scene length, frames @30fps */
-  dur: number;
-  /** full-screen render; `speed` slows the effect's internal clock. */
-  full: (speed: number) => ReactNode;
-  /** small grid-card sample (looped) */
-  card: () => ReactNode;
+const clampOpts = {
+  extrapolateLeft: "clamp" as const,
+  extrapolateRight: "clamp" as const,
 };
 
-const ANIMATIONS: Anim[] = [
-  {
-    name: "soft-blur-in",
-    dur: 90,
-    full: (s) => <SoftBlurIn text="Soft blur in" fontSize={NAME_SIZE} fontWeight={NAME_WEIGHT} color={INK} speed={s} />,
-    card: () => <SoftBlurIn text="Remocn" fontSize={CARD_SIZE} fontWeight={NAME_WEIGHT} color={INK} speed={SPEED} />,
-  },
-  {
-    name: "typewriter",
-    dur: 80,
-    full: (s) => (
-      <Centered>
-        <Typewriter text="Typewriter" fontSize={NAME_SIZE} fontWeight={NAME_WEIGHT} color={INK} cursorColor={INK} charsPerSecond={16} speed={s} />
-      </Centered>
-    ),
-    card: () => (
-      <Centered cardHeight>
-        <Typewriter text="Remocn" fontSize={CARD_SIZE} fontWeight={NAME_WEIGHT} color={INK} cursorColor={INK} charsPerSecond={14} speed={SPEED} />
-      </Centered>
-    ),
-  },
-  {
-    name: "focus-blur-resolve",
-    dur: 90,
-    full: (s) => <FocusBlurResolve text="Focus blur resolve" fontSize={NAME_SIZE} fontWeight={NAME_WEIGHT} color={INK} speed={s} />,
-    card: () => <FocusBlurResolve text="Remocn" fontSize={CARD_SIZE} fontWeight={NAME_WEIGHT} color={INK} speed={SPEED} />,
-  },
-  {
-    name: "per-character-rise",
-    dur: 96,
-    full: (s) => <PerCharacterRise text="Per character rise" fontSize={NAME_SIZE} fontWeight={NAME_WEIGHT} color={INK} speed={s} />,
-    card: () => <PerCharacterRise text="Remocn" fontSize={CARD_SIZE} fontWeight={NAME_WEIGHT} color={INK} speed={SPEED} />,
-  },
-  {
-    name: "top-down-letters",
-    dur: 92,
-    // Tighter cascade + slightly higher speed so 16 letters finish well within
-    // the scene (default stagger 3 × speed 0.62 ran past it).
-    full: () => <TopDownLetters text="Top down letters" staggerDelay={2} fontSize={NAME_SIZE} fontWeight={NAME_WEIGHT} color={INK} speed={0.9} />,
-    card: () => <TopDownLetters text="Remocn" fontSize={CARD_SIZE} fontWeight={NAME_WEIGHT} color={INK} speed={SPEED} />,
-  },
-  {
-    name: "bottom-up-letters",
-    dur: 94,
-    full: () => <BottomUpLetters text="Bottom up letters" staggerDelay={2} fontSize={NAME_SIZE} fontWeight={NAME_WEIGHT} color={INK} speed={0.9} />,
-    card: () => <BottomUpLetters text="Remocn" fontSize={CARD_SIZE} fontWeight={NAME_WEIGHT} color={INK} speed={SPEED} />,
-  },
-  {
-    name: "spring-scale-in",
-    dur: 74,
-    full: (s) => <SpringScaleIn text="Spring scale in" fontSize={NAME_SIZE} fontWeight={NAME_WEIGHT} color={INK} speed={s} />,
-    card: () => <SpringScaleIn text="Remocn" fontSize={CARD_SIZE} fontWeight={NAME_WEIGHT} color={INK} speed={SPEED} />,
-  },
-  {
-    name: "micro-scale-fade",
-    dur: 74,
-    full: (s) => <MicroScaleFade text="Micro scale fade" fontSize={NAME_SIZE} fontWeight={NAME_WEIGHT} color={INK} speed={s} />,
-    card: () => <MicroScaleFade text="Remocn" fontSize={CARD_SIZE} fontWeight={NAME_WEIGHT} color={INK} speed={SPEED} />,
-  },
-  {
-    name: "scale-down-fade",
-    dur: 74,
-    full: (s) => <ScaleDownFade text="Scale down fade" fontSize={NAME_SIZE} fontWeight={NAME_WEIGHT} color={INK} speed={s} />,
-    card: () => <ScaleDownFade text="Remocn" fontSize={CARD_SIZE} fontWeight={NAME_WEIGHT} color={INK} />,
-  },
-  {
-    name: "mask-reveal-up",
-    dur: 86,
-    full: (s) => <MaskRevealUp text={"Mask reveal\nup"} fontSize={NAME_SIZE} fontWeight={NAME_WEIGHT} color={INK} speed={s} />,
-    card: () => <MaskRevealUp text="Remocn" fontSize={CARD_SIZE} fontWeight={NAME_WEIGHT} color={INK} />,
-  },
-  {
-    name: "line-by-line-slide",
-    dur: 92,
-    full: (s) => <LineByLineSlide text={"Line by line\nslide"} fontSize={NAME_SIZE} fontWeight={NAME_WEIGHT} color={INK} speed={s} />,
-    card: () => <LineByLineSlide text="Remocn" fontSize={CARD_SIZE} fontWeight={NAME_WEIGHT} color={INK} speed={SPEED} />,
-  },
-  {
-    name: "kinetic-center-build",
-    dur: 90,
-    full: (s) => <KineticCenterBuild text="Kinetic center build" fontSize={NAME_SIZE} fontWeight={NAME_WEIGHT} color={INK} speed={s} />,
-    card: () => <KineticCenterBuild text="Remocn UI" fontSize={CARD_SIZE} fontWeight={NAME_WEIGHT} color={INK} speed={SPEED} />,
-  },
-  {
-    name: "short-slide-down",
-    dur: 94,
-    full: (s) => <ShortSlideDown text="Short slide down" fontSize={NAME_SIZE} fontWeight={NAME_WEIGHT} color={INK} speed={s} />,
-    card: () => <ShortSlideDown text="Remocn" fontSize={CARD_SIZE} fontWeight={NAME_WEIGHT} color={INK} speed={SPEED} />,
-  },
-  {
-    name: "short-slide-right",
-    dur: 86,
-    full: (s) => <ShortSlideRight text="Short slide right" fontSize={NAME_SIZE} fontWeight={NAME_WEIGHT} color={INK} speed={s} />,
-    card: () => <ShortSlideRight text="Remocn" fontSize={CARD_SIZE} fontWeight={NAME_WEIGHT} color={INK} speed={SPEED} />,
-  },
-  {
-    name: "blur-out-up",
-    dur: 84,
-    full: (s) => <BlurOutUp text="Blur out up" fontSize={NAME_SIZE} fontWeight={NAME_WEIGHT} color={INK} speed={s} />,
-    card: () => <BlurOutUp text="Remocn" fontSize={CARD_SIZE} fontWeight={NAME_WEIGHT} color={INK} />,
-  },
-  {
-    name: "fade-through",
-    dur: 82,
-    full: (s) => <FadeThrough fromText="Static text" toText="Fade through" fontSize={NAME_SIZE} fontWeight={NAME_WEIGHT} color={INK} speed={s} />,
-    card: () => <FadeThrough fromText="Before" toText="Remocn" fontSize={CARD_SIZE} fontWeight={NAME_WEIGHT} color={INK} speed={SPEED} />,
-  },
-  {
-    name: "shared-axis-y",
-    dur: 84,
-    full: (s) => <SharedAxisY fromText="Outgoing" toText="Shared axis y" fontSize={NAME_SIZE} fontWeight={NAME_WEIGHT} color={INK} speed={s} />,
-    card: () => <SharedAxisY fromText="Before" toText="Remocn" fontSize={CARD_SIZE} fontWeight={NAME_WEIGHT} color={INK} speed={SPEED} />,
-  },
-  {
-    name: "shared-axis-z",
-    dur: 90,
-    full: (s) => <SharedAxisZ fromText="Outgoing" toText="Shared axis z" fontSize={NAME_SIZE} fontWeight={NAME_WEIGHT} color={INK} speed={s} />,
-    card: () => <SharedAxisZ fromText="Before" toText="Remocn" fontSize={CARD_SIZE} fontWeight={NAME_WEIGHT} color={INK} speed={SPEED} />,
-  },
-  {
-    name: "per-word-crossfade",
-    dur: 100,
-    full: (s) => <PerWordCrossfade fromText="Word by word" toText="Per word crossfade" fontSize={NAME_SIZE} fontWeight={NAME_WEIGHT} color={INK} speed={s} />,
-    card: () => <PerWordCrossfade fromText="Word by word" toText="Remocn" fontSize={CARD_SIZE} fontWeight={NAME_WEIGHT} color={INK} speed={SPEED} />,
-  },
-];
+// Readability scrim over the shared shader field.
+const Scrim: React.FC<{ strength?: number }> = ({ strength = 1 }) => (
+  <AbsoluteFill
+    style={{
+      background: `radial-gradient(120% 120% at 50% 42%, rgba(20,19,24,${
+        0.3 * strength
+      }) 0%, rgba(20,19,24,${0.82 * strength}) 100%)`,
+    }}
+  />
+);
 
-// A relative full-frame box so absolute-centred components (and Sequenced ones
-// like Typewriter) land in the middle of their slot.
-const Centered: React.FC<{ children: ReactNode; cardHeight?: boolean }> = ({
-  children,
-  cardHeight,
-}) => (
-  <AbsoluteFill style={{ alignItems: "center", justifyContent: "center" }}>
-    <div
-      style={{
-        position: "relative",
-        width: "100%",
-        height: cardHeight ? CARD_SIZE * 1.8 : NAME_SIZE * 1.6,
-      }}
-    >
-      {children}
-    </div>
+// ---------------------------------------------------------------------------
+// Scene timings (frames @ 30fps). Transitions overlap.
+// ---------------------------------------------------------------------------
+const S_HOOK = 70;
+const S_WAVE = 74;
+const S_MECH = 80;
+const S_DET = 74;
+const S_VALUE = 100;
+const S_CMD = 104;
+const S_OUTRO = 150;
+
+const T_X = 14; //     crossfade
+const T_CARET = 22; // caret-wipe (the new registry transition)
+const T_BLUR = 16; //  blur crossfade
+
+// ===========================================================================
+// Intro — the hook and the promise.
+// ===========================================================================
+const HookScene: React.FC = () => (
+  <AbsoluteFill>
+    <SoftBlurIn
+      text="Text is most of what a demo video says"
+      fontSize={46}
+      fontWeight={400}
+      color={INK}
+    />
   </AbsoluteFill>
 );
 
-// ---------------------------------------------------------------------------
-// Transitions — NO camera movement. Every hand-off is a short, in-place opacity
-// cross-fade; the scene never slides, scales, or pushes. The visual change is
-// carried entirely by the text effects: each one animates in on the spot, and
-// Stage dissolves it out on the spot. The "transition" lives in the animation.
-// ---------------------------------------------------------------------------
-type Trans = { dur: number; presentation: () => TransitionPresentation<FadeProps> };
-const td = (dur: number, presentation: () => TransitionPresentation<FadeProps>): Trans => ({
-  dur,
-  presentation,
-});
-
-const DISSOLVE: Trans = td(12, () => fade());
-
-// In-place exit: as a scene ends, its text dissolves away where it stands
-// (opacity + a soft blur, NO translate/scale) so it has cleared before the next
-// text resolves — no two words overlap, and nothing moves across the frame.
-const STAGE_EXIT = 16;
-const Stage: React.FC<{ dur: number; transOut: number; children: ReactNode }> = ({
-  dur,
-  transOut,
-  children,
-}) => {
-  const frame = useCurrentFrame();
-  const exitEnd = dur - transOut + 2;
-  const p = interpolate(frame, [exitEnd - STAGE_EXIT, exitEnd], [0, 1], {
-    extrapolateLeft: "clamp",
-    extrapolateRight: "clamp",
-    easing: Easing.in(Easing.cubic),
-  });
-  return (
-    <AbsoluteFill
-      style={{
-        opacity: 1 - p,
-        filter: p > 0.001 ? `blur(${p * 10}px)` : undefined,
-      }}
-    >
-      {children}
-    </AbsoluteFill>
-  );
-};
-
-
-// ---------------------------------------------------------------------------
-// Hand-drawn mark: each path is normalised to pathLength 1, then "drawn" by
-// sweeping its dash offset from hidden (1) to fully shown (0).
-// ---------------------------------------------------------------------------
-const IntroIcon: React.FC<{ size?: number }> = ({ size = 86 }) => {
-  const frame = useCurrentFrame();
-  const appear = interpolate(frame, [0, 8], [0, 1], {
-    extrapolateLeft: "clamp",
-    extrapolateRight: "clamp",
-  });
-  const draw1 = interpolate(frame, [2, 30], [1, 0], {
-    extrapolateLeft: "clamp",
-    extrapolateRight: "clamp",
-    easing: Easing.inOut(Easing.cubic),
-  });
-  const draw2 = interpolate(frame, [16, 46], [1, 0], {
-    extrapolateLeft: "clamp",
-    extrapolateRight: "clamp",
-    easing: Easing.inOut(Easing.cubic),
-  });
-  return (
-    <svg
-      width={size}
-      height={size}
-      viewBox="0 0 24 24"
-      fill="none"
-      stroke={INK}
-      strokeWidth={1.5}
-      strokeLinecap="round"
-      strokeLinejoin="round"
-      style={{ opacity: appear }}
-    >
-      <path
-        pathLength={1}
-        strokeDasharray={1}
-        strokeDashoffset={draw1}
-        d="M14 19L11.1069 10.7479C9.76348 6.91597 9.09177 5 8 5C6.90823 5 6.23652 6.91597 4.89309 10.7479L2 19M4.5 12H11.5"
-      />
-      <path
-        pathLength={1}
-        strokeDasharray={1}
-        strokeDashoffset={draw2}
-        d="M21.9692 13.9392V18.4392M21.9692 13.9392C22.0164 13.1161 22.0182 12.4891 21.9194 11.9773C21.6864 10.7709 20.4258 10.0439 19.206 9.89599C18.0385 9.75447 17.1015 10.055 16.1535 11.4363M21.9692 13.9392L19.1256 13.9392C18.6887 13.9392 18.2481 13.9603 17.8272 14.0773C15.2545 14.7925 15.4431 18.4003 18.0233 18.845C18.3099 18.8944 18.6025 18.9156 18.8927 18.9026C19.5703 18.8724 20.1955 18.545 20.7321 18.1301C21.3605 17.644 21.9692 16.9655 21.9692 15.9392V13.9392Z"
-      />
-    </svg>
-  );
-};
-
-// ---------------------------------------------------------------------------
-// Overview grid: every effect plays on its own card; the cards wave in
-// diagonally, hold, then the target card pulls focus and the camera dives in.
-// ---------------------------------------------------------------------------
-const GRID = 168;
-const GRID_ZOOM = 34; // closing camera push
-const GRID_ZOOM_START = GRID - GRID_ZOOM;
-const GRID_FOCUS = 20; // pre-dive focus pull on the target card
-const CARD_LOOP = 80;
-
-const GRID_COLS = 5;
-const GRID_CELLS = ANIMATIONS.length + 1; // effects + one closing brand tile
-const GRID_ROWS = Math.ceil(GRID_CELLS / GRID_COLS);
-const ZOOM_TARGET = 0; // soft-blur-in — also the first montage scene
-
-// Card centre as a fraction of the frame, used as the zoom transform-origin.
-const ZOOM_PAD_X = 70;
-const ZOOM_PAD_TOP = 128;
-const ZOOM_PAD_BOTTOM = 60;
-const ZOOM_GAP = 16;
-const targetCol = ZOOM_TARGET % GRID_COLS;
-const targetRow = Math.floor(ZOOM_TARGET / GRID_COLS);
-const cellW = (1280 - 2 * ZOOM_PAD_X - (GRID_COLS - 1) * ZOOM_GAP) / GRID_COLS;
-const cellH =
-  (720 - ZOOM_PAD_TOP - ZOOM_PAD_BOTTOM - (GRID_ROWS - 1) * ZOOM_GAP) / GRID_ROWS;
-const ZOOM_ORIGIN_X =
-  ((ZOOM_PAD_X + targetCol * (cellW + ZOOM_GAP) + cellW / 2) / 1280) * 100;
-const ZOOM_ORIGIN_Y =
-  ((ZOOM_PAD_TOP + targetRow * (cellH + ZOOM_GAP) + cellH / 2) / 720) * 100;
-
-// Diagonal entrance wave shared by every tile.
-const cardEntrance = (frame: number, index: number) => {
-  const col = index % GRID_COLS;
-  const row = Math.floor(index / GRID_COLS);
-  const appear = (col + row) * 3;
-  const enter = interpolate(frame - appear, [0, 18], [0, 1], {
-    extrapolateLeft: "clamp",
-    extrapolateRight: "clamp",
-    easing: Easing.bezier(0.22, 1, 0.36, 1),
-  });
-  return { appear, enter };
-};
-
-const GridCard: React.FC<{
-  anim: Anim;
-  index: number;
-  zoom: number;
-  focus: number;
-}> = ({ anim, index, zoom, focus }) => {
-  const frame = useCurrentFrame();
-  const { appear, enter } = cardEntrance(frame, index);
-  const isTarget = index === ZOOM_TARGET;
-
-  // Pre-dive focus: the target brightens and lifts; the rest dim back so the
-  // camera clearly lands on the effect we continue into. Then the dive fades
-  // every non-target card out entirely.
-  const dim = isTarget ? 0 : focus * 0.55;
-  const zoomFade = isTarget ? 1 : 1 - zoom;
-
-  return (
-    <div
-      style={{
-        position: "relative",
-        overflow: "hidden",
-        borderRadius: 16,
-        border: `1px solid rgba(255,255,255,${0.08 + (isTarget ? focus * 0.55 : 0)})`,
-        background: "rgba(255,255,255,0.04)",
-        boxShadow:
-          isTarget && focus > 0.01
-            ? `0 0 ${focus * 46}px rgba(255,255,255,${focus * 0.14})`
-            : "0 12px 30px rgba(0,0,0,0.28)",
-        opacity: enter * zoomFade * (1 - dim),
-        translate: `0px ${(1 - enter) * 18}px`,
-        scale:
-          (0.94 + enter * 0.06) *
-          (isTarget ? 1 + focus * 0.06 : 1 - focus * 0.03),
-      }}
-    >
-      {/* glassy top sheen */}
-      <div
-        style={{
-          position: "absolute",
-          inset: 0,
-          background:
-            "linear-gradient(180deg, rgba(255,255,255,0.06) 0%, rgba(255,255,255,0) 42%)",
-        }}
-      />
-      <Sequence from={Math.round(appear)} layout="none">
-        <Loop durationInFrames={CARD_LOOP}>{anim.card()}</Loop>
-      </Sequence>
-      <span
-        style={{
-          position: "absolute",
-          top: 11,
-          left: 14,
-          fontFamily: FONT_STACK,
-          fontSize: 12,
-          fontWeight: 700,
-          color: "rgba(250,250,250,0.5)",
-          fontVariantNumeric: "tabular-nums",
-        }}
-      >
-        {String(index + 1).padStart(2, "0")}
-      </span>
-      <span
-        style={{
-          position: "absolute",
-          bottom: 11,
-          left: 14,
-          fontFamily: FONT_STACK,
-          fontSize: 12,
-          fontWeight: 500,
-          color: "rgba(250,250,250,0.5)",
-        }}
-      >
-        {anim.name}
-      </span>
-    </div>
-  );
-};
-
-// Closing brand tile fills the final cell so the grid reads as a clean 5×4.
-const BrandTile: React.FC<{ index: number; zoom: number; focus: number }> = ({
-  index,
-  zoom,
-  focus,
-}) => {
-  const frame = useCurrentFrame();
-  const { appear, enter } = cardEntrance(frame, index);
-  return (
-    <div
-      style={{
-        position: "relative",
-        overflow: "hidden",
-        borderRadius: 16,
-        border: "1px solid rgba(255,255,255,0.1)",
-        background: "rgba(255,255,255,0.06)",
-        display: "flex",
-        flexDirection: "column",
-        alignItems: "center",
-        justifyContent: "center",
-        gap: 8,
-        opacity: enter * (1 - zoom) * (1 - focus * 0.55),
-        translate: `0px ${(1 - enter) * 18}px`,
-        scale: (0.94 + enter * 0.06) * (1 - focus * 0.03),
-      }}
-    >
-      <Sequence from={Math.round(appear)} layout="none">
-        <IntroIcon size={30} />
-      </Sequence>
-      <span
-        style={{
-          fontFamily: FONT_STACK,
-          fontSize: 17,
-          fontWeight: 600,
-          color: "rgba(250,250,250,0.85)",
-        }}
-      >
-        remocn
-      </span>
-    </div>
-  );
-};
-
-const GridScene: React.FC = () => {
-  const frame = useCurrentFrame();
-  const title = interpolate(frame, [4, 22], [0, 1], {
-    extrapolateLeft: "clamp",
-    extrapolateRight: "clamp",
-    easing: Easing.out(Easing.cubic),
-  });
-  // The target card pulls focus in the moments before the dive...
-  const focus = interpolate(
-    frame,
-    [GRID_ZOOM_START - GRID_FOCUS, GRID_ZOOM_START],
-    [0, 1],
-    {
-      extrapolateLeft: "clamp",
-      extrapolateRight: "clamp",
-      easing: Easing.out(Easing.cubic),
-    },
-  );
-  // ...then the camera pushes into it and glides it to the centre of frame.
-  const zoom = interpolate(frame, [GRID_ZOOM_START, GRID], [0, 1], {
-    extrapolateLeft: "clamp",
-    extrapolateRight: "clamp",
-    easing: Easing.in(Easing.cubic),
-  });
-
-  return (
-    <AbsoluteFill
-      style={{
-        transformOrigin: `${ZOOM_ORIGIN_X}% ${ZOOM_ORIGIN_Y}%`,
-        translate: `${(50 - ZOOM_ORIGIN_X) * zoom}% ${(50 - ZOOM_ORIGIN_Y) * zoom}%`,
-        scale: 1 + zoom * 5.4,
-        filter: zoom > 0.001 ? `blur(${zoom * 10}px)` : undefined,
-      }}
-    >
-      {/* Header: drawn mark + kicker, the section title, and the count. */}
-      <div
-        style={{
-          position: "absolute",
-          top: 30,
-          left: ZOOM_PAD_X,
-          right: ZOOM_PAD_X,
-          display: "flex",
-          alignItems: "flex-end",
-          justifyContent: "space-between",
-          opacity: title,
-        }}
-      >
-        <div style={{ display: "flex", flexDirection: "column", gap: 9 }}>
-          <div style={{ display: "flex", alignItems: "center", gap: 10 }}>
-            <Sequence from={2} layout="none">
-              <IntroIcon size={24} />
-            </Sequence>
-            <span
-              style={{
-                fontFamily: FONT_STACK,
-                fontSize: 20,
-                fontWeight: 600,
-                color: "rgba(250,250,250,0.78)",
-              }}
-            >
-              remocn
-            </span>
-          </div>
-          <span
-            style={{
-              fontFamily: FONT_STACK,
-              fontSize: 30,
-              fontWeight: 600,
-              color: INK,
-            }}
-          >
-            Every new effect
-          </span>
-        </div>
-        <span
-          style={{
-            fontFamily: FONT_STACK,
-            fontSize: 17,
-            fontWeight: 500,
-            color: "rgba(250,250,250,0.45)",
-            fontVariantNumeric: "tabular-nums",
-          }}
-        >
-          {ANIMATIONS.length} effects
-        </span>
-      </div>
-
-      <div
-        style={{
-          position: "absolute",
-          top: ZOOM_PAD_TOP,
-          left: ZOOM_PAD_X,
-          right: ZOOM_PAD_X,
-          bottom: ZOOM_PAD_BOTTOM,
-          display: "grid",
-          gridTemplateColumns: `repeat(${GRID_COLS}, 1fr)`,
-          gridAutoRows: "1fr",
-          gap: ZOOM_GAP,
-        }}
-      >
-        {ANIMATIONS.map((anim, i) => (
-          <GridCard key={anim.name} anim={anim} index={i} zoom={zoom} focus={focus} />
-        ))}
-        <BrandTile index={ANIMATIONS.length} zoom={zoom} focus={focus} />
-      </div>
-    </AbsoluteFill>
-  );
-};
-
-// ---------------------------------------------------------------------------
-// Intro & outro
-// ---------------------------------------------------------------------------
-const INTRO = 104;
-const OUTRO = 112;
-
-// One headline line, revealed in place: rises a touch and un-blurs (no clip, so
-// descenders like the "p"/"y" in "typography" are never cut off).
-const HeadlineLine: React.FC<{ children: ReactNode; delay: number }> = ({
-  children,
-  delay,
-}) => {
-  const frame = useCurrentFrame();
-  const p = interpolate(frame, [delay, delay + 22], [0, 1], {
-    extrapolateLeft: "clamp",
-    extrapolateRight: "clamp",
-    easing: Easing.bezier(0.22, 1, 0.36, 1),
-  });
-  return (
-    <div
-      style={{
-        opacity: p,
-        transform: `translateY(${(1 - p) * 0.5}em)`,
-        filter: p < 1 ? `blur(${(1 - p) * 9}px)` : undefined,
-      }}
-    >
-      {children}
-    </div>
-  );
-};
-
-const IntroScene: React.FC = () => {
-  const frame = useCurrentFrame();
-  const kicker = interpolate(frame, [4, 20], [0, 1], {
-    extrapolateLeft: "clamp",
-    extrapolateRight: "clamp",
-    easing: Easing.out(Easing.cubic),
-  });
-
-  return (
-    <AbsoluteFill style={{ alignItems: "center", justifyContent: "center" }}>
-      <div
-        style={{
-          display: "flex",
-          flexDirection: "column",
-          alignItems: "center",
-          gap: 32,
-        }}
-      >
-        {/* Small lock-up kicker — the mark draws itself in next to the wordmark. */}
-        <div
-          style={{
-            display: "flex",
-            alignItems: "center",
-            gap: 11,
-            opacity: kicker,
-            transform: `translateY(${(1 - kicker) * 8}px)`,
-          }}
-        >
-          <IntroIcon size={34} />
-          <span
-            style={{
-              fontFamily: FONT_STACK,
-              fontSize: 25,
-              fontWeight: 600,
-              color: "rgba(250,250,250,0.78)",
-            }}
-          >
-            remocn
-          </span>
-        </div>
-
-        {/* Hero headline — the message, revealed line by line, in place. */}
-        <div
-          style={{
-            textAlign: "center",
-            fontFamily: FONT_STACK,
-            fontWeight: 700,
-            fontSize: 94,
-            lineHeight: 1.05,
-            color: INK,
-          }}
-        >
-          <HeadlineLine delay={10}>New typography</HeadlineLine>
-          <HeadlineLine delay={22}>animations</HeadlineLine>
-        </div>
-
-        {/* Typed meta line (remocn Typewriter component). */}
-        <div style={{ position: "relative", width: 560, height: 44 }}>
-          <Sequence from={48}>
-            <Typewriter
-              text="19 new effects"
-              fontSize={28}
-              fontWeight={500}
-              color="rgba(250,250,250,0.7)"
-              cursorColor="rgba(250,250,250,0.7)"
-              charsPerSecond={20}
-            />
-          </Sequence>
-        </div>
-      </div>
-    </AbsoluteFill>
-  );
-};
-
-// Inline lucide icons for the install pill.
-const CopyIcon: React.FC<{ size: number }> = ({ size }) => (
-  <svg
-    width={size}
-    height={size}
-    viewBox="0 0 24 24"
-    fill="none"
-    stroke="currentColor"
-    strokeWidth={2}
-    strokeLinecap="round"
-    strokeLinejoin="round"
-  >
-    <rect width={14} height={14} x={8} y={8} rx={2} ry={2} />
-    <path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2" />
-  </svg>
+const WaveScene: React.FC = () => (
+  <AbsoluteFill>
+    <KineticCenterBuild
+      text="18 new ways to make it move"
+      fontSize={60}
+      fontWeight={400}
+      color={INK}
+    />
+  </AbsoluteFill>
 );
 
-const CheckIcon: React.FC<{ size: number }> = ({ size }) => (
-  <svg
-    width={size}
-    height={size}
-    viewBox="0 0 24 24"
-    fill="none"
-    stroke="currentColor"
-    strokeWidth={2.4}
-    strokeLinecap="round"
-    strokeLinejoin="round"
-  >
-    <path d="M20 6 9 17l-5-5" />
-  </svg>
-);
+// ===========================================================================
+// The montage — every effect introduced by animating its own name. The
+// counter holds perfectly still while the effects change beneath it.
+// ===========================================================================
+const MONT_SIZE = 60;
+const MONT_WEIGHT = 400;
+const SPEED_MONT = 1.5;
+const TOTAL_EFFECTS = 18;
 
-// remocn's hero "install command" pill, rebuilt for Remotion: a rounded glass
-// pill with `$ <command>` and a copy icon that ticks to a check (a simulated
-// "copied!" beat) — all frame-driven.
-const InstallPill: React.FC<{ command: string; delay: number; copyAt: number }> = ({
-  command,
-  delay,
-  copyAt,
+type MontEffect = { name: string; dur: number; node: ReactNode };
+
+const s = SPEED_MONT;
+
+const ENTRANCES: MontEffect[] = [
+  {
+    name: "soft-blur-in",
+    dur: 30,
+    node: <SoftBlurIn text="Soft blur in" fontSize={MONT_SIZE} fontWeight={MONT_WEIGHT} color={INK} speed={s} />,
+  },
+  {
+    name: "per-character-rise",
+    dur: 36,
+    node: <PerCharacterRise text="Per character rise" fontSize={MONT_SIZE} fontWeight={MONT_WEIGHT} color={INK} speed={s} />,
+  },
+  {
+    name: "bottom-up-letters",
+    dur: 34,
+    node: <BottomUpLetters text="Bottom up letters" staggerDelay={2} fontSize={MONT_SIZE} fontWeight={MONT_WEIGHT} color={INK} speed={s} />,
+  },
+  {
+    name: "top-down-letters",
+    dur: 34,
+    node: <TopDownLetters text="Top down letters" staggerDelay={2} fontSize={MONT_SIZE} fontWeight={MONT_WEIGHT} color={INK} speed={s} />,
+  },
+  {
+    name: "spring-scale-in",
+    dur: 28,
+    node: <SpringScaleIn text="Spring scale in" fontSize={MONT_SIZE} fontWeight={MONT_WEIGHT} color={INK} speed={s} />,
+  },
+  {
+    name: "micro-scale-fade",
+    dur: 28,
+    node: <MicroScaleFade text="Micro scale fade" fontSize={MONT_SIZE} fontWeight={MONT_WEIGHT} color={INK} speed={s} />,
+  },
+  {
+    name: "mask-reveal-up",
+    dur: 32,
+    node: <MaskRevealUp text={"Mask reveal\nup"} fontSize={MONT_SIZE} fontWeight={MONT_WEIGHT} color={INK} speed={s} />,
+  },
+  {
+    name: "line-by-line-slide",
+    dur: 36,
+    node: <LineByLineSlide text={"Line by line\nslide"} fontSize={MONT_SIZE} fontWeight={MONT_WEIGHT} color={INK} speed={s} />,
+  },
+  {
+    name: "kinetic-center-build",
+    dur: 36,
+    node: <KineticCenterBuild text="Kinetic center build" fontSize={MONT_SIZE} fontWeight={MONT_WEIGHT} color={INK} speed={s} />,
+  },
+  {
+    name: "focus-blur-resolve",
+    dur: 34,
+    node: <FocusBlurResolve text="Focus blur resolve" fontSize={MONT_SIZE} fontWeight={MONT_WEIGHT} color={INK} speed={s} />,
+  },
+];
+
+const SWAPS: MontEffect[] = [
+  {
+    name: "blur-out-up",
+    dur: 32,
+    node: <BlurOutUp text="Blur out up" fontSize={MONT_SIZE} fontWeight={MONT_WEIGHT} color={INK} speed={s} />,
+  },
+  {
+    name: "scale-down-fade",
+    dur: 32,
+    node: <ScaleDownFade text="Scale down fade" fontSize={MONT_SIZE} fontWeight={MONT_WEIGHT} color={INK} speed={s} />,
+  },
+  {
+    name: "fade-through",
+    dur: 36,
+    node: <FadeThrough fromText="Static text" toText="Fade through" fontSize={MONT_SIZE} fontWeight={MONT_WEIGHT} color={INK} speed={s} />,
+  },
+  {
+    name: "per-word-crossfade",
+    dur: 38,
+    node: <PerWordCrossfade fromText="Word by word" toText="Per word crossfade" fontSize={MONT_SIZE} fontWeight={MONT_WEIGHT} color={INK} speed={s} />,
+  },
+  {
+    name: "shared-axis-y",
+    dur: 34,
+    node: <SharedAxisY fromText="Outgoing" toText="Shared axis y" fontSize={MONT_SIZE} fontWeight={MONT_WEIGHT} color={INK} speed={s} />,
+  },
+  {
+    name: "shared-axis-z",
+    dur: 36,
+    node: <SharedAxisZ fromText="Outgoing" toText="Shared axis z" fontSize={MONT_SIZE} fontWeight={MONT_WEIGHT} color={INK} speed={s} />,
+  },
+  {
+    name: "short-slide-down",
+    dur: 30,
+    node: <ShortSlideDown text="Short slide down" fontSize={MONT_SIZE} fontWeight={MONT_WEIGHT} color={INK} speed={s} />,
+  },
+  {
+    name: "short-slide-right",
+    dur: 30,
+    node: <ShortSlideRight text="Short slide right" fontSize={MONT_SIZE} fontWeight={MONT_WEIGHT} color={INK} speed={s} />,
+  },
+];
+
+const ENTR_TOTAL = ENTRANCES.reduce((a, e) => a + e.dur, 0);
+const SWAP_TOTAL = SWAPS.reduce((a, e) => a + e.dur, 0);
+
+// The still `NN / 18` counter — reads the montage-half's local frame and maps
+// it to the active effect; the chrome never moves, only its value ticks.
+const MontageCounter: React.FC<{ effects: MontEffect[]; baseIndex: number }> = ({
+  effects,
+  baseIndex,
 }) => {
   const frame = useCurrentFrame();
-  const enter = interpolate(frame, [delay, delay + 16], [0, 1], {
-    extrapolateLeft: "clamp",
-    extrapolateRight: "clamp",
-    easing: Easing.bezier(0.22, 1, 0.36, 1),
-  });
-  const copied = frame >= copyAt;
-  // a small pop when the icon swaps to the check
-  const pop = interpolate(frame - copyAt, [0, 8], [0.5, 1], {
-    extrapolateLeft: "clamp",
-    extrapolateRight: "clamp",
-    easing: Easing.bezier(0.34, 1.56, 0.64, 1),
-  });
 
-  return (
-    <div
-      style={{
-        display: "inline-flex",
-        alignItems: "center",
-        gap: 13,
-        height: 52,
-        padding: "0 22px",
-        borderRadius: 999,
-        border: `1px solid rgba(255,255,255,${copied ? 0.22 : 0.14})`,
-        background: "rgba(255,255,255,0.05)",
-        backdropFilter: "blur(10px)",
-        WebkitBackdropFilter: "blur(10px)",
-        boxShadow: "0 12px 34px rgba(0,0,0,0.3)",
-        fontFamily: MONO_STACK,
-        fontSize: 18,
-        opacity: enter,
-        translate: `0px ${(1 - enter) * 12}px`,
-      }}
-    >
-      <span style={{ color: "rgba(250,250,250,0.4)" }}>$</span>
-      <span style={{ color: INK }}>{command}</span>
-      <span
-        style={{
-          display: "inline-flex",
-          marginLeft: 3,
-          color: copied ? "#4ade80" : "rgba(250,250,250,0.55)",
-          scale: copied ? `${pop}` : "1",
-        }}
-      >
-        {copied ? <CheckIcon size={17} /> : <CopyIcon size={17} />}
-      </span>
-    </div>
-  );
-};
-
-const OutroScene: React.FC = () => {
-  const frame = useCurrentFrame();
-
-  const word = interpolate(frame, [6, 30], [0, 1], {
-    extrapolateLeft: "clamp",
-    extrapolateRight: "clamp",
-    easing: Easing.bezier(0.22, 1, 0.36, 1),
-  });
-  // The whole closing group lifts away and blurs out at the very end.
-  const exit = interpolate(frame, [OUTRO - 18, OUTRO], [0, 1], {
-    extrapolateLeft: "clamp",
-    extrapolateRight: "clamp",
-    easing: Easing.in(Easing.cubic),
-  });
-
-  return (
-    <AbsoluteFill
-      style={{
-        alignItems: "center",
-        justifyContent: "center",
-        opacity: 1 - exit,
-        translate: `0px ${-exit * 60}px`,
-        filter: exit > 0.001 ? `blur(${exit * 16}px)` : undefined,
-      }}
-    >
-      <div
-        style={{
-          display: "flex",
-          flexDirection: "column",
-          alignItems: "center",
-          gap: 30,
-        }}
-      >
-        {/* Brand lock-up: the mark draws in beside the wordmark (a bookend to
-            the intro). */}
-        <div style={{ display: "flex", alignItems: "center", gap: 18 }}>
-          <span
-            style={{
-              fontFamily: FONT_STACK,
-              fontSize: 96,
-              fontWeight: 600,
-              color: INK,
-              lineHeight: 1,
-              opacity: word,
-              filter: word < 1 ? `blur(${(1 - word) * 12}px)` : undefined,
-              translate: `0px ${(1 - word) * 10}px`,
-            }}
-          >
-            remocn
-          </span>
-        </div>
-
-      
-
-        <InstallPill
-          command="npx shadcn@latest add remocn/soft-blur-in"
-          delay={52}
-          copyAt={86}
-        />
-      </div>
-    </AbsoluteFill>
-  );
-};
-
-// ---------------------------------------------------------------------------
-// Scene assembly
-// ---------------------------------------------------------------------------
-type SceneSlot = {
-  node: ReactNode;
-  dur: number;
-  /** transition INTO the next scene */
-  trans?: { dur: number; presentation: () => TransitionPresentation<FadeProps> };
-};
-
-const buildScenes = (): SceneSlot[] => {
-  const slots: SceneSlot[] = [];
-
-  slots.push({ node: <IntroScene />, dur: INTRO, trans: DISSOLVE });
-
-  // Overview grid (its own dive into the first card stays as a one-off).
-  slots.push({ node: <GridScene />, dur: GRID, trans: DISSOLVE });
-
-  ANIMATIONS.forEach((anim) => {
-    const d = Math.round(anim.dur * DUR_SCALE);
-    // Stationary scene: the effect plays in place, then Stage dissolves it out in
-    // place before the in-place cross-fade brings the next effect on. No motion.
-    slots.push({
-      node: (
-        <Stage dur={d} transOut={DISSOLVE.dur}>
-          {anim.full(SPEED)}
-        </Stage>
-      ),
-      dur: d,
-      trans: DISSOLVE,
-    });
-  });
-
-  slots.push({ node: <OutroScene />, dur: OUTRO });
-  return slots;
-};
-
-const SCENES = buildScenes();
-
-export const TYPOGRAPHY_DURATION =
-  SCENES.reduce((a, s) => a + s.dur, 0) -
-  SCENES.reduce((a, s) => a + (s.trans?.dur ?? 0), 0);
-
-// ---------------------------------------------------------------------------
-// Persistent scene counter — the tag itself never moves or fades between
-// montage scenes; only its ordinal (and effect name) tick over. Lives OUTSIDE
-// the TransitionSeries so the scene transitions can't drag it around.
-// ---------------------------------------------------------------------------
-// Composition-frame start of each slot (accounts for transition overlaps).
-const SCENE_STARTS = (() => {
-  const starts: number[] = [];
-  let acc = 0;
-  for (const s of SCENES) {
-    starts.push(acc);
-    acc += s.dur - (s.trans?.dur ?? 0);
-  }
-  return starts;
-})();
-
-// Slots 0 = intro, 1 = grid, 2..(N+1) = montage effects, last = outro.
-const MONTAGE_TAGS = ANIMATIONS.map((anim, i) => ({
-  start: SCENE_STARTS[i + 2],
-  index: i + 1,
-  name: anim.name,
-}));
-const MONTAGE_START = MONTAGE_TAGS[0].start;
-const MONTAGE_END = SCENE_STARTS[SCENES.length - 1]; // outro start
-
-const SceneCounter: React.FC = () => {
-  const frame = useCurrentFrame();
-
-  // Which effect is on screen right now.
   let active = 0;
-  for (let i = 0; i < MONTAGE_TAGS.length; i++) {
-    if (frame >= MONTAGE_TAGS[i].start) active = i;
+  let acc = 0;
+  for (let i = 0; i < effects.length; i++) {
+    if (frame >= acc) active = i;
+    acc += effects[i].dur;
   }
-  const tag = MONTAGE_TAGS[active];
+  const tag = effects[active];
 
-  // Only visible during the montage; the chrome holds completely still.
-  const appear = interpolate(frame, [MONTAGE_START - 8, MONTAGE_START + 6], [0, 1], {
-    extrapolateLeft: "clamp",
-    extrapolateRight: "clamp",
-  });
-  const out = interpolate(frame, [MONTAGE_END - 12, MONTAGE_END], [1, 0], {
-    extrapolateLeft: "clamp",
-    extrapolateRight: "clamp",
-  });
-  const vis = appear * out;
-
-  // The changing value settles with a soft fade (no movement) on each switch.
-  const valueOpacity = interpolate(frame - tag.start, [0, 7], [0.35, 1], {
-    extrapolateLeft: "clamp",
-    extrapolateRight: "clamp",
+  const vis = interpolate(frame, [0, 8], [0, 1], clampOpts);
+  // The value settles with a soft fade (no movement) on each switch.
+  let start = 0;
+  for (let i = 0; i < active; i++) start += effects[i].dur;
+  const valueOpacity = interpolate(frame - start, [0, 7], [0.4, 1], {
+    ...clampOpts,
     easing: Easing.out(Easing.cubic),
   });
 
@@ -947,35 +262,30 @@ const SceneCounter: React.FC = () => {
       style={{
         position: "absolute",
         left: 70,
-        bottom: 60,
+        bottom: 56,
         display: "flex",
         alignItems: "baseline",
-        gap: 14,
+        gap: 13,
         opacity: vis,
-        fontFamily: FONT_STACK,
-        color: "rgba(250,250,250,0.62)",
+        fontFamily: SANS,
+        color: MUTED,
       }}
     >
       <span
         style={{
           fontSize: 22,
-          fontWeight: 700,
+          fontWeight: 500,
           fontVariantNumeric: "tabular-nums",
           opacity: valueOpacity,
         }}
       >
-        {String(tag.index).padStart(2, "0")}
+        {String(baseIndex + active + 1).padStart(2, "0")}
       </span>
-      <span style={{ fontSize: 15, fontWeight: 500, color: "rgba(250,250,250,0.4)" }}>
-        / {String(ANIMATIONS.length).padStart(2, "0")}
+      <span style={{ fontSize: 15, fontWeight: 400, color: FAINT }}>
+        / {String(TOTAL_EFFECTS).padStart(2, "0")}
       </span>
       <span
-        style={{
-          fontSize: 16,
-          fontWeight: 500,
-          color: "rgba(250,250,250,0.5)",
-          opacity: valueOpacity,
-        }}
+        style={{ fontSize: 16, fontWeight: 400, color: MUTED, opacity: valueOpacity }}
       >
         {tag.name}
       </span>
@@ -983,47 +293,418 @@ const SceneCounter: React.FC = () => {
   );
 };
 
-// ---------------------------------------------------------------------------
-// Composition root
-// ---------------------------------------------------------------------------
-export const TypographyDemo: React.FC = () => {
-  const children: ReactNode[] = [];
-  SCENES.forEach((scene, i) => {
-    children.push(
-      <TransitionSeries.Sequence key={`s-${i}`} durationInFrames={scene.dur}>
-        {scene.node}
-      </TransitionSeries.Sequence>,
-    );
-    if (scene.trans) {
-      children.push(
-        <TransitionSeries.Transition
-          key={`t-${i}`}
-          timing={linearTiming({ durationInFrames: scene.trans.dur })}
-          presentation={scene.trans.presentation()}
-        />,
-      );
-    }
-  });
+const MontageScene: React.FC<{ effects: MontEffect[]; baseIndex: number }> = ({
+  effects,
+  baseIndex,
+}) => (
+  <AbsoluteFill>
+    <Series>
+      {effects.map((e) => (
+        <Series.Sequence key={e.name} durationInFrames={e.dur}>
+          {e.node}
+        </Series.Sequence>
+      ))}
+    </Series>
+    <MontageCounter effects={effects} baseIndex={baseIndex} />
+  </AbsoluteFill>
+);
 
+// ===========================================================================
+// The argument — why these are different (interpolate/spring, deterministic).
+// ===========================================================================
+const MechScene: React.FC = () => (
+  <AbsoluteFill>
+    <ShortSlideRight
+      text="No CSS keyframes — just interpolate and spring"
+      fontSize={44}
+      fontWeight={400}
+      color={INK}
+    />
+  </AbsoluteFill>
+);
+
+const DeterministicScene: React.FC = () => (
+  <AbsoluteFill>
+    <SoftBlurIn
+      text="Frame 40 looks the same on every render"
+      fontSize={46}
+      fontWeight={400}
+      color={INK}
+    />
+  </AbsoluteFill>
+);
+
+const ValueScene: React.FC = () => (
+  <AbsoluteFill>
+    <LineByLineSlide
+      text={"Seek-safe by default\nOne import each\nThe code is yours"}
+      fontSize={48}
+      fontWeight={400}
+      color={INK}
+    />
+  </AbsoluteFill>
+);
+
+// ===========================================================================
+// One command — the exact effect that opened the montage, installed live.
+// A plain typed mono line (never a pill).
+// ===========================================================================
+const CMD_FULL = "npx shadcn add @remocn/soft-blur-in";
+const PKG_AT = CMD_FULL.indexOf("@remocn/");
+const CMD_START = 8;
+
+const CommandScene: React.FC = () => {
+  const frame = useCurrentFrame();
+
+  const typed = Math.max(
+    0,
+    Math.min(CMD_FULL.length, Math.floor((frame - CMD_START) * 1.4)),
+  );
+  const visible = CMD_FULL.slice(0, typed);
+  const done = typed >= CMD_FULL.length;
+  const caretOn = done ? Math.floor(frame / 15) % 2 === 0 : true;
+  const enter = interpolate(frame, [CMD_START - 4, CMD_START], [0, 1], clampOpts);
+
+  return (
+    <AbsoluteFill
+      style={{ alignItems: "center", justifyContent: "center", opacity: enter }}
+    >
+      <span style={{ fontFamily: MONO, fontSize: 29, color: MUTED }}>
+        <span style={{ color: FAINT }}>$ </span>
+        <span>{visible.slice(0, Math.min(typed, PKG_AT))}</span>
+        <span style={{ color: LIME }}>
+          {typed > PKG_AT ? visible.slice(PKG_AT) : ""}
+        </span>
+        <span
+          style={{
+            display: "inline-block",
+            width: 12,
+            height: 28,
+            marginLeft: 4,
+            verticalAlign: "-5px",
+            background: caretOn ? MUTED : "transparent",
+          }}
+        />
+      </span>
+    </AbsoluteFill>
+  );
+};
+
+// ===========================================================================
+// Outro — the introducing-remocn lockup, reused with the new logo. A smoke
+// ring blooms open, the R mark draws itself on, "emocn" slides out from behind
+// it to assemble the Remocn wordmark, and remocn.dev settles underneath.
+// Tracking dropped to default to honor the no-letter-spacing rule.
+// ===========================================================================
+const MARK_VIEWBOX = "0 0 124.06 134.26";
+const MARK_RATIO = 124.06 / 134.26;
+const MARK_PATH =
+  "M 0.01 0.81 C 0.01 1.73, 0.36 2.79, 1.09 4.13 C 4.91 11.04, 13.45 17.16, 21.7 18.9 C 22.94 19.16, 23.18 19.16, 51.39 19.27 C 76.07 19.36, 80.02 19.4, 81.32 19.57 C 89.89 20.69, 96.2 24.68, 99.38 31.01 C 103.19 38.56, 102.53 50.1, 97.91 57.07 C 94.66 61.96, 89.68 64.99, 83.26 66 C 82.81 66.07, 70.18 66.83, 55.2 67.69 C 24.82 69.43, 27.03 69.23, 24.18 70.4 C 19.9 72.15, 14.84 75.7, 10.65 79.89 C 4.86 85.68, 1.3 91.91, 0.25 98.13 C 0.12 98.85, 0.08 103.13, 0.04 116.66 L 0 134.26 9.5 134.26 L 19 134.26 19.05 119.41 C 19.1 103.27, 19.08 103.82, 19.82 101.04 C 21.79 93.65, 27.86 88.75, 36.45 87.63 C 37.23 87.53, 39.41 87.5, 43.57 87.53 C 50.12 87.59, 50.75 87.65, 53.22 88.45 C 56.61 89.56, 59.67 91.86, 62.02 95.07 C 62.52 95.76, 69.35 103.85, 77.2 113.07 C 85.04 122.28, 91.63 130.04, 91.85 130.32 C 92.07 130.59, 92.5 131.34, 92.82 131.97 C 93.52 133.35, 94.11 133.93, 95.06 134.13 C 95.5 134.23, 98.97 134.26, 106.36 134.23 L 117.01 134.19 100.82 113.07 C 91.91 101.45, 84.52 91.78, 84.39 91.57 C 83.36 89.89, 83.66 87.53, 85.09 86 C 85.79 85.25, 86.36 84.94, 88.07 84.38 C 96.18 81.72, 104.15 76.62, 109.97 70.36 C 120.59 58.93, 124.06 44.32, 119.44 30.43 C 114.59 15.81, 101.93 4.02, 87.64 0.83 C 83.93 0.01, 88.09 0.08, 41.85 0.04 L 0.01 0 0.01 0.81 Z";
+
+const RemocnMark: React.FC<{ size: number; draw?: number; fill?: number }> = ({
+  size,
+  draw = 1,
+  fill = 1,
+}) => (
+  <svg
+    viewBox={MARK_VIEWBOX}
+    width={size * MARK_RATIO}
+    height={size}
+    style={{ display: "block", color: INK, overflow: "visible" }}
+  >
+    <path
+      d={MARK_PATH}
+      pathLength={1}
+      fill="currentColor"
+      fillOpacity={fill}
+      stroke="currentColor"
+      strokeWidth={2}
+      strokeLinejoin="round"
+      strokeDasharray={1}
+      strokeDashoffset={1 - draw}
+    />
+  </svg>
+);
+
+const WORD_TAIL = "emocn";
+const WORD_SIZE = 92;
+const MARK_SIZE = 66;
+
+const measureTail = (): number => {
+  const fallback = WORD_TAIL.length * WORD_SIZE * 0.55;
+  if (typeof document === "undefined") return fallback;
+  const ctx = document.createElement("canvas").getContext("2d");
+  if (!ctx) return fallback;
+  ctx.font = `400 ${WORD_SIZE}px ${SANS_FAMILY}, sans-serif`;
+  return ctx.measureText(WORD_TAIL).width + 2;
+};
+
+const OutroScene: React.FC = () => {
+  const frame = useCurrentFrame();
+  const { fps } = useVideoConfig();
+
+  const tailWidth = React.useMemo(measureTail, []);
+
+  const ringRadius = interpolate(frame, [6, 56], [0.03, 0.19], {
+    ...clampOpts,
+    easing: Easing.out(Easing.cubic),
+  });
+  const markDraw = interpolate(frame, [24, 58], [0, 1], {
+    ...clampOpts,
+    easing: Easing.inOut(Easing.cubic),
+  });
+  const markFill = interpolate(frame, [50, 68], [0, 1], {
+    ...clampOpts,
+    easing: Easing.out(Easing.cubic),
+  });
+  const markSettle = spring({
+    frame: frame - 24,
+    fps,
+    config: { damping: 16, stiffness: 90, mass: 0.9 },
+  });
+  const markScale = interpolate(markSettle, [0, 1], [0.92, 1]);
+
+  const slideIn = Math.min(
+    1,
+    spring({ frame: frame - 70, fps, config: { damping: 18, stiffness: 90, mass: 1 } }),
+  );
+
+  const creditOpacity = interpolate(frame, [110, 128], [0, 1], clampOpts);
+
+  return (
+    <AbsoluteFill
+      style={{ alignItems: "center", justifyContent: "center", background: OBSIDIAN }}
+    >
+      <AbsoluteFill style={{ opacity: 0.7 }}>
+        <ShaderSmokeRing
+          speed={0.8}
+          colorBack={OBSIDIAN}
+          colors={["#33323d", "#525b40"]}
+          radius={ringRadius}
+          thickness={0.4}
+          scale={0.85}
+        />
+      </AbsoluteFill>
+      <Scrim strength={0.55} />
+      <div
+        style={{
+          display: "flex",
+          alignItems: "flex-end",
+          gap: 0,
+          transform: "translateY(-14px)",
+          position: "relative",
+        }}
+      >
+        <div
+          style={{
+            transform: `scale(${markScale})`,
+            transformOrigin: "50% 100%",
+            marginBottom: Math.round(WORD_SIZE * 0.115),
+          }}
+        >
+          <RemocnMark size={MARK_SIZE} draw={markDraw} fill={markFill} />
+        </div>
+        <div
+          style={{
+            position: "relative",
+            overflow: "hidden",
+            width: slideIn * tailWidth,
+            height: WORD_SIZE,
+          }}
+        >
+          <span
+            style={{
+              position: "absolute",
+              right: 0,
+              top: 0,
+              whiteSpace: "nowrap",
+              lineHeight: 1,
+              fontFamily: SANS,
+              fontWeight: 400,
+              fontSize: WORD_SIZE,
+              color: INK,
+            }}
+          >
+            {WORD_TAIL}
+          </span>
+        </div>
+      </div>
+
+      <span
+        style={{
+          position: "absolute",
+          bottom: 44,
+          fontFamily: SANS,
+          fontWeight: 400,
+          fontSize: 21,
+          color: MUTED,
+          opacity: creditOpacity,
+        }}
+      >
+        remocn.dev
+      </span>
+    </AbsoluteFill>
+  );
+};
+
+// ===========================================================================
+// Transition presentations (restrained set: crossfade + blur crossfade).
+// The section boundaries use the new caret-wipe.
+// ===========================================================================
+type EmptyProps = Record<string, never>;
+
+const Crossfade: React.FC<TransitionPresentationComponentProps<EmptyProps>> = ({
+  children,
+  presentationProgress,
+  presentationDirection,
+}) => {
+  const entering = presentationDirection === "entering";
+  const opacity = entering ? presentationProgress : 1 - presentationProgress;
+  return <AbsoluteFill style={{ opacity }}>{children}</AbsoluteFill>;
+};
+const crossfade = (): TransitionPresentation<EmptyProps> => ({
+  component: Crossfade,
+  props: {},
+});
+
+const BlurFade: React.FC<TransitionPresentationComponentProps<EmptyProps>> = ({
+  children,
+  presentationProgress,
+  presentationDirection,
+}) => {
+  const entering = presentationDirection === "entering";
+  const p = presentationProgress;
+  const style: React.CSSProperties = entering
+    ? {
+        opacity: p,
+        transform: `scale(${0.94 + p * 0.06})`,
+        filter: p < 1 ? `blur(${(1 - p) * 12}px)` : undefined,
+      }
+    : {
+        opacity: 1 - p,
+        transform: `scale(${1 + p * 0.08})`,
+        filter: p > 0 ? `blur(${p * 12}px)` : undefined,
+      };
+  return <AbsoluteFill style={style}>{children}</AbsoluteFill>;
+};
+const blurFade = (): TransitionPresentation<EmptyProps> => ({
+  component: BlurFade,
+  props: {},
+});
+
+// ===========================================================================
+// Composition root.
+// ===========================================================================
+export const TYPOGRAPHY_DURATION =
+  S_HOOK +
+  S_WAVE +
+  ENTR_TOTAL +
+  SWAP_TOTAL +
+  S_MECH +
+  S_DET +
+  S_VALUE +
+  S_CMD +
+  S_OUTRO -
+  (T_X + T_CARET + T_CARET + T_BLUR + T_X + T_X + T_X + T_BLUR);
+
+export const TypographyDemo: React.FC = () => {
   return (
     <RemocnUIProvider>
       <AbsoluteFill
-        style={{ "--font-geist-sans": fontFamily } as React.CSSProperties}
+        style={
+          {
+            "--font-geist-sans": SANS_FAMILY,
+            background: OBSIDIAN,
+          } as React.CSSProperties
+        }
       >
-        {/* Persistent image background for the whole video. */}
-        <Backdrop fill={{ type: "image", src: demoAsset("bg.png") }} />
-        {/* Scrim to deepen contrast under the foreground type. */}
-        <AbsoluteFill
-          style={{
-            background:
-              "radial-gradient(120% 120% at 50% 42%, rgba(0,0,0,0.18) 0%, rgba(0,0,0,0.5) 100%)",
-          }}
+        {/* One quiet simplex-noise field carries the whole video. */}
+        <ShaderSimplexNoise
+          speed={0.35}
+          colors={["#141318", "#1a1922", "#232231"]}
+          stepsPerColor={2}
+          softness={0.8}
         />
+        <Scrim strength={0.85} />
 
-        <TransitionSeries>{children}</TransitionSeries>
+        <TransitionSeries>
+          {/* 1 — Hook */}
+          <TransitionSeries.Sequence durationInFrames={S_HOOK}>
+            <HookScene />
+          </TransitionSeries.Sequence>
+          <TransitionSeries.Transition
+            timing={linearTiming({ durationInFrames: T_X })}
+            presentation={crossfade()}
+          />
 
-        {/* Persistent counter overlay — stays put while scenes change beneath. */}
-        <SceneCounter />
+          {/* 2 — The wave (the count) */}
+          <TransitionSeries.Sequence durationInFrames={S_WAVE}>
+            <WaveScene />
+          </TransitionSeries.Sequence>
+          <TransitionSeries.Transition
+            timing={linearTiming({ durationInFrames: T_CARET })}
+            presentation={caretWipe({ direction: "right", caretColor: LIME })}
+          />
+
+          {/* 3 — Ten ways to enter */}
+          <TransitionSeries.Sequence durationInFrames={ENTR_TOTAL}>
+            <MontageScene effects={ENTRANCES} baseIndex={0} />
+          </TransitionSeries.Sequence>
+          <TransitionSeries.Transition
+            timing={linearTiming({ durationInFrames: T_CARET })}
+            presentation={caretWipe({ direction: "left", caretColor: LIME })}
+          />
+
+          {/* 4 — Eight ways to leave, or swap */}
+          <TransitionSeries.Sequence durationInFrames={SWAP_TOTAL}>
+            <MontageScene effects={SWAPS} baseIndex={ENTRANCES.length} />
+          </TransitionSeries.Sequence>
+          <TransitionSeries.Transition
+            timing={linearTiming({ durationInFrames: T_BLUR })}
+            presentation={blurFade()}
+          />
+
+          {/* 5 — The mechanism */}
+          <TransitionSeries.Sequence durationInFrames={S_MECH}>
+            <MechScene />
+          </TransitionSeries.Sequence>
+          <TransitionSeries.Transition
+            timing={linearTiming({ durationInFrames: T_X })}
+            presentation={crossfade()}
+          />
+
+          {/* 6 — Deterministic */}
+          <TransitionSeries.Sequence durationInFrames={S_DET}>
+            <DeterministicScene />
+          </TransitionSeries.Sequence>
+          <TransitionSeries.Transition
+            timing={linearTiming({ durationInFrames: T_X })}
+            presentation={crossfade()}
+          />
+
+          {/* 7 — Value block */}
+          <TransitionSeries.Sequence durationInFrames={S_VALUE}>
+            <ValueScene />
+          </TransitionSeries.Sequence>
+          <TransitionSeries.Transition
+            timing={linearTiming({ durationInFrames: T_X })}
+            presentation={crossfade()}
+          />
+
+          {/* 8 — One command */}
+          <TransitionSeries.Sequence durationInFrames={S_CMD}>
+            <CommandScene />
+          </TransitionSeries.Sequence>
+          <TransitionSeries.Transition
+            timing={linearTiming({ durationInFrames: T_BLUR })}
+            presentation={blurFade()}
+          />
+
+          {/* 9 — Outro lockup (new logo) */}
+          <TransitionSeries.Sequence durationInFrames={S_OUTRO}>
+            <OutroScene />
+          </TransitionSeries.Sequence>
+        </TransitionSeries>
       </AbsoluteFill>
     </RemocnUIProvider>
   );
