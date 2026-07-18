@@ -111,6 +111,66 @@
     ],
     "usesShaders": false
   },
+  "ai-and-social": {
+    "graph": [
+      "src/components/remocn/caret.tsx",
+      "src/components/remocn/chat-gpt.tsx",
+      "src/components/remocn/claude-chat.tsx",
+      "src/components/remocn/claude-code.tsx",
+      "src/components/remocn/confetti.tsx",
+      "src/components/remocn/cursor.tsx",
+      "src/components/remocn/kinetic-center-build.tsx",
+      "src/components/remocn/line-by-line-slide.tsx",
+      "src/components/remocn/opencode.tsx",
+      "src/components/remocn/scale-down-fade.tsx",
+      "src/components/remocn/shader-simplex-noise.tsx",
+      "src/components/remocn/shader-smoke-ring.tsx",
+      "src/components/remocn/short-slide-right.tsx",
+      "src/components/remocn/use-cursor-path.ts",
+      "src/components/remocn/v0.tsx",
+      "src/components/remocn/x-follow-card.tsx",
+      "src/components/remocn/x-followers-overview.tsx",
+      "src/demos/ai-and-social/index.tsx",
+      "src/lib/remocn-ui/color.ts",
+      "src/lib/remocn-ui/index.ts",
+      "src/lib/remocn-ui/motion.ts",
+      "src/lib/remocn-ui/theme.ts",
+      "src/lib/remocn-ui/timeline.ts",
+      "src/lib/remocn-ui/types.ts"
+    ],
+    "ownFiles": [
+      "src/demos/ai-and-social/index.tsx"
+    ],
+    "remocnComponents": [
+      "caret",
+      "chat-gpt",
+      "claude-chat",
+      "claude-code",
+      "confetti",
+      "cursor",
+      "kinetic-center-build",
+      "line-by-line-slide",
+      "opencode",
+      "scale-down-fade",
+      "shader-simplex-noise",
+      "shader-smoke-ring",
+      "short-slide-right",
+      "use-cursor-path",
+      "v0",
+      "x-follow-card",
+      "x-followers-overview"
+    ],
+    "npmPackages": [
+      "@paper-design/shaders-react",
+      "@remotion/google-fonts",
+      "@remotion/transitions",
+      "culori",
+      "react",
+      "remotion"
+    ],
+    "assets": [],
+    "usesShaders": true
+  },
   "batchwork": {
     "graph": [
       "src/components/remocn/backdrop.tsx",
@@ -371,6 +431,90 @@
       "@remotion/google-fonts",
       "@remotion/transitions",
       "culori",
+      "react",
+      "remotion"
+    ],
+    "assets": [],
+    "usesShaders": true
+  },
+  "introducing-prisma": {
+    "graph": [
+      "src/components/remocn/focus-pull.tsx",
+      "src/components/remocn/kinetic-center-build.tsx",
+      "src/components/remocn/line-by-line-slide.tsx",
+      "src/components/remocn/prism-refraction.tsx",
+      "src/components/remocn/prisma-studio.tsx",
+      "src/components/remocn/push-through.tsx",
+      "src/components/remocn/relation-graph.tsx",
+      "src/components/remocn/shader-gem-smoke.tsx",
+      "src/components/remocn/whip-pan.tsx",
+      "src/demos/introducing-prisma/getting-started.tsx",
+      "src/demos/introducing-prisma/index.tsx",
+      "src/demos/introducing-prisma/logo-paths.ts",
+      "src/demos/introducing-prisma/logo.tsx",
+      "src/demos/introducing-prisma/theme.ts"
+    ],
+    "ownFiles": [
+      "src/demos/introducing-prisma/getting-started.tsx",
+      "src/demos/introducing-prisma/index.tsx",
+      "src/demos/introducing-prisma/logo-paths.ts",
+      "src/demos/introducing-prisma/logo.tsx",
+      "src/demos/introducing-prisma/theme.ts"
+    ],
+    "remocnComponents": [
+      "focus-pull",
+      "kinetic-center-build",
+      "line-by-line-slide",
+      "prism-refraction",
+      "prisma-studio",
+      "push-through",
+      "relation-graph",
+      "shader-gem-smoke",
+      "whip-pan"
+    ],
+    "npmPackages": [
+      "@paper-design/shaders-react",
+      "@remotion/google-fonts",
+      "@remotion/paths",
+      "@remotion/transitions",
+      "react",
+      "remotion"
+    ],
+    "assets": [],
+    "usesShaders": true
+  },
+  "introducing-prisma-grok": {
+    "graph": [
+      "src/components/remocn/focus-pull.tsx",
+      "src/components/remocn/glass-code-block.tsx",
+      "src/components/remocn/push-through.tsx",
+      "src/components/remocn/shader-neuro-noise.tsx",
+      "src/components/remocn/whip-pan.tsx",
+      "src/demos/introducing-prisma-grok/index.tsx",
+      "src/demos/introducing-prisma-grok/logo-paths.ts",
+      "src/demos/introducing-prisma-grok/logo.tsx",
+      "src/demos/introducing-prisma-grok/prisma-grok.tsx",
+      "src/demos/introducing-prisma-grok/theme.ts"
+    ],
+    "ownFiles": [
+      "src/demos/introducing-prisma-grok/index.tsx",
+      "src/demos/introducing-prisma-grok/logo-paths.ts",
+      "src/demos/introducing-prisma-grok/logo.tsx",
+      "src/demos/introducing-prisma-grok/prisma-grok.tsx",
+      "src/demos/introducing-prisma-grok/theme.ts"
+    ],
+    "remocnComponents": [
+      "focus-pull",
+      "glass-code-block",
+      "push-through",
+      "shader-neuro-noise",
+      "whip-pan"
+    ],
+    "npmPackages": [
+      "@paper-design/shaders-react",
+      "@remotion/google-fonts",
+      "@remotion/paths",
+      "@remotion/transitions",
       "react",
       "remotion"
     ],
@@ -1204,62 +1348,26 @@
     ],
     "usesShaders": false
   },
-  "shadcn-aria-opus": {
+  "shadcn-aria": {
     "graph": [
-      "src/components/remocn/shader-weave.tsx",
-      "src/demos/_ui/button.tsx",
-      "src/demos/_ui/input.tsx",
-      "src/demos/_ui/label.tsx",
-      "src/demos/_ui/switch.tsx",
-      "src/demos/_ui/video-scope.tsx",
-      "src/demos/shadcn-aria-opus/index.tsx",
-      "src/lib/utils.ts"
+      "src/components/remocn/push-through.tsx",
+      "src/components/remocn/shader-caustics.tsx",
+      "src/components/remocn/soft-blur-in.tsx",
+      "src/demos/shadcn-aria/index.tsx"
     ],
     "ownFiles": [
-      "src/demos/shadcn-aria-opus/index.tsx"
+      "src/demos/shadcn-aria/index.tsx"
     ],
     "remocnComponents": [
-      "shader-weave"
+      "push-through",
+      "shader-caustics",
+      "soft-blur-in"
     ],
     "npmPackages": [
       "@remotion/google-fonts",
       "@remotion/transitions",
-      "class-variance-authority",
-      "clsx",
-      "radix-ui",
       "react",
-      "remotion",
-      "tailwind-merge"
-    ],
-    "assets": [],
-    "usesShaders": true
-  },
-  "shadcn-react-aria": {
-    "graph": [
-      "src/components/remocn/shader-strata.tsx",
-      "src/demos/_ui/button.tsx",
-      "src/demos/_ui/input.tsx",
-      "src/demos/_ui/label.tsx",
-      "src/demos/_ui/switch.tsx",
-      "src/demos/_ui/video-scope.tsx",
-      "src/demos/shadcn-react-aria/index.tsx",
-      "src/lib/utils.ts"
-    ],
-    "ownFiles": [
-      "src/demos/shadcn-react-aria/index.tsx"
-    ],
-    "remocnComponents": [
-      "shader-strata"
-    ],
-    "npmPackages": [
-      "@remotion/google-fonts",
-      "@remotion/transitions",
-      "class-variance-authority",
-      "clsx",
-      "radix-ui",
-      "react",
-      "remotion",
-      "tailwind-merge"
+      "remotion"
     ],
     "assets": [],
     "usesShaders": true

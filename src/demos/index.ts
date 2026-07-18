@@ -1,5 +1,6 @@
 import type { Demo } from "./types";
 import { getCatalogEntry } from "./catalog";
+import { AiAndSocialDemo, AI_AND_SOCIAL_DURATION } from "./ai-and-social";
 import { SignupFlowDemo } from "./signup-flow";
 import { ChangelogDemo, CHANGELOG_DURATION } from "./changelog";
 import { ChatChangelogDemo, CHAT_CHANGELOG_DURATION } from "./chat-changelog";
@@ -10,7 +11,10 @@ import { AgentSkillsDemo, AGENT_SKILLS_DURATION } from "./agent-skills";
 import { RenderSdkDemo, RENDER_SDK_DURATION } from "./render-sdk";
 import { FonttrioDemo, FONTTRIO_DURATION } from "./fonttrio";
 import { TegamiDemo, TEGAMI_DURATION } from "./tegami";
-import { SkillChangelogDemo, SKILL_CHANGELOG_DURATION } from "./skill-changelog";
+import {
+  SkillChangelogDemo,
+  SKILL_CHANGELOG_DURATION,
+} from "./skill-changelog";
 import { ShadcnDemo, SHADCN_DURATION } from "./shadcn-ui";
 import { SponsorLnDemo, SPONSOR_LN_DURATION } from "./sponsor-ln";
 import { ShieldcnDemo, SHIELDCN_DURATION } from "./shieldcn";
@@ -58,18 +62,16 @@ import {
   INTRODUCING_TENKIT_DURATION,
 } from "./introducing-tenkit";
 import {
-  RemocnNewLogoDemo,
-  REMOCN_NEW_LOGO_DURATION,
-} from "./remocn-new-logo";
+  IntroducingPrismaDemo,
+  INTRODUCING_PRISMA_DURATION,
+} from "./introducing-prisma";
+import { RemocnNewLogoDemo, REMOCN_NEW_LOGO_DURATION } from "./remocn-new-logo";
 import { RemocnIconsDemo, REMOCN_ICONS_DURATION } from "./remocn-icons";
 import {
   RemocnIconsOnetakeDemo,
   REMOCN_ICONS_ONETAKE_DURATION,
 } from "./remocn-icons-onetake";
-import {
-  RemocnIcons3DDemo,
-  REMOCN_ICONS_3D_DURATION,
-} from "./remocn-icons-3d";
+import { RemocnIcons3DDemo, REMOCN_ICONS_3D_DURATION } from "./remocn-icons-3d";
 import {
   IntroducingShadcnTypesetDemo,
   INTRODUCING_SHADCN_TYPESET_DURATION,
@@ -94,28 +96,27 @@ import {
 } from "./chat-transition-variants";
 import { SponsorReuiDemo, SPONSOR_REUI_DURATION } from "./sponsor-reui";
 import { AgentSkillDemo, AGENT_SKILL_DURATION } from "./agent-skill";
-import {
-  ShadcnReactAriaDemo,
-  SHADCN_REACT_ARIA_DURATION,
-} from "./shadcn-react-aria";
-import {
-  ShadcnAriaOpusDemo,
-  SHADCN_ARIA_OPUS_DURATION,
-} from "./shadcn-aria-opus";
+import { ShadcnAriaDemo, SHADCN_ARIA_DURATION } from "./shadcn-aria";
 
 export * from "./types";
 
 export const demos: Demo[] = [
   {
-    ...getCatalogEntry("shadcn-aria-opus"),
-    component: ShadcnAriaOpusDemo,
-    durationInFrames: SHADCN_ARIA_OPUS_DURATION,
+    ...getCatalogEntry("introducing-prisma"),
+    component: IntroducingPrismaDemo,
+    durationInFrames: INTRODUCING_PRISMA_DURATION,
     defaultProps: {},
   },
   {
-    ...getCatalogEntry("shadcn-react-aria"),
-    component: ShadcnReactAriaDemo,
-    durationInFrames: SHADCN_REACT_ARIA_DURATION,
+    ...getCatalogEntry("ai-and-social"),
+    component: AiAndSocialDemo,
+    durationInFrames: AI_AND_SOCIAL_DURATION,
+    defaultProps: {},
+  },
+  {
+    ...getCatalogEntry("shadcn-aria"),
+    component: ShadcnAriaDemo,
+    durationInFrames: SHADCN_ARIA_DURATION,
     defaultProps: {},
   },
   {

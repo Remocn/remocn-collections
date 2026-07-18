@@ -31,6 +31,24 @@ agent-skills: unpublished use-drawer-transition.ts -> bundled
 agent-skills: unpublished use-input-transition.ts -> bundled
 agent-skills: unpublished use-select-transition.ts -> bundled
 agent-skills: unpublished use-sheet-transition.ts -> bundled
+ai-and-social: DIVERGED claude-chat -> bundling local copy
+ai-and-social: DIVERGED claude-code -> bundling local copy
+ai-and-social: DIVERGED confetti -> bundling local copy
+ai-and-social: DIVERGED cursor -> bundling local copy
+ai-and-social: DIVERGED kinetic-center-build -> bundling local copy
+ai-and-social: DIVERGED line-by-line-slide -> bundling local copy
+ai-and-social: DIVERGED scale-down-fade -> bundling local copy
+ai-and-social: DIVERGED short-slide-right -> bundling local copy
+ai-and-social: DIVERGED x-follow-card -> bundling local copy
+ai-and-social: DIVERGED x-followers-overview -> bundling local copy
+ai-and-social: dep caret
+ai-and-social: dep chat-gpt
+ai-and-social: dep opencode
+ai-and-social: dep remocn-ui
+ai-and-social: dep shader-simplex-noise
+ai-and-social: dep shader-smoke-ring
+ai-and-social: dep v0
+ai-and-social: unpublished use-cursor-path.ts -> bundled
 batchwork: DIVERGED blur-in -> bundling local copy
 batchwork: DIVERGED glass-code-block -> bundling local copy
 batchwork: dep backdrop
@@ -80,6 +98,20 @@ introducing-nextjs: DIVERGED whip-pan -> bundling local copy
 introducing-nextjs: dep caret
 introducing-nextjs: dep remocn-ui
 introducing-nextjs: dep shader-grain-gradient
+introducing-prisma-grok: DIVERGED focus-pull -> bundling local copy
+introducing-prisma-grok: DIVERGED glass-code-block -> bundling local copy
+introducing-prisma-grok: DIVERGED push-through -> bundling local copy
+introducing-prisma-grok: DIVERGED whip-pan -> bundling local copy
+introducing-prisma-grok: dep shader-neuro-noise
+introducing-prisma: DIVERGED focus-pull -> bundling local copy
+introducing-prisma: DIVERGED kinetic-center-build -> bundling local copy
+introducing-prisma: DIVERGED line-by-line-slide -> bundling local copy
+introducing-prisma: DIVERGED push-through -> bundling local copy
+introducing-prisma: DIVERGED whip-pan -> bundling local copy
+introducing-prisma: unpublished prism-refraction.tsx -> bundled
+introducing-prisma: unpublished prisma-studio.tsx -> bundled
+introducing-prisma: unpublished relation-graph.tsx -> bundled
+introducing-prisma: unpublished shader-gem-smoke.tsx -> bundled
 introducing-remocn: DIVERGED kinetic-center-build -> bundling local copy
 introducing-remocn: DIVERGED line-by-line-slide -> bundling local copy
 introducing-remocn: DIVERGED scale-down-fade -> bundling local copy
@@ -286,8 +318,9 @@ render-sdk: dep backdrop
 render-sdk: dep remocn-ui
 render-sdk: dep shared-axis-z
 render-sdk: unpublished use-blur-in-transition.ts -> bundled
-shadcn-aria-opus: unpublished shader-weave.tsx -> bundled
-shadcn-react-aria: unpublished shader-strata.tsx -> bundled
+shadcn-aria: DIVERGED push-through -> bundling local copy
+shadcn-aria: DIVERGED soft-blur-in -> bundling local copy
+shadcn-aria: unpublished shader-caustics.tsx -> bundled
 shadcn-ui: DIVERGED blur-in -> bundling local copy
 shadcn-ui: DIVERGED glass-code-block -> bundling local copy
 shadcn-ui: DIVERGED rolling-number -> bundling local copy

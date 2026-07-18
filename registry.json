@@ -196,6 +196,91 @@
       "docs": "Register the composition in your Remotion Root:\n\n  import { AgentSkillsDemo } from \"@/demos/agent-skills\";\n  <Composition id=\"agent-skills\" component={AgentSkillsDemo} durationInFrames={1400} fps={30} width={1280} height={720} />\n\nRequires Tailwind v4 wired into Remotion (@remotion/tailwind-v4).\nRender locally: npx remotion render agent-skills out/agent-skills.mp4"
     },
     {
+      "name": "ai-and-social",
+      "type": "registry:block",
+      "title": "Changelog — AI chat simulators and social cards",
+      "description": "remocn demo composition \"Changelog — AI chat simulators and social cards\" — installs the full Remotion composition. Generated with AI from the prompt in demos/ai-and-social/prompt.md.",
+      "dependencies": [
+        "@paper-design/shaders-react",
+        "@remotion/google-fonts",
+        "@remotion/transitions",
+        "culori",
+        "remotion"
+      ],
+      "registryDependencies": [
+        "https://remocn.dev/r/caret.json",
+        "https://remocn.dev/r/chat-gpt.json",
+        "https://remocn.dev/r/opencode.json",
+        "https://remocn.dev/r/remocn-ui.json",
+        "https://remocn.dev/r/shader-simplex-noise.json",
+        "https://remocn.dev/r/shader-smoke-ring.json",
+        "https://remocn.dev/r/v0.json"
+      ],
+      "files": [
+        {
+          "path": "src/components/remocn/claude-chat.tsx",
+          "type": "registry:component",
+          "target": "components/remocn/claude-chat.tsx"
+        },
+        {
+          "path": "src/components/remocn/claude-code.tsx",
+          "type": "registry:component",
+          "target": "components/remocn/claude-code.tsx"
+        },
+        {
+          "path": "src/components/remocn/confetti.tsx",
+          "type": "registry:component",
+          "target": "components/remocn/confetti.tsx"
+        },
+        {
+          "path": "src/components/remocn/cursor.tsx",
+          "type": "registry:component",
+          "target": "components/remocn/cursor.tsx"
+        },
+        {
+          "path": "src/components/remocn/kinetic-center-build.tsx",
+          "type": "registry:component",
+          "target": "components/remocn/kinetic-center-build.tsx"
+        },
+        {
+          "path": "src/components/remocn/line-by-line-slide.tsx",
+          "type": "registry:component",
+          "target": "components/remocn/line-by-line-slide.tsx"
+        },
+        {
+          "path": "src/components/remocn/scale-down-fade.tsx",
+          "type": "registry:component",
+          "target": "components/remocn/scale-down-fade.tsx"
+        },
+        {
+          "path": "src/components/remocn/short-slide-right.tsx",
+          "type": "registry:component",
+          "target": "components/remocn/short-slide-right.tsx"
+        },
+        {
+          "path": "src/components/remocn/use-cursor-path.ts",
+          "type": "registry:component",
+          "target": "components/remocn/use-cursor-path.ts"
+        },
+        {
+          "path": "src/components/remocn/x-follow-card.tsx",
+          "type": "registry:component",
+          "target": "components/remocn/x-follow-card.tsx"
+        },
+        {
+          "path": "src/components/remocn/x-followers-overview.tsx",
+          "type": "registry:component",
+          "target": "components/remocn/x-followers-overview.tsx"
+        },
+        {
+          "path": "src/demos/ai-and-social/index.tsx",
+          "type": "registry:component",
+          "target": "demos/ai-and-social/index.tsx"
+        }
+      ],
+      "docs": "Register the composition in your Remotion Root:\n\n  import { AiAndSocialDemo } from \"@/demos/ai-and-social\";\n  <Composition id=\"ai-and-social\" component={AiAndSocialDemo} durationInFrames={300} fps={30} width={1280} height={720} />\n\nRequires Tailwind v4 wired into Remotion (@remotion/tailwind-v4).\nRender locally: npx remotion render ai-and-social out/ai-and-social.mp4 --gl=angle"
+    },
+    {
       "name": "batchwork",
       "type": "registry:block",
       "title": "Batchwork — Unified Batch API",
@@ -561,6 +646,157 @@
         }
       ],
       "docs": "Register the composition in your Remotion Root:\n\n  import { IntroducingNextjsDemo } from \"@/demos/introducing-nextjs\";\n  <Composition id=\"introducing-nextjs\" component={IntroducingNextjsDemo} durationInFrames={300} fps={30} width={1280} height={720} />\n\nRequires Tailwind v4 wired into Remotion (@remotion/tailwind-v4).\nRender locally: npx remotion render introducing-nextjs out/introducing-nextjs.mp4 --gl=angle"
+    },
+    {
+      "name": "introducing-prisma",
+      "type": "registry:block",
+      "title": "Prisma — Introducing Prisma",
+      "description": "remocn demo composition \"Prisma — Introducing Prisma\" — installs the full Remotion composition. Generated with AI from the prompt in demos/introducing-prisma/prompt.md.",
+      "dependencies": [
+        "@paper-design/shaders-react",
+        "@remotion/google-fonts",
+        "@remotion/paths",
+        "@remotion/transitions",
+        "remotion"
+      ],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "src/components/remocn/focus-pull.tsx",
+          "type": "registry:component",
+          "target": "components/remocn/focus-pull.tsx"
+        },
+        {
+          "path": "src/components/remocn/kinetic-center-build.tsx",
+          "type": "registry:component",
+          "target": "components/remocn/kinetic-center-build.tsx"
+        },
+        {
+          "path": "src/components/remocn/line-by-line-slide.tsx",
+          "type": "registry:component",
+          "target": "components/remocn/line-by-line-slide.tsx"
+        },
+        {
+          "path": "src/components/remocn/prism-refraction.tsx",
+          "type": "registry:component",
+          "target": "components/remocn/prism-refraction.tsx"
+        },
+        {
+          "path": "src/components/remocn/prisma-studio.tsx",
+          "type": "registry:component",
+          "target": "components/remocn/prisma-studio.tsx"
+        },
+        {
+          "path": "src/components/remocn/push-through.tsx",
+          "type": "registry:component",
+          "target": "components/remocn/push-through.tsx"
+        },
+        {
+          "path": "src/components/remocn/relation-graph.tsx",
+          "type": "registry:component",
+          "target": "components/remocn/relation-graph.tsx"
+        },
+        {
+          "path": "src/components/remocn/shader-gem-smoke.tsx",
+          "type": "registry:component",
+          "target": "components/remocn/shader-gem-smoke.tsx"
+        },
+        {
+          "path": "src/components/remocn/whip-pan.tsx",
+          "type": "registry:component",
+          "target": "components/remocn/whip-pan.tsx"
+        },
+        {
+          "path": "src/demos/introducing-prisma/getting-started.tsx",
+          "type": "registry:component",
+          "target": "demos/introducing-prisma/getting-started.tsx"
+        },
+        {
+          "path": "src/demos/introducing-prisma/index.tsx",
+          "type": "registry:component",
+          "target": "demos/introducing-prisma/index.tsx"
+        },
+        {
+          "path": "src/demos/introducing-prisma/logo-paths.ts",
+          "type": "registry:component",
+          "target": "demos/introducing-prisma/logo-paths.ts"
+        },
+        {
+          "path": "src/demos/introducing-prisma/logo.tsx",
+          "type": "registry:component",
+          "target": "demos/introducing-prisma/logo.tsx"
+        },
+        {
+          "path": "src/demos/introducing-prisma/theme.ts",
+          "type": "registry:component",
+          "target": "demos/introducing-prisma/theme.ts"
+        }
+      ],
+      "docs": "Register the composition in your Remotion Root:\n\n  import { IntroducingPrismaDemo } from \"@/demos/introducing-prisma\";\n  <Composition id=\"introducing-prisma\" component={IntroducingPrismaDemo} durationInFrames={1343} fps={30} width={1280} height={720} />\n\nRequires Tailwind v4 wired into Remotion (@remotion/tailwind-v4).\nRender locally: npx remotion render introducing-prisma out/introducing-prisma.mp4 --gl=angle"
+    },
+    {
+      "name": "introducing-prisma-grok",
+      "type": "registry:block",
+      "title": "introducing-prisma-grok",
+      "description": "remocn demo composition \"introducing-prisma-grok\" — installs the full Remotion composition. Generated with AI from the prompt in demos/introducing-prisma-grok/prompt.md.",
+      "dependencies": [
+        "@paper-design/shaders-react",
+        "@remotion/google-fonts",
+        "@remotion/paths",
+        "@remotion/transitions",
+        "remotion"
+      ],
+      "registryDependencies": [
+        "https://remocn.dev/r/shader-neuro-noise.json"
+      ],
+      "files": [
+        {
+          "path": "src/components/remocn/focus-pull.tsx",
+          "type": "registry:component",
+          "target": "components/remocn/focus-pull.tsx"
+        },
+        {
+          "path": "src/components/remocn/glass-code-block.tsx",
+          "type": "registry:component",
+          "target": "components/remocn/glass-code-block.tsx"
+        },
+        {
+          "path": "src/components/remocn/push-through.tsx",
+          "type": "registry:component",
+          "target": "components/remocn/push-through.tsx"
+        },
+        {
+          "path": "src/components/remocn/whip-pan.tsx",
+          "type": "registry:component",
+          "target": "components/remocn/whip-pan.tsx"
+        },
+        {
+          "path": "src/demos/introducing-prisma-grok/index.tsx",
+          "type": "registry:component",
+          "target": "demos/introducing-prisma-grok/index.tsx"
+        },
+        {
+          "path": "src/demos/introducing-prisma-grok/logo-paths.ts",
+          "type": "registry:component",
+          "target": "demos/introducing-prisma-grok/logo-paths.ts"
+        },
+        {
+          "path": "src/demos/introducing-prisma-grok/logo.tsx",
+          "type": "registry:component",
+          "target": "demos/introducing-prisma-grok/logo.tsx"
+        },
+        {
+          "path": "src/demos/introducing-prisma-grok/prisma-grok.tsx",
+          "type": "registry:component",
+          "target": "demos/introducing-prisma-grok/prisma-grok.tsx"
+        },
+        {
+          "path": "src/demos/introducing-prisma-grok/theme.ts",
+          "type": "registry:component",
+          "target": "demos/introducing-prisma-grok/theme.ts"
+        }
+      ],
+      "docs": "Register the composition in your Remotion Root:\n\n  import { IntroducingPrismaGrokDemo } from \"@/demos/introducing-prisma-grok\";\n  <Composition id=\"introducing-prisma-grok\" component={IntroducingPrismaGrokDemo} durationInFrames={300} fps={30} width={1280} height={720} />\n\nRequires Tailwind v4 wired into Remotion (@remotion/tailwind-v4).\nRender locally: npx remotion render introducing-prisma-grok out/introducing-prisma-grok.mp4 --gl=angle"
     },
     {
       "name": "introducing-remocn",
@@ -1851,126 +2087,39 @@
       "docs": "Register the composition in your Remotion Root:\n\n  import { RenderSdkDemo } from \"@/demos/render-sdk\";\n  <Composition id=\"render-sdk\" component={RenderSdkDemo} durationInFrames={618} fps={30} width={1280} height={720} />\n\nRequires Tailwind v4 wired into Remotion (@remotion/tailwind-v4).\nRender locally: npx remotion render render-sdk out/render-sdk.mp4"
     },
     {
-      "name": "shadcn-aria-opus",
+      "name": "shadcn-aria",
       "type": "registry:block",
-      "title": "shadcn/ui × React Aria — The base you don't see",
-      "description": "remocn demo composition \"shadcn/ui × React Aria — The base you don't see\" — installs the full Remotion composition. Generated with AI from the prompt in demos/shadcn-aria-opus/prompt.md.",
+      "title": "shadcn/ui × React Aria — Choose your foundation",
+      "description": "remocn demo composition \"shadcn/ui × React Aria — Choose your foundation\" — installs the full Remotion composition. Generated with AI from the prompt in demos/shadcn-aria/prompt.md.",
       "dependencies": [
         "@remotion/google-fonts",
         "@remotion/transitions",
-        "class-variance-authority",
-        "clsx",
-        "radix-ui",
-        "remotion",
-        "tailwind-merge"
+        "remotion"
       ],
-      "registryDependencies": [
-        "utils"
-      ],
+      "registryDependencies": [],
       "files": [
         {
-          "path": "src/components/remocn/shader-weave.tsx",
+          "path": "src/components/remocn/push-through.tsx",
           "type": "registry:component",
-          "target": "components/remocn/shader-weave.tsx"
+          "target": "components/remocn/push-through.tsx"
         },
         {
-          "path": "src/demos/_ui/button.tsx",
+          "path": "src/components/remocn/shader-caustics.tsx",
           "type": "registry:component",
-          "target": "demos/_ui/button.tsx"
+          "target": "components/remocn/shader-caustics.tsx"
         },
         {
-          "path": "src/demos/_ui/input.tsx",
+          "path": "src/components/remocn/soft-blur-in.tsx",
           "type": "registry:component",
-          "target": "demos/_ui/input.tsx"
+          "target": "components/remocn/soft-blur-in.tsx"
         },
         {
-          "path": "src/demos/_ui/label.tsx",
+          "path": "src/demos/shadcn-aria/index.tsx",
           "type": "registry:component",
-          "target": "demos/_ui/label.tsx"
-        },
-        {
-          "path": "src/demos/_ui/switch.tsx",
-          "type": "registry:component",
-          "target": "demos/_ui/switch.tsx"
-        },
-        {
-          "path": "src/demos/_ui/video-scope.tsx",
-          "type": "registry:component",
-          "target": "demos/_ui/video-scope.tsx"
-        },
-        {
-          "path": "src/demos/shadcn-aria-opus/index.tsx",
-          "type": "registry:component",
-          "target": "demos/shadcn-aria-opus/index.tsx"
-        },
-        {
-          "path": "src/demos/shadcn-aria-opus/prompt.md",
-          "type": "registry:file",
-          "target": "demos/shadcn-aria-opus/prompt.md"
+          "target": "demos/shadcn-aria/index.tsx"
         }
       ],
-      "docs": "Register the composition in your Remotion Root:\n\n  import { ShadcnAriaOpusDemo } from \"@/demos/shadcn-aria-opus\";\n  <Composition id=\"shadcn-aria-opus\" component={ShadcnAriaOpusDemo} durationInFrames={1462} fps={30} width={1280} height={720} />\n\nRequires Tailwind v4 wired into Remotion (@remotion/tailwind-v4).\nRender locally: npx remotion render shadcn-aria-opus out/shadcn-aria-opus.mp4 --gl=angle"
-    },
-    {
-      "name": "shadcn-react-aria",
-      "type": "registry:block",
-      "title": "shadcn/ui — A new base: React Aria",
-      "description": "remocn demo composition \"shadcn/ui — A new base: React Aria\" — installs the full Remotion composition. Generated with AI from the prompt in demos/shadcn-react-aria/prompt.md.",
-      "dependencies": [
-        "@remotion/google-fonts",
-        "@remotion/transitions",
-        "class-variance-authority",
-        "clsx",
-        "radix-ui",
-        "remotion",
-        "tailwind-merge"
-      ],
-      "registryDependencies": [
-        "utils"
-      ],
-      "files": [
-        {
-          "path": "src/components/remocn/shader-strata.tsx",
-          "type": "registry:component",
-          "target": "components/remocn/shader-strata.tsx"
-        },
-        {
-          "path": "src/demos/_ui/button.tsx",
-          "type": "registry:component",
-          "target": "demos/_ui/button.tsx"
-        },
-        {
-          "path": "src/demos/_ui/input.tsx",
-          "type": "registry:component",
-          "target": "demos/_ui/input.tsx"
-        },
-        {
-          "path": "src/demos/_ui/label.tsx",
-          "type": "registry:component",
-          "target": "demos/_ui/label.tsx"
-        },
-        {
-          "path": "src/demos/_ui/switch.tsx",
-          "type": "registry:component",
-          "target": "demos/_ui/switch.tsx"
-        },
-        {
-          "path": "src/demos/_ui/video-scope.tsx",
-          "type": "registry:component",
-          "target": "demos/_ui/video-scope.tsx"
-        },
-        {
-          "path": "src/demos/shadcn-react-aria/index.tsx",
-          "type": "registry:component",
-          "target": "demos/shadcn-react-aria/index.tsx"
-        },
-        {
-          "path": "src/demos/shadcn-react-aria/prompt.md",
-          "type": "registry:file",
-          "target": "demos/shadcn-react-aria/prompt.md"
-        }
-      ],
-      "docs": "Register the composition in your Remotion Root:\n\n  import { ShadcnReactAriaDemo } from \"@/demos/shadcn-react-aria\";\n  <Composition id=\"shadcn-react-aria\" component={ShadcnReactAriaDemo} durationInFrames={300} fps={30} width={1280} height={720} />\n\nRequires Tailwind v4 wired into Remotion (@remotion/tailwind-v4).\nRender locally: npx remotion render shadcn-react-aria out/shadcn-react-aria.mp4 --gl=angle"
+      "docs": "Register the composition in your Remotion Root:\n\n  import { ShadcnAriaDemo } from \"@/demos/shadcn-aria\";\n  <Composition id=\"shadcn-aria\" component={ShadcnAriaDemo} durationInFrames={694} fps={30} width={1280} height={720} />\n\nRequires Tailwind v4 wired into Remotion (@remotion/tailwind-v4).\nRender locally: npx remotion render shadcn-aria out/shadcn-aria.mp4 --gl=angle"
     },
     {
       "name": "shadcn-ui",

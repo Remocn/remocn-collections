@@ -3,13 +3,15 @@
 // frame lands on a dark cut. Refresh against `npx remotion compositions`
 // when durations change.
 export const FRAMES = {
-  "shadcn-aria-opus": 868,
-  "shadcn-react-aria": 566,
+  "ai-and-social": 755,
+  "shadcn-aria": 412,
+  "agent-skill": 545,
   "sponsor-reui": 100,
   "llms-txt": 450,
   "llms-txt-variants": 112,
   "remocn-ui": 580,
   "introducing-nextjs": 260,
+  "introducing-prisma": 1243,
   "introducing-vercel": 240,
   "introducing-shadcn-typeset": 620,
   "introducing-videorc": 690,

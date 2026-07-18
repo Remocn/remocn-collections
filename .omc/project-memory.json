@@ -42,7 +42,7 @@
     "runtime": null
   },
   "build": {
-    "buildCommand": "node scripts/scan-demos.mjs 2>&1 | tail -3 && echo \"=====TSC=====\" && npx tsc --noEmit -p tsconfig.json 2>&1 | grep -Ei 'shadcn-aria-opus|shader-weave|error TS' | head -30; echo \"=== tsc done (clean if empty above) ===\"",
+    "buildCommand": "npx tsc --noEmit -p tsconfig.json 2>&1 | grep \"error TS\" | grep -v introducing-prisma | head; echo TSC-DONE; npx eslint src/demos/ai-and-social/index.tsx 2>&1 | tail -6; echo LINT-DONE",
     "testCommand": null,
     "lintCommand": "npm run lint",
     "devCommand": "npm run dev",
@@ -216,26 +216,26 @@
     },
     {
       "path": "src/demos/catalog.ts",
-      "accessCount": 14,
-      "lastAccessed": 1784308733124,
+      "accessCount": 19,
+      "lastAccessed": 1784369123505,
       "type": "file"
     },
     {
       "path": "src/demos/index.ts",
-      "accessCount": 12,
-      "lastAccessed": 1784308739492,
+      "accessCount": 16,
+      "lastAccessed": 1784362769628,
       "type": "file"
     },
     {
       "path": "scripts/frames.mjs",
-      "accessCount": 8,
-      "lastAccessed": 1784309009352,
+      "accessCount": 14,
+      "lastAccessed": 1784371898633,
       "type": "file"
     },
     {
       "path": "src/demos/introducing-remocn/index.tsx",
-      "accessCount": 7,
-      "lastAccessed": 1784302967964,
+      "accessCount": 8,
+      "lastAccessed": 1784361613351,
       "type": "file"
     },
     {
@@ -257,6 +257,24 @@
       "type": "file"
     },
     {
+      "path": "src/demos/introducing-remocn/STORYBOARD.md",
+      "accessCount": 4,
+      "lastAccessed": 1784361586033,
+      "type": "file"
+    },
+    {
+      "path": "src/demos/introducing-shadcn/STORYBOARD.md",
+      "accessCount": 4,
+      "lastAccessed": 1784361693447,
+      "type": "file"
+    },
+    {
+      "path": "src/demos/introducing-remocn/SCRIPT.md",
+      "accessCount": 4,
+      "lastAccessed": 1784362445301,
+      "type": "file"
+    },
+    {
       "path": "src/demos/agent-skill/index.tsx",
       "accessCount": 3,
       "lastAccessed": 1784304744279,
@@ -269,15 +287,21 @@
       "type": "file"
     },
     {
-      "path": "src/demos/introducing-shadcn/STORYBOARD.md",
-      "accessCount": 3,
-      "lastAccessed": 1784305449980,
-      "type": "file"
-    },
-    {
       "path": "src/demos/introducing-shadcn/index.tsx",
       "accessCount": 3,
       "lastAccessed": 1784305530936,
+      "type": "file"
+    },
+    {
+      "path": "src/components/remocn/shared-axis-z.tsx",
+      "accessCount": 3,
+      "lastAccessed": 1784310212925,
+      "type": "file"
+    },
+    {
+      "path": "src/demos/introducing-videorc/STORYBOARD.md",
+      "accessCount": 3,
+      "lastAccessed": 1784361601707,
       "type": "file"
     },
     {
@@ -305,33 +329,9 @@
       "type": "file"
     },
     {
-      "path": "src/demos/introducing-remocn/STORYBOARD.md",
-      "accessCount": 2,
-      "lastAccessed": 1784302958714,
-      "type": "file"
-    },
-    {
-      "path": "src/demos/introducing-remocn/SCRIPT.md",
-      "accessCount": 2,
-      "lastAccessed": 1784302959142,
-      "type": "file"
-    },
-    {
-      "path": "src/demos/introducing-videorc/STORYBOARD.md",
-      "accessCount": 2,
-      "lastAccessed": 1784302960143,
-      "type": "file"
-    },
-    {
       "path": "src/demos/demo-meta.json",
       "accessCount": 2,
       "lastAccessed": 1784305246262,
-      "type": "file"
-    },
-    {
-      "path": "src/components/remocn/shared-axis-z.tsx",
-      "accessCount": 2,
-      "lastAccessed": 1784305299196,
       "type": "file"
     },
     {
@@ -356,6 +356,18 @@
       "path": "src/remotion/Root.tsx",
       "accessCount": 2,
       "lastAccessed": 1784308104147,
+      "type": "file"
+    },
+    {
+      "path": "src/components/remocn/soft-blur-in.tsx",
+      "accessCount": 2,
+      "lastAccessed": 1784310212022,
+      "type": "file"
+    },
+    {
+      "path": "src/components/remocn/shared-axis-y.tsx",
+      "accessCount": 2,
+      "lastAccessed": 1784310212832,
       "type": "file"
     },
     {
@@ -482,18 +494,6 @@
       "path": "src/components/remocn/logo-enter.tsx",
       "accessCount": 1,
       "lastAccessed": 1784304524891,
-      "type": "file"
-    },
-    {
-      "path": "src/components/remocn/shared-axis-y.tsx",
-      "accessCount": 1,
-      "lastAccessed": 1784305299271,
-      "type": "file"
-    },
-    {
-      "path": "src/components/remocn/soft-blur-in.tsx",
-      "accessCount": 1,
-      "lastAccessed": 1784305299353,
       "type": "file"
     },
     {

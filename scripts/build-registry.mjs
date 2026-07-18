@@ -19,8 +19,9 @@ const meta = JSON.parse(
 
 // Refresh from `npx remotion compositions` when a demo's length changes.
 const DURATIONS = {
-  "shadcn-aria-opus": 1462,
+  "shadcn-aria": 694,
   "sponsor-canadian-ai": 504,
+  "introducing-prisma": 1343,
   "introducing-shadcn": 2178,
   "sponsor-orcdev": 482,
   "sponsor-reactbits": 386,
