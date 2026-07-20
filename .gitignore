@@ -41,3 +41,5 @@ out/
 /public/renders/
 
 .omc
+
+*.mp4

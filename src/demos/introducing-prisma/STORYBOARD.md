@@ -15,6 +15,10 @@ into managed Postgres and Compute, and starting is two commands.
   site's UI face), **Geist Mono** in the code register. No letter-spacing,
   no uppercase chrome, no badges, no eyebrows, no installation pills, no
   pulsing, no glow halos, no trailing periods on headlines.
+- **Code theme:** Prisma's own code-editor theme (ray.so "Prisma") on every
+  code surface — deep navy `#0c1526` cards, teal tab titles, periwinkle
+  `#7c8cf8` keywords, teal `#3fd8c3` strings, light-blue `#9fd8f6` types,
+  `#c0caf5` properties, `#54648f` punctuation.
 - **Logo:** official press-kit mark + wordmark paths
   (`public/prisma/logo-light.svg`), animated — never redrawn, never
   approximated.

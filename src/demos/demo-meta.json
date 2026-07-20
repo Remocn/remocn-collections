@@ -340,6 +340,87 @@
     "assets": [],
     "usesShaders": true
   },
+  "fable-flipbook": {
+    "graph": [
+      "src/components/remocn/caret.tsx",
+      "src/components/remocn/shader-grain-gradient.tsx",
+      "src/components/remocn/typewriter.tsx",
+      "src/demos/fable-flipbook/acts.tsx",
+      "src/demos/fable-flipbook/index.tsx",
+      "src/demos/fable-flipbook/ink.tsx",
+      "src/demos/fable-flipbook/paper.tsx",
+      "src/demos/fable-flipbook/photos.tsx",
+      "src/demos/fable-flipbook/stepped.ts",
+      "src/demos/fable-showcases/manifest.ts",
+      "src/demos/fable-showcases/mark.ts",
+      "src/lib/remocn-ui/color.ts",
+      "src/lib/remocn-ui/index.ts",
+      "src/lib/remocn-ui/motion.ts",
+      "src/lib/remocn-ui/theme.ts",
+      "src/lib/remocn-ui/timeline.ts",
+      "src/lib/remocn-ui/types.ts"
+    ],
+    "ownFiles": [
+      "src/demos/fable-flipbook/acts.tsx",
+      "src/demos/fable-flipbook/index.tsx",
+      "src/demos/fable-flipbook/ink.tsx",
+      "src/demos/fable-flipbook/paper.tsx",
+      "src/demos/fable-flipbook/photos.tsx",
+      "src/demos/fable-flipbook/stepped.ts"
+    ],
+    "remocnComponents": [
+      "caret",
+      "shader-grain-gradient",
+      "typewriter"
+    ],
+    "npmPackages": [
+      "@paper-design/shaders-react",
+      "@remotion/google-fonts",
+      "culori",
+      "react",
+      "remotion"
+    ],
+    "assets": [],
+    "usesShaders": true
+  },
+  "fable-showcases": {
+    "graph": [
+      "src/components/remocn/rolling-number.tsx",
+      "src/components/remocn/shader-grain-gradient.tsx",
+      "src/components/remocn/soft-blur-in.tsx",
+      "src/demos/fable-showcases/beats.tsx",
+      "src/demos/fable-showcases/constellation.ts",
+      "src/demos/fable-showcases/finale.tsx",
+      "src/demos/fable-showcases/index.tsx",
+      "src/demos/fable-showcases/manifest.ts",
+      "src/demos/fable-showcases/mark.ts",
+      "src/demos/fable-showcases/rig.ts",
+      "src/demos/fable-showcases/wall.tsx"
+    ],
+    "ownFiles": [
+      "src/demos/fable-showcases/beats.tsx",
+      "src/demos/fable-showcases/constellation.ts",
+      "src/demos/fable-showcases/finale.tsx",
+      "src/demos/fable-showcases/index.tsx",
+      "src/demos/fable-showcases/manifest.ts",
+      "src/demos/fable-showcases/mark.ts",
+      "src/demos/fable-showcases/rig.ts",
+      "src/demos/fable-showcases/wall.tsx"
+    ],
+    "remocnComponents": [
+      "rolling-number",
+      "shader-grain-gradient",
+      "soft-blur-in"
+    ],
+    "npmPackages": [
+      "@paper-design/shaders-react",
+      "@remotion/google-fonts",
+      "react",
+      "remotion"
+    ],
+    "assets": [],
+    "usesShaders": true
+  },
   "fonttrio": {
     "graph": [
       "src/components/remocn/backdrop.tsx",
@@ -1515,6 +1596,51 @@
       "shieldcn/plus/header-shieldcn.svg",
       "shieldcn/sponsors.svg"
     ],
+    "usesShaders": true
+  },
+  "showcases": {
+    "graph": [
+      "src/components/remocn/rolling-number.tsx",
+      "src/components/remocn/shader-simplex-noise.tsx",
+      "src/components/remocn/shader-smoke-ring.tsx",
+      "src/components/remocn/smoke-dissolve.tsx",
+      "src/components/remocn/soft-blur-in.tsx",
+      "src/components/remocn/whip-pan.tsx",
+      "src/demos/showcases/acts.tsx",
+      "src/demos/showcases/camera.ts",
+      "src/demos/showcases/canyon.tsx",
+      "src/demos/showcases/flight.tsx",
+      "src/demos/showcases/index.tsx",
+      "src/demos/showcases/layout.ts",
+      "src/demos/showcases/media.ts",
+      "src/demos/showcases/outro.tsx"
+    ],
+    "ownFiles": [
+      "src/demos/showcases/acts.tsx",
+      "src/demos/showcases/camera.ts",
+      "src/demos/showcases/canyon.tsx",
+      "src/demos/showcases/flight.tsx",
+      "src/demos/showcases/index.tsx",
+      "src/demos/showcases/layout.ts",
+      "src/demos/showcases/media.ts",
+      "src/demos/showcases/outro.tsx"
+    ],
+    "remocnComponents": [
+      "rolling-number",
+      "shader-simplex-noise",
+      "shader-smoke-ring",
+      "smoke-dissolve",
+      "soft-blur-in",
+      "whip-pan"
+    ],
+    "npmPackages": [
+      "@paper-design/shaders-react",
+      "@remotion/google-fonts",
+      "@remotion/transitions",
+      "react",
+      "remotion"
+    ],
+    "assets": [],
     "usesShaders": true
   },
   "signup-flow": {

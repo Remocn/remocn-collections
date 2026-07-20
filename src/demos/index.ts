@@ -97,10 +97,40 @@ import {
 import { SponsorReuiDemo, SPONSOR_REUI_DURATION } from "./sponsor-reui";
 import { AgentSkillDemo, AGENT_SKILL_DURATION } from "./agent-skill";
 import { ShadcnAriaDemo, SHADCN_ARIA_DURATION } from "./shadcn-aria";
+import { ShowcasesDemo, SHOWCASES_DURATION } from "./showcases";
+import {
+  FableShowcasesDemo,
+  FABLE_SHOWCASES_DURATION,
+} from "./fable-showcases";
+import {
+  FableFlipbookDemo,
+  FABLE_FLIPBOOK_DURATION,
+} from "./fable-flipbook";
 
 export * from "./types";
 
 export const demos: Demo[] = [
+  {
+    ...getCatalogEntry("showcases"),
+    component: ShowcasesDemo,
+    durationInFrames: SHOWCASES_DURATION,
+    defaultProps: {},
+    thumbnailFrame: 1000,
+  },
+  {
+    ...getCatalogEntry("fable-flipbook"),
+    component: FableFlipbookDemo,
+    durationInFrames: FABLE_FLIPBOOK_DURATION,
+    defaultProps: {},
+    thumbnailFrame: 600,
+  },
+  {
+    ...getCatalogEntry("fable-showcases"),
+    component: FableShowcasesDemo,
+    durationInFrames: FABLE_SHOWCASES_DURATION,
+    defaultProps: {},
+    thumbnailFrame: 260,
+  },
   {
     ...getCatalogEntry("introducing-prisma"),
     component: IntroducingPrismaDemo,

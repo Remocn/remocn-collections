@@ -8,15 +8,16 @@ import {
 } from "remotion";
 
 import {
-  CARD,
-  FAINT,
-  HAIRLINE,
+  CODE_BG,
+  CODE_BORDER,
+  CODE_MUTED,
+  CODE_STRING,
+  CODE_TAB,
+  CODE_TEXT,
   INK,
   MONO,
-  MUTED,
   SANS,
   SURFACE,
-  TEAL_SOFT,
   clampOpts,
 } from "./theme";
 
@@ -52,8 +53,8 @@ const CheckLine: React.FC<{ text: string; at: number }> = ({ text, at }) => {
         transform: `translateY(${(1 - p) * 6}px)`,
       }}
     >
-      <span style={{ color: TEAL_SOFT, fontSize: 15 }}>✔</span>
-      <span style={{ color: MUTED }}>{text}</span>
+      <span style={{ color: CODE_STRING, fontSize: 15 }}>✔</span>
+      <span style={{ color: CODE_MUTED }}>{text}</span>
     </div>
   );
 };
@@ -73,8 +74,8 @@ const CmdLine: React.FC<{
   const opacity = interpolate(frame, [start - 3, start], [0, 1], clampOpts);
   return (
     <div style={{ opacity, whiteSpace: "nowrap" }}>
-      <span style={{ color: FAINT }}>$ </span>
-      <span style={{ color: INK }}>{text.slice(0, n)}</span>
+      <span style={{ color: CODE_MUTED }}>$ </span>
+      <span style={{ color: CODE_TEXT }}>{text.slice(0, n)}</span>
       {(typing || showCaret) && (
         <span
           style={{
@@ -83,7 +84,7 @@ const CmdLine: React.FC<{
             height: 17,
             marginLeft: 2,
             verticalAlign: "-3px",
-            background: caretOn ? MUTED : "transparent",
+            background: caretOn ? CODE_TEXT : "transparent",
           }}
         />
       )}
@@ -140,9 +141,9 @@ export const GettingStarted: React.FC = () => {
           width: 640,
           padding: "22px 26px",
           borderRadius: 14,
-          border: `1px solid ${HAIRLINE}`,
-          background: CARD,
-          boxShadow: "0 1px 0 rgba(249,249,251,0.04) inset",
+          border: `1px solid ${CODE_BORDER}`,
+          background: CODE_BG,
+          boxShadow: "0 1px 0 rgba(192,202,245,0.05) inset",
           fontFamily: MONO,
           fontSize: 16.5,
           lineHeight: 2.1,
@@ -167,7 +168,7 @@ export const GettingStarted: React.FC = () => {
                 height: 10,
                 borderRadius: 999,
                 background: SURFACE,
-                border: `1px solid ${HAIRLINE}`,
+                border: `1px solid ${CODE_BORDER}`,
               }}
             />
           ))}
@@ -205,7 +206,7 @@ export const GettingStarted: React.FC = () => {
             color: INK,
           }}
         >
-          Start at <span style={{ color: TEAL_SOFT }}>prisma.io</span>
+          Start at <span style={{ color: CODE_TAB }}>prisma.io</span>
         </span>
       </div>
     </AbsoluteFill>

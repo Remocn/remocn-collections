@@ -40,6 +40,22 @@ export const TEAL = "#14b8a6";
 export const TEAL_SOFT = "#2dd4bf";
 export const TEAL_DEEP = "#042f2e";
 
+// Prisma's own code-editor theme (ray.so "Prisma", analyzed from the
+// official theme): deep navy editor, periwinkle keywords, teal strings,
+// peach numbers, light-blue types — used for every code surface in the
+// video (schema cards, client cards, autocomplete, terminals).
+export const CODE_BG = "#0c1526";
+export const CODE_BORDER = "#1d2a45";
+export const CODE_TAB = "#5eead4";
+export const CODE_KEYWORD = "#7c8cf8";
+export const CODE_STRING = "#3fd8c3";
+export const CODE_NUMBER = "#f0a875";
+export const CODE_TYPE = "#9fd8f6";
+export const CODE_PROP = "#c0caf5";
+export const CODE_TEXT = "#c8d3f5";
+export const CODE_MUTED = "#54648f";
+export const CODE_MENU = "#0f1930";
+
 export const clampOpts = {
   extrapolateLeft: "clamp" as const,
   extrapolateRight: "clamp" as const,

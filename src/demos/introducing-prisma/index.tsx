@@ -28,6 +28,16 @@ import { prismRefraction } from "@/components/remocn/prism-refraction";
 import {
   BG,
   CARD,
+  CODE_BG,
+  CODE_BORDER,
+  CODE_KEYWORD,
+  CODE_MENU,
+  CODE_MUTED,
+  CODE_PROP,
+  CODE_STRING,
+  CODE_TAB,
+  CODE_TEXT,
+  CODE_TYPE,
   FAINT,
   HAIRLINE,
   INDIGO,
@@ -251,9 +261,9 @@ const CodeCard: React.FC<{
     style={{
       width,
       borderRadius: 14,
-      border: `1px solid ${HAIRLINE}`,
-      background: CARD,
-      boxShadow: "0 1px 0 rgba(249,249,251,0.04) inset",
+      border: `1px solid ${CODE_BORDER}`,
+      background: CODE_BG,
+      boxShadow: "0 1px 0 rgba(192,202,245,0.05) inset",
       overflow: "hidden",
       ...style,
     }}
@@ -261,10 +271,11 @@ const CodeCard: React.FC<{
     <div
       style={{
         padding: "9px 16px",
-        borderBottom: `1px solid ${HAIRLINE}`,
+        borderBottom: `1px solid ${CODE_BORDER}`,
         fontFamily: MONO,
         fontSize: 12.5,
-        color: FAINT,
+        color: CODE_TAB,
+        opacity: 0.85,
       }}
     >
       {title}
@@ -380,12 +391,12 @@ const SchemaScene: React.FC = () => {
         style={{
           fontFamily: MONO,
           fontSize: 15,
-          color: MUTED,
+          color: CODE_TEXT,
           opacity: genOpacity,
           height: 26,
         }}
       >
-        <span style={{ color: FAINT }}>$ </span>
+        <span style={{ color: CODE_MUTED }}>$ </span>
         {GEN.slice(0, genTyped)}
         {frame >= GEN_START - 2 && frame < 108 && (
           <span
@@ -412,8 +423,8 @@ const SchemaScene: React.FC = () => {
         }}
       >
         <div>
-          <span style={{ color: MUTED }}>const </span>
-          <span style={{ color: INK }}>users</span>
+          <span style={{ color: CODE_KEYWORD }}>const </span>
+          <span style={{ color: CODE_TEXT }}>users</span>
           {/* The inlay hint — the compile-time guarantee, shown the way the
               editor shows it: inline, subdued, popping in once the client
               has landed. */}
@@ -423,34 +434,36 @@ const SchemaScene: React.FC = () => {
               padding: "0 7px",
               marginLeft: 4,
               borderRadius: 6,
-              background: "rgba(99,102,241,0.14)",
+              background: "rgba(124,140,248,0.16)",
               fontSize: 13,
-              color: INDIGO_SOFT,
+              color: "#9fb0ff",
               opacity: chipIn,
               transform: `translateY(${(1 - chipIn) * 4}px) scale(${0.9 + chipIn * 0.1})`,
             }}
           >
             : User[]
           </span>
-          <span style={{ color: MUTED }}> = </span>
-          <span style={{ color: INDIGO_SOFT }}>await</span>
-          <span style={{ color: INK }}> </span>
-          <span style={{ color: INDIGO_SOFT }}>prisma</span>
-          <span style={{ color: MUTED }}>.</span>
-          <span style={{ color: INK }}>user</span>
-          <span style={{ color: MUTED }}>.</span>
-          <span style={{ color: INK }}>findMany</span>
-          <span style={{ color: MUTED }}>({"{"}</span>
+          <span style={{ color: CODE_MUTED }}> = </span>
+          <span style={{ color: CODE_KEYWORD }}>await</span>
+          <span style={{ color: CODE_TEXT }}> </span>
+          <span style={{ color: CODE_TEXT }}>prisma</span>
+          <span style={{ color: CODE_MUTED }}>.</span>
+          <span style={{ color: CODE_PROP }}>user</span>
+          <span style={{ color: CODE_MUTED }}>.</span>
+          <span style={{ color: CODE_TYPE }}>findMany</span>
+          <span style={{ color: CODE_MUTED }}>({"{"}</span>
         </div>
         <div>
-          <span style={{ color: MUTED }}>
-            {"  where: { email: { contains: "}
-          </span>
-          <span style={{ color: TEAL_SOFT }}>"@prisma.io"</span>
-          <span style={{ color: MUTED }}>{" } }"}</span>
+          <span style={{ color: CODE_PROP }}>{"  where: "}</span>
+          <span style={{ color: CODE_MUTED }}>{"{ "}</span>
+          <span style={{ color: CODE_PROP }}>email: </span>
+          <span style={{ color: CODE_MUTED }}>{"{ "}</span>
+          <span style={{ color: CODE_PROP }}>contains: </span>
+          <span style={{ color: CODE_STRING }}>"@prisma.io"</span>
+          <span style={{ color: CODE_MUTED }}>{" } }"}</span>
         </div>
         <div>
-          <span style={{ color: MUTED }}>{"})"}</span>
+          <span style={{ color: CODE_MUTED }}>{"})"}</span>
         </div>
       </CodeCard>
     </AbsoluteFill>
@@ -531,18 +544,19 @@ const TypeSafeStation: React.FC = () => {
     <StationFrame label="Type-safe queries">
       <CodeCard title="client.ts" width={430} bodyStyle={{ paddingBottom: 84 }}>
         <div>
-          <span style={{ color: INDIGO_SOFT }}>await</span>
-          <span style={{ color: INK }}> </span>
-          <span style={{ color: INDIGO_SOFT }}>prisma</span>
-          <span style={{ color: MUTED }}>.</span>
-          <span style={{ color: INK }}>user</span>
-          <span style={{ color: MUTED }}>.</span>
-          <span style={{ color: INK }}>findMany</span>
-          <span style={{ color: MUTED }}>({"{"}</span>
+          <span style={{ color: CODE_KEYWORD }}>await</span>
+          <span style={{ color: CODE_TEXT }}> </span>
+          <span style={{ color: CODE_TEXT }}>prisma</span>
+          <span style={{ color: CODE_MUTED }}>.</span>
+          <span style={{ color: CODE_PROP }}>user</span>
+          <span style={{ color: CODE_MUTED }}>.</span>
+          <span style={{ color: CODE_TYPE }}>findMany</span>
+          <span style={{ color: CODE_MUTED }}>({"{"}</span>
         </div>
         <div style={{ position: "relative" }}>
-          <span style={{ color: MUTED }}>{"  where: { "}</span>
-          <span style={{ color: INK }}>em</span>
+          <span style={{ color: CODE_PROP }}>{"  where: "}</span>
+          <span style={{ color: CODE_MUTED }}>{"{ "}</span>
+          <span style={{ color: CODE_TEXT }}>em</span>
           <span
             style={{
               display: "inline-block",
@@ -550,7 +564,7 @@ const TypeSafeStation: React.FC = () => {
               height: 15,
               marginLeft: 1,
               verticalAlign: "-2px",
-              background: caretOn ? MUTED : "transparent",
+              background: caretOn ? CODE_TEXT : "transparent",
             }}
           />
           {/* The autocomplete menu — the schema, suggesting itself. */}
@@ -561,8 +575,8 @@ const TypeSafeStation: React.FC = () => {
               top: 26,
               width: 220,
               borderRadius: 10,
-              border: `1px solid ${HAIRLINE}`,
-              background: "#101121",
+              border: `1px solid ${CODE_BORDER}`,
+              background: CODE_MENU,
               overflow: "hidden",
               opacity: menuIn,
               transform: `translateY(${(1 - menuIn) * 6}px) scale(${0.96 + menuIn * 0.04})`,
@@ -592,8 +606,8 @@ const TypeSafeStation: React.FC = () => {
             ))}
           </div>
         </div>
-        <div style={{ opacity: 0.4 }}>
-          <span style={{ color: MUTED }}>{"} })"}</span>
+        <div style={{ opacity: 0.6 }}>
+          <span style={{ color: CODE_MUTED }}>{"} })"}</span>
         </div>
       </CodeCard>
     </StationFrame>
@@ -615,8 +629,8 @@ const MigrationsStation: React.FC = () => {
     <StationFrame label="Declarative migrations">
       <CodeCard title="terminal" width={470}>
         <div>
-          <span style={{ color: FAINT }}>$ </span>
-          <span style={{ color: INK }}>npx prisma migrate dev</span>
+          <span style={{ color: CODE_MUTED }}>$ </span>
+          <span style={{ color: CODE_TEXT }}>npx prisma migrate dev</span>
         </div>
         <div
           style={{
@@ -624,10 +638,10 @@ const MigrationsStation: React.FC = () => {
             transform: `translateY(${(1 - diffIn) * 6}px)`,
           }}
         >
-          <span style={{ color: TEAL_SOFT }}>+ </span>
-          <span style={{ color: MUTED }}>published </span>
-          <span style={{ color: TEAL_SOFT }}>Boolean</span>
-          <span style={{ color: FAINT }}> @default(false)</span>
+          <span style={{ color: CODE_STRING }}>+ </span>
+          <span style={{ color: CODE_TEXT }}>published </span>
+          <span style={{ color: CODE_TYPE }}>Boolean</span>
+          <span style={{ color: CODE_MUTED }}> @default(false)</span>
         </div>
         <div
           style={{
@@ -635,9 +649,9 @@ const MigrationsStation: React.FC = () => {
             transform: `translateY(${(1 - okIn) * 6}px)`,
           }}
         >
-          <span style={{ color: TEAL_SOFT }}>✔ </span>
-          <span style={{ color: MUTED }}>Applying migration </span>
-          <span style={{ color: INK }}>20260718_add_published</span>
+          <span style={{ color: CODE_STRING }}>✔ </span>
+          <span style={{ color: CODE_MUTED }}>Applying migration </span>
+          <span style={{ color: CODE_TEXT }}>20260718_add_published</span>
         </div>
       </CodeCard>
     </StationFrame>
@@ -668,13 +682,13 @@ const DatabasesStation: React.FC = () => {
     <StationFrame label="Every database">
       <CodeCard title="schema.prisma" width={430}>
         <div>
-          <span style={{ color: MUTED }}>datasource </span>
-          <span style={{ color: INDIGO_SOFT }}>db</span>
-          <span style={{ color: MUTED }}> {"{"}</span>
+          <span style={{ color: CODE_KEYWORD }}>datasource </span>
+          <span style={{ color: CODE_PROP }}>db</span>
+          <span style={{ color: CODE_MUTED }}> {"{"}</span>
         </div>
         <div>
-          <span style={{ color: MUTED }}>{"  provider = "}</span>
-          <span style={{ color: TEAL_SOFT }}>"</span>
+          <span style={{ color: CODE_TEXT }}>{"  provider = "}</span>
+          <span style={{ color: CODE_STRING }}>"</span>
           <span
             style={{
               display: "inline-block",
@@ -683,7 +697,7 @@ const DatabasesStation: React.FC = () => {
               position: "relative",
               verticalAlign: "bottom",
               perspective: 400,
-              color: TEAL_SOFT,
+              color: CODE_STRING,
             }}
           >
             {/* Invisible sizer keeps the container's height and baseline. */}
@@ -736,10 +750,10 @@ const DatabasesStation: React.FC = () => {
               );
             })}
           </span>
-          <span style={{ color: TEAL_SOFT }}>"</span>
+          <span style={{ color: CODE_STRING }}>"</span>
         </div>
         <div>
-          <span style={{ color: MUTED }}>{"}"}</span>
+          <span style={{ color: CODE_MUTED }}>{"}"}</span>
         </div>
       </CodeCard>
     </StationFrame>
