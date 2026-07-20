@@ -43,3 +43,6 @@ out/
 .omc
 
 *.mp4
+
+# scratch renders / preview stills
+/scratch-out/
