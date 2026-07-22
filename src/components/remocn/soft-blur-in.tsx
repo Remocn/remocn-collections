@@ -25,6 +25,17 @@ export function SoftBlurIn({
 
   const chars = Array.from(text);
   const charDurationFrames = 27;
+  // The rise lands early on purpose. bezier(0.22,1,0.36,1) has an asymptotic
+  // tail, and a glyph raster can only sit on whole pixels — a char that creeps
+  // by hundredths of a pixel clicks down one pixel every few frames, and with
+  // the per-char stagger the word visibly ripples. Compressing the travel into
+  // the first ~60% keeps every half-pixel crossing inside the fast, masked
+  // phase; opacity and blur ride the full curve, so the entrance reads the
+  // same. Measured on 2x renders: tail flicker 0.126 -> 0.061 (per-pixel jerk),
+  // right at the no-translate floor of 0.045. Do NOT "fix" this with
+  // will-change/layer promotion per char — sixteen promoted text layers
+  // shimmer even at rest (0.40 sustained), worse than the artifact.
+  const travelFrames = 16;
   const staggerFrames = 1;
 
   return (
@@ -60,7 +71,7 @@ export function SoftBlurIn({
           );
           const y = interpolate(
             local,
-            [0, charDurationFrames],
+            [0, travelFrames],
             [16, 0],
             { extrapolateLeft: "clamp", extrapolateRight: "clamp", easing },
           );

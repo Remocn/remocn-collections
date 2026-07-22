@@ -122,6 +122,15 @@ export const SPONSOR_REUI_DURATION =
 // ---------------------------------------------------------------------------
 // Slow camera drift — every scene rides a barely-there push-in so no frame is
 // ever static. durationInFrames is Sequence-scoped inside TransitionSeries.
+//
+// will-change is load-bearing, not a perf hint. Re-rasterized every frame,
+// text under a slow zoom quantizes: glyph positions round to the pixel grid,
+// each glyph crosses its boundary on its own frame, and the row trembles while
+// the geometry beside it glides (measured 1px row snaps; with the promotion
+// both the snaps and the glyph-vs-neighbour wave drop to the measurement
+// floor). The promoted layer is a texture, which costs edge sharpness at 1x
+// (20-80% edge 1.7px -> 2.1px) — render finals with --scale=2, where that
+// cost all but disappears.
 // ---------------------------------------------------------------------------
 const Drift: React.FC<{ children: React.ReactNode; grow?: number }> = ({
   children,
@@ -131,7 +140,12 @@ const Drift: React.FC<{ children: React.ReactNode; grow?: number }> = ({
   const { durationInFrames } = useVideoConfig();
   const scale = interpolate(frame, [0, durationInFrames], [1, 1 + grow]);
   return (
-    <AbsoluteFill style={{ transform: `scale(${scale})` }}>
+    <AbsoluteFill
+      style={{
+        transform: `scale(${scale})`,
+        willChange: "transform",
+      }}
+    >
       {children}
     </AbsoluteFill>
   );
@@ -156,6 +170,10 @@ const WordsRise: React.FC<{
       {words.map((word, i) => {
         const local = frame - delay - i * stagger;
         const p = interpolate(local, [0, 24], [0, 1], { ...clampOpts, easing: ease });
+        // Travel lands at ~60% — the eased tail would walk the word across the
+        // pixel grid by hundredths of a pixel, clicking one pixel every few
+        // frames (staggered per word: a ripple). Opacity/blur keep the full curve.
+        const py = interpolate(local, [0, 14], [0, 1], { ...clampOpts, easing: ease });
         return (
           <span
             key={i}
@@ -163,7 +181,7 @@ const WordsRise: React.FC<{
               display: "inline-block",
               whiteSpace: "pre",
               opacity: p,
-              transform: `translateY(${(1 - p) * 28}px)`,
+              transform: `translateY(${(1 - py) * 28}px)`,
               filter: p < 1 ? `blur(${(1 - p) * 10}px)` : undefined,
             }}
           >
@@ -1188,6 +1206,19 @@ const OutroScene: React.FC = () => {
     spring({ frame: frame - 108, fps, config: { damping: 18, stiffness: 88, mass: 1 } }),
   );
 
+  // The lockup used to reveal itself by growing two wrapper widths. That
+  // re-lays-out the row every frame and drags the wordmark across fractional
+  // pixels, which measured as the jerkiest passage in the whole cut — motion
+  // arriving in steps rather than glides, on the largest type in the video.
+  // Same choreography, driven by transform and clip instead: the wrappers hold
+  // their final size, the tail slides behind its own clip, reui is uncovered by
+  // a clip-path, and the row carries the re-centering the growing widths used
+  // to produce. Layout never changes, so the type is rasterized once and moved
+  // as a texture.
+  const tailHidden = (1 - slideIn) * tailWidth;
+  const reuiHidden = (1 - reuiSlide) * REUI_GROUP_W;
+  const recenter = (tailHidden + reuiHidden) / 2;
+
   return (
     <AbsoluteFill
       style={{ alignItems: "center", justifyContent: "center", background: BG }}
@@ -1213,7 +1244,8 @@ const OutroScene: React.FC = () => {
           display: "flex",
           alignItems: "center",
           justifyContent: "center",
-          transform: "translateY(-8px)",
+          transform: `translate(${recenter}px, -8px)`,
+          willChange: "transform",
         }}
       >
         {/* Remocn lockup */}
@@ -1231,7 +1263,7 @@ const OutroScene: React.FC = () => {
             style={{
               position: "relative",
               overflow: "hidden",
-              width: slideIn * tailWidth,
+              width: tailWidth,
               height: WORD_SIZE,
             }}
           >
@@ -1247,6 +1279,8 @@ const OutroScene: React.FC = () => {
                 fontSize: WORD_SIZE,
                 letterSpacing: `${WORD_TRACKING}em`,
                 color: INK,
+                transform: `translateX(${-tailHidden}px)`,
+                willChange: "transform",
               }}
             >
               {WORD_TAIL}
@@ -1258,7 +1292,10 @@ const OutroScene: React.FC = () => {
         <div
           style={{
             overflow: "hidden",
-            width: reuiSlide * REUI_GROUP_W,
+            width: REUI_GROUP_W,
+            // Uncovered left to right by a clip, exactly as the growing width
+            // used to uncover it — but the box no longer moves the layout.
+            clipPath: `inset(0 ${(1 - reuiSlide) * 100}% 0 0)`,
             height: REUI_LOCKUP_H,
             display: "flex",
             alignItems: "center",
@@ -1273,6 +1310,7 @@ const OutroScene: React.FC = () => {
               paddingLeft: REUI_LEAD,
               whiteSpace: "nowrap",
               transform: `translateX(${(1 - reuiSlide) * 26}px)`,
+              willChange: "transform",
               opacity: interpolate(reuiSlide, [0, 0.35], [0, 1], clampOpts),
             }}
           >

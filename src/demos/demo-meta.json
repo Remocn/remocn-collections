@@ -765,6 +765,38 @@
     "assets": [],
     "usesShaders": true
   },
+  "introducing-shadscan": {
+    "graph": [
+      "src/components/remocn/ascii-dissolve.tsx",
+      "src/components/remocn/focus-pull.tsx",
+      "src/components/remocn/push-through.tsx",
+      "src/components/remocn/whip-pan.tsx",
+      "src/demos/introducing-shadscan/index.tsx",
+      "src/demos/introducing-shadscan/logo.tsx",
+      "src/demos/introducing-shadscan/terminal.tsx",
+      "src/demos/introducing-shadscan/theme.ts"
+    ],
+    "ownFiles": [
+      "src/demos/introducing-shadscan/index.tsx",
+      "src/demos/introducing-shadscan/logo.tsx",
+      "src/demos/introducing-shadscan/terminal.tsx",
+      "src/demos/introducing-shadscan/theme.ts"
+    ],
+    "remocnComponents": [
+      "ascii-dissolve",
+      "focus-pull",
+      "push-through",
+      "whip-pan"
+    ],
+    "npmPackages": [
+      "@remotion/google-fonts",
+      "@remotion/transitions",
+      "react",
+      "remotion"
+    ],
+    "assets": [],
+    "usesShaders": false
+  },
   "introducing-tenkit": {
     "graph": [
       "src/components/remocn/focus-pull.tsx",
@@ -856,6 +888,47 @@
       "videorc-logo.png",
       "videorc-orb.png"
     ],
+    "usesShaders": true
+  },
+  "jitter-check": {
+    "graph": [
+      "src/components/remocn/shared-axis-z.tsx",
+      "src/demos/jitter-check/index.tsx"
+    ],
+    "ownFiles": [
+      "src/demos/jitter-check/index.tsx"
+    ],
+    "remocnComponents": [
+      "shared-axis-z"
+    ],
+    "npmPackages": [
+      "@remotion/google-fonts",
+      "react",
+      "remotion"
+    ],
+    "assets": [],
+    "usesShaders": false
+  },
+  "jitter-check-bg": {
+    "graph": [
+      "src/components/remocn/shader-simplex-noise.tsx",
+      "src/components/remocn/shared-axis-z.tsx",
+      "src/demos/jitter-check-bg/index.tsx"
+    ],
+    "ownFiles": [
+      "src/demos/jitter-check-bg/index.tsx"
+    ],
+    "remocnComponents": [
+      "shader-simplex-noise",
+      "shared-axis-z"
+    ],
+    "npmPackages": [
+      "@paper-design/shaders-react",
+      "@remotion/google-fonts",
+      "react",
+      "remotion"
+    ],
+    "assets": [],
     "usesShaders": true
   },
   "llms-txt": {

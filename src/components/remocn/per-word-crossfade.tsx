@@ -36,6 +36,15 @@ export function PerWordCrossfade({
   const enterEasing = Easing.bezier(0.16, 1, 0.3, 1);
   const exitEasing = Easing.bezier(0.7, 0, 0.84, 0);
 
+  // Both travels are clipped to the fast phase of their curves. The enter
+  // easing has an asymptotic tail and the exit easing a slow start; while a
+  // word creeps by hundredths of a pixel its glyphs click across the pixel
+  // grid one pixel every few frames, staggered per word — a visible ripple.
+  // The travel is compressed to where the curve actually moves; opacity keeps
+  // the full window, so the crossfade reads the same.
+  const enterTravel = 13; // of enterDur 21 — lands early
+  const exitTravelFrom = 6; // of exitDur 15 — starts once the fade is underway
+
   const exitTotal = exitDur + (fromWords.length - 1) * exitStagger;
   const newStart = Math.max(0, exitTotal - overlapF + microDelayF);
 
@@ -76,7 +85,7 @@ export function PerWordCrossfade({
               extrapolateRight: "clamp",
               easing: exitEasing,
             });
-            const y = interpolate(local, [0, exitDur], [0, -6], {
+            const y = interpolate(local, [exitTravelFrom, exitDur], [0, -6], {
               extrapolateLeft: "clamp",
               extrapolateRight: "clamp",
               easing: exitEasing,
@@ -124,7 +133,7 @@ export function PerWordCrossfade({
               extrapolateRight: "clamp",
               easing: enterEasing,
             });
-            const y = interpolate(local, [0, enterDur], [8, 0], {
+            const y = interpolate(local, [0, enterTravel], [8, 0], {
               extrapolateLeft: "clamp",
               extrapolateRight: "clamp",
               easing: enterEasing,

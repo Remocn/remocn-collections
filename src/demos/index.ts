@@ -1,4 +1,6 @@
 import type { Demo } from "./types";
+import { JitterCheckDemo, JITTER_CHECK_DURATION } from "./jitter-check";
+import { JitterCheckBgDemo, JITTER_CHECK_BG_DURATION } from "./jitter-check-bg";
 import { getCatalogEntry } from "./catalog";
 import { AiAndSocialDemo, AI_AND_SOCIAL_DURATION } from "./ai-and-social";
 import { SignupFlowDemo } from "./signup-flow";
@@ -102,14 +104,33 @@ import {
   FableShowcasesDemo,
   FABLE_SHOWCASES_DURATION,
 } from "./fable-showcases";
+import { FableFlipbookDemo, FABLE_FLIPBOOK_DURATION } from "./fable-flipbook";
 import {
-  FableFlipbookDemo,
-  FABLE_FLIPBOOK_DURATION,
-} from "./fable-flipbook";
+  IntroducingShadscanDemo,
+  INTRODUCING_SHADSCAN_DURATION,
+} from "./introducing-shadscan";
 
 export * from "./types";
 
 export const demos: Demo[] = [
+  {
+    ...getCatalogEntry("introducing-shadscan"),
+    component: IntroducingShadscanDemo,
+    durationInFrames: INTRODUCING_SHADSCAN_DURATION,
+    defaultProps: {},
+  },
+  {
+    ...getCatalogEntry("jitter-check-bg"),
+    component: JitterCheckBgDemo,
+    durationInFrames: JITTER_CHECK_BG_DURATION,
+    defaultProps: {},
+  },
+  {
+    ...getCatalogEntry("jitter-check"),
+    component: JitterCheckDemo,
+    durationInFrames: JITTER_CHECK_DURATION,
+    defaultProps: {},
+  },
   {
     ...getCatalogEntry("showcases"),
     component: ShowcasesDemo,

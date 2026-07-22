@@ -1,6 +1,6 @@
 {
   "version": "1.0.0",
-  "lastScanned": 1784397303331,
+  "lastScanned": 1784741875383,
   "projectRoot": "/Users/dev_wandry/projects/opensource/remocn-demo",
   "techStack": {
     "languages": [
@@ -42,7 +42,7 @@
     "runtime": null
   },
   "build": {
-    "buildCommand": "npx tsc --noEmit 2>&1 | head -4; npx eslint src/demos/fable-flipbook/ 2>&1 | tail -4; S=/private/tmp/claude-501/-Users-dev-wandry-projects-opensource-remocn-demo/6ad9f626-b7bb-4866-a621-5657eb0e4cd6/scratchpad/stills && for f in 1062 1076 1150; do npx remotionb still src/remotion/index.ts fable-flipbook \"$S/fb9-$f.png\" --frame=$f --gl=angle 2>&1 | grep -iE \"error|cannot\" | head -2; done; echo V9-DONE",
+    "buildCommand": "npx tsc --noEmit -p tsconfig.json 2>&1 | grep -iE \"shadscan|error TS\" | head; echo \"=== tsc exit ${PIPESTATUS[0]} ===\"",
     "testCommand": null,
     "lintCommand": "npm run lint",
     "devCommand": "npm run dev",
@@ -76,8 +76,8 @@
     "out": {
       "path": "out",
       "purpose": "Build output",
-      "fileCount": 45,
-      "lastAccessed": 1784397303272,
+      "fileCount": 59,
+      "lastAccessed": 1784741875321,
       "keyFiles": [
         "agent-skill.mp4",
         "agent-skills.mp4",
@@ -90,7 +90,7 @@
       "path": "public",
       "purpose": "Public files",
       "fileCount": 19,
-      "lastAccessed": 1784397303275,
+      "lastAccessed": 1784741875324,
       "keyFiles": [
         "bg.png",
         "emoji.gif",
@@ -103,7 +103,7 @@
       "path": "scratch-out",
       "purpose": null,
       "fileCount": 874,
-      "lastAccessed": 1784397303290,
+      "lastAccessed": 1784741875350,
       "keyFiles": [
         "aria-0030.png",
         "aria-0080.png",
@@ -115,8 +115,8 @@
     "scripts": {
       "path": "scripts",
       "purpose": "Build/utility scripts",
-      "fileCount": 6,
-      "lastAccessed": 1784397303291,
+      "fileCount": 7,
+      "lastAccessed": 1784741875352,
       "keyFiles": [
         "build-registry.mjs",
         "frames.mjs",
@@ -129,14 +129,14 @@
       "path": "src",
       "purpose": "Source code",
       "fileCount": 0,
-      "lastAccessed": 1784397303292,
+      "lastAccessed": 1784741875352,
       "keyFiles": []
     },
     "styles": {
       "path": "styles",
       "purpose": null,
       "fileCount": 1,
-      "lastAccessed": 1784397303294,
+      "lastAccessed": 1784741875353,
       "keyFiles": [
         "global.css"
       ]
@@ -145,7 +145,7 @@
       "path": "tegami-launch",
       "purpose": null,
       "fileCount": 2,
-      "lastAccessed": 1784397303296,
+      "lastAccessed": 1784741875355,
       "keyFiles": [
         "SCRIPT.md",
         "STORYBOARD.md"
@@ -155,14 +155,14 @@
       "path": "types",
       "purpose": "Type definitions",
       "fileCount": 0,
-      "lastAccessed": 1784397303301,
+      "lastAccessed": 1784741875355,
       "keyFiles": []
     },
     "src/app": {
       "path": "src/app",
       "purpose": "Application code",
       "fileCount": 2,
-      "lastAccessed": 1784397303313,
+      "lastAccessed": 1784741875362,
       "keyFiles": [
         "layout.tsx",
         "page.tsx"
@@ -172,7 +172,7 @@
       "path": "src/components",
       "purpose": "UI components",
       "fileCount": 11,
-      "lastAccessed": 1784397303315,
+      "lastAccessed": 1784741875364,
       "keyFiles": [
         "app-sidebar.tsx",
         "code-block-command.tsx",
@@ -183,14 +183,14 @@
       "path": "src/helpers",
       "purpose": "Helper functions",
       "fileCount": 0,
-      "lastAccessed": 1784397303316,
+      "lastAccessed": 1784741875366,
       "keyFiles": []
     },
     "src/lib": {
       "path": "src/lib",
       "purpose": "Library code",
       "fileCount": 5,
-      "lastAccessed": 1784397303317,
+      "lastAccessed": 1784741875368,
       "keyFiles": [
         "demo-assets.ts",
         "demo-page-data.ts",
@@ -201,7 +201,7 @@
       "path": "src/types",
       "purpose": "Type definitions",
       "fileCount": 1,
-      "lastAccessed": 1784397303319,
+      "lastAccessed": 1784741875370,
       "keyFiles": [
         "culori.d.ts"
       ]
@@ -209,183 +209,69 @@
   },
   "hotPaths": [
     {
-      "path": "src/demos/fable-flipbook/photos.tsx",
-      "accessCount": 21,
-      "lastAccessed": 1784403392212,
+      "path": "src/demos/introducing-shadscan/terminal.tsx",
+      "accessCount": 17,
+      "lastAccessed": 1784744523457,
       "type": "file"
     },
     {
-      "path": "src/demos/fable-flipbook/acts.tsx",
+      "path": "src/demos/introducing-shadscan/index.tsx",
       "accessCount": 7,
-      "lastAccessed": 1784403600473,
+      "lastAccessed": 1784743858804,
+      "type": "file"
+    },
+    {
+      "path": "src/demos/introducing-shadscan/theme.ts",
+      "accessCount": 3,
+      "lastAccessed": 1784744448054,
+      "type": "file"
+    },
+    {
+      "path": "src/demos/introducing-shadscan/logo.tsx",
+      "accessCount": 3,
+      "lastAccessed": 1784744470889,
+      "type": "file"
+    },
+    {
+      "path": "src/demos/introducing-shadscan/STORYBOARD.md",
+      "accessCount": 1,
+      "lastAccessed": 1784741951408,
+      "type": "file"
+    },
+    {
+      "path": "src/demos/introducing-shadscan/SCRIPT.md",
+      "accessCount": 1,
+      "lastAccessed": 1784741952180,
       "type": "file"
     },
     {
       "path": "src/demos/index.ts",
-      "accessCount": 5,
-      "lastAccessed": 1784401556822,
-      "type": "file"
-    },
-    {
-      "path": "src/demos/fable-showcases/rig.ts",
-      "accessCount": 4,
-      "lastAccessed": 1784399684466,
-      "type": "file"
-    },
-    {
-      "path": "src/demos/fable-showcases/constellation.ts",
-      "accessCount": 3,
-      "lastAccessed": 1784399692986,
-      "type": "file"
-    },
-    {
-      "path": "src/demos/fable-showcases/wall.tsx",
-      "accessCount": 3,
-      "lastAccessed": 1784399700197,
-      "type": "file"
-    },
-    {
-      "path": "src/demos/fable-flipbook/ink.tsx",
-      "accessCount": 3,
-      "lastAccessed": 1784403735552,
-      "type": "file"
-    },
-    {
-      "path": "src/demos/fable-showcases/manifest.ts",
-      "accessCount": 2,
-      "lastAccessed": 1784399271903,
-      "type": "file"
-    },
-    {
-      "path": "src/demos/fable-showcases/finale.tsx",
-      "accessCount": 2,
-      "lastAccessed": 1784399695142,
-      "type": "file"
-    },
-    {
-      "path": "src/demos/fable-showcases/beats.tsx",
-      "accessCount": 2,
-      "lastAccessed": 1784399697517,
-      "type": "file"
-    },
-    {
-      "path": "src/demos/fable-showcases/mark.ts",
-      "accessCount": 2,
-      "lastAccessed": 1784399889415,
-      "type": "file"
-    },
-    {
-      "path": "src/demos/catalog.ts",
-      "accessCount": 2,
-      "lastAccessed": 1784401550142,
-      "type": "file"
-    },
-    {
-      "path": "src/demos/fable-flipbook/index.tsx",
-      "accessCount": 2,
-      "lastAccessed": 1784403602019,
-      "type": "file"
-    },
-    {
-      "path": "src/demos/types.ts",
       "accessCount": 1,
-      "lastAccessed": 1784397447896,
+      "lastAccessed": 1784741975321,
       "type": "file"
     },
     {
-      "path": "src/demos/showcases/index.tsx",
+      "path": "src/remotion/Root.tsx",
       "accessCount": 1,
-      "lastAccessed": 1784397465594,
+      "lastAccessed": 1784741975484,
       "type": "file"
     },
     {
-      "path": "src/demos/showcases/camera.ts",
+      "path": "src/components/remocn/ascii-dissolve.tsx",
       "accessCount": 1,
-      "lastAccessed": 1784397466093,
+      "lastAccessed": 1784741991072,
       "type": "file"
     },
     {
-      "path": "src/demos/showcases/media.ts",
+      "path": "src/demos/demo-meta.json",
       "accessCount": 1,
-      "lastAccessed": 1784397466598,
+      "lastAccessed": 1784742416439,
       "type": "file"
     },
     {
-      "path": "package.json",
+      "path": "src/components/remocn/claude-code.tsx",
       "accessCount": 1,
-      "lastAccessed": 1784397467711,
-      "type": "file"
-    },
-    {
-      "path": ".claude/skills/remocn/references/design.md",
-      "accessCount": 1,
-      "lastAccessed": 1784397538777,
-      "type": "file"
-    },
-    {
-      "path": ".claude/skills/remocn/references/motion-principles.md",
-      "accessCount": 1,
-      "lastAccessed": 1784397538896,
-      "type": "file"
-    },
-    {
-      "path": "src/demos/showcases/flight.tsx",
-      "accessCount": 1,
-      "lastAccessed": 1784397583414,
-      "type": "file"
-    },
-    {
-      "path": "src/demos/showcases/canyon.tsx",
-      "accessCount": 1,
-      "lastAccessed": 1784397584386,
-      "type": "file"
-    },
-    {
-      "path": "src/demos/showcases/outro.tsx",
-      "accessCount": 1,
-      "lastAccessed": 1784397584625,
-      "type": "file"
-    },
-    {
-      "path": "src/demos/showcases/acts.tsx",
-      "accessCount": 1,
-      "lastAccessed": 1784397734143,
-      "type": "file"
-    },
-    {
-      "path": "src/demos/showcases/layout.ts",
-      "accessCount": 1,
-      "lastAccessed": 1784397734767,
-      "type": "file"
-    },
-    {
-      "path": "src/demos/fable-showcases/STORYBOARD.md",
-      "accessCount": 1,
-      "lastAccessed": 1784398316709,
-      "type": "file"
-    },
-    {
-      "path": "src/demos/fable-showcases/index.tsx",
-      "accessCount": 1,
-      "lastAccessed": 1784399076709,
-      "type": "file"
-    },
-    {
-      "path": "src/demos/fable-flipbook/stepped.ts",
-      "accessCount": 1,
-      "lastAccessed": 1784401089937,
-      "type": "file"
-    },
-    {
-      "path": "src/demos/fable-flipbook/paper.tsx",
-      "accessCount": 1,
-      "lastAccessed": 1784401275262,
-      "type": "file"
-    },
-    {
-      "path": "src/demos/fable-flipbook/STORYBOARD.md",
-      "accessCount": 1,
-      "lastAccessed": 1784401530127,
+      "lastAccessed": 1784744345731,
       "type": "file"
     }
   ],

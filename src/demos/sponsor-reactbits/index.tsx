@@ -102,6 +102,12 @@ const WordsRise: React.FC<{
           ...clampOpts,
           easing: ease,
         });
+        // Travel lands at ~60% — the eased tail clicks the word down the pixel
+        // grid one pixel every few frames; opacity/blur keep the full curve.
+        const py = interpolate(local, [0, 14], [0, 1], {
+          ...clampOpts,
+          easing: ease,
+        });
         return (
           <span
             key={i}
@@ -109,7 +115,7 @@ const WordsRise: React.FC<{
               display: "inline-block",
               whiteSpace: "pre",
               opacity: p,
-              transform: `translateY(${(1 - p) * 30}px)`,
+              transform: `translateY(${(1 - py) * 30}px)`,
               filter: p < 1 ? `blur(${(1 - p) * 10}px)` : undefined,
             }}
           >

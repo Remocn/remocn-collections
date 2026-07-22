@@ -237,6 +237,12 @@ const RiseWords: React.FC<{
           ...clampOpts,
           easing: easeSoft,
         });
+        // Travel lands at ~60% — the eased tail clicks the word down the pixel
+        // grid one pixel every few frames; opacity/blur keep the full curve.
+        const py = interpolate(frame - delay - i * stagger, [0, 12], [0, 1], {
+          ...clampOpts,
+          easing: easeSoft,
+        });
         return (
           <span
             key={i}
@@ -244,7 +250,7 @@ const RiseWords: React.FC<{
               display: "inline-block",
               whiteSpace: "pre",
               opacity: p,
-              transform: `translateY(${(1 - p) * 18}px)`,
+              transform: `translateY(${(1 - py) * 18}px)`,
               filter: p < 1 ? `blur(${(1 - p) * 7}px)` : undefined,
             }}
           >
