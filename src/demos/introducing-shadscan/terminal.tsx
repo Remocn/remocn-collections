@@ -62,17 +62,19 @@ const F_FIX = 164;
 const F_PATH = 172;
 const F_CODE = 180;
 const F_SCORE = 198;
-const F_MENU = 292;
-const F_OPTS = 300;
-const F_STEP_DOWN = 318;
-const F_STEP_UP = 326;
-const F_SELECT = 334;
-const F_BOX = 344;
-const F_STATUS = 358;
-const F_DIFF = 376;
-const F_RESOLVED = 402;
-const F_RESCAN = 410;
-const F_FINAL = 420;
+// The whole handoff block is pulled 46 frames earlier so "64/100" doesn't idle
+// after its bar fills — a ~0.5s beat, then the scroll to the menu.
+const F_MENU = 246;
+const F_OPTS = 254;
+const F_STEP_DOWN = 272;
+const F_STEP_UP = 280;
+const F_SELECT = 288;
+const F_BOX = 298;
+const F_STATUS = 312;
+const F_DIFF = 330;
+const F_RESOLVED = 356;
+const F_RESCAN = 364;
+const F_FINAL = 374;
 
 // ---------------------------------------------------------------------------
 // Helpers

@@ -210,14 +210,14 @@
   "hotPaths": [
     {
       "path": "src/demos/introducing-shadscan/terminal.tsx",
-      "accessCount": 17,
-      "lastAccessed": 1784744523457,
+      "accessCount": 19,
+      "lastAccessed": 1784747140732,
       "type": "file"
     },
     {
       "path": "src/demos/introducing-shadscan/index.tsx",
-      "accessCount": 7,
-      "lastAccessed": 1784743858804,
+      "accessCount": 8,
+      "lastAccessed": 1784747146955,
       "type": "file"
     },
     {
