@@ -42,7 +42,7 @@
     "runtime": null
   },
   "build": {
-    "buildCommand": "npx tsc --noEmit -p tsconfig.json 2>&1 | grep -iE \"shadscan|error TS\" | head; echo \"=== tsc exit ${PIPESTATUS[0]} ===\"",
+    "buildCommand": "cd /Users/dev_wandry/projects/opensource/remocn-demo\nnpx tsc --noEmit -p tsconfig.json 2>&1 | grep -E \"sponsor-21st|error TS\" | head; echo \"TSC_DONE\"\nnpx remotionb still src/remotion/index.ts sponsor-21st scratch-out/s21/outro2_720.png --frame=720 --gl=angle >/dev/null 2>&1 && echo \"ok 720\" || echo \"FAIL\"; echo DONE",
     "testCommand": null,
     "lintCommand": "npm run lint",
     "devCommand": "npm run dev",
@@ -209,15 +209,39 @@
   },
   "hotPaths": [
     {
+      "path": "src/demos/sponsor-21st/index.tsx",
+      "accessCount": 52,
+      "lastAccessed": 1784798459188,
+      "type": "file"
+    },
+    {
       "path": "src/demos/introducing-shadscan/terminal.tsx",
       "accessCount": 19,
       "lastAccessed": 1784747140732,
       "type": "file"
     },
     {
+      "path": "src/demos/catalog.ts",
+      "accessCount": 12,
+      "lastAccessed": 1784816177583,
+      "type": "file"
+    },
+    {
       "path": "src/demos/introducing-shadscan/index.tsx",
       "accessCount": 8,
       "lastAccessed": 1784747146955,
+      "type": "file"
+    },
+    {
+      "path": "src/remotion/Root.tsx",
+      "accessCount": 6,
+      "lastAccessed": 1784815118941,
+      "type": "file"
+    },
+    {
+      "path": "src/demos/index.ts",
+      "accessCount": 5,
+      "lastAccessed": 1784816180416,
       "type": "file"
     },
     {
@@ -233,6 +257,12 @@
       "type": "file"
     },
     {
+      "path": "src/demos/sponsor-reui/index.tsx",
+      "accessCount": 3,
+      "lastAccessed": 1784796468836,
+      "type": "file"
+    },
+    {
       "path": "src/demos/introducing-shadscan/STORYBOARD.md",
       "accessCount": 1,
       "lastAccessed": 1784741951408,
@@ -242,18 +272,6 @@
       "path": "src/demos/introducing-shadscan/SCRIPT.md",
       "accessCount": 1,
       "lastAccessed": 1784741952180,
-      "type": "file"
-    },
-    {
-      "path": "src/demos/index.ts",
-      "accessCount": 1,
-      "lastAccessed": 1784741975321,
-      "type": "file"
-    },
-    {
-      "path": "src/remotion/Root.tsx",
-      "accessCount": 1,
-      "lastAccessed": 1784741975484,
       "type": "file"
     },
     {
@@ -272,6 +290,222 @@
       "path": "src/components/remocn/claude-code.tsx",
       "accessCount": 1,
       "lastAccessed": 1784744345731,
+      "type": "file"
+    },
+    {
+      "path": "src/demos/sponsor-reui/prompt.md",
+      "accessCount": 1,
+      "lastAccessed": 1784791206636,
+      "type": "file"
+    },
+    {
+      "path": "src/demos/sponsor-reactbits/prompt.md",
+      "accessCount": 1,
+      "lastAccessed": 1784791207649,
+      "type": "file"
+    },
+    {
+      "path": "src/demos/sponsor-reactbits/index.tsx",
+      "accessCount": 1,
+      "lastAccessed": 1784791223228,
+      "type": "file"
+    },
+    {
+      "path": "src/demos/sponsor-21st/frame.md",
+      "accessCount": 1,
+      "lastAccessed": 1784791644165,
+      "type": "file"
+    },
+    {
+      "path": "src/demos/sponsor-21st/STORYBOARD.md",
+      "accessCount": 1,
+      "lastAccessed": 1784791703410,
+      "type": "file"
+    },
+    {
+      "path": "src/demos/sponsor-21st/SCRIPT.md",
+      "accessCount": 1,
+      "lastAccessed": 1784791720848,
+      "type": "file"
+    },
+    {
+      "path": "src/components/remocn/shader-mesh-gradient.tsx",
+      "accessCount": 1,
+      "lastAccessed": 1784791820663,
+      "type": "file"
+    },
+    {
+      "path": "scratch-out/s21/f200.png",
+      "accessCount": 1,
+      "lastAccessed": 1784792436215,
+      "type": "file"
+    },
+    {
+      "path": "scratch-out/s21/f118.png",
+      "accessCount": 1,
+      "lastAccessed": 1784792531177,
+      "type": "file"
+    },
+    {
+      "path": "scratch-out/s21/f250.png",
+      "accessCount": 1,
+      "lastAccessed": 1784792532243,
+      "type": "file"
+    },
+    {
+      "path": "scratch-out/s21/f330.png",
+      "accessCount": 1,
+      "lastAccessed": 1784792532734,
+      "type": "file"
+    },
+    {
+      "path": "scratch-out/s21/f422.png",
+      "accessCount": 1,
+      "lastAccessed": 1784792532987,
+      "type": "file"
+    },
+    {
+      "path": "scratch-out/s21/f30.png",
+      "accessCount": 1,
+      "lastAccessed": 1784792603110,
+      "type": "file"
+    },
+    {
+      "path": "scratch-out/s21/f498.png",
+      "accessCount": 1,
+      "lastAccessed": 1784792603602,
+      "type": "file"
+    },
+    {
+      "path": "scratch-out/s21/f574.png",
+      "accessCount": 1,
+      "lastAccessed": 1784792604104,
+      "type": "file"
+    },
+    {
+      "path": "scratch-out/s21/f736.png",
+      "accessCount": 1,
+      "lastAccessed": 1784792604754,
+      "type": "file"
+    },
+    {
+      "path": "scratch-out/s21/f330b.png",
+      "accessCount": 1,
+      "lastAccessed": 1784792683495,
+      "type": "file"
+    },
+    {
+      "path": "scratch-out/s21/v2_40.png",
+      "accessCount": 1,
+      "lastAccessed": 1784793957925,
+      "type": "file"
+    },
+    {
+      "path": "scratch-out/s21/v2_72.png",
+      "accessCount": 1,
+      "lastAccessed": 1784793958462,
+      "type": "file"
+    },
+    {
+      "path": "scratch-out/s21/v2_105.png",
+      "accessCount": 1,
+      "lastAccessed": 1784793958984,
+      "type": "file"
+    },
+    {
+      "path": "scratch-out/s21/v2_200.png",
+      "accessCount": 1,
+      "lastAccessed": 1784793959453,
+      "type": "file"
+    },
+    {
+      "path": "scratch-out/s21/v2_354.png",
+      "accessCount": 1,
+      "lastAccessed": 1784794017347,
+      "type": "file"
+    },
+    {
+      "path": "scratch-out/s21/v2_504.png",
+      "accessCount": 1,
+      "lastAccessed": 1784794017757,
+      "type": "file"
+    },
+    {
+      "path": "scratch-out/s21/v2_654.png",
+      "accessCount": 1,
+      "lastAccessed": 1784794018248,
+      "type": "file"
+    },
+    {
+      "path": "scratch-out/s21/v2_724.png",
+      "accessCount": 1,
+      "lastAccessed": 1784794018862,
+      "type": "file"
+    },
+    {
+      "path": "scratch-out/s21/v3_105.png",
+      "accessCount": 1,
+      "lastAccessed": 1784794200371,
+      "type": "file"
+    },
+    {
+      "path": "scratch-out/s21/v3_200.png",
+      "accessCount": 1,
+      "lastAccessed": 1784794201268,
+      "type": "file"
+    },
+    {
+      "path": "scratch-out/s21/v3_504.png",
+      "accessCount": 1,
+      "lastAccessed": 1784794201758,
+      "type": "file"
+    },
+    {
+      "path": "scratch-out/s21/v3_724.png",
+      "accessCount": 1,
+      "lastAccessed": 1784794202166,
+      "type": "file"
+    },
+    {
+      "path": "scratch-out/s21/r_94.png",
+      "accessCount": 1,
+      "lastAccessed": 1784794780956,
+      "type": "file"
+    },
+    {
+      "path": "scratch-out/s21/r_114.png",
+      "accessCount": 1,
+      "lastAccessed": 1784794781970,
+      "type": "file"
+    },
+    {
+      "path": "scratch-out/s21/r_148.png",
+      "accessCount": 1,
+      "lastAccessed": 1784794782579,
+      "type": "file"
+    },
+    {
+      "path": "scratch-out/s21/r_358.png",
+      "accessCount": 1,
+      "lastAccessed": 1784794782986,
+      "type": "file"
+    },
+    {
+      "path": "scratch-out/s21/c_100.png",
+      "accessCount": 1,
+      "lastAccessed": 1784795831487,
+      "type": "file"
+    },
+    {
+      "path": "scratch-out/s21/c_116.png",
+      "accessCount": 1,
+      "lastAccessed": 1784795832139,
+      "type": "file"
+    },
+    {
+      "path": "scratch-out/s21/c_128.png",
+      "accessCount": 1,
+      "lastAccessed": 1784795832321,
       "type": "file"
     }
   ],

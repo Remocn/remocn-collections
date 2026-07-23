@@ -109,10 +109,39 @@ import {
   IntroducingShadscanDemo,
   INTRODUCING_SHADSCAN_DURATION,
 } from "./introducing-shadscan";
+import { Sponsor21stDemo, SPONSOR_21ST_DURATION } from "./sponsor-21st";
+import {
+  TransitionLabDemo,
+  TRANSITION_LAB_DURATION,
+  transitionLabSchema,
+} from "./transition-lab";
+import {
+  RouterRebuildDemo,
+  ROUTER_REBUILD_DURATION,
+} from "./router-rebuild";
 
 export * from "./types";
 
 export const demos: Demo[] = [
+  {
+    ...getCatalogEntry("router-rebuild"),
+    component: RouterRebuildDemo,
+    durationInFrames: ROUTER_REBUILD_DURATION,
+    defaultProps: {},
+  },
+  {
+    ...getCatalogEntry("transition-lab"),
+    component: TransitionLabDemo,
+    durationInFrames: TRANSITION_LAB_DURATION,
+    schema: transitionLabSchema,
+    defaultProps: transitionLabSchema.parse({}),
+  },
+  {
+    ...getCatalogEntry("sponsor-21st"),
+    component: Sponsor21stDemo,
+    durationInFrames: SPONSOR_21ST_DURATION,
+    defaultProps: {},
+  },
   {
     ...getCatalogEntry("introducing-shadscan"),
     component: IntroducingShadscanDemo,

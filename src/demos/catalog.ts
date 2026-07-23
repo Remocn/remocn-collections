@@ -9,6 +9,24 @@ export type DemoCatalogEntry = {
 
 export const demoCatalog: DemoCatalogEntry[] = [
   {
+    id: "router-rebuild",
+    title: "Transition Lab — Cursor Router promo, rebuilt frame-accurate",
+    description:
+      "A frame-accurate rebuild of the Cursor Router promo reference (657 frames @30fps — scene boundaries land on the source's exact frames, every internal beat measured from a frame-by-frame breakdown) as the proof that the transition-lab grammars compose into a real video. Six scenes on the measured stage colors (#fff / #e6e4e0 / #f5f5f5): the headline with its 55→60% orange count-up and word-by-word completion; the Auto select pill with the Optimize For dropdown whose ✓ walks Intelligence(orange)→Balance(green)→Cost(blue) on the source frames; the router flow diagram building left-to-right (arrows draw, Router lands, model pill fades in) and cycling Build a new UI/Grok 4.5 → Hard debug/Opus 4.8 → Run tests/Composer through the reference's blank-pill text swaps; the Cost per commit table with its ghost-row cascade, the 2-frames-per-row spotlight wave and Cursor Router landing green and staying; the Cursor typewriter (letter-by-letter ' Router', instant clear, word-by-word 'Now available for Teams and Enterprises'); and a CSS-3D cube that spins in on a settling spring and holds. All scene enters/exits use the spring-settle components (SpringSettleEnter/Item + springSettleExitStyle) with per-boundary exit windows matching the source cuts.",
+  },
+  {
+    id: "transition-lab",
+    title: "Transition Lab — mixed transition grammars on one rail",
+    description:
+      "A test bench where two reference-grade transition grammars cut together into ONE continuous looping video via the transition-rail sequencer — each scene declares how it enters, and a zod enum (mixed/slide/settle) plus per-parameter sliders drive everything from the Remotion Studio props panel. slide-swap (Nike brand-guidelines reel, horizontal): fully separate scenes on ONE constant canvas (the cut.mp4 model — the stage color never changes) where the CONTENT moves, not panels — the outgoing content is shoved off left on an accelerating power curve and completely hidden by an accelerating fade inside the tail of its own scene, then the incoming content arrives from the right on the very next frame driven by a real overshoot-clamped spring (no bounce) with a fast fade-in; the two scenes never overlap. rise: the same physics rotated vertical — the outgoing content is shoved UP, the incoming springs in from the BOTTOM (slide-swap axis y, same sliders). spring-settle (Cursor Router promo, scale): the outgoing scene shrinks as ONE group toward ~0.88 and fades on an accelerating power curve, one empty gap frame with a background crossfade, then incoming items land from ~1.18 scale on a stiff spring with per-item stagger. Group 1 (headline, select pill + dropdown, router flow) swaps horizontally; group 2 (cost table, dark logo) swaps on the spring — the loop seam is a slide. A mono HUD shows scene, entry grammar, phase and live settings.",
+  },
+  {
+    id: "sponsor-21st",
+    title: "21st.dev — The living library of interfaces",
+    description:
+      "A sponsor spot for 21st.dev — 'The living library of interfaces' — told as ONE continuous take, deliberately unlike the sibling sponsor cuts (no 'Say hello' kinetic opener, no TransitionSeries cut grammar, no install pill, no proof/agent beats). The real 21st.dev logo (inlined from the live site — the geometric mark + '21st' wordmark) writes itself on: the mark stroke-draws and fills, then the four glyphs rise in from behind it, under 'The living library of interfaces'. Then the heart: a fixed centre card (no camera move) onto which nine REAL template screenshots from 21st.dev/community/templates (@nextjsshop set — Agent AI, Mosa AI, Cypon, Omega, Evolv AI, Nexflow, AceAI, Bookify, Bookmark) stack on the Z-AXIS, each new one blooming open OVER the last via a clip-path mask that expands from its own centre (inset 50%→0, rounded), a fast cascade so the frame is never blank. No labels, no counter. It closes back on the logo, held large, with 'The living library of interfaces' and a restrained 'Sponsored by Remocn · 21st.dev'. 21st register: Geist, near-black #0b0b0c chrome, one periwinkle-indigo accent carried by a dark faint mesh-gradient shader behind a strong vignette (not swirl, not ripple). Screenshots load from public/sponsor-21st via staticFile. No letter-spacing, no uppercase, no installation pill, no badges, no pulsing, no eyebrow, no swirl / ripple.",
+  },
+  {
     id: "introducing-shadscan",
     title: "shadscan — Introducing shadscan",
     description:

@@ -14,6 +14,8 @@ export type Demo = {
   width?: number;   // defaults to DEFAULT_VIDEO.width
   height?: number;  // defaults to DEFAULT_VIDEO.height
   defaultProps?: Record<string, unknown>;
+  /** optional zod schema — enables the props-panel controls in Remotion Studio */
+  schema?: unknown;
   /** frame shown in the list-page thumbnail; defaults to the middle frame */
   thumbnailFrame?: number;
 };
